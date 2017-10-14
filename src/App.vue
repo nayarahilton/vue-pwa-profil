@@ -1,10 +1,9 @@
 <template>
   <div id="app">
-    <header>
-      <span>Vue.js PWA</span>
+    <header class="header">
+      <span class="logo">Profil</span>
     </header>
     <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
       <router-view></router-view>
     </main>
   </div>
@@ -16,39 +15,53 @@ export default {
 };
 </script>
 
-<style>
-body {
-  margin: 0;
-}
+<style lang="stylus">
 
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
+@import url('https://fonts.googleapis.com/css?family=Cairo:200,300,400,600,700,900');
 
-main {
-  text-align: center;
-  margin-top: 40px;
-}
+$header-height = 56px
 
-header {
-  margin: 0;
-  height: 56px;
-  padding: 0 16px 0 24px;
-  background-color: #35495E;
-  color: #ffffff;
-}
+body 
+  margin 0
 
-header span {
-  display: block;
-  position: relative;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: .02em;
-  font-weight: 400;
-  box-sizing: border-box;
-  padding-top: 16px;
-}
+#app 
+  font-family 'Cairo', sans-serif
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+
+main 
+  text-align center
+
+a
+  text-decoration none
+  cursor pointer
+
+svg 
+  width 20px
+  height 20px
+
+
+.header 
+  margin 0
+  box-sizing border-box
+  color #ffffff
+  background-color #ffffff
+  border-bottom 1px solid rgba(0, 0, 0, .1)
+  display flex
+  align-items center
+  justify-content center
+  height $header-height 
+
+
+.logo
+  font-size 20px
+  letter-spacing 0.6em
+  text-transform uppercase
+  font-weight 700
+  box-sizing border-box
+  padding 3px
+  padding-left calc(0.6em + 3px)
+  border-radius 14px 14px 14px 0
+  background-color #0084FA
+
 </style>
