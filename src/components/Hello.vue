@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <div class="presentation-holder">
-      <img src="../assets/logo.png" alt="Profil Logo">
+      <img class="logo-symbol" src="../assets/logo.svg" alt="Profil Logo">
       <h1 class="title">{{ msg }}</h1>
     </div>
     
@@ -37,6 +37,7 @@ export default {
 <style lang="stylus">
 
 $header-height = 56px
+$primary-color = #0084FA
 
 .hello
   padding 40px 20px
@@ -47,10 +48,13 @@ $header-height = 56px
   align-items center
   background-color rgba(0, 74, 141, 0.5)
   color #ffffff
-  height "calc(100vh - %s)" % $header-height
+  min-height "calc(100vh - %s)" % $header-height
 
   .link
     color #ffffff
+
+.logo-symbol
+  height 250px
   
 .title
   font-size 26px
