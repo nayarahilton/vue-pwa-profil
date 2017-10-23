@@ -104,9 +104,6 @@ body
   margin 0
   padding 0
 
-main 
-  text-align center
-
 a
   text-decoration none
   cursor pointer

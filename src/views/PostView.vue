@@ -46,7 +46,7 @@ export default {
         {
           url: this.catUrl,
           comment: this.title,
-          info: 'Posted by Charles on Tuesday',
+          autor: 'Nayara Hilton',
           created_at: -1 * new Date().getTime(),
         },
       ).then(

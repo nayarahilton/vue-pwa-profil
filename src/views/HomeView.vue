@@ -7,6 +7,9 @@
       <div class="card-comment">
         <span>{{ picture.comment }}</span>
       </div>
+      <div class="card-comment">
+        <span>{{ picture.autor }}</span>
+      </div>
     </div>
     <router-link class="add-picture-button" to="/post">
       <span>+</span>
@@ -14,18 +17,12 @@
   </div>
 </template>
 <script>
-import data from '../data';
 
 export default {
   methods: {
     displayDetails(id) {
       this.$router.push({ name: 'detail', params: { id } });
     },
-  },
-  data() {
-    return {
-      pictures: data.pictures,
-    };
   },
 };
 </script>
@@ -62,18 +59,9 @@ $primary-color = #0084FA
     width 100%
   
   .card-comment 
-    position: absolute
-    bottom -5px
-    left 10px
-    right 10px
-    padding 16px
-    text-align right
-    background $primary-color
-    border-radius 20px 20px 20px 0
-  
-  .card-comment > span 
-    color #fff
-    font-size 14px
-    font-weight bold
+    > span 
+      color #222
+      font-size 14px
+      font-weight bold
   
 </style>

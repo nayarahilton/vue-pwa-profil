@@ -1,0 +1,12 @@
+$border-radius = 10px
+
+.main-btn
+    display block
+    color #ffffff
+    background-color #0084FA
+    border-radius $border-radius
+    padding 10px
+    margin-bottom 20px
+    margin-top 20px
+    min-width 100px
+    text-align center

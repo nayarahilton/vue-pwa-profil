@@ -1,16 +1,17 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Hello from '@/components/Hello';
-import HomeView from '@/components/HomeView';
-import DetailView from '@/components/DetailView';
-import PostView from '@/components/PostView';
+import WelcomeView from '@/views/WelcomeView';
+import HomeView from '@/views/HomeView';
+import DetailView from '@/views/DetailView';
+import PostView from '@/views/PostView';
+import RegisterView from '@/views/RegisterView';
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
     {
-      path: '/Home',
+      path: '/home',
       name: 'home',
       component: HomeView,
     },
@@ -26,8 +27,13 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'Welcome',
-      component: Hello,
+      name: 'welcome',
+      component: WelcomeView,
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: RegisterView,
     },
   ],
 });

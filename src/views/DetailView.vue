@@ -2,13 +2,13 @@
    <div class="mdl-grid">
     <div class="post">
       <div class="picture">
-        <img :src="this.pictures[$route.params.id].url" />
+        <img :src="this.pictures.url" />
       </div>
       <div class="info">
-        <span>{{ this.pictures[$route.params.id].info }}</span>
+        <span>{{ this.pictures.autor }}</span>
       </div>
       <div class="comment">
-        <span>{{ this.pictures[$route.params.id].comment }}</span>
+        <span>{{ this.pictures.comment }}</span>
       </div>
     </div>
      <router-link class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" to="/post">
@@ -17,12 +17,11 @@
   </div>
 </template>
 <script>
-import data from '../data';
 
 export default {
   data() {
     return {
-      pictures: data.pictures,
+      pictures: this.$route.params.id,
     };
   },
 };
