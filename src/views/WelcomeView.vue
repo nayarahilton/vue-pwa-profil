@@ -6,12 +6,12 @@
     </div>
     
     <div class="btn-holder">
-      <social-button></social-button>
+      <social-button text-inner="Entrar com o Linkedin"></social-button>
       <input class="input" type="email" placeholder="Email">
       <input class="input" type="password" placeholder="Senha">
       <div class="login-holder">
         <router-link class="link" to="/register">Criar cadastro</router-link>
-        <main-button></main-button>
+        <main-button text-inner="Entrar"></main-button>
       </div>
     </div>
   </div>

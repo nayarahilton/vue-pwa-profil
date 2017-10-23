@@ -6,12 +6,12 @@
     </div>
     
     <div class="btn-holder">
-      <social-button></social-button>
+      <social-button text-inner="Completar com o Linkedin"></social-button>
       <input class="input" type="text" placeholder="Nome">
       <input class="input" type="email" placeholder="Email">
       <input class="input" type="password" placeholder="Senha">
       <div class="login-holder">
-        <main-button></main-button>
+        <main-button text-inner="Próximo"></main-button>
       </div>
     </div>
   </div>

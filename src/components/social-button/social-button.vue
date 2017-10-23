@@ -2,7 +2,7 @@
 <script src="./social-button.js"></script>
 <template>
     <a class="social-btn" href="#">
-        <span>Entre com o <strong>linkedin</strong></span>
+        <span>{{textInner}}</span>
         <div class="icon">
             <svg></svg>
         </div>
