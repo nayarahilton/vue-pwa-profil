@@ -6,16 +6,18 @@
     </div>
     
     <div class="btn-holder">
-      <a class="main-btn" href="#">Cadastre-se</a>
+      <a class="social-btn" href="#">
+        <span>Entre com o <strong>linkedin</strong></span>
+        <div class="icon">
+          <svg></svg>
+        </div>
+      </a>
+      <input class="input" type="email" placeholder="Email">
+      <input class="input" type="password" placeholder="Senha">
       <div class="login-holder">
-        <a class="link" href="#">
-          Fazer login
-        </a>
-        <a class="social-btn" href="#">
-          <span>Entre com o <strong>linkedin</strong></span>
-          <div class="icon">
-            <svg></svg>
-          </div>
+        <a class="link" href="#">Criar cadastro</a>
+        <a class="main-btn"  href="#">
+          Entrar
         </a>
       </div>
     </div>
@@ -38,6 +40,10 @@ export default {
 
 $header-height = 56px
 $primary-color = #0084FA
+$border-radius = 10px
+
+::-webkit-input-placeholder
+  color #fff
 
 .hello
   padding 40px 20px
@@ -53,13 +59,27 @@ $primary-color = #0084FA
   .link
     color #ffffff
 
+  .input
+    background transparent
+    border 1px solid #fff
+    border-radius $border-radius
+    padding 15px
+    box-sizing border-box
+    width 100%
+    margin-top 20px
+    color #fff
+
+    &:focus 
+      outline none
+
 .logo-symbol
-  height 250px
+  height 120px
   
 .title
-  font-size 26px
-  line-height 30px
+  font-size 20px
+  line-height 24px
   font-weight 300
+  max-width 250px
 
 .btn-holder
   width 100%
@@ -68,9 +88,11 @@ $primary-color = #0084FA
   display block
   color #ffffff
   background-color #0084FA
-  border-radius 15px
+  border-radius $border-radius
   padding 10px
   margin-bottom 20px
+  margin-top 20px
+  min-width 100px
 
 .login-holder
   display flex
@@ -79,16 +101,20 @@ $primary-color = #0084FA
 
 .social-btn
   background-color #ffffff
-  border-radius 20px
+  border-radius $border-radius
   color #0084FA
-  display inline-flex
+  display flex
+  position relative
 
   .icon
     background-color #0084FA
-    border-radius 0 20px 20px 0
+    border-radius 0 $border-radius $border-radius 0
     padding 2px
     width 40px
-    position relative
+    position absolute
+    top 0
+    bottom 0
+    right 0
 
   svg
     background #fff
@@ -98,7 +124,7 @@ $primary-color = #0084FA
     transform translate(-50%, -50%)
 
   span
-    padding 3px 15px
+    padding 5px 15px
     display inline-block
 
 </style>
