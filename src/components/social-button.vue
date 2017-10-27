@@ -1,0 +1,50 @@
+<style lang="stylus" scoped src="./social-button.css"></style>
+<script src="./social-button.js"></script>
+<template>
+    <a class="social-btn" href="#">
+        <span>{{textInner}}</span>
+        <div class="icon">
+            <svg></svg>
+        </div>
+    </a>
+</template>
+
+<script>
+	export default {
+	    props: ['text-inner']
+	}
+</script>
+
+<style scoped lang="stylus">
+	$border-radius = 10px
+
+	.social-btn
+		background-color #ffffff
+		padding 10px
+		borx-sizing border-box
+		border-radius $border-radius
+		color #0084FA
+		display flex
+		position relative
+
+	.icon
+		background-color #0084FA
+		border-radius 0 $border-radius $border-radius 0
+		padding 2px
+		width 40px
+		position absolute
+		top 0
+		bottom 0
+		right 0
+
+	svg
+		background #fff
+		position absolute
+		top 50%
+		left 50%
+		transform translate(-50%, -50%)
+
+	span
+		padding 0 15px
+		display inline-block	
+</style>
