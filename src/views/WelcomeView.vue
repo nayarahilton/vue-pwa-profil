@@ -4,7 +4,7 @@
       <img class="logo-symbol" src="../assets/logo.svg" alt="Profil Logo">
       <h1 class="title">{{ msg }}</h1>
     </div>
-    
+
     <div class="btn-holder">
       <social-button text-inner="Entrar com o Linkedin"></social-button>
       <input class="input" type="email" placeholder="Email">
@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import socialButton from '../components/social-button/social-button.vue';
-import mainButton from '../components/main-button/main-button.vue';
+import socialButton from '../components/social-button';
+import mainButton from '../components/main-button';
 
 export default {
   name: 'welcome',
@@ -69,12 +69,12 @@ $border-radius = 10px
     margin-top 20px
     color #fff
 
-    &:focus 
+    &:focus
       outline none
 
 .logo-symbol
   height 120px
-  
+
 .title
   font-size 20px
   line-height 24px

@@ -4,7 +4,7 @@
       <h2 class="title">Seus Dados</h2>
       <p>{{msg}}</p>
     </div>
-    
+
     <div class="btn-holder">
       <social-button text-inner="Completar com o Linkedin"></social-button>
       <input class="input" type="text" placeholder="Nome">
@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import socialButton from '../components/social-button/social-button.vue';
-import mainButton from '../components/main-button/main-button.vue';
+import socialButton from '../components/social-button';
+import mainButton from '../components/main-button';
 
 export default {
   name: 'register',

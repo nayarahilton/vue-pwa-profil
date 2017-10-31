@@ -3,9 +3,9 @@
 </template>
 
 <script>
-	export default {
-	    props: ['text-inner']
-	}
+  export default {
+    props: ['text-inner'],
+  };
 </script>
 
 <style scoped lang="stylus">
@@ -20,5 +20,5 @@
 	    margin-bottom 20px
 	    margin-top 20px
 	    min-width 100px
-	    text-align center		
+	    text-align center
 </style>

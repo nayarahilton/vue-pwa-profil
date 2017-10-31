@@ -1,5 +1,3 @@
-<style lang="stylus" scoped src="./social-button.css"></style>
-<script src="./social-button.js"></script>
 <template>
     <a class="social-btn" href="#">
         <span>{{textInner}}</span>
@@ -10,9 +8,9 @@
 </template>
 
 <script>
-	export default {
-	    props: ['text-inner']
-	}
+  export default {
+    props: ['text-inner'],
+  };
 </script>
 
 <style scoped lang="stylus">
@@ -46,5 +44,5 @@
 
 	span
 		padding 0 15px
-		display inline-block	
+		display inline-block
 </style>
