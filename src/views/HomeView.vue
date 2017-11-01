@@ -1,16 +1,26 @@
 <template>
   <div class="home">
-    <div v-for="picture in this.$root.cat" class="card" @click="displayDetails(picture['.key'])">
-      <div class="card-picture">
-        <img :src="picture.url" />
+    <div v-for="picture in this.$root.cat" class="card">
+
+       <div class="card-picture" @click="displayDetails(picture['.key'])">
+          <img :src="picture.url" />
+        </div>
+        <div class="card-comment">
+          <span>{{ picture.comment }}</span>
+        </div>
+        <div class="card-info">
+          <profile-resume
+            :image="picture.url"
+            :nickname="picture.autor"
+            username="@nayarahilton"
+            profession="#Profissão"
+          >
+          </profile-resume>
+          <post-reactions></post-reactions>
+        </div>
+
       </div>
-      <div class="card-comment">
-        <span>{{ picture.comment }}</span>
-      </div>
-      <div class="card-comment">
-        <span>{{ picture.autor }}</span>
-      </div>
-    </div>
+
     <router-link class="add-picture-button" to="/post">
       <span>+</span>
     </router-link>
@@ -18,7 +28,19 @@
 </template>
 <script>
 
+import profileResume from '../components/profile-resume';
+import postReactions from '../components/post-reactions';
+
 export default {
+  data() {
+    return {
+      msg: 'Explore diverasas profissões com quem trabalha na área',
+    };
+  },
+  components: {
+    'profile-resume': profileResume,
+    'post-reactions': postReactions,
+  },
   methods: {
     displayDetails(id) {
       this.$router.push({ name: 'detail', params: { id } });
@@ -29,6 +51,9 @@ export default {
 <style lang="stylus" scoped>
 
 $primary-color = #0084FA
+
+  .home
+    background #eee
 
   .add-picture-button
     position fixed
@@ -44,24 +69,35 @@ $primary-color = #0084FA
     align-items center
     justify-content center
     box-shadow -3px 0px 4px 1px rgba(0,0,0,0.3)
-    
-    span 
+
+    span
       font-size 40px
       line-height 40px
       height 45px
 
-  
-  .card 
-    position relative
-    margin-bottom 25px
-  
-  .card-picture > img 
+
+  .card
+    padding-bottom 10px
+    border-bottom 1px solid #eee
+    margin-bottom 40px
+    background #fff
+    max-width 500px
+    margin-left auto
+    margin-right auto
+
+  .card-picture > img
     width 100%
-  
-  .card-comment 
-    > span 
+
+  .card-info
+      padding 5px 15px
+      display flex
+      justify-content space-between
+
+  .card-comment
+    padding 0 20px
+
+    > span
       color #222
-      font-size 14px
-      font-weight bold
-  
+      font-size 15px
+
 </style>
