@@ -1,63 +1,65 @@
 <template>
-  <div class="home">
-    <div v-for="picture in this.$root.cat" class="card">
+  <div class="profile">
+    <profile-resume
+    :image="cat.url"
+    :nickname="cat.autor"
+    username="@nayarahilton"
+    profession="#Profissão"
+    linkto="/profile"
+    >
+    </profile-resume>
 
-       <div class="card-picture" @click="displayDetails(picture['.key'])">
-          <img :src="picture.url" />
-        </div>
-        <div class="card-comment">
-          <span>{{ picture.comment }}</span>
-        </div>
-        <div class="card-info">
-          <profile-resume
-            :image="picture.url"
-            :nickname="picture.autor"
-            username="@nayarahilton"
-            profession="#Profissão"
-            @click.native="goToProfile(picture['.key'])"
-          >
-          </profile-resume>
-          <post-reactions></post-reactions>
-        </div>
+    <div class="status">
+      <span class="point"> 1000 moedas </span> <span class="level">| Nível 2 </span>
+    </div>
+    <div class="follows">
+      <span class="followers">100 seguidores</span> <span class="following">53 seguindo</span>
+    </div>
+    <div class="card">
+      <div class="card-picture">
+          <img :src="cat.url" />
       </div>
-
-
-    <router-link class="add-picture-button" to="/post">
-      <span>+</span>
-    </router-link>
+      <div class="card-info">
+          <div class="card-comment">
+          <span>{{ cat.comment }}</span>
+          </div>
+          <div class="card-info">
+          <post-reactions></post-reactions>
+          </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 
+import { find } from 'lodash';
 import profileResume from '../components/profile-resume';
 import postReactions from '../components/post-reactions';
+
 
 export default {
   data() {
     return {
-      msg: 'Explore diverasas profissões com quem trabalha na área',
+      cat: null,
     };
   },
   components: {
     'profile-resume': profileResume,
     'post-reactions': postReactions,
   },
-  methods: {
-    displayDetails(id) {
-      this.$router.push({ name: 'detail', params: { id } });
-    },
-    goToProfile(id) {
-      this.$router.push({ name: 'profile', params: { id } });
-    },
+  mounted() {
+    this.cat = find(this.$root.cat, cat => cat['.key'] === this.$route.params.id);
   },
 };
 </script>
+
 <style lang="stylus" scoped>
 
 $primary-color = #0084FA
 
-  .home
-    background #eee
+  .profile
+    background #fff
+    padding 20px
 
   .add-picture-button
     position fixed

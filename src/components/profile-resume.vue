@@ -27,6 +27,7 @@
       display inline-flex
       align-items center
       justify-content center
+      color #222
 
   .img-holder
       width 50px
