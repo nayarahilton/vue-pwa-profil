@@ -4,7 +4,7 @@
 		:id="id"
 		:placeholder="placeholder"
 		:required="required"
-		:class="textareaDesign"
+		:class="textareaStyle"
 		class="textarea"
         rows="4"		
 	/>
@@ -31,7 +31,7 @@ export default {
 		},
 	},
 	computed: {
-		textareaDesign() {
+		textareaStyle() {
 			if (this.design === 'main' || !this.design) return 'textarea-main';
 		},
 	},

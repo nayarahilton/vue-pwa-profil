@@ -5,7 +5,7 @@
 		:id="id"
 		:placeholder="placeholder"
 		:required="required"
-		:class="inputDesign"
+		:class="inputStyle"
 		class="input"		
 	/>
 </template>
@@ -35,7 +35,7 @@ export default {
 		},
 	},
 	computed: {
-		inputDesign() {
+		inputStyle() {
 			if (this.design === 'main' || !this.design) return 'input-main';
 			if (this.design === 'login') return 'input-login';
 		},

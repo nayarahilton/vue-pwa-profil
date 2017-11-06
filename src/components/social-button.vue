@@ -1,5 +1,9 @@
 <template>
-	<a class="social-btn" :class="socialbtnDesign" href="#">
+	<a 
+		class="social-btn" 
+		:class="socialbtnStyle" 
+		href="#"
+	>
 		<span>{{ textInner }}</span>
 		<div class="icon">
 			<svg></svg>
@@ -18,7 +22,7 @@ export default {
 		},
 	},
 	computed: {
-		socialbtnDesign() {
+		socialbtnStyle() {
 			if (this.design === 'main' || !this.design) return 'social-btn-main';
 			if (this.design === 'login') return 'social-btn-login';
 		},

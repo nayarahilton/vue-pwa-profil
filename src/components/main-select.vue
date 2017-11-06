@@ -3,11 +3,16 @@
 		:name="name"
 		:id="id"
 		:required="required"
-		:class="selectDesign"
+		:class="selectStyle"
 		class="select"
 	>
 		<option disabled selected>{{ disabledText }}</option>
-		<option v-for="option of options" :value="option.value">{{ option.text }}</option>
+		<option
+			v-for="option of options"
+			:key="option.value"
+			:value="option.value">
+				{{ option.text }}
+		</option>
 	</select>
 </template>
 
@@ -43,7 +48,7 @@ export default {
 		};
 	},
 	computed: {
-		selectDesign() {
+		selectStyle() {
 			if (this.design === 'main' || !this.design) return 'select-main';
 		},
 	},
