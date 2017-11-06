@@ -24,6 +24,11 @@ module.exports = {
   },
   // add your custom rules here
   'rules': {
+    // profil custom rules
+    "linebreak-style": 0,
+    "indent": [0, "tab"],
+    "no-tabs": 0,
+    "consistent-return": 0,
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
       'js': 'never',
