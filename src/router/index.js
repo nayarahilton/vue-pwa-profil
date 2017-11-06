@@ -11,41 +11,41 @@ import FeedbackView from '@/views/FeedbackView';
 Vue.use(Router);
 
 export default new Router({
-  routes: [
-    {
-      path: '/home',
-      name: 'home',
-      component: HomeView,
-    },
-    {
-      path: '/detail/:id',
-      name: 'detail',
-      component: DetailView,
-    },
-    {
-      path: '/post',
-      name: 'post',
-      component: PostView,
-    },
-    {
-      path: '/',
-      name: 'welcome',
-      component: WelcomeView,
-    },
-    {
-      path: '/register',
-      name: 'register',
-      component: RegisterView,
-    },
-    {
-      path: '/profile',
-      name: 'profile',
-      component: ProfileView,
-    },
-    {
-      path: '/feedback',
-      name: 'feedback',
-      component: FeedbackView,
-    },
-  ],
+	routes: [
+		{
+			path: '/home',
+			name: 'home',
+			component: HomeView,
+		},
+		{
+			path: '/detail/:id',
+			name: 'detail',
+			component: DetailView,
+		},
+		{
+			path: '/post',
+			name: 'post',
+			component: PostView,
+		},
+		{
+			path: '/',
+			name: 'welcome',
+			component: WelcomeView,
+		},
+		{
+			path: '/register',
+			name: 'register',
+			component: RegisterView,
+		},
+		{
+			path: '/profile',
+			name: 'profile',
+			component: ProfileView,
+		},
+		{
+			path: '/feedback',
+			name: 'feedback',
+			component: FeedbackView,
+		},
+	],
 });

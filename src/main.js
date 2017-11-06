@@ -14,11 +14,11 @@ Vue.use(VueResource);
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  firebase: {
-    cat: firebase.database.ref('cat').orderByChild('created_at'),
-  },
-  router,
-  template: '<App/>',
-  components: { App },
+	el: '#app',
+	firebase: {
+		cat: firebase.database.ref('cat').orderByChild('created_at'),
+	},
+	router,
+	template: '<App/>',
+	components: { App },
 });

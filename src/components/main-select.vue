@@ -1,30 +1,23 @@
 <template>
-	<input
-		:type="type"
+	<select
 		:name="name"
 		:id="id"
-		:placeholder="placeholder"
 		:required="required"
-		:class="inputDesign"
-		class="input"		
-	/>
+		:class="selectDesign"
+		class="select"
+	>
+		<option disabled selected>{{ disabledText }}</option>
+		<option v-for="option of options" :value="option.value">{{ option.text }}</option>
+	</select>
 </template>
 
 <script>
 export default {
 	props: {
-		type: {
-			required: true,
-			type: String,
-		},
 		name: {
 			type: String,
 		},
 		id: {
-			type: String,
-		},
-		placeholder: {
-			required: true,
 			type: String,
 		},
 		required: {
@@ -34,10 +27,24 @@ export default {
 			type: String,
 		},
 	},
+	data() {
+		return {
+			disabledText: 'Cidade/Estado',
+			options: [
+				{
+					value: 'RJ',
+					text: 'Rio de Janeiro',
+				},
+				{
+					value: 'SP',
+					text: 'São Paulo',
+				},
+			],
+		};
+	},
 	computed: {
-		inputDesign() {
-			if (this.design === 'main' || !this.design) return 'input-main';
-			if (this.design === 'login') return 'input-login';
+		selectDesign() {
+			if (this.design === 'main' || !this.design) return 'select-main';
 		},
 	},
 };
@@ -49,7 +56,7 @@ export default {
 	*
 		box-sizing border-box
 
-	.input
+	.select
 		background transparent
 		font-size 12pt
 		margin-bottom 20px
@@ -64,9 +71,4 @@ export default {
 			border 1px solid $gray
 			border-radius 15px
 			color $dark-gray
-
-		&-login
-			border solid #fff
-			border-width: 0 0 1px 0;			
-			color #fff
 </style>

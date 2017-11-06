@@ -2,14 +2,14 @@
 	<div class="register">
 		<div class="presentation-holder">
 			<h2 class="title">Seus Dados</h2>
-			<p>{{msg}}</p>
+			<p>{{ msg }}</p>
 		</div>
 
 		<div class="btn-holder">
-			<social-button text-inner="Completar com o Linkedin"></social-button>
-			<main-input type="text" placeholder="Nome" />
-			<main-input type="email" placeholder="Email" />
-			<main-input type="password" placeholder="Senha" />
+			<social-button textInner="Completar com o Linkedin"></social-button>
+			<main-input type="text" placeholder="Nome" :required="true" />
+			<main-input type="email" placeholder="Email" :required="true" />
+			<main-input type="password" placeholder="Senha" :required="true" />
 			<div class="login-holder">
 				<main-button text-inner="Próximo" linkto="/Home"></main-button>
 			</div>
@@ -37,7 +37,7 @@ export default {
 };
 </script>
 
-<style lang="stylus">
-
-
+<style lang="stylus" scoped>
+	.register
+		padding 20px
 </style>

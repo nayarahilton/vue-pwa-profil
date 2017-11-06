@@ -1,21 +1,22 @@
 <template>
-    <router-link v-if="buttonType === 'router'" class="main-btn" :to="linkto">{{ textInner }}</router-link>
-		<a v-else class="main-btn" >{{ textInner }}</a>
+	<router-link v-if="buttonType === 'router'" class="main-btn" :to="linkto">{{ textInner }}</router-link>
+	<a v-else class="main-btn" >{{ textInner }}</a>
 </template>
 
 <script>
-  export default {
-    props: ['text-inner', 'eventclick', 'linkto', 'buttonType'],
-  };
+	export default {
+		props: ['text-inner', 'eventclick', 'linkto', 'buttonType'],
+	};
 </script>
 
-<style scoped lang="stylus">
+<style lang="stylus" scoped>
+	@import '../assets/styles/_colors'
 	$border-radius = 10px
 
 	.main-btn
 	    display block
-	    color #ffffff
-	    background-color #0084FA
+	    color #fff
+	    background-color $blue
 	    border-radius $border-radius
 	    padding 10px
 	    margin-bottom 20px

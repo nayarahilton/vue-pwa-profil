@@ -1,109 +1,106 @@
 <template>
-  <div class="profile">
-    <profile-resume
-    :image="cat.url"
-    :nickname="cat.autor"
-    username="@nayarahilton"
-    profession="#Profissão"
-    linkto="/profile"
-    >
-    </profile-resume>
+	<div class="profile">
+		<profile-resume
+			:image="cat.url"
+			:nickname="cat.autor"
+			username="@nayarahilton"
+			profession="#Profissão"
+			linkto="/profile"
+		>
+		</profile-resume>
 
-    <div class="status">
-      <span class="point"> 1000 moedas </span> <span class="level">| Nível 2 </span>
-    </div>
-    <div class="follows">
-      <span class="followers">100 seguidores</span> <span class="following">53 seguindo</span>
-    </div>
-    <div class="card">
-      <div class="card-picture">
-          <img :src="cat.url" />
-      </div>
-      <div class="card-info">
-          <div class="card-comment">
-          <span>{{ cat.comment }}</span>
-          </div>
-          <div class="card-info">
-          <post-reactions></post-reactions>
-          </div>
-      </div>
-    </div>
-  </div>
+		<div class="status">
+			<span class="point"> 1000 moedas </span> <span class="level">| Nível 2 </span>
+		</div>
+		<div class="follows">
+			<span class="followers">100 seguidores</span> <span class="following">53 seguindo</span>
+		</div>
+		<div class="card">
+			<div class="card-picture">
+				<img :src="cat.url" />
+			</div>
+			<div class="card-info">
+				<div class="card-comment">
+					<span>{{ cat.comment }}</span>
+				</div>
+				<div class="card-info">
+					<post-reactions></post-reactions>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
-<script>
 
+<script>
 import { find } from 'lodash';
 import profileResume from '../components/profile-resume';
 import postReactions from '../components/post-reactions';
 
-
 export default {
-  data() {
-    return {
-      cat: null,
-    };
-  },
-  components: {
-    'profile-resume': profileResume,
-    'post-reactions': postReactions,
-  },
-  mounted() {
-    this.cat = find(this.$root.cat, cat => cat['.key'] === this.$route.params.id);
-  },
+	data() {
+		return {
+			cat: null,
+		};
+	},
+	components: {
+		'profile-resume': profileResume,
+		'post-reactions': postReactions,
+	},
+	mounted() {
+		this.cat = find(this.$root.cat, cat => cat['.key'] === this.$route.params.id);
+	},
 };
 </script>
 
 <style lang="stylus" scoped>
 
-$primary-color = #0084FA
+	@import '../assets/styles/_colors'
 
-  .profile
-    background #fff
-    padding 20px
+	.profile
+		background #fff
+		padding 20px
 
-  .add-picture-button
-    position fixed
-    right 24px
-    bottom 24px
-    z-index 998
-    color $primary-color
-    height 50px
-    width 50px
-    border-radius 20px 20px 20px 0
-    background #ffffff
-    display flex
-    align-items center
-    justify-content center
-    box-shadow -3px 0px 4px 1px rgba(0,0,0,0.3)
+	.add-picture-button
+		position fixed
+		right 24px
+		bottom 24px
+		z-index 998
+		color $primary-color
+		height 50px
+		width 50px
+		border-radius 20px 20px 20px 0
+		background #fff
+		display flex
+		align-items center
+		justify-content center
+		box-shadow -3px 0px 4px 1px rgba(0,0,0,0.3)
 
-    span
-      font-size 40px
-      line-height 40px
-      height 45px
+		span
+			font-size 40px
+			line-height 40px
+			height 45px
 
+	.card
+		padding-bottom 10px
+		border-bottom 1px solid #eee
+		margin-bottom 40px
+		background #fff
+		max-width 500px
+		margin-left auto
+		margin-right auto
 
-  .card
-    padding-bottom 10px
-    border-bottom 1px solid #eee
-    margin-bottom 40px
-    background #fff
-    max-width 500px
-    margin-left auto
-    margin-right auto
+	.card-picture > img
+		width 100%
 
-  .card-picture > img
-    width 100%
+	.card-info
+		padding 5px 15px
+		display flex
+		justify-content space-between
 
-  .card-info
-      padding 5px 15px
-      display flex
-      justify-content space-between
+	.card-comment
+		padding 0 20px
 
-  .card-comment
-    padding 0 20px
-
-    > span
-      color #222
-      font-size 15px
-
+		> span
+			color #222
+			font-size 15px
 </style>

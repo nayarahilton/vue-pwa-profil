@@ -1,22 +1,18 @@
 <template>
-	<input
-		:type="type"
+	<textarea
 		:name="name"
 		:id="id"
 		:placeholder="placeholder"
 		:required="required"
-		:class="inputDesign"
-		class="input"		
+		:class="textareaDesign"
+		class="textarea"
+        rows="4"		
 	/>
 </template>
 
 <script>
 export default {
 	props: {
-		type: {
-			required: true,
-			type: String,
-		},
 		name: {
 			type: String,
 		},
@@ -35,9 +31,8 @@ export default {
 		},
 	},
 	computed: {
-		inputDesign() {
-			if (this.design === 'main' || !this.design) return 'input-main';
-			if (this.design === 'login') return 'input-login';
+		textareaDesign() {
+			if (this.design === 'main' || !this.design) return 'textarea-main';
 		},
 	},
 };
@@ -49,11 +44,11 @@ export default {
 	*
 		box-sizing border-box
 
-	.input
+	.textarea
 		background transparent
 		font-size 12pt
 		margin-bottom 20px
-		padding 15px
+		padding 15px   
 		width 100%
 
 		&:focus
@@ -64,9 +59,4 @@ export default {
 			border 1px solid $gray
 			border-radius 15px
 			color $dark-gray
-
-		&-login
-			border solid #fff
-			border-width: 0 0 1px 0;			
-			color #fff
 </style>

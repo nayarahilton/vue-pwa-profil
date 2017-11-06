@@ -1,52 +1,51 @@
 <template>
-    <div class="reactions">
-      <button class="save-button">Star</button>
-      <button class="like-button">Like</button>
-    </div>
+	<div class="reactions">
+		<button class="save-button">Star</button>
+		<button class="like-button">Like</button>
+	</div>
 </template>
 
 <script>
-  export default {
-    props: ['text-inner'],
-  };
+	export default {
+		props: ['text-inner'],
+	};
 </script>
 
-<style scoped lang="stylus">
+<style lang="stylus" scoped>
+	@import '../assets/styles/_colors'
 
-  button
-    border 0
-    height 35px
-    background transparent
-    cursor pointer
+  	button
+		border 0
+		height 35px
+		background transparent
+		cursor pointer
 
-    &:focus
-      outline none
+		&:focus
+			outline none
 
-    + button
-      margin-left 5px
+		+ button
+			margin-left 5px
 
-  .like-button
-    border 2px solid gray
-    width 50px
+  	.like-button
+		border 2px solid gray
+		width 50px
 
-    &:hover,
-    &:active,
-    &:focus
-      background black
+		&:hover,
+		&:active,
+		&:focus
+			background black
 
-  .save-button
-    border 2px solid gray
-    width 35px
+	.save-button
+		border 2px solid gray
+		width 35px
 
-    &:hover,
-    &:active,
-    &:focus
-      background black
+		&:hover,
+		&:active,
+		&:focus
+			background black
 
-
-  .reactions
-    display inline-flex
-    align-items center
-
+  	.reactions
+		display inline-flex
+		align-items center
 
 </style>
