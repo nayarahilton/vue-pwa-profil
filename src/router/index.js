@@ -5,6 +5,7 @@ import HomeView from '@/views/HomeView';
 import DetailView from '@/views/DetailView';
 import PostView from '@/views/PostView';
 import RegisterView from '@/views/RegisterView';
+import ProfileView from '@/views/ProfileView';
 
 Vue.use(Router);
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: RegisterView,
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: ProfileView,
     },
   ],
 });
