@@ -1,10 +1,11 @@
 <template>
-    <router-link class="main-btn" to="/Home">{{ textInner }}</router-link>
+    <router-link v-if="buttonType === 'router'" class="main-btn" :to="linkto">{{ textInner }}</router-link>
+		<a v-else class="main-btn" >{{ textInner }}</a>
 </template>
 
 <script>
   export default {
-    props: ['text-inner'],
+    props: ['text-inner', 'eventclick', 'linkto', 'buttonType'],
   };
 </script>
 

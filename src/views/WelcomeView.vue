@@ -11,7 +11,7 @@
       <input class="input" type="password" placeholder="Senha">
       <div class="login-holder">
         <router-link class="link" to="/register">Criar cadastro</router-link>
-        <main-button text-inner="Entrar"></main-button>
+        <main-button buttonType="router" text-inner="Entrar" linkto="/Home"></main-button>
       </div>
     </div>
   </div>

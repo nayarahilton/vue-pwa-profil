@@ -1,24 +1,12 @@
 <template>
   <form>
-    <div class="mdl-grid">
-      <div class="mdl-cell mdl-cell--8-col image-container">
-      <transition-group name="fade">
+    <div class="post-view">
         <div key="1" v-if="isImageLoading" class="mdl-spinner mdl-js-spinner is-active"></div>
         <img key="2" v-if="!isImageLoading" class="cat-image" v-show="catUrl !== null" :src="this.catUrl"/>
-      </transition-group>
-      </div>
-      <div class="mdl-cell">
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-dirty">
-          <input id="username" v-model="title" type="text" class="mdl-textfield__input"/>
-          <label for="username" class="mdl-textfield__label">Describe me</label>
-        </div>
         <div class="actions">
-          <a @click.prevent="postCat" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-            <span>POST IMAGE</span>
-          </a>
-          <a @click.prevent="loadCatImageFromCatAPI" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-            <i class="material-icons">refresh</i>
-          </a>
+          <input id="username" v-model="title" contenteditable="true" placeholder="Escreva uma legenda">
+          <main-button text-inner="POST IMAGE" @click.prevent.native="postCat"></main-button>
+          <main-button @click.prevent.native="loadCatImageFromCatAPI" text-inner="Refresh"></main-button>
         </div>
       </div>
     </div>
@@ -28,6 +16,7 @@
 <script>
 
 import parse from 'xml-parser';
+import mainButton from '../components/main-button';
 
 export default {
   data() {
@@ -36,6 +25,9 @@ export default {
       isImageLoading: true,
       title: '',
     };
+  },
+  components: {
+    'main-button': mainButton,
   },
   mounted() {
     this.loadCatImageFromCatAPI();
@@ -50,7 +42,7 @@ export default {
           created_at: -1 * new Date().getTime(),
         },
       ).then(
-        this.$router.push('/'),
+        this.$router.push('/Home'),
       );
     },
     loadCatImageFromCatAPI() {
@@ -69,9 +61,22 @@ export default {
 };
 
 </script>
-<style scoped>
-  .waiting {
-    padding: 10px;
-    color: #555;
-  }
+<style scoped lang="stylus">
+  .waiting
+    padding 10px
+    color #555
+
+  img
+    max-width 100%
+
+  input
+    width 100%
+    border 0
+
+    &:focus
+      outline none
+
+  .actions
+    padding 0 20px
+
 </style>

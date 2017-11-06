@@ -11,7 +11,7 @@
       <input class="input" type="email" placeholder="Email">
       <input class="input" type="password" placeholder="Senha">
       <div class="login-holder">
-        <main-button text-inner="Próximo"></main-button>
+        <main-button text-inner="Próximo" linkto="/Home"></main-button>
       </div>
     </div>
   </div>
