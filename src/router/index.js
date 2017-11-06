@@ -6,6 +6,7 @@ import DetailView from '@/views/DetailView';
 import PostView from '@/views/PostView';
 import RegisterView from '@/views/RegisterView';
 import ProfileView from '@/views/ProfileView';
+import FeedbackView from '@/views/FeedbackView';
 
 Vue.use(Router);
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       component: ProfileView,
+    },
+    {
+      path: '/feedback',
+      name: 'feedback',
+      component: FeedbackView,
     },
   ],
 });
