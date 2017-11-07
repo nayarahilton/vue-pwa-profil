@@ -23,8 +23,8 @@ export default {
 	},
 	computed: {
 		socialbtnStyle() {
-			if (this.design === 'main' || !this.design) return 'social-btn-main';
-			if (this.design === 'login') return 'social-btn-login';
+			if (this.design === 'main' || !this.design) return 'social-btn--main';
+			if (this.design === 'login') return 'social-btn--login';
 		},
 	},
 };
@@ -44,10 +44,10 @@ export default {
 		position relative
 		margin-bottom 20px
 
-		&-main
+		&--main
 			border 1px solid $blue
 
-		&-login
+		&--login
 			border 0
 
 	.icon
