@@ -1,6 +1,6 @@
 <template>
 	<div class="home">
-	<div v-for="picture in this.$root.cat" class="card">
+	<div v-for="picture in this.getCats()" class="card">
 
 		 <div class="card-picture" @click="displayDetails(picture['.key'])">
 			<img :src="picture.url" />
@@ -24,6 +24,9 @@
 	<router-link class="add-picture-button" to="/post">
 		<span>+</span>
 	</router-link>
+	<router-link class="take-picture-button" to="/camera">
+		<span>[o]</span>
+	</router-link>
 	</div>
 </template>
 
@@ -37,6 +40,9 @@ export default {
 			msg: 'Explore diverasas profissões com quem trabalha na área',
 		};
 	},
+	mounted() {
+		this.saveCatsToCache();
+	},
 	components: {
 		'profile-resume': profileResume,
 		'post-reactions': postReactions,
@@ -47,6 +53,25 @@ export default {
 		},
 		goToProfile(id) {
 			this.$router.push({ name: 'profile', params: { id } });
+		},
+		getCats() {
+			if (navigator.onLine) {
+				this.saveCatsToCache();
+				return this.$root.cat;
+			}
+
+			return JSON.parse(localStorage.getItem('cats'));
+		},
+		saveCatsToCache() {
+			this.$root.$firebaseRefs.cat.orderByChild('created_at').once('value', (snapchot) => {
+				const cachedCats = [];
+				snapchot.forEach((catSnapchot) => {
+					const cachedCat = catSnapchot.val();
+					cachedCat['.key'] = catSnapchot.key;
+					cachedCats.push(cachedCat);
+				});
+				localStorage.setItem('cats', JSON.stringify(cachedCats));
+			});
 		},
 	},
 };
@@ -64,6 +89,21 @@ export default {
 		right 24px
 		bottom 24px
 		z-index 998
+		color $blue
+		height 50px
+		width 50px
+		border-radius 20px 20px 20px 0
+		background #fff
+		display flex
+		align-items center
+		justify-content center
+		box-shadow -3px 0px 4px 1px rgba(0,0,0,0.3)
+
+	.take-picture-button
+		position fixed
+		right 74px
+		bottom 74px
+		z-index 999
 		color $blue
 		height 50px
 		width 50px

@@ -7,6 +7,7 @@ import PostView from '@/views/PostView';
 import RegisterView from '@/views/RegisterView';
 import ProfileView from '@/views/ProfileView';
 import FeedbackView from '@/views/FeedbackView';
+import CameraView from '@/views/CameraView';
 
 Vue.use(Router);
 
@@ -26,6 +27,11 @@ export default new Router({
 			path: '/post',
 			name: 'post',
 			component: PostView,
+		},
+		{
+			path: '/camera',
+			name: 'camera',
+			component: CameraView,
 		},
 		{
 			path: '/',

@@ -48,6 +48,9 @@ export default {
 	body
 		margin 0
 
+	main
+		overflow hidden
+
 	#app
 		font-family 'Cairo', sans-serif
 		-webkit-font-smoothing antialiased
