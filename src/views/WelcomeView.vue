@@ -59,8 +59,10 @@ export default {
 };
 </script>
 
-<style scoped lang="stylus">
+<style lang="stylus" scoped>
+	@import '../assets/styles/_mixins'
 	@import '../assets/styles/_colors'
+	
 
 	$header-height = 56px
 	$border-radius = 10px
@@ -69,6 +71,7 @@ export default {
 		color #fff
 
 	.welcome
+		linear_gradient(top, lightness($pink, 60%), lightness($blue, 70%))
 		padding 40px 20px
 		box-sizing border-box
 		display flex
@@ -76,9 +79,8 @@ export default {
 		justify-content space-between
 		align-items center
 		text-align center
-		background-color rgba(0, 74, 141, 0.5)
 		color #ffffff
-		min-height "calc(100vh - %s)" % $header-height
+		height 100vh
 
 		.link
 			color #ffffff

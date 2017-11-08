@@ -1,36 +1,43 @@
 <template>
-	<div class="home">
-	<div v-for="picture in this.getCats()" class="card">
-
-		 <div class="card-picture" @click="displayDetails(picture['.key'])">
-			<img :src="picture.url" />
-		</div>
-		<div class="card-comment">
-			<span>{{ picture.comment }}</span>
-		</div>
-		<div class="card-info">
-			<profile-resume
-				:image="picture.url"
-				:nickname="picture.autor"
-				username="@nayarahilton"
-				profession="#Profissão"
-				@click.native="goToProfile(picture['.key'])"
+	<div class="home">	
+		<main-header />	
+		<div
+			v-for="picture in this.getCats()"
+			class="card"
+		>
+			<div
+				class="card-picture"
+				@click="displayDetails(picture['.key'])"
 			>
-			</profile-resume>
-			<post-reactions></post-reactions>
+				<img :src="picture.url" />
+			</div>
+			<div class="card-comment">
+				<span>{{ picture.comment }}</span>
+			</div>
+			<div class="card-info">
+				<profile-resume
+					:image="picture.url"
+					:nickname="picture.autor"
+					username="@nayarahilton"
+					profession="#Profissão"
+					@click.native="goToProfile(picture['.key'])"
+				>
+				</profile-resume>
+				<post-reactions />
+			</div>
 		</div>
-	</div>
 
-	<router-link class="add-picture-button" to="/post">
-		<span>+</span>
-	</router-link>
-	<router-link class="take-picture-button" to="/camera">
-		<span>[o]</span>
-	</router-link>
+		<router-link class="add-picture-button" to="/post">
+			<span>+</span>
+		</router-link>
+		<router-link class="take-picture-button" to="/camera">
+			<span>[o]</span>
+		</router-link>
 	</div>
 </template>
 
 <script>
+import MainHeader from '../components/MainHeader';
 import ProfileResume from '../components/ProfileResume';
 import PostReactions from '../components/PostReactions';
 
@@ -44,6 +51,7 @@ export default {
 		this.saveCatsToCache();
 	},
 	components: {
+		'main-header': MainHeader,
 		'profile-resume': ProfileResume,
 		'post-reactions': PostReactions,
 	},
