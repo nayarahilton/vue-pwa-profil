@@ -34,9 +34,9 @@
 </template>
 
 <script>
-import socialButton from '../components/social-button';
-import mainButton from '../components/main-button';
-import mainInput from '../components/main-input';
+import SocialButton from '../components/SocialButton';
+import MainButton from '../components/MainButton';
+import MainInput from '../components/MainInput';
 
 export default {
 	name: 'register',
@@ -46,9 +46,9 @@ export default {
 		};
 	},
 	components: {
-		'social-button': socialButton,
-		'main-button': mainButton,
-		'main-input': mainInput,
+		'social-button': SocialButton,
+		'main-button': MainButton,
+		'main-input': MainInput,
 	},
 };
 </script>

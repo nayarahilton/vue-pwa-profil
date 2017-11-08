@@ -12,7 +12,7 @@
 <script>
 	import { storage } from '@/services/firebase';
 	import postCat from '@/mixins/postCat';
-	import mainButton from '../components/main-button';
+	import MainButton from '../components/MainButton';
 
 	export default {
 		mixins: [postCat],
@@ -35,7 +35,7 @@
 			tracks.map(track => track.stop());
 		},
 		components: {
-			'main-button': mainButton,
+			'main-button': MainButton,
 		},
 		methods: {
 			capture() {

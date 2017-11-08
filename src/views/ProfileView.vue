@@ -33,8 +33,8 @@
 
 <script>
 import { find } from 'lodash';
-import profileResume from '../components/profile-resume';
-import postReactions from '../components/post-reactions';
+import ProfileResume from '../components/ProfileResume';
+import PostReactions from '../components/PostReactions';
 
 export default {
 	data() {
@@ -43,8 +43,8 @@ export default {
 		};
 	},
 	components: {
-		'profile-resume': profileResume,
-		'post-reactions': postReactions,
+		'profile-resume': ProfileResume,
+		'post-reactions': PostReactions,
 	},
 	mounted() {
 		this.cat = find(this.$root.cat, cat => cat['.key'] === this.$route.params.id);

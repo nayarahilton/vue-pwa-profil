@@ -13,7 +13,7 @@
 
 <script>
 import parse from 'xml-parser';
-import mainButton from '../components/main-button';
+import MainButton from '../components/MainButton';
 import postCat from '../mixins/postCat';
 
 export default {
@@ -25,7 +25,7 @@ export default {
 		};
 	},
 	components: {
-		'main-button': mainButton,
+		'main-button': MainButton,
 	},
 	methods: {
 		post() {

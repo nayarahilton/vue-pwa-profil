@@ -31,8 +31,8 @@
 </template>
 
 <script>
-import profileResume from '../components/profile-resume';
-import postReactions from '../components/post-reactions';
+import ProfileResume from '../components/ProfileResume';
+import PostReactions from '../components/PostReactions';
 
 export default {
 	data() {
@@ -44,8 +44,8 @@ export default {
 		this.saveCatsToCache();
 	},
 	components: {
-		'profile-resume': profileResume,
-		'post-reactions': postReactions,
+		'profile-resume': ProfileResume,
+		'post-reactions': PostReactions,
 	},
 	methods: {
 		displayDetails(id) {

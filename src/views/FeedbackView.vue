@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import mainButton from '../components/main-button';
+import MainButton from '../components/MainButton';
 
 export default {
 	data() {
@@ -26,7 +26,7 @@ export default {
 		};
 	},
 	components: {
-		'main-button': mainButton,
+		'main-button': MainButton,
 	},
 };
 </script>
