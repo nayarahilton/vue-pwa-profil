@@ -36,8 +36,8 @@ export default {
 	},
 	computed: {
 		inputStyle() {
-			if (this.design === 'main' || !this.design) return 'input-main';
-			if (this.design === 'login') return 'input-login';
+			if (this.design === 'main' || !this.design) return 'input--main';
+			if (this.design === 'login') return 'input--login';
 		},
 	},
 };
@@ -60,12 +60,12 @@ export default {
 			border-color $dark-blue
 			outline 0
 
-		&-main
+		&--main
 			border 1px solid $gray
 			border-radius 15px
 			color $dark-gray
 
-		&-login
+		&--login
 			border solid #fff
 			border-width: 0 0 1px 0;			
 			color #fff

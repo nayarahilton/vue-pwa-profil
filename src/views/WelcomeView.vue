@@ -6,12 +6,34 @@
 		</div>
 
 		<div class="btn-holder">
-			<social-button textInner="Entrar com o Linkedin" design="login"></social-button>
-			<main-input type="email" placeholder="Email" :required="true" design="login" />
-			<main-input type="password" placeholder="Senha" :required="true" design="login" />
+			<social-button
+				textInner="Entrar com o Linkedin"
+				design="login"
+			/>
+			<main-input
+				type="email"
+				placeholder="Email"
+				:required="true"
+				design="login"
+			/>
+			<main-input
+				type="password"
+				placeholder="Senha"
+				:required="true"
+				design="login"
+			/>
 			<div class="login-holder">
-				<router-link class="link" to="/register">Criar cadastro</router-link>
-				<main-button buttonType="router" text-inner="Entrar" linkto="/Home"></main-button>
+				<router-link
+					class="link"
+					to="/register"
+				>
+					Criar cadastro
+				</router-link>
+				<main-button
+					button-type="router"
+					text-inner="Entrar"
+					linkto="/Home"
+				/>
 			</div>
 		</div>
 	</div>

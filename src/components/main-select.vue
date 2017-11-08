@@ -49,7 +49,7 @@ export default {
 	},
 	computed: {
 		selectStyle() {
-			if (this.design === 'main' || !this.design) return 'select-main';
+			if (this.design === 'main' || !this.design) return 'select--main';
 		},
 	},
 };
@@ -72,7 +72,7 @@ export default {
 			border-color $dark-blue
 			outline 0
 
-		&-main
+		&--main
 			border 1px solid $gray
 			border-radius 15px
 			color $dark-gray

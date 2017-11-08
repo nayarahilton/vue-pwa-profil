@@ -37,7 +37,7 @@ export default {
 	.social-btn
 		background-color #fff
 		padding 10px
-		borx-sizing border-box
+		box-sizing border-box
 		border-radius $border-radius
 		color $blue
 		display flex

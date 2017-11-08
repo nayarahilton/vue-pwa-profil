@@ -5,7 +5,7 @@
 
 <script>
 	export default {
-		props: ['text-inner', 'eventclick', 'linkto', 'buttonType'],
+		props: ['textInner', 'eventclick', 'linkto', 'buttonType'],
 	};
 </script>
 

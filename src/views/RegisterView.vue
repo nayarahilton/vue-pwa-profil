@@ -6,12 +6,28 @@
 		</div>
 
 		<div class="btn-holder">
-			<social-button textInner="Completar com o Linkedin"></social-button>
-			<main-input type="text" placeholder="Nome" :required="true" />
-			<main-input type="email" placeholder="Email" :required="true" />
-			<main-input type="password" placeholder="Senha" :required="true" />
+			<social-button text-inner="Completar com o Linkedin" />
+			<main-input
+				type="text"
+				placeholder="Nome"
+				:required="true"
+			/>
+			<main-input
+				type="email"
+				placeholder="Email"
+				:required="true"
+			/>
+			<main-input
+				type="password"
+				placeholder="Senha"
+				:required="true"
+			/>
 			<div class="login-holder">
-				<main-button text-inner="Próximo" linkto="/Home"></main-button>
+				<main-button
+					button-type="router"
+					text-inner="Próximo"
+					linkto="/Home"
+				/>
 			</div>
 		</div>
 	</div>

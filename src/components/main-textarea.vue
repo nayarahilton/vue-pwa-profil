@@ -32,7 +32,7 @@ export default {
 	},
 	computed: {
 		textareaStyle() {
-			if (this.design === 'main' || !this.design) return 'textarea-main';
+			if (this.design === 'main' || !this.design) return 'textarea--main';
 		},
 	},
 };
@@ -55,7 +55,7 @@ export default {
 			border-color $dark-blue
 			outline 0
 
-		&-main
+		&--main
 			border 1px solid $gray
 			border-radius 15px
 			color $dark-gray
