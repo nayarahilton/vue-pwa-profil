@@ -3,20 +3,27 @@
 import Vue from 'vue';
 import Vuefire from 'vuefire';
 import VueResource from 'vue-resource';
+import VueAnalytics from 'vue-analytics';
+import { database } from '@/services/firebase';
 import App from './App';
 import router from './router';
-import firebase from './services/firebase';
 
 Vue.config.productionTip = false;
 
 Vue.use(Vuefire);
 Vue.use(VueResource);
+Vue.use(VueAnalytics, {
+	id: 'UA-101944993-1',
+	router,
+});
+
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
 	el: '#app',
 	firebase: {
-		cat: firebase.database.ref('cat').orderByChild('created_at'),
+		cat: database.ref('cat').orderByChild('created_at'),
 	},
 	router,
 	template: '<App/>',
