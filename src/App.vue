@@ -40,4 +40,7 @@ export default {
 	svg
 		width 20px
 		height 20px
+
+	main
+		padding 20px
 </style>
