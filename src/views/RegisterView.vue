@@ -5,12 +5,12 @@
 			title="Cadastro"
 		/>
 		<main class="register-main">
-			<div class="presentation-holder">
-				<h2 class="title">Seus Dados</h2>
-				<p>{{ msg }}</p>
-			</div>
-
+			<main-titles
+				title-text="Seus dados"
+				subtitle-text="Todos os campos são obrigatórios"
+			/>
 			<div class="btn-holder">
+				<photo-upload label-text="Carregue sua foto" />
 				<social-button text-inner="Completar com o Linkedin" />
 				<main-input
 					type="text"
@@ -41,6 +41,8 @@
 
 <script>
 import StatusBar from '../components/StatusBar';
+import MainTitles from '../components/MainTitles';
+import PhotoUpload from '../components/PhotoUpload';
 import SocialButton from '../components/SocialButton';
 import MainButton from '../components/MainButton';
 import MainInput from '../components/MainInput';
@@ -54,6 +56,8 @@ export default {
 	},
 	components: {
 		'status-bar': StatusBar,
+		'main-titles': MainTitles,
+		'photo-upload': PhotoUpload,
 		'social-button': SocialButton,
 		'main-button': MainButton,
 		'main-input': MainInput,
