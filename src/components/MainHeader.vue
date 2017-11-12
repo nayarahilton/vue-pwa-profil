@@ -9,14 +9,17 @@
 		<nav class="nav">
 			<ul class="nav-list">
 				<li>
-					<router-link class="nav-link" to="/" @click.native="hideMenu">Login</router-link>
-				</li>
-				<li>
 					<router-link class="nav-link" to="/Home" @click.native="hideMenu">Home</router-link>
 				</li>
 				<li>
-					<router-link class="nav-link" to="/post" @click.native="hideMenu">Post a picture</router-link>
+					<router-link class="nav-link" to="/camera" @click.native="hideMenu">Post a picture</router-link>
 				</li>
+				<li>
+					<router-link class="nav-link" to="/" @click.native="hideMenu">Login</router-link>
+				</li>
+				<li>
+					<router-link class="nav-link" to="/register" @click.native="hideMenu">Cadastro</router-link>
+				</li>	
 			</ul>
 			<div class="ofuscator" @click="hideMenu"></div>
 		</nav>

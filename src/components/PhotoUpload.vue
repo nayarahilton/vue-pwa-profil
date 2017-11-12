@@ -8,6 +8,7 @@
 				id="photo-upload-button"
 				accept="image/*"
 				class="input-file"
+				capture="camera"
 			/>
 			<label for="photo-upload-button">{{ labelText }}</label>
 		</div>

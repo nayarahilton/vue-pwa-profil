@@ -3,7 +3,6 @@ import Router from 'vue-router';
 import WelcomeView from '@/views/WelcomeView';
 import HomeView from '@/views/HomeView';
 import DetailView from '@/views/DetailView';
-import PostView from '@/views/PostView';
 import RegisterView from '@/views/RegisterView';
 import ProfileView from '@/views/ProfileView';
 import FeedbackView from '@/views/FeedbackView';
@@ -22,11 +21,6 @@ export default new Router({
 			path: '/detail/:id',
 			name: 'detail',
 			component: DetailView,
-		},
-		{
-			path: '/post',
-			name: 'post',
-			component: PostView,
 		},
 		{
 			path: '/camera',

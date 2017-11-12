@@ -26,13 +26,6 @@
 				<post-reactions />
 			</div>
 		</div>
-
-		<router-link class="add-picture-button" to="/post">
-			<span>+</span>
-		</router-link>
-		<router-link class="take-picture-button" to="/camera">
-			<span>[o]</span>
-		</router-link>
 	</div>
 </template>
 
@@ -90,7 +83,7 @@ export default {
 	@import '../assets/styles/_colors'
 
 	.home
-		background #eee
+		background #f4f4f4
 
 	.add-picture-button
 		position fixed
