@@ -71,7 +71,7 @@ export default {
 		color #fff
 
 	.welcome
-		linear_gradient(top, lightness($pink, 60%), lightness($blue, 70%))
+		linear_gradient(-140deg, lightness($pink, 60%), lightness($blue, 70%))
 		padding 40px 20px
 		box-sizing border-box
 		display flex
