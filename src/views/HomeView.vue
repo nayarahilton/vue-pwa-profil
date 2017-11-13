@@ -1,6 +1,7 @@
 <template>
-	<div class="home">	
+	<div class="home">
 		<main-header />	
+		<slider-items />
 		<div
 			v-for="picture in this.getCats()"
 			class="card"
@@ -31,6 +32,7 @@
 
 <script>
 import MainHeader from '../components/MainHeader';
+import SliderItems from '../components/SliderItems';
 import ProfileResume from '../components/ProfileResume';
 import PostReactions from '../components/PostReactions';
 
@@ -47,6 +49,7 @@ export default {
 		'main-header': MainHeader,
 		'profile-resume': ProfileResume,
 		'post-reactions': PostReactions,
+		'slider-items': SliderItems,
 	},
 	methods: {
 		displayDetails(id) {
@@ -83,7 +86,7 @@ export default {
 	@import '../assets/styles/_colors'
 
 	.home
-		background #f4f4f4
+		background #f9f9f9
 
 	.add-picture-button
 		position fixed
@@ -130,7 +133,7 @@ export default {
 		margin-left auto
 		margin-right auto
 
-	.card-picture > img
+	.card-picture img
 		width 100%
 
 	.card-info
@@ -144,5 +147,9 @@ export default {
 		> span
 			color #222
 			font-size 15px
+
+	@media screen and (min-width 480px)
+		.card
+			margin-top 40px
 
 </style>

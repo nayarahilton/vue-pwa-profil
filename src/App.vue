@@ -24,6 +24,7 @@ export default {
 
 	body
 		margin 0
+		overflow-x hidden
 
 	main
 		overflow hidden
@@ -32,6 +33,7 @@ export default {
 		font-family 'Cairo', sans-serif
 		-webkit-font-smoothing antialiased
 		-moz-osx-font-smoothing grayscale
+		overflow hidden
 
 	a
 		text-decoration none

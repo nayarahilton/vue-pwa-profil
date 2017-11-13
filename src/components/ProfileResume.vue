@@ -19,6 +19,8 @@ export default {
 
 <style scoped lang="stylus">
 	$border-radius = 10px
+	@import '../assets/styles/_colors'
+
 
 	p
 		margin 0
@@ -35,7 +37,7 @@ export default {
 		border-radius 50%
 		overflow hidden
 		position relative
-		border 3px solid black
+		border 3px solid $blue
 
 		img
 			height 150%

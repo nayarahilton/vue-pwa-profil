@@ -19,6 +19,9 @@
 				</li>
 				<li>
 					<router-link class="nav-link" to="/register" @click.native="hideMenu">Cadastro</router-link>
+				</li>
+				<li>
+					<router-link class="nav-link" to="/profession" @click.native="hideMenu">Profession</router-link>
 				</li>	
 			</ul>
 			<div class="ofuscator" @click="hideMenu"></div>

@@ -7,6 +7,7 @@ import RegisterView from '@/views/RegisterView';
 import ProfileView from '@/views/ProfileView';
 import FeedbackView from '@/views/FeedbackView';
 import CameraView from '@/views/CameraView';
+import ProfessionView from '@/views/ProfessionView';
 
 Vue.use(Router);
 
@@ -41,6 +42,11 @@ export default new Router({
 			path: '/profile',
 			name: 'profile',
 			component: ProfileView,
+		},
+		{
+			path: '/profession',
+			name: 'profession',
+			component: ProfessionView,
 		},
 		{
 			path: '/feedback',
