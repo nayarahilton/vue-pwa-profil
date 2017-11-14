@@ -62,7 +62,7 @@ export default {
 <style lang="stylus" scoped>
 	@import '../assets/styles/_mixins'
 	@import '../assets/styles/_colors'
-	
+
 
 	$header-height = 56px
 	$border-radius = 10px
@@ -76,11 +76,14 @@ export default {
 		box-sizing border-box
 		display flex
 		flex-direction column
-		justify-content space-between
 		align-items center
 		text-align center
 		color #ffffff
 		height 100vh
+		justify-content space-between
+
+		@media (min-width 768px)
+			justify-content space-around
 
 		.link
 			color #ffffff
@@ -89,13 +92,16 @@ export default {
 		height 120px
 
 	.title
-		font-size 20px
-		line-height 24px
 		font-weight 300
-		max-width 250px
+		@media (min-width 768px)
+			max-width 450px
+			font-size 40px
+			line-height 54px
 
-	.btn-holder
-		width 100%
+		@media (max-width 768px)
+			max-width 250px
+			font-size 20px
+			line-height 24px
 
 	.login-holder
 		display flex
