@@ -23,7 +23,8 @@ export default {
 	computed: {
 		alertStyle() {
 			if (this.design === 'main' || !this.design) return 'alert--main';
-			if (this.design === 'danger') return 'alert--center';
+			if (this.design === 'danger') return 'alert--danger';
+			if (this.design === 'success') return 'alert--success';
 		},
 	},
 };
@@ -47,11 +48,12 @@ export default {
 		&--danger
 			color red
 
-        &--sucess
+        &--success
             color green
 
 		&__text
 			font-size 12pt
 			font-weight 300
 			margin 0
+			text-align center
 </style>
