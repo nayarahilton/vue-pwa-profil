@@ -28,12 +28,12 @@
   </div>
 </template>
 <script>
-	import postCat from '@/mixins/postCat';
+	import postContent from '@/mixins/postContent';
 	import StatusBar from '@/components/StatusBar';
 	import MainButton from '@/components/MainButton';
 
 	export default {
-		mixins: [postCat],
+		mixins: [postContent],
 		data: function returnImageData() {
 			return {
 				title: '',
@@ -58,7 +58,7 @@
 			post() {
 				const img = document.querySelector('.image-preview__img');
 				if (this.imageData !== '') {
-					this.postCat(img.src, this.title || '');
+					this.postContent(img.src, this.title || '');
 				} else {
 					/* eslint-disable */
 					alert('Adicione uma imagem');

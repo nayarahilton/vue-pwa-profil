@@ -1,9 +1,9 @@
-const postCat = {
+const postContent = {
 	methods: {
-		postCat(catUrl, title) {
-			this.$root.$firebaseRefs.cat.push(
+		postContent(cardUrl, title) {
+			this.$root.$firebaseRefs.card.push(
 				{
-					url: catUrl,
+					url: cardUrl,
 					comment: title,
 					info: 'Posted by Nay on Tuesday',
 					created_at: -1 * new Date().getTime(),
@@ -15,4 +15,4 @@ const postCat = {
 	},
 };
 
-export default postCat;
+export default postContent;

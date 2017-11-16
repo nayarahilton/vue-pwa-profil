@@ -22,7 +22,7 @@
 				</li>
 				<li>
 					<router-link class="nav-link" to="/profession" @click.native="hideMenu">Profession</router-link>
-				</li>	
+				</li>
 			</ul>
 			<div class="ofuscator" @click="hideMenu"></div>
 		</nav>

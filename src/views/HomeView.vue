@@ -1,9 +1,9 @@
 <template>
 	<div class="home">
-		<main-header />	
+		<main-header />
 		<slider-items />
 		<div
-			v-for="picture in this.getCats()"
+			v-for="picture in this.getCards()"
 			class="card"
 		>
 			<div
@@ -43,7 +43,7 @@ export default {
 		};
 	},
 	mounted() {
-		this.saveCatsToCache();
+		this.saveCardsToCache();
 	},
 	components: {
 		'main-header': MainHeader,
@@ -58,23 +58,23 @@ export default {
 		goToProfile(id) {
 			this.$router.push({ name: 'profile', params: { id } });
 		},
-		getCats() {
+		getCards() {
 			if (navigator.onLine) {
-				this.saveCatsToCache();
-				return this.$root.cat;
+				this.saveCardsToCache();
+				return this.$root.card;
 			}
 
-			return JSON.parse(localStorage.getItem('cats'));
+			return JSON.parse(localStorage.getItem('cards'));
 		},
-		saveCatsToCache() {
-			this.$root.$firebaseRefs.cat.orderByChild('created_at').once('value', (snapchot) => {
-				const cachedCats = [];
-				snapchot.forEach((catSnapchot) => {
-					const cachedCat = catSnapchot.val();
-					cachedCat['.key'] = catSnapchot.key;
-					cachedCats.push(cachedCat);
+		saveCardsToCache() {
+			this.$root.$firebaseRefs.card.orderByChild('created_at').once('value', (snapchot) => {
+				const cachedcards = [];
+				snapchot.forEach((cardSnapchot) => {
+					const cachedcard = cardSnapchot.val();
+					cachedcard['.key'] = cardSnapchot.key;
+					cachedcards.push(cachedcard);
 				});
-				localStorage.setItem('cats', JSON.stringify(cachedCats));
+				localStorage.setItem('cards', JSON.stringify(cachedcards));
 			});
 		},
 	},
