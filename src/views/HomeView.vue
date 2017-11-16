@@ -18,7 +18,7 @@
 			<div class="card-info">
 				<profile-resume
 					:image="picture.url"
-					:nickname="picture.autor"
+					nickname="Nayara Hilton"
 					username="@nayarahilton"
 					profession="#Profissão"
 					@click.native="goToProfile(picture['.key'])"
@@ -40,6 +40,7 @@ export default {
 	data() {
 		return {
 			msg: 'Explore diverasas profissões com quem trabalha na área',
+			autor: 'Nayara Hilton',
 		};
 	},
 	mounted() {

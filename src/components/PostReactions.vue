@@ -1,7 +1,7 @@
 <template>
 	<div class="reactions">
-		<button class="save-button">Star</button>
-		<button class="like-button">Like</button>
+		<button class="save-button"></button>
+		<button class="like-button"></button>
 	</div>
 </template>
 
@@ -27,22 +27,29 @@
 			margin-left 5px
 
   	.like-button
-		border 2px solid gray
-		width 50px
+		width 30px
+		background-image url('../assets/icons/like-icon.svg')
+		background-size 30px
+		background-repeat no-repeat
+		transition background .3s ease-in-out
+		margin-left 15px
 
 		&:hover,
 		&:active,
 		&:focus
-			background black
+			background-image url('../assets/icons/like-icon2.svg')
 
 	.save-button
-		border 2px solid gray
-		width 35px
+		width 30px
+		background-image url('../assets/icons/favorite-icon.svg')
+		background-size 30px
+		background-repeat no-repeat
+		transition background .3s ease-in-out
 
 		&:hover,
 		&:active,
 		&:focus
-			background black
+			background-image url('../assets/icons/favorite-icon2.svg')
 
   	.reactions
 		display inline-flex
