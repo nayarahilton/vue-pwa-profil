@@ -41,8 +41,8 @@
 <script>
 import { find } from 'lodash';
 import StatusBar from '@/components/StatusBar';
-import ProfileResume from '../components/ProfileResume';
-import PostReactions from '../components/PostReactions';
+import ProfileResume from '@/components/ProfileResume';
+import PostReactions from '@/components/PostReactions';
 
 export default {
 	data() {

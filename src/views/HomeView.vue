@@ -28,6 +28,7 @@
 				</profile-resume>
 				<post-reactions />
 			</div>
+			<div class="post-reading-time"><span>leitura: 13 minutos</span></div>
 		</div>
 	</div>
 </template>
@@ -156,6 +157,25 @@ export default {
 		overflow hidden
 		line-height 20px
 		font-size 15px
+
+	.post-reading-time
+		padding 0 20px
+		font-size 15px
+
+		span
+			vertical-align middle
+			display inline-block
+
+		&:before
+			content ''
+			background-image url('../assets/icons/clock-icon.svg')
+			background-size 14px 14px
+			background-repeat no-repeat
+			width 14px
+			height 14px
+			margin-right 5px
+			display inline-block
+			vertical-align middle
 
 
 	.hashtags-list
