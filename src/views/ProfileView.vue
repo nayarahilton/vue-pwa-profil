@@ -1,20 +1,27 @@
 <template>
 	<div class="profile">
-		<profile-resume
-			:image="card.url"
-			:nickname="card.autor"
-			username="@nayarahilton"
-			profession="#Profissão"
-			linkto="/profile"
-		>
-		</profile-resume>
+		<status-bar
+			link="/home"
+			title="Home"
+		/>
+		<div class="profile-info">
+			<profile-resume
+				:image="card.url"
+				nickname="Nayara Hilton"
+				username="@nayarahilton"
+				profession="#Profissão"
+				linkto="/profile"
+			>
+			</profile-resume>
 
-		<div class="status">
-			<span class="point"> 1000 moedas </span> <span class="level">| Nível 2 </span>
+			<div class="status">
+				<span class="point"> 1000 moedas </span> <span class="level"> Nível 2 </span>
+			</div>
+			<div class="follows">
+				<span class="followers">100 seguidores</span> <span class="following">53 seguindo</span>
+			</div>
 		</div>
-		<div class="follows">
-			<span class="followers">100 seguidores</span> <span class="following">53 seguindo</span>
-		</div>
+
 		<div class="card">
 			<div class="card-picture">
 				<img :src="card.url" />
@@ -33,6 +40,7 @@
 
 <script>
 import { find } from 'lodash';
+import StatusBar from '@/components/StatusBar';
 import ProfileResume from '../components/ProfileResume';
 import PostReactions from '../components/PostReactions';
 
@@ -43,6 +51,7 @@ export default {
 		};
 	},
 	components: {
+		'status-bar': StatusBar,
 		'profile-resume': ProfileResume,
 		'post-reactions': PostReactions,
 	},
@@ -56,9 +65,43 @@ export default {
 
 	@import '../assets/styles/_colors'
 
+	.status
+		margin-left 70px
+		font-size 14px
+		line-height 14px
+
+	.point
+		color $pink
+		font-weight bold
+
+	.level
+		margin-left 5px
+
+		&:before
+			content "|"
+			margin-right 5px
+
+	.follows
+		text-align center
+		margin-top 25px
+		font-size 14px
+
+	.following
+		margin-left 10px
+
+	.followers,
+	.following
+		background $pink
+		border-radius 30px
+		padding 2px 10px
+		color $white
+
+	.profile-info
+		padding 0 20px
+		margin 20px 0 30px 0
+
 	.profile
 		background #fff
-		padding 20px
 
 	.add-picture-button
 		position fixed
@@ -98,7 +141,11 @@ export default {
 		justify-content space-between
 
 	.card-comment
-		padding 0 20px
+		line-height 20px
+		font-size 14px
+		overflow hidden
+		max-height 60px
+
 
 		> span
 			color #222

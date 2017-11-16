@@ -144,10 +144,12 @@ export default {
 
 	.card-comment
 		padding 0 20px
+		max-height 80px
+		overflow hidden
+		line-height 20px
+		font-size 15px
 
-		> span
-			color #222
-			font-size 15px
+
 
 	@media screen and (min-width 480px)
 		.card
