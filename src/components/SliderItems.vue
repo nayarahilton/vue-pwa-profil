@@ -70,8 +70,9 @@ export default {
 	.img-holder
 		width 50px
 		height 50px
-		border-radius 50%	
-		border 3px solid $blue
+		border-radius 50%
+		border 2px solid $blue
+		box-shadow 2px 1px 5px 0px rgba(0, 132, 250, 0.6)
 		background #fff
 
 </style>

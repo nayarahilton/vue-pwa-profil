@@ -37,7 +37,8 @@ export default {
 		border-radius 50%
 		overflow hidden
 		position relative
-		border 3px solid $blue
+		border 2px solid $blue
+		box-shadow 2px 1px 5px 0px rgba(0, 132, 250, 0.6)
 
 		img
 			height 150%
@@ -57,6 +58,7 @@ export default {
 		font-size 18px
 		line-height 100%
 		font-weight 600
+		color $blue
 
 	.username
 		font-size 12px
