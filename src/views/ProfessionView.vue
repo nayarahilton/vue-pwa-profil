@@ -1,13 +1,13 @@
 <template>
 	<div class="profile">
-		
+
 		</profile-resume>
 		<div class="follows">
 			<span class="followers">100 seguidores</span> <span class="following">53 seguindo</span>
 		</div>
 		<div class="card">
 			<div class="card-picture">
-				<img :src="'https://image.freepik.com/free-vector/triangle-cat-design_23-2147495379.jpg'" />
+				<img :src="'https://image.freepik.com/free-vector/triangle-card-design_23-2147495379.jpg'" />
 			</div>
 			<div class="card-info">
 				<div class="Texto">
@@ -28,7 +28,7 @@ import PostReactions from '../components/PostReactions';
 export default {
 	data() {
 		return {
-			cat: null,
+			card: null,
 		};
 	},
 	components: {

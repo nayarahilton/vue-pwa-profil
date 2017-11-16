@@ -1,13 +1,13 @@
 <template>
 	<div class="detail-view">
 		<div class="picture">
-			<img :src="cat.url" />
+			<img :src="card.url" />
 		</div>
 		<div class="info">
-			<span>{{ cat.info }}</span>
+			<span>{{ card.info }}</span>
 		</div>
 		<div class="comment">
-			<span>{{ cat.comment }}</span>
+			<span>{{ card.comment }}</span>
 		</div>
 	</div>
 </template>
@@ -18,11 +18,11 @@ import { find } from 'lodash';
 export default {
 	data() {
 		return {
-			cat: null,
+			card: null,
 		};
 	},
 	mounted() {
-		this.cat = find(this.$root.cat, cat => cat['.key'] === this.$route.params.id);
+		this.card = find(this.$root.card, card => card['.key'] === this.$route.params.id);
 	},
 };
 </script>

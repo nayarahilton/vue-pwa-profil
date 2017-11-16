@@ -1,8 +1,8 @@
 <template>
 	<div class="profile">
 		<profile-resume
-			:image="cat.url"
-			:nickname="cat.autor"
+			:image="card.url"
+			:nickname="card.autor"
 			username="@nayarahilton"
 			profession="#Profissão"
 			linkto="/profile"
@@ -17,11 +17,11 @@
 		</div>
 		<div class="card">
 			<div class="card-picture">
-				<img :src="cat.url" />
+				<img :src="card.url" />
 			</div>
 			<div class="card-info">
 				<div class="card-comment">
-					<span>{{ cat.comment }}</span>
+					<span>{{ card.comment }}</span>
 				</div>
 				<div class="card-info">
 					<post-reactions></post-reactions>
@@ -39,7 +39,7 @@ import PostReactions from '../components/PostReactions';
 export default {
 	data() {
 		return {
-			cat: null,
+			card: null,
 		};
 	},
 	components: {
@@ -47,7 +47,7 @@ export default {
 		'post-reactions': PostReactions,
 	},
 	mounted() {
-		this.cat = find(this.$root.cat, cat => cat['.key'] === this.$route.params.id);
+		this.card = find(this.$root.card, card => card['.key'] === this.$route.params.id);
 	},
 };
 </script>
