@@ -22,27 +22,15 @@
 			</div>
 		</div>
 
-		<div class="card">
-			<div class="card-picture">
-				<img :src="card.url" />
-			</div>
-			<div class="card-info">
-				<div class="card-comment">
-					<span>{{ card.comment }}</span>
-				</div>
-				<div class="card-info">
-					<post-reactions></post-reactions>
-				</div>
-			</div>
-		</div>
+		<post-card />
 	</div>
 </template>
 
 <script>
 import { find } from 'lodash';
 import StatusBar from '@/components/StatusBar';
+import PostCard from '@/components/PostCard';
 import ProfileResume from '@/components/ProfileResume';
-import PostReactions from '@/components/PostReactions';
 
 export default {
 	data() {
@@ -52,8 +40,8 @@ export default {
 	},
 	components: {
 		'status-bar': StatusBar,
+		'post-card': PostCard,
 		'profile-resume': ProfileResume,
-		'post-reactions': PostReactions,
 	},
 	mounted() {
 		this.card = find(this.$root.card, card => card['.key'] === this.$route.params.id);
@@ -65,89 +53,61 @@ export default {
 
 	@import '../assets/styles/_colors'
 
-	.status
-		margin-left 70px
-		font-size 14px
-		line-height 14px
-
-	.point
-		color $pink
-		font-weight bold
-
-	.level
-		margin-left 5px
-
-		&:before
-			content "|"
-			margin-right 5px
-
-	.follows
-		text-align center
-		margin-top 25px
-		font-size 14px
-
-	.following
-		margin-left 10px
-
-	.followers,
-	.following
-		background $pink
-		border-radius 30px
-		padding 2px 10px
-		color $white
-
-	.profile-info
-		padding 0 20px
-		margin 20px 0 30px 0
-
 	.profile
-		background #fff
 
-	.add-picture-button
-		position fixed
-		right 24px
-		bottom 24px
-		z-index 998
-		color $primary-color
-		height 50px
-		width 50px
-		border-radius 20px 20px 20px 0
-		background #fff
-		display flex
-		align-items center
-		justify-content center
-		box-shadow -3px 0px 4px 1px rgba(0,0,0,0.3)
+		.status
+			margin-left 70px
+			font-size 14px
+			line-height 14px
 
-		span
-			font-size 40px
-			line-height 40px
-			height 45px
+		.point
+			color $pink
+			font-weight bold
 
-	.card
-		padding-bottom 10px
-		border-bottom 1px solid #eee
-		margin-bottom 40px
-		background #fff
-		max-width 500px
-		margin-left auto
-		margin-right auto
+		.level
+			margin-left 5px
 
-	.card-picture > img
-		width 100%
+			&:before
+				content "|"
+				margin-right 5px
 
-	.card-info
-		padding 5px 15px
-		display flex
-		justify-content space-between
+		.follows
+			text-align center
+			margin-top 25px
+			font-size 14px
 
-	.card-comment
-		line-height 20px
-		font-size 14px
-		overflow hidden
-		max-height 60px
+		.following
+			margin-left 10px
 
+		.followers,
+		.following
+			background $pink
+			border-radius 30px
+			padding 2px 10px
+			color $white
 
-		> span
-			color #222
-			font-size 15px
+		.profile-info
+			padding 0 20px
+			margin 20px 0 30px 0
+
+		.add-picture-button
+			position fixed
+			right 24px
+			bottom 24px
+			z-index 998
+			color $primary-color
+			height 50px
+			width 50px
+			border-radius 20px 20px 20px 0
+			background #fff
+			display flex
+			align-items center
+			justify-content center
+			box-shadow -3px 0px 4px 1px rgba(0,0,0,0.3)
+
+			span
+				font-size 40px
+				line-height 40px
+				height 45px
+
 </style>
