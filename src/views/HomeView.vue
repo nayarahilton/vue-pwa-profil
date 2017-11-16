@@ -2,10 +2,12 @@
 	<div class="home">
 		<main-header />
 		<slider-items />
-		<div
-			v-for="picture in this.getCards()"
-			class="card"
-		>
+
+		<div v-for="picture in this.getCards()" class="card">
+
+			<ul class="hashtags-list">
+				<li v-for="hash in hashtags" class="hash">{{hash.hash}}</li>
+			</ul>
 			<div
 				class="card-picture"
 				@click="displayDetails(picture['.key'])"
@@ -41,6 +43,12 @@ export default {
 		return {
 			msg: 'Explore diverasas profissões com quem trabalha na área',
 			autor: 'Nayara Hilton',
+			hashtags: [
+				{ hash: '#Desigin' },
+				{ hash: '#Motion' },
+				{ hash: '#UX' },
+				{ hash: '#Front' },
+			],
 		};
 	},
 	mounted() {
@@ -148,6 +156,19 @@ export default {
 		overflow hidden
 		line-height 20px
 		font-size 15px
+
+
+	.hashtags-list
+		margin 10px 0
+		padding 0 20px
+		list-style none
+
+	.hash
+		display inline-block
+		color $blue
+		font-size 15px
+		+ .hash
+			margin-left 10px
 
 
 
