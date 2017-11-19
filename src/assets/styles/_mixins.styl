@@ -49,3 +49,29 @@ transition()
 
 transform()
 	vendor('transform', arguments)
+
+
+
+light-border($color = $blue)
+	border 2px solid $color
+	box-shadow 2px 1px 5px 0px lighten($color, 50%)
+
+nowrap-list()
+	list-style none
+	white-space nowrap
+	margin 0 auto
+	padding 0
+	display flex
+	overflow-x auto
+	max-width 500px
+
+nowrap-list-item()
+	display inline-flex
+	flex-direction column
+	white-space normal
+	text-align center
+	margin-left 20px
+	overflow hidden
+
+	&:last-child
+		padding-right 20px

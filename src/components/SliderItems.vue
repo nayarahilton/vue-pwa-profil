@@ -1,11 +1,11 @@
 <template>
 		<div class="slider">
-		<ul class="list">
-			<li class="list-item" v-for="item in items">
-				<div class="img-holder">
-					<img class="img" src="nada" />
+		<ul class="slider_list">
+			<li class="slider_list-item" v-for="item in items">
+				<div class="slider_img-holder">
+					<img class="slider_img" src="http://nosrc.fbiz.com.br/640x480/ddd/777" />
 				</div>
-				<p class="text">{{item.text}}</p>
+				<p class="slider_text">{{item.text}}</p>
 			</li>
 		</ul>
 	</div>
@@ -40,40 +40,33 @@ export default {
 		box-sizing border-box
 		background #eee
 
-	.list
-		list-style none
-		white-space nowrap
-		margin 0 auto
-		padding 0
-		display flex
-		overflow-x scroll
-		max-width 500px
+		&_list
+			nowrap-list()
 
-	.list-item
-		display inline-flex
-		flex-direction column
-		white-space normal
-		text-align center
-		margin-left 20px
-		min-width 60px
-		max-width 100px
-		overflow hidden
+		&_list-item
+			nowrap-list-item()
+			min-width 60px
+			max-width 100px
 
-		&:last-child
-			padding-right 20px
+		&_text
+			margin-bottom 0
+			margin-top 0px
+			font-size 12px
 
-	.text
-		margin-bottom 0
-		margin-top 0px
-		font-size 12px
+		&_img-holder
+			light-border()
+			width 50px
+			height 50px
+			border-radius 50%
+			background #fff
 
-	.img-holder
-		width 50px
-		height 50px
-		border-radius 50%
-		border 2px solid $blue
-		box-shadow 2px 1px 5px 0px rgba(0, 132, 250, 0.6)
-		background #fff
+		&_img
+			object-fit cover
+			object-position center
+			border-radius 50%
+			width 50px
+			height 50px
+
 
 </style>
 
