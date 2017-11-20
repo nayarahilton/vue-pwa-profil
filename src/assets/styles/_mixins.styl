@@ -6,51 +6,12 @@ linear_gradient(origin, colors...)
     colors = join(', ', colors)
     colors = unquote(colors)
 
-    background-color: fallback
-    background-image: -webkit-linear-gradient(origin, colors) // Chrome, Safari
-    background-image:    -moz-linear-gradient(origin, colors) // Firefox (3.6 - 15)
-    background-image:     -ms-linear-gradient(origin, colors) // IE 10
-    background-image:      -o-linear-gradient(origin, colors) // Opera (11.1 - 12.0)
-    background-image:         linear-gradient(origin, colors) // W3C
-
-vendor(prop, args)
-	-webkit-{prop} args
-	-moz-{prop} args
-	-o-{prop} args
-	{prop} args
-
-animation()
-	vendor('animation', arguments)
-
-
-border-radius()
-	vendor('border-radius', arguments)
-
-background-clip()
-	vendor('background-clip', arguments)
-
-box-shadow()
-	-moz-box-shadow arguments
-	-webkit-box-shadow arguments
-	box-shadow arguments
-
-flexbox()
-	display -webkit-flex
-	display flex
-
-flex()
-	vendor('flex', arguments)
-
-text-fill-color()
-	vendor('text-fill-color', arguments)
-
-transition()
-	vendor('transition', arguments)
-
-transform()
-	vendor('transform', arguments)
-
-
+    background-color fallback
+    background-image -webkit-linear-gradient(origin, colors) // Chrome, Safari
+    background-image    -moz-linear-gradient(origin, colors) // Firefox (3.6 - 15)
+    background-image     -ms-linear-gradient(origin, colors) // IE 10
+    background-image      -o-linear-gradient(origin, colors) // Opera (11.1 - 12.0)
+    background-image         linear-gradient(origin, colors) // W3C
 
 light-border($color = $blue)
 	border 2px solid $color
