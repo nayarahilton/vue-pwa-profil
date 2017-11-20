@@ -87,27 +87,8 @@ export default {
 			color $white
 
 		.profile-info
+			max-width 500px
 			padding 0 20px
-			margin 20px 0 30px 0
-
-		.add-picture-button
-			position fixed
-			right 24px
-			bottom 24px
-			z-index 998
-			color $primary-color
-			height 50px
-			width 50px
-			border-radius 20px 20px 20px 0
-			background #fff
-			display flex
-			align-items center
-			justify-content center
-			box-shadow -3px 0px 4px 1px rgba(0,0,0,0.3)
-
-			span
-				font-size 40px
-				line-height 40px
-				height 45px
+			margin 20px auto 30px auto
 
 </style>

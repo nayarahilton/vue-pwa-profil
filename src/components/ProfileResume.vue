@@ -17,7 +17,7 @@ export default {
 };
 </script>
 
-<style scoped lang="stylus">
+<style lang="stylus">
 	$border-radius = 10px
 	@import '../assets/styles/_colors'
 
@@ -28,7 +28,7 @@ export default {
 	.profile-resume
 		display inline-flex
 		align-items center
-		justify-content center
+		justify-content flex-start
 		color #222
 
 	.img-holder
@@ -41,12 +41,10 @@ export default {
 		box-shadow 2px 1px 5px 0px rgba(0, 132, 250, 0.6)
 
 		img
-			height 150%
-			min-width 100%
-			position absolute
-			left 50%
-			top 50%
-			transform translate(-50%, -50%)
+			height 50px
+			width 50px
+			object-fit cover
+			object-position center
 
 	.info-holder
 		margin-left 15px

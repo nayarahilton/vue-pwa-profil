@@ -59,19 +59,28 @@ light-border($color = $blue)
 nowrap-list()
 	list-style none
 	white-space nowrap
-	margin 0 auto
 	padding 0
 	display flex
 	overflow-x auto
-	max-width 500px
+
 
 nowrap-list-item()
 	display inline-flex
 	flex-direction column
 	white-space normal
 	text-align center
-	margin-left 20px
 	overflow hidden
+
+	&:not(:first-child)
+		margin-left 20px
+
+	&:first-child
+		padding-left 20px
 
 	&:last-child
 		padding-right 20px
+
+holder()
+	max-width 500px
+	margin 0 auto
+

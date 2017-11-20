@@ -32,7 +32,7 @@ export default {
 
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 	@import '../assets/styles/*'
 
 	.slider
@@ -42,6 +42,7 @@ export default {
 
 		&_list
 			nowrap-list()
+			holder()
 
 		&_list-item
 			nowrap-list-item()
