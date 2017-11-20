@@ -1,13 +1,13 @@
 <template>
-	<nav class="tabs-top">
-		<ul class="tabs-top__links">
+	<nav class="tabs-bottom">
+		<ul class="tabs-bottom__links">
 			<li
 				v-for="link in links"
 				:key="link.class"
 			>
 				<a
 					:href="link.url"
-					class="tabs-top__link"
+					class="tabs-bottom__link"
 					:class="link.class"
 				>
 					{{ link.name }}
@@ -33,11 +33,12 @@ export default {
 	*
 		box-sizing border-box
 
-	.tabs-top
-		background transparent
-		border-bottom 1px solid $pink
-		margin-bottom 20px
+	.tabs-bottom
+		background #fff
+		bottom 0
+		box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
 		padding 10px
+		position fixed
 		width 100%
 
 		&__links
@@ -61,7 +62,7 @@ export default {
 
 				&:after
 					background $pink
-					bottom -13px
+					top -13px
 					content ''
 					height 5px
 					left 0
