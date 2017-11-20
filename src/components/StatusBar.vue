@@ -1,17 +1,9 @@
 <template>
-	<header class="status-bar">
-		<a
-			:href="link"
-			class="status-bar__link"
-		>
-			<
-		</a>
-		<h1
-			class="status-bar__title"
-		>
-			{{ title }}
+	<router-link :to="link" class="status-bar">
+		<h1 class="status-bar__title">
+			<  {{ title }}
 		</h1>
-	</header>
+	</router-link>
 </template>
 
 <script>
@@ -33,6 +25,7 @@ export default {
 	@import '../assets/styles/_colors'
 
 	.status-bar
+		display block
 		height 60px
 		linear_gradient(left, lightness($dark-pink, 40%), lightness($blue, 50%))
 		padding 0 20px

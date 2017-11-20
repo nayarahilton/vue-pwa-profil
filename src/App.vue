@@ -1,6 +1,8 @@
 <template>
 	<div id="app">
-		<router-view />
+		<transition name="fade" mode="out-in" appear>
+			<router-view />
+		</transition>
 	</div>
 </template>
 
@@ -29,6 +31,15 @@ export default {
 
 	main
 		overflow hidden
+
+	.fade-enter-active,
+	.fade-leave-active
+		transition opacity 0.2s
+
+
+	.fade-enter,
+	.fade-leave-active
+		opacity 0
 
 	#app
 		font-family 'Cairo', sans-serif
