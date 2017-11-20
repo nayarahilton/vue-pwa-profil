@@ -1,5 +1,9 @@
 <template>
 	<div class="profession">
+		<status-bar
+			link="/home"
+			title="Home"
+		/>
 		<slider-items />
 		<div class="profession_resume">
 			<div class="profession_img-holder">
@@ -125,6 +129,7 @@ import PostReactions from '@/components/PostReactions';
 import SliderItems from '@/components/SliderItems';
 import PostCard from '@/components/PostCard';
 import MainButton from '@/components/MainButton';
+import StatusBar from '@/components/StatusBar';
 
 export default {
 	data() {
@@ -145,6 +150,7 @@ export default {
 		'slider-items': SliderItems,
 		'post-card': PostCard,
 		'main-button': MainButton,
+		'status-bar': StatusBar,
 	},
 };
 </script>
