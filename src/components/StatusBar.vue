@@ -1,5 +1,8 @@
 <template>
-	<router-link :to="link" class="status-bar">
+	<router-link
+		:to="link"
+		class="status-bar"
+	>
 		<h1 class="status-bar__title">
 			<  {{ title }}
 		</h1>
@@ -29,12 +32,6 @@ export default {
 		height 60px
 		linear_gradient(left, lightness($dark-pink, 40%), lightness($blue, 50%))
 		padding 0 20px
-
-		&__link
-			color #fff
-			display inline
-			line-height 60px
-			margin-right 10px
 
 		&__title
 			color #fff
