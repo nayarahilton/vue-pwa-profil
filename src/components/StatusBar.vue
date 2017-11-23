@@ -29,6 +29,7 @@ export default {
 
 	.status-bar
 		display block
+		box-shadow 0px 4px 10px 0px rgba(0, 0, 0, 0.3)
 		height 60px
 		linear_gradient(left, lightness($dark-pink, 40%), lightness($blue, 50%))
 		padding 0 20px

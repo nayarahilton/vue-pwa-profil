@@ -36,7 +36,7 @@ export default {
 	.tabs-bottom
 		background #fff
 		bottom 0
-		box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+		box-shadow 0px 0px 20px 0px rgba(0, 0, 0, 0.3)
 		padding 10px
 		position fixed
 		width 100%
