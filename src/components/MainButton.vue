@@ -18,7 +18,7 @@
 	    color #fff
 	    background-color $blue
 	    border-radius $border-radius
-	    padding 6px
+	    padding 10px
 	    min-width 100px
 	    text-align center
 </style>
