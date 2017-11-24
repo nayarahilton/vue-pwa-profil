@@ -79,7 +79,7 @@ export default {
 		align-items center
 		text-align center
 		color #ffffff
-		height 100vh
+		min-height 100vh
 		justify-content space-between
 
 		@media (min-width 768px)
