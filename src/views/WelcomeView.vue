@@ -25,7 +25,7 @@
 			<div class="login-holder">
 				<router-link
 					class="link"
-					to="/register"
+					to="/cadastro"
 				>
 					Criar cadastro
 				</router-link>

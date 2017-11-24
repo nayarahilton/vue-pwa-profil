@@ -43,7 +43,7 @@ export default {
 
 	.titles
 		background transparent
-		color $dark-gray		
+		color $dark-gray
 		margin-bottom 20px
 		padding 15px
 		width 100%
@@ -60,7 +60,8 @@ export default {
 			margin 0
 
 		&__subtitle
-			font-size 12pt
+			font-size 14pt
 			font-weight 300
+			line-height 16pt
 			margin 0
 </style>

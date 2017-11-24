@@ -6,7 +6,7 @@
 		:placeholder="placeholder"
 		:required="required"
 		:class="inputStyle"
-		class="input"		
+		class="input"
 	/>
 </template>
 
@@ -28,6 +28,7 @@ export default {
 			type: String,
 		},
 		required: {
+			required: true,
 			type: Boolean,
 		},
 		design: {
@@ -67,6 +68,6 @@ export default {
 
 		&--login
 			border solid #fff
-			border-width: 0 0 1px 0;			
+			border-width: 0 0 1px 0;
 			color #fff
 </style>

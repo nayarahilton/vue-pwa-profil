@@ -4,6 +4,8 @@ import WelcomeView from '@/views/WelcomeView';
 import HomeView from '@/views/HomeView';
 import DetailView from '@/views/DetailView';
 import RegisterView from '@/views/RegisterView';
+import RegisterGuruView from '@/views/RegisterGuruView';
+import RegisterAprendizView from '@/views/RegisterAprendizView';
 import ProfileView from '@/views/ProfileView';
 import FeedbackView from '@/views/FeedbackView';
 import CameraView from '@/views/CameraView';
@@ -34,9 +36,19 @@ export default new Router({
 			component: WelcomeView,
 		},
 		{
-			path: '/register',
-			name: 'register',
+			path: '/cadastro',
+			name: 'cadastro',
 			component: RegisterView,
+		},
+		{
+			path: '/cadastro/guru',
+			name: 'cadastro-guru',
+			component: RegisterGuruView,
+		},
+		{
+			path: '/cadastro/aprendiz',
+			name: 'cadastro-aprendiz',
+			component: RegisterAprendizView,
 		},
 		{
 			path: '/profile',
