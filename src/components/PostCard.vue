@@ -66,19 +66,23 @@ export default {
 				this.saveCardsToCache();
 				return this.$root.card;
 			}
-
 			return JSON.parse(localStorage.getItem('cards'));
 		},
 		saveCardsToCache() {
 			this.$root.$firebaseRefs.card.orderByChild('created_at').once('value', (snapchot) => {
 				const cachedcards = [];
+
 				snapchot.forEach((cardSnapchot) => {
 					const cachedcard = cardSnapchot.val();
 					cachedcard['.key'] = cardSnapchot.key;
 					cachedcards.push(cachedcard);
 				});
-				localStorage.setItem('cards', JSON.stringify(cachedcards));
+
+				// localStorage.setItem('cards', JSON.stringify(cachedcards));
 			});
+		},
+		mounted() {
+			this.saveCatsToCache();
 		},
 	},
 };
