@@ -8,7 +8,9 @@
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
-    "lint": "eslint --ext .js,.vue src"
+	"lint": "eslint --ext .js,.vue src",
+	"serve": "serve dist/"
+
   },
   "dependencies": {
     "axios": "^0.17.1",
