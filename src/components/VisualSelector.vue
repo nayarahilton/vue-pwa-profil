@@ -1,21 +1,21 @@
 <template>
 	<div
-		:class="selectStyle"
-		class="visual-seletors"	
+		class="visual-selectors"
 	>
-		<a
+		<router-link
 			v-for="option of options"
-			:key="option.id"			
-			class="visual-seletor"
+			:key="option.id"
+			:to="option.link"
+			class="visual-selector"
 		>
+			{{ option.title }}
 			<img
 				:src="option.src"
-				:alt="option.alt"
 			/>
 			<span>
 				{{ option.text }}
 			</span>
-		</a>
+		</router-link>
 	</div>
 </template>
 
@@ -32,22 +32,19 @@ export default {
 				{
 					id: 1,
 					src: '',
-					alt: 'Guru',
+					link: '/cadastro/guru',
+					title: 'Guru',
 					text: 'Ainda não sei o que fazer. Vim aqui para  descobrir coisas novas e ver a rotina de trabalho dos Gurus.',
 				},
 				{
 					id: 2,
 					src: '',
-					alt: 'Aprendiz',
+					link: '/cadastro/aprendiz',
+					title: 'Aprendiz',
 					text: 'Sou especialista! Vou dividir conhecimento sobre a minha área e ajudar os aprendizes a descobrir o melhor caminho.',
 				},
 			],
 		};
-	},
-	computed: {
-		selectStyle() {
-			if (this.design === 'main' || !this.design) return 'visual-selectors--main';
-		},
 	},
 };
 </script>
@@ -64,16 +61,25 @@ export default {
 		margin-bottom 20px
 		width 100%
 
-		&--main a
+		.visual-selector
 			border 1px solid $dark-pink
 			border-radius 15px
 			color $dark-pink
 			display block
-			margin-bottom 10px
+			font-size 16pt
+			font-weight 600
+			margin-bottom 20px
 			padding 15px
 			width 100%
 
+			span
+				display block
+				color $dark-gray
+				font-size 12pt
+				font-weight 400
+
 			&:focus
 				border-color $dark-blue
+				color $dark-blue
 				outline 0
 </style>
