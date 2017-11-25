@@ -34,6 +34,12 @@ $radius = 0.5em
 	align-items center
 	justify-content center
 	min-height 100vh
+	position fixed
+	background rgba(255,255,255,0.8)
+	top 0
+	left 0
+	right 0
+	bottom 0
 
 .logo
 	margin-right 20px
@@ -92,7 +98,7 @@ $radius = 0.5em
 		top $size * 2
 
 
-@keyframes squareA {
+@keyframes square-a {
 	0% {
 		transform: translateY(0);
 		border-radius: 0;
@@ -112,7 +118,7 @@ $radius = 0.5em
 	}
 }
 
-@keyframes squareB {
+@keyframes square-b {
 	0% {
 		transform: translateX(0)
 	}
@@ -137,11 +143,11 @@ $radius = 0.5em
 
 .loading .square
 	&:nth-child(7)
-		animation squareA 1.5s infinite .5s
+		animation square-a 1s infinite .25s ease-in-out
 		z-index 2
 
 	&:nth-child(8)
-		animation squareB 1.5s infinite reverse
+		animation square-b 1s infinite reverse ease-in-out
 
 
 	.logo .square
@@ -185,8 +191,7 @@ $border-width = 2px
 	border-top: 8px solid $orange
 	border-right: 8px solid $orange
 	border-bottom: 8px solid $orange
-	animation: linear-spin infinite .6s linear
-
+	animation linear-spin infinite .6s linear
 
 @keyframes linear-spin
 	0%

@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div v-if="!preloading">
 		<div v-for="picture in this.getCards()" class="card">
 			<ul class="hashtags-list">
 				<li v-for="hash in hashtags" class="hash">{{hash.hash}}</li>
@@ -28,16 +28,19 @@
 			<div class="post-reading-time"><span>leitura: 13 minutos</span></div>
 		</div>
 	</div>
+	<pre-loading v-else></pre-loading>
 </template>
 
 <script>
-import ProfileResume from '../components/ProfileResume';
-import PostReactions from '../components/PostReactions';
+import ProfileResume from '@/components/ProfileResume';
+import PostReactions from '@/components/PostReactions';
+import PreLoading from '@/components/PreLoading';
 
 export default {
 	data() {
 		return {
 			autor: 'Nayara Hilton',
+			preloading: true,
 			hashtags: [
 				{ hash: '#Desigin' },
 				{ hash: '#Motion' },
@@ -53,6 +56,7 @@ export default {
 	components: {
 		'profile-resume': ProfileResume,
 		'post-reactions': PostReactions,
+		'pre-loading': PreLoading,
 	},
 	methods: {
 		displayDetails(id) {
@@ -77,6 +81,8 @@ export default {
 					cachedcard['.key'] = cardSnapchot.key;
 					cachedcards.push(cachedcard);
 				});
+
+				this.preloading = false;
 
 				// localStorage.setItem('cards', JSON.stringify(cachedcards));
 			});
