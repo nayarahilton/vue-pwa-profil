@@ -9,7 +9,7 @@ const postContent = {
 					created_at: -1 * new Date().getTime(),
 				},
 			).then(
-				this.$router.push('/Home'),
+				this.$router.push('/home'),
 			);
 		},
 	},

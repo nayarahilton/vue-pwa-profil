@@ -23,6 +23,9 @@
 				<li>
 					<router-link class="nav-link" to="/profession" @click.native="hideMenu">Profession</router-link>
 				</li>
+				<li>
+					<router-link class="nav-link" to="/ask" @click.native="hideMenu">AskView</router-link>
+				</li>
 			</ul>
 			<div class="ofuscator" @click="hideMenu"></div>
 		</nav>

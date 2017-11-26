@@ -10,6 +10,7 @@ import ProfileView from '@/views/ProfileView';
 import FeedbackView from '@/views/FeedbackView';
 import CameraView from '@/views/CameraView';
 import ProfessionView from '@/views/ProfessionView';
+import AskView from '@/views/AskView';
 
 Vue.use(Router);
 
@@ -64,6 +65,11 @@ export default new Router({
 			path: '/feedback',
 			name: 'feedback',
 			component: FeedbackView,
+		},
+		{
+			path: '/ask',
+			name: 'ask',
+			component: AskView,
 		},
 	],
 });
