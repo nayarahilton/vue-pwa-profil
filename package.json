@@ -9,9 +9,9 @@
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
-	"serve": "serve dist/",
-	"deploy": "node ./node_modules/vue-gh-pages/index.js",
-	"homepage": "https://github.com/nayarahilton/vue-pwa-profil"
+    "serve": "serve dist/",
+    "deploy": "node ./node_modules/vue-gh-pages/index.js",
+    "homepage": "https://github.com/nayarahilton/vue-pwa-profil"
   },
   "dependencies": {
     "axios": "^0.17.1",
