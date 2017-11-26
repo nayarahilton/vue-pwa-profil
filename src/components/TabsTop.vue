@@ -5,13 +5,14 @@
 				v-for="link in links"
 				:key="link.class"
 			>
-				<a
-					:href="link.url"
+				<router-link
+					:to="link.url"
 					class="tabs-top__link"
 					:class="link.class"
+					active-class="active"
 				>
 					{{ link.name }}
-				</a>
+				</router-link>
 			</li>
 		</ul>
 	</nav>

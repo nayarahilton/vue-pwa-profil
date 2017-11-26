@@ -2,7 +2,6 @@
 	<select
 		:name="name"
 		:id="id"
-		:required="required"
 		:class="selectStyle"
 		class="select"
 	>
@@ -31,21 +30,12 @@ export default {
 		design: {
 			type: String,
 		},
-	},
-	data() {
-		return {
-			disabledText: 'Cidade/Estado',
-			options: [
-				{
-					value: 'RJ',
-					text: 'Rio de Janeiro',
-				},
-				{
-					value: 'SP',
-					text: 'São Paulo',
-				},
-			],
-		};
+		disabledText: {
+			type: String,
+		},
+		options: {
+			type: Array,
+		},
 	},
 	computed: {
 		selectStyle() {

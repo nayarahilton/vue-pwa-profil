@@ -65,7 +65,7 @@ export default {
 		width 100%
 
 		&:focus
-			border-color $dark-blue
+			border-color $dark-pink
 			outline 0
 
 		&--main

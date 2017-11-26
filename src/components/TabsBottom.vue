@@ -5,13 +5,14 @@
 				v-for="link in links"
 				:key="link.class"
 			>
-				<a
-					:href="link.url"
+				<router-link
+					:to="link.url"
 					class="tabs-bottom__link"
 					:class="link.class"
+					active-class="active"
 				>
 					{{ link.name }}
-				</a>
+				</router-link>
 			</li>
 		</ul>
 	</nav>
@@ -19,9 +20,52 @@
 
 <script>
 export default {
+	data() {
+		return {
+			linksTop: [
+				{
+					class: 'minha-area',
+					url: '/',
+					name: 'minha área',
+				},
+				{
+					class: 'todas-areas',
+					url: '#',
+					name: 'todas as áreas',
+				},
+				{
+					class: 'hashtags',
+					url: '#',
+					name: '#hashtags',
+				},
+			],
+			linksBottom: [
+				{
+					class: 'home',
+					url: '/',
+					name: 'home',
+				},
+				{
+					class: 'buscar',
+					url: '#',
+					name: 'buscar',
+				},
+				{
+					class: 'postar',
+					url: '#',
+					name: 'postar',
+				},
+				{
+					class: 'perfil',
+					url: '#',
+					name: 'perfil',
+				},
+			],
+		};
+	},
 	props: {
 		links: {
-			type: Array,
+			type: String,
 		},
 	},
 };
@@ -40,6 +84,7 @@ export default {
 		padding 10px
 		position fixed
 		width 100%
+		z-index 99
 
 		&__links
 			align-items center
