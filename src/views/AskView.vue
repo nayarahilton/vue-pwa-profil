@@ -9,7 +9,7 @@
 				title-text="Está com dúvida?"
 				subtitle-text="Escolha abaixo a profissão e faça a sua pergunta."
 			/>
-			<main-input
+			<main-select
 				type="text"
 				name="user"
 				id="user"
@@ -32,7 +32,7 @@
 import StatusBar from '../components/StatusBar';
 import MainTextarea from '../components/MainTextarea';
 import MainTitles from '../components/MainTitles';
-import MainInput from '../components/MainInput';
+import MainSelect from '../components/MainSelect';
 import MainButton from '../components/MainButton';
 
 export default {
@@ -40,7 +40,7 @@ export default {
 		'status-bar': StatusBar,
 		'main-textarea': MainTextarea,
 		'main-titles': MainTitles,
-		'main-input': MainInput,
+		'main-select': MainSelect,
 		'main-button': MainButton,
 	},
 };
