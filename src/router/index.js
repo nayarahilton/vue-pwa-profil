@@ -12,6 +12,7 @@ import FeedbackView from '@/views/FeedbackView';
 import CameraView from '@/views/CameraView';
 import ProfessionView from '@/views/ProfessionView';
 import AskView from '@/views/AskView';
+import AnswerView from '@/views/AnswerView';
 
 Vue.use(Router);
 
@@ -87,8 +88,13 @@ export default new Router({
 			component: AskView,
 		},
 		{
+			path: '/answer',
+			name: 'answer',
+			component: AnswerView,
+		},
+		{
 			path: '*',
-			redirect: '/',
+			redirect: '/home',
 		},
 	],
 });

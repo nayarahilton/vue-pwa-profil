@@ -6,22 +6,16 @@
 		/>
 		<main class="register-main">
 			<main-titles
-				title-text="Está com dúvida?"
-				subtitle-text="Escolha abaixo a profissão e faça a sua pergunta."
-			/>
-			<main-select
-				design="main"
-				:disabledText="disabledText"
-				:options="options"
+				title-text="Entrar direto na faculdade ou fazer um curso antes?"
 			/>
 			<main-textarea
 				type="text"
 				name="name"
 				id="name"
-				placeholder="Toque aqui e escreva uma pergunta de até 280 caractéres"
+				placeholder="Toque aqui e escreva uma resposta de até 280 caractéres"
 				:required="true"
 			/>
-			<main-button text-inner="Enviar pergunta" />
+			<main-button text-inner="Enviar resposta" />
 		</main>
 	</div>
 </template>
