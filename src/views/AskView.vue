@@ -10,11 +10,9 @@
 				subtitle-text="Escolha abaixo a profissão e faça a sua pergunta."
 			/>
 			<main-select
-				type="text"
-				name="user"
-				id="user"
-				placeholder="Nome da profissão"
-				:required="true"
+				design="main"
+				:disabledText="disabledText"
+				:options="options"
 			/>
 			<main-textarea
 				type="text"
@@ -36,6 +34,21 @@ import MainSelect from '../components/MainSelect';
 import MainButton from '../components/MainButton';
 
 export default {
+	data() {
+		return {
+			disabledText: 'Nome da profissão',
+			options: [
+				{
+					value: 'designDigital',
+					text: 'Design Digital',
+				},
+				{
+					value: 'medicina',
+					text: 'Medicina',
+				},
+			],
+		};
+	},
 	components: {
 		'status-bar': StatusBar,
 		'main-textarea': MainTextarea,

@@ -29,9 +29,6 @@ export default {
 	@import './assets/styles/_elements'
 	@import './assets/styles/_normalize'
 
-	*
-		box-sizing border-box
-
 	body
 		margin 0
 		overflow-x hidden
