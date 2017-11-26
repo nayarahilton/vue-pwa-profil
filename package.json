@@ -9,9 +9,9 @@
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
-    "serve": "serve dist/",
-    "deploy": "node ./node_modules/vue-gh-pages/index.js",
-    "homepage": "https://github.com/nayarahilton/vue-pwa-profil"
+	"serve": "serve dist/",
+	"deploy": "node ./node_modules/vue-gh-pages/index.js",
+	"homepage": "https://github.com/nayarahilton/vue-pwa-profil"
   },
   "dependencies": {
     "axios": "^0.17.1",
@@ -39,7 +39,6 @@
     "babel-preset-stage-2": "^6.22.0",
     "babel-register": "^6.22.0",
     "chalk": "^2.0.1",
-    "compression-webpack-plugin": "^1.0.1",
     "connect-history-api-fallback": "^1.3.0",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
