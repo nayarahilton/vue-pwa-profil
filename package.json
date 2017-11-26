@@ -8,12 +8,15 @@
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
-    "lint": "eslint --ext .js,.vue src"
+	"lint": "eslint --ext .js,.vue src",
+	"serve": "serve dist/"
+
   },
   "dependencies": {
     "axios": "^0.17.1",
     "babel-runtime": "^6.26.0",
     "firebase": "^4.5.1",
+    "sw-precache-webpack-plugin": "^0.11.4",
     "vue": "^2.3.3",
     "vue-analytics": "^5.2.1",
     "vue-form-wizard": "^0.8.0",

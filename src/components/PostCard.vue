@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div v-if="!preloading">
 		<div v-for="picture in this.getCards()" class="card">
 			<ul class="hashtags-list">
 				<li v-for="hash in hashtags" class="hash">{{hash.hash}}</li>
@@ -28,16 +28,22 @@
 			<div class="post-reading-time"><span>leitura: 13 minutos</span></div>
 		</div>
 	</div>
+	<transition name="fade" mode="out-in" appear v-else>
+		<pre-loading></pre-loading>
+	</transition>
+
 </template>
 
 <script>
-import ProfileResume from '../components/ProfileResume';
-import PostReactions from '../components/PostReactions';
+import ProfileResume from '@/components/ProfileResume';
+import PostReactions from '@/components/PostReactions';
+import PreLoading from '@/components/PreLoading';
 
 export default {
 	data() {
 		return {
 			autor: 'Nayara Hilton',
+			preloading: true,
 			hashtags: [
 				{ hash: '#Desigin' },
 				{ hash: '#Motion' },
@@ -53,6 +59,7 @@ export default {
 	components: {
 		'profile-resume': ProfileResume,
 		'post-reactions': PostReactions,
+		'pre-loading': PreLoading,
 	},
 	methods: {
 		displayDetails(id) {
@@ -66,19 +73,25 @@ export default {
 				this.saveCardsToCache();
 				return this.$root.card;
 			}
-
 			return JSON.parse(localStorage.getItem('cards'));
 		},
 		saveCardsToCache() {
 			this.$root.$firebaseRefs.card.orderByChild('created_at').once('value', (snapchot) => {
 				const cachedcards = [];
+
 				snapchot.forEach((cardSnapchot) => {
 					const cachedcard = cardSnapchot.val();
 					cachedcard['.key'] = cardSnapchot.key;
 					cachedcards.push(cachedcard);
 				});
-				localStorage.setItem('cards', JSON.stringify(cachedcards));
+
+				this.preloading = false;
+
+				// localStorage.setItem('cards', JSON.stringify(cachedcards));
 			});
+		},
+		mounted() {
+			this.saveCatsToCache();
 		},
 	},
 };
@@ -86,6 +99,15 @@ export default {
 
 <style lang="stylus" scoped>
 	@import '../assets/styles/_colors'
+
+	.fade-enter-active,
+	.fade-leave-active
+		transition opacity 0.2s
+
+
+	.fade-enter,
+	.fade-leave-active
+		opacity 0
 
 	.card
 		padding-bottom 10px
