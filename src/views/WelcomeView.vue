@@ -6,35 +6,38 @@
 		</div>
 
 		<div class="btn-holder">
-			<social-button
-				textInner="Entrar com o Linkedin"
-				design="login"
-			/>
-			<main-input
-				type="email"
-				placeholder="Email"
-				:required="true"
-				design="login"
-			/>
-			<main-input
-				type="password"
-				placeholder="Senha"
-				:required="true"
-				design="login"
-			/>
-			<div class="login-holder">
-				<router-link
-					class="link"
-					to="/cadastro"
-				>
-					Criar cadastro
-				</router-link>
-				<main-button
-					button-type="router"
-					text-inner="Entrar"
-					linkto="/Home"
+			<form @submit.prevent>
+				<social-button
+					textInner="Entrar com o Linkedin"
+					design="login"
 				/>
-			</div>
+				<main-input
+					type="email"
+					placeholder="Email"
+					design="login"
+					v-model="email"
+				/>
+				<main-input
+					type="password"
+					placeholder="Senha"
+					design="login"
+					v-model="password"
+				/>
+				<div class="login-holder">
+					<router-link
+						class="link"
+						to="/cadastro"
+					>
+						Criar cadastro
+					</router-link>
+					<button
+						class="submit-button"
+						@click="onSubmit"
+					>
+						Entrar
+					</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </template>
@@ -49,12 +52,27 @@ export default {
 	data() {
 		return {
 			msg: 'Explore diverasas profissões com quem trabalha na área',
+			email: '',
+			password: '',
 		};
 	},
 	components: {
 		'social-button': SocialButton,
 		'main-button': MainButton,
 		'main-input': MainInput,
+	},
+	methods: {
+		onSubmit() {
+			const formData = {
+				email: this.email,
+				password: this.password,
+			};
+			console.log(formData);
+			this.$store.dispatch('login', {
+				email: formData.email,
+				password: formData.password,
+			});
+		},
 	},
 };
 </script>
