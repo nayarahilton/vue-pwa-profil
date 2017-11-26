@@ -28,7 +28,10 @@
 			<div class="post-reading-time"><span>leitura: 13 minutos</span></div>
 		</div>
 	</div>
-	<pre-loading v-else></pre-loading>
+	<transition name="fade" mode="out-in" appear v-else>
+		<pre-loading></pre-loading>
+	</transition>
+
 </template>
 
 <script>
@@ -96,6 +99,15 @@ export default {
 
 <style lang="stylus" scoped>
 	@import '../assets/styles/_colors'
+
+	.fade-enter-active,
+	.fade-leave-active
+		transition opacity 0.2s
+
+
+	.fade-enter,
+	.fade-leave-active
+		opacity 0
 
 	.card
 		padding-bottom 10px

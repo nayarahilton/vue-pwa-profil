@@ -1,28 +1,14 @@
 <template>
 	<div id="app">
 		<transition name="fade" mode="out-in" appear>
-			<router-view v-if="!preloading" />
-			<pre-loading v-else></pre-loading>
+			<router-view />
 		</transition>
 	</div>
 </template>
 
 <script>
-import PreLoading from '@/components/PreLoading';
-
 export default {
 	name: 'app',
-	data() {
-		return {
-			preloading: true,
-		};
-	},
-	components: {
-		'pre-loading': PreLoading,
-	},
-	mounted() {
-		this.preloading = false;
-	},
 	methods: {
 		showMenu: function showMenu() {
 			document.querySelector('.nav').classList.add('-show');
@@ -51,9 +37,9 @@ export default {
 		transition opacity 0.2s
 
 
-	//.fade-enter,
-	//.fade-leave-active
-		//opacity 0
+	.fade-enter,
+	.fade-leave-active
+		opacity 0
 
 	#app
 		font-family 'Cairo', sans-serif
