@@ -3,14 +3,21 @@
 import Vue from 'vue';
 import Vuefire from 'vuefire';
 import VueResource from 'vue-resource';
+import Vuelidate from 'vuelidate';
+import axios from 'axios';
+import store from '@/services/store';
 import { database } from '@/services/firebase';
 import App from './App';
 import router from './router';
+
+axios.defaults.baseURL = 'https://vue-course-a2688.firebaseio.com/';
+axios.defaults.headers.get.Accepts = 'application/json';
 
 Vue.config.productionTip = false;
 
 Vue.use(Vuefire);
 Vue.use(VueResource);
+Vue.use(Vuelidate);
 
 Vue.config.productionTip = false;
 
@@ -21,6 +28,7 @@ new Vue({
 		card: database.ref('card').orderByChild('created_at'),
 	},
 	router,
+	store,
 	template: '<App/>',
 	components: { App },
 });

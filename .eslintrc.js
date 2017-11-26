@@ -25,6 +25,7 @@ module.exports = {
 	// add your custom rules here
 	'rules': {
 		// profil custom rules
+		"no-console": 0,
 		"linebreak-style": 0,
 		"indent": [2, "tab"],
 		"no-tabs": 0,

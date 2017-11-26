@@ -23,6 +23,7 @@ export default {
 <style lang="stylus">
 	@import url('https://fonts.googleapis.com/css?family=Cairo:200,300,400,600,700,900');
 	@import './assets/styles/_colors'
+	@import './assets/styles/_elements'
 
 	body
 		margin 0
