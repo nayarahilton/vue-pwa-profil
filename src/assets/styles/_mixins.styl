@@ -5,7 +5,10 @@ linear_gradient(origin, colors...)
 
     colors = join(', ', colors)
     colors = unquote(colors)
-    background-image         linear-gradient(origin, colors) // W3C
+
+    background-color fallback
+    background-image -webkit-linear-gradient(origin, colors) // Chrome, Safari
+
 
 light-border($color = $blue)
 	border 2px solid $color
