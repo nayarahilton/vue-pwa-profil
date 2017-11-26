@@ -6,20 +6,8 @@
 		/>
 		<main class="register-main">
 			<h2 class="feedback-text">Pergunta respondida!</h2>
-			<main-titles
-				subtitle-text="Entrar direto na faculdade ou fazer um curso antes?"
-			/>
-			<main-titles
-				title-text="Depende da sua necessidade e da sua facilidade de aprendizado. Se você estiver em dúvida, faça um curso."
-			/>
-			<profile-resume
-				:image="'http://nosrc.fbiz.com.br/640x480/ddd/777'"
-				nickname="Nayara Hilton"
-				username="@nayarahilton"
-				profession="#Profissão"
-				@click.native="goToProfile(picture['.key'])"
-				resume="true"
-			></profile-resume>
+
+			<question-box :questions="questions" answers="true"></question-box>
 
 			<main-button
 				buttonType="router"
@@ -35,11 +23,18 @@ import StatusBar from '@/components/StatusBar';
 import MainTitles from '@/components/MainTitles';
 import MainButton from '@/components/MainButton';
 import ProfileResume from '@/components/ProfileResume';
+import QuestionBox from '@/components/QuestionBox';
 
 export default {
 	data() {
 		return {
 			disabledText: 'Nome da profissão',
+			questions: [
+				{
+					question: 'Entrar direto na faculdade de Design ou fazer um curso?',
+					answer: 'Lorem ipsum',
+				},
+			],
 			options: [
 				{
 					value: 'designDigital',
@@ -57,6 +52,7 @@ export default {
 		'main-titles': MainTitles,
 		'main-button': MainButton,
 		'profile-resume': ProfileResume,
+		'question-box': QuestionBox,
 	},
 };
 </script>

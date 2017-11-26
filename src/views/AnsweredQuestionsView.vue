@@ -1,22 +1,17 @@
 <template>
-	<div class="question">
+	<div class="answered-questions">
 		<status-bar
 			link="/home"
-			title="Perguntas"
+			title="Perguntas Respondidas"
 		/>
-		<main class="register-main">
-			<main-titles
-				:title-text="profession"
-				subtitle-text="Toque no balão para responder"
-			/>
-			<question-box :questions="questions"></question-box>
+		<main class="main">
+			<question-box :questions="questions" answers="true"></question-box>
 		</main>
 	</div>
 </template>
 
 <script>
 import StatusBar from '@/components/StatusBar';
-import MainTitles from '@/components/MainTitles';
 import QuestionBox from '@/components/QuestionBox';
 
 export default {
@@ -42,7 +37,6 @@ export default {
 	components: {
 		'status-bar': StatusBar,
 		'question-box': QuestionBox,
-		'main-titles': MainTitles,
 	},
 };
 </script>
@@ -50,12 +44,5 @@ export default {
 <style lang="stylus">
 	@import '../assets/styles/_colors'
 
-	.question
-		&-text
-			font-size 20px
-
-		.titles__title
-			color $blue
-			font-weight 500
 
 </style>
