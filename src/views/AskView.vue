@@ -2,7 +2,7 @@
 	<div class="ask">
 		<status-bar
 			link="/home"
-			title="Perguntas"
+			title="Perguntar"
 		/>
 		<main class="register-main">
 			<main-titles

@@ -35,14 +35,12 @@ export default {
 };
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 	@import '../assets/styles/_colors'
-
-	*
-		box-sizing border-box
 
 	.titles
 		background transparent
+		box-sizing border-box
 		color $dark-gray
 		margin-bottom 20px
 		padding 15px
@@ -56,7 +54,6 @@ export default {
 
 		&__title
 			font-size 18pt
-			font-weight 300
 			margin 0
 
 		&__subtitle

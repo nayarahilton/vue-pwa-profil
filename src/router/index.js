@@ -13,6 +13,7 @@ import CameraView from '@/views/CameraView';
 import ProfessionView from '@/views/ProfessionView';
 import AskView from '@/views/AskView';
 import AnswerView from '@/views/AnswerView';
+import QuestionsView from '@/views/QuestionsView';
 
 Vue.use(Router);
 
@@ -91,6 +92,11 @@ export default new Router({
 			path: '/answer',
 			name: 'answer',
 			component: AnswerView,
+		},
+		{
+			path: '/questions',
+			name: 'questions',
+			component: QuestionsView,
 		},
 		{
 			path: '*',
