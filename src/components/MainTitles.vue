@@ -16,7 +16,6 @@
 export default {
 	props: {
 		titleText: {
-			required: true,
 			type: String,
 		},
 		subtitleText: {
@@ -42,8 +41,7 @@ export default {
 		background transparent
 		box-sizing border-box
 		color $dark-gray
-		margin-bottom 20px
-		padding 15px
+		margin-bottom 30px
 		width 100%
 		line-height 2em
 
@@ -54,8 +52,10 @@ export default {
 			text-align center
 
 		&__title
-			font-size 18pt
-			margin 0
+			font-size 20pt
+			margin-top 10px
+			margin-bottom 10px
+			font-weight 300
 
 		&__subtitle
 			font-size 14pt

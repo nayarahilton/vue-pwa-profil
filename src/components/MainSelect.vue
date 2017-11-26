@@ -55,7 +55,7 @@ export default {
 		background transparent
 		font-size 12pt
 		margin-bottom 20px
-		padding 15px
+		padding 10px
 		width 100%
 
 		&:focus

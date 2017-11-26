@@ -14,6 +14,7 @@ import ProfessionView from '@/views/ProfessionView';
 import AskView from '@/views/AskView';
 import AnswerView from '@/views/AnswerView';
 import QuestionsView from '@/views/QuestionsView';
+import FeedbackAnswerView from '@/views/FeedbackAnswerView';
 
 Vue.use(Router);
 
@@ -97,6 +98,11 @@ export default new Router({
 			path: '/questions',
 			name: 'questions',
 			component: QuestionsView,
+		},
+		{
+			path: '/feedback-answer',
+			name: 'feedback-answer',
+			component: FeedbackAnswerView,
 		},
 		{
 			path: '*',
