@@ -45,6 +45,7 @@ export default {
 		margin-bottom 20px
 		padding 15px
 		width 100%
+		line-height 2em
 
 		&--left
 			text-align left

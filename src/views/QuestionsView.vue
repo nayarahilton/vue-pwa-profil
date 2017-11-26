@@ -61,8 +61,8 @@ export default {
 		&-text
 			font-size 20px
 
-	.titles__title
-		color $blue
-		font-weight 500
+		.titles__title
+			color $blue
+			font-weight 500
 
 </style>
