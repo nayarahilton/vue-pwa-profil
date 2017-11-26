@@ -3,7 +3,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import globalAxios from 'axios';
-import router from '@/router/index';
+import router from '@/router/';
 import axios from './axios-auth';
 
 Vue.use(Vuex);
@@ -51,7 +51,7 @@ export default new Vuex.Store({
 					userId: res.data.localId,
 				});
 				const now = new Date();
-				const expirationDate = new Date((now.getTime() + res.data.expiresIn) * 1000);
+				const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000);
 				localStorage.setItem('token', res.data.idToken);
 				localStorage.setItem('userId', res.data.localId);
 				localStorage.setItem('expirationDate', expirationDate);
@@ -72,7 +72,7 @@ export default new Vuex.Store({
 			.then((res) => {
 				console.log(res);
 				const now = new Date();
-				const expirationDate = new Date((now.getTime() + res.data.expiresIn) * 1000);
+				const expirationDate = new Date(now.getTime() + res.data.expiresIn * 24000);
 				localStorage.setItem('token', res.data.idToken);
 				localStorage.setItem('userId', res.data.localId);
 				localStorage.setItem('expirationDate', expirationDate);
@@ -103,6 +103,7 @@ export default new Vuex.Store({
 				token,
 				userId,
 			});
+			router.replace('/');
 		},
 		logout({
 			commit,
@@ -111,7 +112,7 @@ export default new Vuex.Store({
 			localStorage.removeItem('expirationDate');
 			localStorage.removeItem('token');
 			localStorage.removeItem('userId');
-			router.replace('/signin');
+			router.replace('/bemvindo');
 		},
 		storeUser({
 			commit,

@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import WelcomeView from '@/views/WelcomeView';
+import store from '@/services/store';
 import HomeView from '@/views/HomeView';
 import DetailView from '@/views/DetailView';
 import RegisterView from '@/views/RegisterView';
@@ -17,9 +18,16 @@ Vue.use(Router);
 export default new Router({
 	routes: [
 		{
-			path: '/home',
+			path: '/',
 			name: 'home',
 			component: HomeView,
+			beforeEnter(to, from, next) {
+				if (store.state.idToken) {
+					next();
+				} else {
+					next('/bemvindo');
+				}
+			},
 		},
 		{
 			path: '/detail/:id',
@@ -32,9 +40,16 @@ export default new Router({
 			component: CameraView,
 		},
 		{
-			path: '/',
-			name: 'welcome',
+			path: '/bemvindo',
+			name: 'bemvindo',
 			component: WelcomeView,
+			beforeEnter(to, from, next) {
+				if (store.state.idToken) {
+					next('/');
+				} else {
+					next();
+				}
+			},
 		},
 		{
 			path: '/cadastro',
@@ -70,6 +85,10 @@ export default new Router({
 			path: '/ask',
 			name: 'ask',
 			component: AskView,
+		},
+		{
+			path: '*',
+			redirect: '/',
 		},
 	],
 });
