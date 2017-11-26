@@ -17,6 +17,9 @@ export default {
 			document.querySelector('.nav').classList.remove('-show');
 		},
 	},
+	created() {
+		this.$store.dispatch('tryAutoLogin');
+	},
 };
 </script>
 
@@ -24,6 +27,10 @@ export default {
 	@import url('https://fonts.googleapis.com/css?family=Cairo:200,300,400,600,700,900');
 	@import './assets/styles/_colors'
 	@import './assets/styles/_elements'
+	@import './assets/styles/_normalize'
+
+	*
+		box-sizing border-box
 
 	body
 		margin 0

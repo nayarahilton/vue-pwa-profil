@@ -1,7 +1,7 @@
 <template>
 	<div class="register">
 		<status-bar
-			link="/"
+			:link="{ name: 'bemvindo' }"
 			title="Cadastro"
 		/>
 		<main class="register-main">
@@ -27,7 +27,3 @@ export default {
 	},
 };
 </script>
-
-<style lang="stylus" scoped>
-
-</style>

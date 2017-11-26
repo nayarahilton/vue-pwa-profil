@@ -6,7 +6,7 @@
 		</div>
 
 		<div class="btn-holder">
-			<form @submit.prevent>
+			<form @submit.prevent="onSubmit">
 				<social-button
 					textInner="Entrar com o Linkedin"
 					design="login"
@@ -26,13 +26,12 @@
 				<div class="login-holder">
 					<router-link
 						class="link"
-						to="/cadastro"
+						:to="{ name: 'cadastro' }"
 					>
 						Criar cadastro
 					</router-link>
 					<button
 						class="submit-button"
-						@click="onSubmit"
 					>
 						Entrar
 					</button>
@@ -43,11 +42,13 @@
 </template>
 
 <script>
+import store from '@/services/store';
 import SocialButton from '../components/SocialButton';
 import MainButton from '../components/MainButton';
 import MainInput from '../components/MainInput';
 
 export default {
+	store,
 	name: 'welcome',
 	data() {
 		return {
@@ -72,6 +73,9 @@ export default {
 				email: formData.email,
 				password: formData.password,
 			});
+			setTimeout(() => {
+				this.$router.push('/');
+			}, 1000);
 		},
 	},
 };
@@ -89,16 +93,32 @@ export default {
 		color #fff
 
 	.welcome
-		linear_gradient(-140deg, lightness($pink, 60%), lightness($blue, 70%))
-		padding 40px 20px
+		align-items center
 		box-sizing border-box
 		display flex
-		flex-direction column
-		align-items center
-		text-align center
+		linear_gradient(-140deg, alpha($pink, 0.7), alpha($blue, 0.5))
+		background-size cover
 		color #ffffff
+		flex-direction column
+		height 100%
 		min-height 100vh
 		justify-content space-between
+		padding 40px 20px
+		position relative
+		text-align center
+		width 100%
+
+		&:before
+			bottom 0
+			content ''
+			height 100%
+			left 0
+			background url('../assets/img/welcome-bg.jpg') no-repeat center center
+			position absolute
+			right 0
+			top 0
+			width 100%
+			z-index -1
 
 		@media (min-width 768px)
 			justify-content space-around

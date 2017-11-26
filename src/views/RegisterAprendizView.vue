@@ -36,19 +36,13 @@
 					name="password"
 					id="password"
 					placeholder="Senha"
-					@blur="$v.password.$touch()"
 					v-model="password"
-				/>
-				<main-button
-					button-type="router"
-					linkto="/cadastro/aprendiz/sucesso"
-					text-inner="Próximo"
 				/>
 				<button
 					class="submit-button"
 					@click="onSubmit"
 				>
-					Entrar
+					Próximo
 				</button>
 			</form>
 		</main>
@@ -88,11 +82,15 @@ export default {
 			};
 			console.log(formData);
 			this.$store.dispatch('signup', formData);
+			setTimeout(() => {
+				this.$router.push('/');
+			}, 1000);
 		},
 	},
 };
 </script>
 
 <style lang="stylus" scoped>
-
+	.submit-button
+		width 100%
 </style>
