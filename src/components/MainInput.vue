@@ -4,9 +4,11 @@
 		:name="name"
 		:id="id"
 		:placeholder="placeholder"
-		:required="required"
 		:class="inputStyle"
 		class="input"
+		ref="input"
+		v-bind:value="value"
+		v-on:input="updateValue($event.target.value)"
 	/>
 </template>
 
@@ -15,6 +17,9 @@ export default {
 	props: {
 		type: {
 			required: true,
+			type: String,
+		},
+		value: {
 			type: String,
 		},
 		name: {
@@ -27,10 +32,6 @@ export default {
 			required: true,
 			type: String,
 		},
-		required: {
-			required: true,
-			type: Boolean,
-		},
 		design: {
 			type: String,
 		},
@@ -39,6 +40,12 @@ export default {
 		inputStyle() {
 			if (this.design === 'main' || !this.design) return 'input--main';
 			if (this.design === 'login') return 'input--login';
+			if (this.design === 'invalid') return 'input--invalid';
+		},
+	},
+	methods: {
+		updateValue(value) {
+			this.$emit('input', value);
 		},
 	},
 };
@@ -70,4 +77,7 @@ export default {
 			border solid #fff
 			border-width: 0 0 1px 0;
 			color #fff
+
+		&--invalid
+			border-color red
 </style>
