@@ -52,7 +52,7 @@ export default {
 	name: 'welcome',
 	data() {
 		return {
-			msg: 'Explore diverasas profissões com quem trabalha na área',
+			msg: 'Explore diversas profissões com quem trabalha na área',
 			email: '',
 			password: '',
 		};
