@@ -16,6 +16,7 @@ import AnswerView from '@/views/AnswerView';
 import QuestionsView from '@/views/QuestionsView';
 import FeedbackAnswerView from '@/views/FeedbackAnswerView';
 import AnsweredQuestionsView from '@/views/AnsweredQuestionsView';
+import NotAnsweredQuestionsView from '@/views/NotAnsweredQuestionsView';
 
 Vue.use(Router);
 
@@ -109,6 +110,11 @@ export default new Router({
 			path: '/answered-questions',
 			name: 'answered-questions',
 			component: AnsweredQuestionsView,
+		},
+		{
+			path: '/not-answered-questions',
+			name: 'not-answered-questions',
+			component: NotAnsweredQuestionsView,
 		},
 		{
 			path: '*',

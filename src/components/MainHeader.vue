@@ -38,6 +38,9 @@
 				<li>
 					<router-link class="nav-link" to="/answered-questions" @click.native="hideMenu">AnsweredQuestionsView</router-link>
 				</li>
+				<li>
+					<router-link class="nav-link" to="/not-answered-questions" @click.native="hideMenu">NotAnsweredQuestionsView</router-link>
+				</li>
 			</ul>
 			<div class="ofuscator" @click="hideMenu"></div>
 		</nav>
