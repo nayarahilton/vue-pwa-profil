@@ -1,6 +1,7 @@
 <template>
 	<div>
 		<div class="question-box" v-for="question in questions">
+			<p class="profession"  v-if="profession == 'true'">{{professionName}}</p>
 			<p class="question-text" >{{question.question}}</p>
 			<div class="answer-holder" v-if="answers == 'true'">
 				<main-titles
@@ -32,6 +33,12 @@ export default {
 		answers: {
 			type: String,
 		},
+		profession: {
+			type: String,
+		},
+		professionName: {
+			type: String,
+		},
 	},
 	components: {
 		'main-titles': MainTitles,
@@ -43,6 +50,11 @@ export default {
 <style lang="stylus" scoped>
 	@import '../assets/styles/_colors'
 	$border-radius = 10px
+
+	.profession
+		color $pink
+		padding 0 15px
+		font-size 16px
 
 	.answer-holder
 		border-top 2px solid $pink
