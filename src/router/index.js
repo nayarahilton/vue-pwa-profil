@@ -23,7 +23,7 @@ Vue.use(Router);
 export default new Router({
 	routes: [
 		{
-			path: '/',
+			path: '/home',
 			name: 'home',
 			component: HomeView,
 			beforeEnter(to, from, next) {
@@ -40,8 +40,8 @@ export default new Router({
 			component: DetailView,
 		},
 		{
-			path: '/camera',
-			name: 'camera',
+			path: '/postar',
+			name: 'postar',
 			component: CameraView,
 		},
 		{
@@ -50,7 +50,7 @@ export default new Router({
 			component: WelcomeView,
 			beforeEnter(to, from, next) {
 				if (store.state.idToken) {
-					next('/');
+					next('/home');
 				} else {
 					next();
 				}
@@ -87,18 +87,18 @@ export default new Router({
 			component: FeedbackView,
 		},
 		{
-			path: '/ask',
-			name: 'ask',
+			path: '/perguntar',
+			name: 'perguntar',
 			component: AskView,
 		},
 		{
-			path: '/answer',
-			name: 'answer',
+			path: '/resposta',
+			name: 'resposta',
 			component: AnswerView,
 		},
 		{
-			path: '/questions',
-			name: 'questions',
+			path: '/perguntas',
+			name: 'perguntas',
 			component: QuestionsView,
 		},
 		{
@@ -118,7 +118,11 @@ export default new Router({
 		},
 		{
 			path: '*',
-			redirect: '/',
+			redirect: '/home',
+		},
+		{
+			path: '/',
+			redirect: '/home',
 		},
 	],
 });

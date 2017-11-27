@@ -5,6 +5,8 @@ import Vuefire from 'vuefire';
 import VueResource from 'vue-resource';
 import Vuelidate from 'vuelidate';
 import axios from 'axios';
+import VueFormWizard from 'vue-form-wizard';
+import 'vue-form-wizard/dist/vue-form-wizard.min.css';
 import store from '@/services/store';
 import { database } from '@/services/firebase';
 import App from './App';
@@ -18,6 +20,7 @@ Vue.config.productionTip = false;
 Vue.use(Vuefire);
 Vue.use(VueResource);
 Vue.use(Vuelidate);
+Vue.use(VueFormWizard);
 
 Vue.config.productionTip = false;
 

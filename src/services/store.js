@@ -103,7 +103,7 @@ export default new Vuex.Store({
 				token,
 				userId,
 			});
-			router.replace('/');
+			router.replace('/home');
 		},
 		logout({
 			commit,
