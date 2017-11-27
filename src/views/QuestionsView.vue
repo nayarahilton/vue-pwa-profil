@@ -4,44 +4,45 @@
 			link="/home"
 			title="Perguntas"
 		/>
-		<main class="register-main">
+		<main class="main">
 			<main-titles
 				:title-text="profession"
 				subtitle-text="Toque no balão para responder"
 			/>
-			<div class="question-box" v-for="question in questions">
-				<p class="question-text" >{{question}}</p>
-			</div>
+			<question-box :questions="questions"></question-box>
 		</main>
 	</div>
 </template>
 
 <script>
 import StatusBar from '@/components/StatusBar';
-import MainTextarea from '@/components/MainTextarea';
 import MainTitles from '@/components/MainTitles';
-import MainSelect from '@/components/MainSelect';
-import MainButton from '@/components/MainButton';
+import QuestionBox from '@/components/QuestionBox';
 
 export default {
 	data() {
 		return {
 			profession: '#Design',
 			questions: [
-				'Entrar direto na faculdade de Design ou fazer um curso?',
-				'Dicas para quem está começando?',
-				'Quais os melhores cursos e escolas de cursos para essa profissão?',
-				'Entrar direto na faculdade de Design ou fazer um curso?',
-				'Dicas para quem está começando?',
+				{
+					question: 'Entrar direto na faculdade de Design ou fazer um curso?',
+					answer: 'Lorem ipsum',
+				},
+				{
+					question: 'Dicas para quem está começando?',
+					answer: 'Lorem ipsum',
+				},
+				{
+					question: 'Quais os melhores cursos e escolas de cursos para essa profissão?',
+					answer: 'Lorem ipsum',
+				},
 			],
 		};
 	},
 	components: {
 		'status-bar': StatusBar,
-		'main-textarea': MainTextarea,
+		'question-box': QuestionBox,
 		'main-titles': MainTitles,
-		'main-select': MainSelect,
-		'main-button': MainButton,
 	},
 };
 </script>
@@ -50,14 +51,6 @@ export default {
 	@import '../assets/styles/_colors'
 
 	.question
-		&-box
-			border 2px solid $pink
-			border-radius 10px
-			box-sizing border-box
-			padding 15px
-			margin-top 10px
-			margin-bottom 10px
-
 		&-text
 			font-size 20px
 

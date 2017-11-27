@@ -67,6 +67,7 @@ export default {
 			padding 15px 15px 30px 120px
 			position relative
 			width 100%
+			box-sizing border-box
 
 			&:before
 				content ''

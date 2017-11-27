@@ -1,7 +1,7 @@
 <template>
-	<a 
-		class="social-btn" 
-		:class="socialbtnStyle" 
+	<a
+		class="social-btn"
+		:class="socialbtnStyle"
 		href="#"
 	>
 		<span>{{ textInner }}</span>
@@ -58,7 +58,7 @@ export default {
 		position absolute
 		top 0
 		bottom 0
-		right 0
+		right -2px
 
 	svg
 		background #fff
@@ -67,7 +67,7 @@ export default {
 		left 50%
 		transform translate(-50%, -50%)
 		width 20px
-		height 20px		
+		height 20px
 
 	span
 		padding 0 15px

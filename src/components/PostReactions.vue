@@ -14,7 +14,8 @@
 <style lang="stylus">
 	@import '../assets/styles/_colors'
 
-  	button
+  	.like-button,
+	.save-button
 		border 0
 		height 35px
 		background transparent

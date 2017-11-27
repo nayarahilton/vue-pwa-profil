@@ -52,7 +52,7 @@ export default {
 	name: 'welcome',
 	data() {
 		return {
-			msg: 'Explore diverasas profissões com quem trabalha na área',
+			msg: 'Explore diversas profissões com quem trabalha na área',
 			email: '',
 			password: '',
 		};
@@ -96,7 +96,7 @@ export default {
 		align-items center
 		box-sizing border-box
 		display flex
-		linear_gradient(-140deg, alpha($pink, 0.7), alpha($blue, 0.5))
+		linear_gradient(-140deg, alpha($pink, 0.8), alpha($blue, 0.7))
 		background-size cover
 		color #ffffff
 		flex-direction column
@@ -114,6 +114,7 @@ export default {
 			height 100%
 			left 0
 			background url('../assets/img/welcome-bg.jpg') no-repeat center center
+			background-size cover
 			position absolute
 			right 0
 			top 0
