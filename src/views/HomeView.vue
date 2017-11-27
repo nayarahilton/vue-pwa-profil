@@ -1,20 +1,44 @@
 <template>
 	<div class="home">
-		<main-header />
 		<slider-items />
+		<tabs-top :links="linksTop"	/>
+		<tabs-bottom />
 		<post-card resume="true" />
 	</div>
 </template>
 
 <script>
-import MainHeader from '@/components/MainHeader';
 import SliderItems from '@/components/SliderItems';
 import PostCard from '@/components/PostCard';
+import TabsTop from '../components/TabsTop';
+import TabsBottom from '../components/TabsBottom';
 
 export default {
+	data() {
+		return {
+			linksTop: [
+				{
+					class: 'minha-area',
+					url: '/',
+					name: 'minha área',
+				},
+				{
+					class: 'todas-areas',
+					url: '#',
+					name: 'todas as áreas',
+				},
+				{
+					class: 'hashtags',
+					url: '#',
+					name: '#hashtags',
+				},
+			],
+		};
+	},
 	components: {
-		'main-header': MainHeader,
 		'slider-items': SliderItems,
+		'tabs-top': TabsTop,
+		'tabs-bottom': TabsBottom,
 		'post-card': PostCard,
 	},
 };

@@ -1,9 +1,5 @@
 <template>
 	<div class="profile">
-		<status-bar
-			link="/home"
-			title="Home"
-		/>
 		<div class="profile-info">
 			<profile-resume
 				:image="card.url"
@@ -23,6 +19,7 @@
 		</div>
 
 		<post-card />
+		<tabs-bottom />
 	</div>
 </template>
 
@@ -31,6 +28,7 @@ import { find } from 'lodash';
 import StatusBar from '@/components/StatusBar';
 import PostCard from '@/components/PostCard';
 import ProfileResume from '@/components/ProfileResume';
+import TabsBottom from '../components/TabsBottom';
 
 export default {
 	data() {
@@ -42,6 +40,7 @@ export default {
 		'status-bar': StatusBar,
 		'post-card': PostCard,
 		'profile-resume': ProfileResume,
+		'tabs-bottom': TabsBottom,
 	},
 	mounted() {
 		this.card = find(this.$root.card, card => card['.key'] === this.$route.params.id);

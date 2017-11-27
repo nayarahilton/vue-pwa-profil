@@ -4,6 +4,7 @@
 			link="/home"
 			title="Perguntas"
 		/>
+		<tabs-bottom />
 		<main class="main">
 			<main-titles
 				:title-text="profession"
@@ -18,6 +19,7 @@
 import StatusBar from '@/components/StatusBar';
 import MainTitles from '@/components/MainTitles';
 import QuestionBox from '@/components/QuestionBox';
+import TabsBottom from '../components/TabsBottom';
 
 export default {
 	data() {
@@ -43,6 +45,7 @@ export default {
 		'status-bar': StatusBar,
 		'question-box': QuestionBox,
 		'main-titles': MainTitles,
+		'tabs-bottom': TabsBottom,
 	},
 };
 </script>

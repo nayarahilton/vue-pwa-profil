@@ -74,7 +74,7 @@ export default {
 				password: formData.password,
 			});
 			setTimeout(() => {
-				this.$router.push('/');
+				this.$router.push('/home');
 			}, 1000);
 		},
 	},

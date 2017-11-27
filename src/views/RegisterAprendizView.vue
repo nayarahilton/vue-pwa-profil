@@ -53,7 +53,6 @@
 import StatusBar from '../components/StatusBar';
 import MainTitles from '../components/MainTitles';
 import MainInput from '../components/MainInput';
-import MainButton from '../components/MainButton';
 
 export default {
 	data() {
@@ -69,7 +68,6 @@ export default {
 		'status-bar': StatusBar,
 		'main-titles': MainTitles,
 		'main-input': MainInput,
-		'main-button': MainButton,
 	},
 	methods: {
 		onSubmit() {
@@ -83,7 +81,7 @@ export default {
 			console.log(formData);
 			this.$store.dispatch('signup', formData);
 			setTimeout(() => {
-				this.$router.push('/');
+				this.$router.push('/home');
 			}, 1000);
 		},
 	},

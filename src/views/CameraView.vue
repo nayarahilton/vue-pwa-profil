@@ -2,8 +2,9 @@
   <div class="post">
 	<status-bar
 		link="/home"
-		title="Home"
+		title="Postar"
 	/>
+	<tabs-bottom />
 	<section class="post-section">
 		<div class="file-upload-form">
 			<input
@@ -24,53 +25,53 @@
 		<main-button text-inner="Postar conteúdo" @click.prevent.native="post">
 		</main-button>
 	</section>
-
   </div>
 </template>
 <script>
-	import postContent from '@/mixins/postContent';
-	import StatusBar from '@/components/StatusBar';
-	import MainButton from '@/components/MainButton';
+import postContent from '@/mixins/postContent';
+import StatusBar from '@/components/StatusBar';
+import MainButton from '@/components/MainButton';
+import TabsBottom from '../components/TabsBottom';
 
-	export default {
-		mixins: [postContent],
-		data: function returnImageData() {
-			return {
-				title: '',
-				imageData: '',
-			};
+export default {
+	mixins: [postContent],
+	data: function returnImageData() {
+		return {
+			title: '',
+			imageData: '',
+		};
+	},
+	components: {
+		'main-button': MainButton,
+		'status-bar': StatusBar,
+		'tabs-bottom': TabsBottom,
+	},
+	methods: {
+		previewImage: function getPreview(event) {
+			const input = event.target;
+			if (input.files && input.files[0]) {
+				const reader = new FileReader();
+				reader.onload = (e) => {
+					this.imageData = e.target.result;
+				};
+				reader.readAsDataURL(input.files[0]);
+			}
 		},
-		components: {
-			'main-button': MainButton,
-			'status-bar': StatusBar,
+		post() {
+			const img = document.querySelector('.image-preview__img');
+			if (this.imageData !== '') {
+				this.postContent(img.src, this.title || '');
+			} else {
+				/* eslint-disable */
+				alert('Adicione uma imagem');
+				/* eslint-enable */
+			}
 		},
-		methods: {
-			previewImage: function getPreview(event) {
-				const input = event.target;
-				if (input.files && input.files[0]) {
-					const reader = new FileReader();
-					reader.onload = (e) => {
-						this.imageData = e.target.result;
-					};
-					reader.readAsDataURL(input.files[0]);
-				}
-			},
-			post() {
-				const img = document.querySelector('.image-preview__img');
-				if (this.imageData !== '') {
-					this.postContent(img.src, this.title || '');
-				} else {
-					/* eslint-disable */
-					alert('Adicione uma imagem');
-					/* eslint-enable */
-				}
-			},
-		},
-	};
+	},
+};
 </script>
 
 <style lang="stylus" scoped>
-
 	@import '../assets/styles/*'
 	$statusBarHeight = 60px
 	$buttonSize = 100px
