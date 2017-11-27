@@ -3,10 +3,9 @@
 		:name="name"
 		:id="id"
 		:placeholder="placeholder"
-		:required="required"
 		:class="textareaStyle"
 		class="textarea"
-        rows="4"		
+        rows="4"
 	/>
 </template>
 
@@ -22,9 +21,6 @@ export default {
 		placeholder: {
 			required: true,
 			type: String,
-		},
-		required: {
-			type: Boolean,
 		},
 		design: {
 			type: String,
@@ -48,7 +44,7 @@ export default {
 		background transparent
 		font-size 12pt
 		margin-bottom 20px
-		padding 15px   
+		padding 15px
 		width 100%
 
 		&:focus

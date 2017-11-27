@@ -9,6 +9,7 @@
 				accept="image/*"
 				class="input-file"
 				capture="camera"
+
 			/>
 			<label for="photo-upload-button">{{ labelText }}</label>
 		</div>
@@ -17,7 +18,10 @@
 			v-if="imageData.length > 0"
 		>
 			<img
+				ref="input"
 				:src="imageData"
+				v-bind:value="imageData"
+				@change="updateValue($event.target.imageData)"
 				class="image-preview__img"
 			>
 		</div>
@@ -26,7 +30,7 @@
 
 <script>
 export default {
-	data: function returnImageData() {
+	data() {
 		return {
 			imageData: '',
 		};
@@ -34,6 +38,9 @@ export default {
 	props: {
 		labelText: {
 			required: true,
+			type: String,
+		},
+		src: {
 			type: String,
 		},
 	},
@@ -47,6 +54,9 @@ export default {
 				};
 				reader.readAsDataURL(input.files[0]);
 			}
+		},
+		updateValue(imageData) {
+			this.$emit('input', imageData);
 		},
 	},
 };
@@ -74,7 +84,7 @@ export default {
 		z-index -1
 
 		&:focus + label
-			border-color $dark-blue			
+			border-color $dark-blue
 
 		& + label
 			background transparent
@@ -94,7 +104,7 @@ export default {
 				border-color $dark-blue
 				cursor pointer
 
-	.image-preview		
+	.image-preview
 		border-radius 50%
 		height 150px
 		left 0

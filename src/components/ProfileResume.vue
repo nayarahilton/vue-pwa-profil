@@ -37,8 +37,8 @@ export default {
 		border-radius 50%
 		overflow hidden
 		position relative
-		border 2px solid $blue
-		box-shadow 2px 1px 5px 0px rgba(0, 132, 250, 0.6)
+		border 2px solid $pink
+		box-shadow 2px 1px 5px 0px alpha($dark-gray, 0.6)
 
 		img
 			height 50px

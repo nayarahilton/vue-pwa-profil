@@ -22,51 +22,29 @@
 export default {
 	data() {
 		return {
-			linksTop: [
-				{
-					class: 'minha-area',
-					url: '/',
-					name: 'minha área',
-				},
-				{
-					class: 'todas-areas',
-					url: '#',
-					name: 'todas as áreas',
-				},
-				{
-					class: 'hashtags',
-					url: '#',
-					name: '#hashtags',
-				},
-			],
-			linksBottom: [
+			links: [
 				{
 					class: 'home',
-					url: '/',
+					url: '/home',
 					name: 'home',
 				},
 				{
 					class: 'buscar',
-					url: '#',
+					url: '/buscar',
 					name: 'buscar',
 				},
 				{
 					class: 'postar',
-					url: '#',
+					url: '/postar',
 					name: 'postar',
 				},
 				{
-					class: 'perfil',
-					url: '#',
-					name: 'perfil',
+					class: 'responder',
+					url: '/perguntas',
+					name: 'perguntas',
 				},
 			],
 		};
-	},
-	props: {
-		links: {
-			type: String,
-		},
 	},
 };
 </script>

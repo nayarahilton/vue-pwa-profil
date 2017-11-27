@@ -38,7 +38,7 @@ export default {
 	.slider
 		padding 20px 0
 		box-sizing border-box
-		background #eee
+		background #fff
 
 		&_list
 			nowrap-list()
