@@ -257,7 +257,8 @@ export default {
 	.footer
 		padding 20px
 		box-sizing border-box
-		color $gray
+		color lighten($pink, 80%)
+		background $pink
 		font-size 10px
 
 </style>
