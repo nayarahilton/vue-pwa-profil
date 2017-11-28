@@ -1,7 +1,7 @@
 <template>
 	<div class="welcome">
 		<div class="presentation-holder">
-			<img class="logo-symbol" src="../assets/logo.svg" alt="Profil Logo">
+			<img class="logo-symbol" src="../assets/logotipo.svg" alt="Profil Logo">
 			<h1 class="title">{{ msg }}</h1>
 		</div>
 
@@ -96,7 +96,7 @@ export default {
 		align-items center
 		box-sizing border-box
 		display flex
-		linear_gradient(-140deg, alpha($pink, 0.8), alpha($blue, 0.7))
+		linear_gradient(-120deg, alpha($pink, 0.9), alpha($blue, 0.7))
 		background-size cover
 		color #ffffff
 		flex-direction column
@@ -129,18 +129,24 @@ export default {
 
 	.logo-symbol
 		height 120px
+		max-width 100%
 
 	.title
 		font-weight 300
+		padding 20px
+		box-sizing border-box
+
 		@media (min-width 768px)
 			max-width 450px
 			font-size 40px
 			line-height 54px
+			margin-left auto
+			margin-right auto
 
 		@media (max-width 768px)
-			max-width 250px
-			font-size 20px
-			line-height 24px
+			font-size 24px
+			line-height 30px
+
 
 	.login-holder
 		display flex

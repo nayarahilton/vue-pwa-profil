@@ -17,6 +17,7 @@ import QuestionsView from '@/views/QuestionsView';
 import FeedbackAnswerView from '@/views/FeedbackAnswerView';
 import AnsweredQuestionsView from '@/views/AnsweredQuestionsView';
 import NotAnsweredQuestionsView from '@/views/NotAnsweredQuestionsView';
+import LandingView from '@/views/LandingView';
 
 Vue.use(Router);
 
@@ -123,6 +124,11 @@ export default new Router({
 		{
 			path: '/',
 			redirect: '/home',
+		},
+		{
+			path: '/landing',
+			name: 'landing',
+			component: LandingView,
 		},
 	],
 });
