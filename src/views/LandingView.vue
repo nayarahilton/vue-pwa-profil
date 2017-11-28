@@ -7,13 +7,13 @@
 			</div>
 			<div class="social">
 				<div class="social-link">
-					<a href="https://twitter.com/lianliu19910622" target="_blank"><i class="fa fa-twitter fa-lg">insta</i></a>
+					<a href="" target="_blank"><i class="insta-icon">insta</i></a>
 				</div>
 				<div class="social-link">
-					<a href="https://www.linkedin.com/pub/lian-liu/aa/29/643" target="_blank"><i class="fa fa-linkedin fa-lg">face</i></a>
+					<a href="" target="_blank"><i class="face-icon">face</i></a>
 				</div>
 				<div class="social-link">
-					<a href="https://codepen.io/lianliu/" target="_blank"><i class="fa fa-codepen fa-lg">app</i></a>
+					<a href="" target="_blank"><i class="app-icon">app</i></a>
 				</div>
 			</div>
 			</div>
@@ -131,9 +131,9 @@ export default {
 		line-height 50px
 		width 50px
 		margin 5px
-		border 1px solid $white
 		border-radius 50%
-		background-color $white
+		color $white
+		background-image -webkit-linear-gradient(-140deg, $blue, $pink)
 
 
 	holder()
