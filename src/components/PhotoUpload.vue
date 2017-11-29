@@ -62,7 +62,7 @@ export default {
 };
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 	@import '../assets/styles/_colors'
 
 	*

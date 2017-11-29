@@ -7,7 +7,7 @@
 	<tabs-bottom />
 	<section class="post-section">
 		<photo-upload :src="imageData" labelText="Escolha uma foto" />
-		<main-textarea v-model="title" placeholder="Escreva uma legenda"></main-textarea>
+		<main-textarea v-model="title" value="title" placeholder="Escreva uma legenda"></main-textarea>
 		<main-button text-inner="Postar conteúdo" @click.prevent.native="post">
 		</main-button>
 	</section>
@@ -39,7 +39,7 @@ export default {
 	methods: {
 		post() {
 			const img = document.querySelector('.image-preview__img');
-			if (img.src !== 'postar') {
+			if (img) {
 				this.postContent(img.src, this.title || '');
 			} else {
 				/* eslint-disable */
@@ -51,10 +51,18 @@ export default {
 };
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 	@import '../assets/styles/*'
 
 	.post-section
 		holder()
+		padding 10px 20px
+		box-sizing border-box
+
+		.input-file + label,
+		.image-preview,
+		.image-preview__img
+			width 100%
+			border-radius 10px
 
 </style>
