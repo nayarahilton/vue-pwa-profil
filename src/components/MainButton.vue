@@ -21,4 +21,10 @@
 	    padding 10px
 	    min-width 100px
 	    text-align center
+
+	.main-btn
+		transition background .4s ease
+
+		&:hover
+			background $dark-blue
 </style>

@@ -6,15 +6,15 @@
 				<img class="logo-symbol" src="../assets/logo.svg" alt="Profil Logo">
 			</div>
 			<div class="social">
-				<div class="social-link">
-					<a href="" target="_blank"><i class="insta-icon">insta</i></a>
-				</div>
-				<div class="social-link">
-					<a href="" target="_blank"><i class="face-icon">face</i></a>
-				</div>
-				<div class="social-link">
-					<a href="" target="_blank"><i class="app-icon">app</i></a>
-				</div>
+				<a href="" target="_blank" class="social-link">
+					<i class="insta-icon"></i>
+				</a>
+				<a href="" target="_blank" class="social-link">
+					<i class="face-icon"></i>
+				</a>
+				<a href="" target="_blank" class="social-link">
+					<i class="app-icon"></i>
+				</a>
 			</div>
 			</div>
 		</header>
@@ -46,17 +46,19 @@
 			<div class="content">
 				<div class="features">
 					<ul class="feature-list">
-						<li>Feature 1</li>
-						<li>Feature 2</li>
+						<li> <span class="coins-icon icon"></span><span class="feature">Troque moedas por cursos</span></li>
+						<li> <span class="favorite-icon icon"></span><span class="feature">Guarde seus posts favoritos</span></li>
 					</ul>
 				</div>
 				<div class="img">
+					<p>Explore o profil</p>
 					<img src="https://appmaker.xyz/pages/frontend/assets/images/google_pixel_device_white.png" alt="">
+					<main-button buttonType="router" linkto="/welcome" text-inner="Crie uma conta"></main-button>
 				</div>
 				<div class="features">
 					<ul class="feature-list">
-						<li>Feature 1</li>
-						<li>Feature 2</li>
+						<li> <span class="photo-icon icon"></span><span class="feature">Rotina da profissão registrada</span></li>
+						<li> <span class="search-icon icon"></span><span class="feature">Pesquise profissões</span></li>
 					</ul>
 				</div>
 			</div>
@@ -107,33 +109,87 @@ export default {
 	.header
 		height 500px
 		display flex
-		align-items center
+		align-items flex-end
 		justify-content center
-		background-image url('./../assets/img/header-bg.jpg')
-		background-position center
+		background-image url('../assets/img/intro-bg.jpg')
 		background-repeat no-repeat
-		background-size cover
 		background-attachment fixed
 		text-align center
+		background-size cover
 		color $white
+		background-position 50%
+
+		@media (max-width 768px)
+			background-image url('../assets/img/header-bg.jpg')
+			align-items center
+
 
 	.logo-symbol
 		margin-left 15px
+		width 240px
 
 	.text
 		font-size 18px
 		margin-top 15px
 
+	.icon
+		display inline-block
+		vertical-align middle
+		background $white
+
+	.coins-icon
+		mask-image url(../assets/icons/coins-icon.svg)
+		width 50px
+		height 30px
+
+	.photo-icon
+		mask-image url(../assets/icons/register-upload-photo-icon.svg)
+		width 40px
+		height 40px
+
+	.favorite-icon
+		mask-image url(../assets/icons/profiles-coins-icon.svg)
+		width 40px
+		height 40px
+
+	.search-icon
+		mask-image url(../assets/icons/search-icon.svg)
+		width 25px
+		height 25px
+
+
+	.insta-icon
+		background url('../assets/icons/insta-icon.svg')
+
+	.face-icon
+		background url('../assets/icons/face-icon.svg')
+
+	.app-icon
+		background url('../assets/icons/app-icon.svg')
 
 	.social-link
+		position relative
 		display inline-block
 		height 50px
 		line-height 50px
 		width 50px
-		margin 5px
+		margin 10px
 		border-radius 50%
 		color $white
-		background-image -webkit-linear-gradient(-140deg, $blue, $pink)
+		background linear-gradient(-140deg, $blue, $pink)
+
+		&:hover
+			background $pink
+
+		i
+			display inline-block
+			width 28px
+			height 28px
+			position absolute
+			top 50%
+			left 50%
+			transform translate(-50%, -50%)
+
 
 
 	holder()
@@ -172,14 +228,16 @@ export default {
 			padding 50px
 
 	.about
-		background-image url('./../assets/img/about-bg.jpg')
+		background-image url('../assets/img/about-bg.jpg')
+		text-shadow 1px 1px 1px rgba(0, 0, 0, .3)
 		color white
 
 		.text
 			text-align center
 
 	.full
-		background-image url('./../assets/img/intro-bg.jpg')
+		background-image url('../assets/img/intro-bg.jpg')
+		background-position 50%
 
 
 		@media screen and (max-width 767px)
@@ -190,13 +248,13 @@ export default {
 				font-size 50px
 
 		.mobile-img
-			max-height 80vh
+			max-height 90vh
 			max-width 100%
 			display inline-block
 
 			@media screen and (min-width 768px)
 				position absolute
-				right 0
+				left 50%
 				bottom 0
 
 	.app
@@ -220,12 +278,24 @@ export default {
 		list-style none
 
 		li
-			margin-top 10px
-			font-size 35px
+			margin-top 35px
+			margin-bottom 35px
+			font-size 20px
+			line-height 24px
+
+		.feature
+			display inline-block
+			vertical-align middle
+			width calc(100% - 80px)
+			margin-left 20px
+			text-align left
 
     .img
 		text-align center
 		margin-top 20px
+
+		@media screen and (max-width 768px)
+			order 3
 
 		@media screen and (min-width 768px)
 			width 60%
@@ -257,8 +327,8 @@ export default {
 	.footer
 		padding 20px
 		box-sizing border-box
-		color lighten($pink, 80%)
-		background $pink
+		color #eee
+		background #333
 		font-size 10px
 
 </style>
