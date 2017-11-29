@@ -28,96 +28,26 @@
 		</div>
 		<div class="profession_info-slider">
 			<h2 class="profession_info-slider_title">O que é Design Digital?</h2>
-			<ul class="profession_info-slider_list">
-				<li class="profession_info-slider_item -text">
-					<profile-resume
-						image="http://nosrc.fbiz.com.br/640x480/ddd/777"
-						nickname="Nayara Hilton"
-						username="@nayarahilton"
-						@click.native="goToProfile(picture['.key'])"
-					></profile-resume>
-					<strong class="profession_info-slider_text">Uma mistura de muita coisa</strong>
-					<p class="profession_info-slider_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni ea odit consectetur voluptatibus illum cumque voluptate cupiditate quod nisi, ab, quasi quos praesentium aliquam fugit rerum dolor beatae vero.</p>
-					<post-reactions />
-
-				</li>
-				<li class="profession_info-slider_item -text">
-					<profile-resume
-						image="http://nosrc.fbiz.com.br/640x480/ddd/777"
-						nickname="Nayara Hilton"
-						username="@nayarahilton"
-						profession="#Profissão"
-						@click.native="goToProfile(picture['.key'])"
-					></profile-resume>
-					<strong class="profession_info-slider_text">Uma mistura de muita coisa</strong>
-					<p class="profession_info-slider_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni ea odit consectetur voluptatibus illum cumque voluptate cupiditate quod nisi, ab, quasi quos praesentium aliquam fugit rerum dolor beatae vero.</p>
-					<post-reactions />
-				</li>
-			</ul>
+			<div class="profession_faq">
+				<div>
+					<question-box :questions="questions" answers="true" class="profession_info-slider_list"></question-box>
+				</div>
+			</div>
 		</div>
 		<div class="profession_info-slider">
 			<h2 class="profession_info-slider_title">Média Salarial por tempo de profissão</h2>
 			<ul class="profession_info-slider_list">
-				<li class="profession_info-slider_item">
-					<strong class="profession_info-slider_text">Até 2 anos</strong>
-					<p class="profession_info-slider_salary">R$ 2.000,00</p>
-				</li>
-				<li class="profession_info-slider_item">
-					<strong class="profession_info-slider_text">Até 5 anos</strong>
-					<p class="profession_info-slider_salary">R$ 5.000,00</p>
-				</li>
-				<li class="profession_info-slider_item">
-					<strong class="profession_info-slider_text">Até 8 anos</strong>
-					<p class="profession_info-slider_salary">R$ 8.000,00</p>
-				</li>
-				<li class="profession_info-slider_item">
-					<strong class="profession_info-slider_text">Mais de 10 anos</strong>
-					<p class="profession_info-slider_salary">R$ 15.000,00</p>
+				<li class="profession_info-slider_item" v-for="item in salaries">
+					<strong class="profession_info-slider_text">{{item.year}}</strong>
+					<p class="profession_info-slider_salary">{{item.salary}}</p>
 				</li>
 			</ul>
 		</div>
 		<div class="profession_faq">
 			<h2 class="profession_faq_title">Principais Dúvidas</h2>
-			<ul class="profession_info-slider_list">
-				<li class="profession_info-slider_item -text">
-
-					<div class="profession_faq_question">
-						<p>Lorem ipsum dolor sit amet aliqua?</p>
-					</div>
-
-					<div class="profession_faq_answer">
-						<profile-resume
-							image="http://nosrc.fbiz.com.br/640x480/ddd/777"
-							nickname="Nayara Hilton"
-							username="@nayarahilton"
-							@click.native="goToProfile(picture['.key'])"
-						></profile-resume>
-						<strong class="profession_info-slider_text">Uma mistura de muita coisa</strong>
-						<p class="profession_info-slider_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni ea odit consectetur voluptatibus illum cumque voluptate cupiditate quod nisi, ab, quasi quos praesentium aliquam fugit rerum dolor beatae vero.</p>
-						<post-reactions />
-					</div>
-
-				</li>
-				<li class="profession_info-slider_item -text">
-
-					<div class="profession_faq_question">
-						<p>Lorem ipsum dolor sit amet aliqua?</p>
-					</div>
-
-					<div class="profession_faq_answer">
-						<profile-resume
-							image="http://nosrc.fbiz.com.br/640x480/ddd/777"
-							nickname="Nayara Hilton"
-							username="@nayarahilton"
-							@click.native="goToProfile(picture['.key'])"
-						></profile-resume>
-						<strong class="profession_info-slider_text">Uma mistura de muita coisa</strong>
-						<p class="profession_info-slider_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam magni ea odit consectetur voluptatibus illum cumque voluptate cupiditate quod nisi, ab, quasi quos praesentium aliquam fugit rerum dolor beatae vero.</p>
-						<post-reactions />
-					</div>
-
-				</li>
-			</ul>
+			<div>
+				<question-box :questions="questions" answers="true" class="profession_info-slider_list"></question-box>
+			</div>
 		</div>
 		<post-card resume="true" />
 	</div>
@@ -130,6 +60,7 @@ import SliderItems from '@/components/SliderItems';
 import PostCard from '@/components/PostCard';
 import MainButton from '@/components/MainButton';
 import StatusBar from '@/components/StatusBar';
+import QuestionBox from '@/components/QuestionBox';
 
 export default {
 	data() {
@@ -142,6 +73,35 @@ export default {
 				{ text: 'Viajo muito' },
 				{ text: 'Trabalho de casa' },
 			],
+			questions: [
+				{
+					question: 'Entrar direto na faculdade de Design ou fazer um curso?',
+					answer: 'Lorem ipsum',
+				},
+				{
+					question: 'Entrar direto na faculdade de Design ou fazer um curso?',
+					answer: 'Lorem ipsum',
+				},
+				{
+					question: 'Entrar direto na faculdade de Design ou fazer um curso?',
+					answer: 'Lorem ipsum',
+				},
+			],
+
+			salaries: [
+				{
+					year: 'Até 2 anos',
+					salary: 'R$ 3.000,00',
+				},
+				{
+					year: 'Até 5 anos',
+					salary: 'R$ 5.000,00',
+				},
+				{
+					year: 'Até 10 anos',
+					salary: 'R$ 10.000,00',
+				},
+			],
 		};
 	},
 	components: {
@@ -151,11 +111,12 @@ export default {
 		'post-card': PostCard,
 		'main-button': MainButton,
 		'status-bar': StatusBar,
+		'question-box': QuestionBox,
 	},
 };
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 
 	@import '../assets/styles/*'
 
@@ -256,6 +217,7 @@ export default {
 		&_features_text
 			font-size 14px
 			line-height 16px
+			margin-top 10px
 
 		&_info-slider
 			border-bottom 1px solid #ddd
@@ -270,7 +232,14 @@ export default {
 			nowrap-list()
 			holder()
 
-		&_info-slider_item
+			.question-box
+				margin 0 10px 30px 10px
+
+				&:first-child
+					margin-left 20px
+
+
+		&_info-slider_item,
 			nowrap-list-item()
 			text-align left
 			min-width 32%
@@ -309,9 +278,6 @@ export default {
 		&_faq
 			holder()
 
-			.profession_info-slider_item
-				border-top $pink 1px solid
-				border-bottom $pink 1px solid
 
 		&_faq_title
 			padding 0 20px
@@ -319,12 +285,5 @@ export default {
 			line-height 30px
 			color $pink
 
-		&_faq_question
-			font-size 20px
-			line-height 24px
-			font-weight 700
-			margin-bottom 15px
-			padding 10px 0
-			border-bottom $gray 1px solid
 
 </style>
