@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-	@import '../assets/styles/_colors'
+	@import '../assets/styles/*'
 
 	*
 		box-sizing border-box
@@ -40,6 +40,7 @@ export default {
 		margin-bottom 20px
 		padding 10px
 		width 100%
+		holder()
 
 		&__links
 			align-items center

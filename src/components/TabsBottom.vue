@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-	@import '../assets/styles/_colors'
+	@import '../assets/styles/*'
 
 	*
 		box-sizing border-box
@@ -70,6 +70,7 @@ export default {
 			justify-content space-between
 			margin 0
 			padding 0 10px
+			holder()
 
 			li
 				list-style none

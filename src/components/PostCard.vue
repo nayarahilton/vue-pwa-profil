@@ -110,7 +110,8 @@ export default {
 		opacity 0
 
 	.card
-		padding-bottom 10px
+		padding 10px 0
+		box-sizing border-box
 		border-bottom 1px solid #eee
 		margin-bottom 40px
 		background #fff
@@ -155,7 +156,8 @@ export default {
 
 
 	.hashtags-list
-		margin 10px 0
+		margin-bottom 10px
+		margin-top 0
 		padding 0 20px
 		list-style none
 
