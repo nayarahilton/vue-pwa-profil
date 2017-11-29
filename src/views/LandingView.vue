@@ -203,7 +203,6 @@ export default {
 
 	.content
 		holder()
-		padding 0 50px
 		display flex
 		align-items center
 		min-height 100vh
@@ -297,12 +296,10 @@ export default {
 		@media screen and (max-width 768px)
 			order 3
 
-		@media screen and (min-width 768px)
-			width 60%
-
 		img
 			max-height 70vh
 			max-width 100%
+
 
 	.aprendiz-icon,
 	.guru-icon
