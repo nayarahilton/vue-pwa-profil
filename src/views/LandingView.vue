@@ -26,6 +26,7 @@
 					<main-button buttonType="router" linkto="/welcome" text-inner="Crie uma conta"></main-button>
 				</div>
 				<img class="mobile-img" src="../assets/img/mobile-hand.png" alt="">
+				<img class="mobile-img-mob" src="../assets/img/mobile-hand-mob.png" alt="">
 			</div>
 		</section>
 		<section class="about">
@@ -52,7 +53,7 @@
 				</div>
 				<div class="img">
 					<p>Explore o profil</p>
-					<img src="https://appmaker.xyz/pages/frontend/assets/images/google_pixel_device_white.png" alt="">
+					<img src="../assets/img/mockup.png" alt="">
 					<main-button buttonType="router" linkto="/welcome" text-inner="Crie uma conta"></main-button>
 				</div>
 				<div class="features">
@@ -250,11 +251,19 @@ export default {
 			max-height 90vh
 			max-width 100%
 			display inline-block
+			display none
 
 			@media screen and (min-width 768px)
 				position absolute
 				left 50%
 				bottom 0
+				display block
+
+		.mobile-img-mob
+			max-width 400px
+
+			@media screen and (min-width 768px)
+				display none
 
 	.app
 		color white
