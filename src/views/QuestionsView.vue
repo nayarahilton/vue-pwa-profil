@@ -1,11 +1,13 @@
 <template>
-	<div class="question">
-		<status-bar
-			link="/home"
-			title="Perguntas"
-		/>
-		<tabs-bottom />
-		<main class="main">
+	<div class="questions">
+		<header class="questions-header">
+			<status-bar
+				link="/home"
+				title="Perguntas"
+			/>
+			<tabs-bottom />
+		</header>
+		<main class="questions-main">
 			<main-titles
 				:title-text="profession"
 				subtitle-text="Toque no balão para responder"
@@ -27,14 +29,17 @@ export default {
 			profession: '#Design',
 			questions: [
 				{
+					id: 1,
 					question: 'Entrar direto na faculdade de Design ou fazer um curso?',
 					answer: 'Lorem ipsum',
 				},
 				{
+					id: 2,
 					question: 'Dicas para quem está começando?',
 					answer: 'Lorem ipsum',
 				},
 				{
+					id: 3,
 					question: 'Quais os melhores cursos e escolas de cursos para essa profissão?',
 					answer: 'Lorem ipsum',
 				},
@@ -53,7 +58,10 @@ export default {
 <style lang="stylus">
 	@import '../assets/styles/_colors'
 
-	.question
+	.questions
+		&-main
+			padding-bottom 50px
+
 		&-text
 			font-size 20px
 

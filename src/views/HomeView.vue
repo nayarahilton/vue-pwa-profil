@@ -1,9 +1,13 @@
 <template>
 	<div class="home">
-		<slider-items />
-		<tabs-top :links="linksTop"	/>
-		<tabs-bottom />
-		<post-card resume="true" />
+		<header class="home-header">
+			<slider-items />
+			<tabs-top :links="linksTop"	/>
+			<tabs-bottom />
+		</header>
+		<main class="home-main">
+			<post-card resume="true" />
+		</main>
 	</div>
 </template>
 
@@ -27,11 +31,6 @@ export default {
 					url: '#',
 					name: 'todas as áreas',
 				},
-				{
-					class: 'hashtags',
-					url: '#',
-					name: '#hashtags',
-				},
 			],
 		};
 	},
@@ -50,5 +49,8 @@ export default {
 
 	.home
 		background #f9f9f9
+
+		&-main
+			padding-bottom 50px
 
 </style>

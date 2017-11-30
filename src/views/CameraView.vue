@@ -1,17 +1,19 @@
 <template>
-  <div class="post">
-	<status-bar
-		link="/home"
-		title="Postar"
-	/>
-	<tabs-bottom />
-	<section class="post-section">
-		<photo-upload :src="imageData" labelText="Escolha uma foto" />
-		<main-textarea v-model="title" value="title" placeholder="Escreva uma legenda"></main-textarea>
-		<main-button text-inner="Postar conteúdo" @click.prevent.native="post">
-		</main-button>
-	</section>
-  </div>
+	<div class="post">
+		<header>
+			<status-bar
+				link="/home"
+				title="Postar"
+			/>
+			<tabs-bottom />
+		</header>
+		<section class="post-section">
+			<photo-upload :src="imageData" labelText="Escolha uma foto" />
+			<main-textarea v-model="title" value="title" placeholder="Escreva uma legenda"></main-textarea>
+			<main-button text-inner="Postar conteúdo" @click.prevent.native="post">
+			</main-button>
+		</section>
+	</div>
 </template>
 <script>
 import postContent from '@/mixins/postContent';
@@ -58,6 +60,7 @@ export default {
 		holder()
 		padding 10px 20px
 		box-sizing border-box
+		margin-bottom 50px
 
 		.input-file + label,
 		.image-preview,
