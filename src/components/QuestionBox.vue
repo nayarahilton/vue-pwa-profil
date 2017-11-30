@@ -1,8 +1,11 @@
 <template>
 	<div>
-		<div class="question-box" v-for="question in questions">
+		<div class="questions-box"
+			v-for="question in questions"
+			:key="question.id"
+		>
 			<p class="profession"  v-if="profession == 'true'">{{professionName}}</p>
-			<p class="question-text" >{{question.question}}</p>
+			<p class="questions-text" >{{question.question}}</p>
 			<div class="answer-holder" v-if="answers == 'true'">
 				<main-titles
 					:title-text="question.answer"
@@ -16,7 +19,6 @@
 					resume="true"
 				></profile-resume>
 			</div>
-
 		</div>
 	</div>
 </template>
@@ -64,7 +66,7 @@ export default {
 	.titles__title
 		color $gray
 
-	.question
+	.questions
 		&-box
 			border 1px solid $pink
 			border-radius 10px
