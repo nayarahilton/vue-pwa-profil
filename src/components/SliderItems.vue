@@ -62,8 +62,7 @@ export default {
 
 	.swiper-slide
 		width 80px
-		padding 20px 10px
-		background #f4f4f4
+		padding 20px 5px
 		text-align center
 		overflow hidden
 
