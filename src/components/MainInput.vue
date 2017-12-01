@@ -40,7 +40,6 @@ export default {
 		inputStyle() {
 			if (this.design === 'main' || !this.design) return 'input--main';
 			if (this.design === 'login') return 'input--login';
-			if (this.design === 'invalid') return 'input--invalid';
 		},
 	},
 	methods: {
@@ -80,4 +79,5 @@ export default {
 
 		&--invalid
 			border-color red
+			background rgba(255, 0, 0, 0.20);
 </style>

@@ -6,6 +6,9 @@
 		:class="textareaStyle"
 		class="textarea"
         rows="4"
+		ref="input"
+		v-bind:value="value"
+		v-on:input="updateValue($event.target.value)"
 	/>
 </template>
 
@@ -16,6 +19,9 @@ export default {
 			type: String,
 		},
 		id: {
+			type: String,
+		},
+		value: {
 			type: String,
 		},
 		placeholder: {
@@ -29,6 +35,11 @@ export default {
 	computed: {
 		textareaStyle() {
 			if (this.design === 'main' || !this.design) return 'textarea--main';
+		},
+	},
+	methods: {
+		updateValue(value) {
+			this.$emit('input', value);
 		},
 	},
 };

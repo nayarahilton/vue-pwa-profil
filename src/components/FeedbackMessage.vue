@@ -1,11 +1,10 @@
 <template>
-	<div
+	<span
 		class="feedback"
-	>	
-		<span class="feedback__text">
-			{{ msgText }}
-		</span>
-	</div>
+		:class="feedbackStyle"
+	>
+		{{ msgText }}
+	</span>
 </template>
 
 <script>
@@ -14,7 +13,16 @@ export default {
 		msgText: {
 			required: true,
 			type: String,
-		},		
+		},
+		design: {
+			type: String,
+		},
+	},
+	computed: {
+		feedbackStyle() {
+			if (this.design === 'main' || !this.design) return 'feedback--main';
+			if (this.design === 'login') return 'feedback--login';
+		},
 	},
 };
 </script>
@@ -27,14 +35,17 @@ export default {
 
 	.feedback
 		background transparent
+		font-size 14pt
+		font-weight 600
 		margin-bottom 20px
-		padding 15px
+		padding 0
 		width 100%
 
-		&__text
-            color red
-			font-size 12pt
-			font-weight 300
-			margin 0
-            text-align center
+		&--login
+			color lightness(red, 70%)
+			text-align center
+
+		&--main
+			color red
+			text-align left
 </style>
