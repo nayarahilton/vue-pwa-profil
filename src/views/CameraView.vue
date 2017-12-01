@@ -5,13 +5,21 @@
 				link="/home"
 				title="Postar"
 			/>
-			<tabs-bottom />
+			<tabs-bottom-guru />
 		</header>
 		<section class="post-section">
-			<photo-upload :src="imageData" labelText="Escolha uma foto" />
-			<main-textarea v-model="title" value="title" placeholder="Escreva uma legenda"></main-textarea>
-			<main-button text-inner="Postar conteúdo" @click.prevent.native="post">
-			</main-button>
+			<photo-upload
+				:src="imageData"
+				labelText="Escolha uma foto"
+			/>
+			<main-textarea
+				v-model="title"
+				placeholder="Escreva uma legenda"
+			/>
+			<main-button
+				text-inner="Postar conteúdo"
+				@click.prevent.native="post"
+			/>
 		</section>
 	</div>
 </template>
@@ -19,13 +27,13 @@
 import postContent from '@/mixins/postContent';
 import StatusBar from '@/components/StatusBar';
 import MainButton from '@/components/MainButton';
-import TabsBottom from '../components/TabsBottom';
+import TabsBottomGuru from '../components/TabsBottomGuru';
 import PhotoUpload from '../components/PhotoUpload';
 import MainTextarea from '../components/MainTextarea';
 
 export default {
 	mixins: [postContent],
-	data: function returnImageData() {
+	data() {
 		return {
 			title: '',
 			imageData: 'postar',
@@ -34,7 +42,7 @@ export default {
 	components: {
 		'main-button': MainButton,
 		'status-bar': StatusBar,
-		'tabs-bottom': TabsBottom,
+		'tabs-bottom-guru': TabsBottomGuru,
 		'photo-upload': PhotoUpload,
 		'main-textarea': MainTextarea,
 	},

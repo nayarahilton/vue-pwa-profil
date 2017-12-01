@@ -16,6 +16,13 @@
 					placeholder="Email"
 					design="login"
 					v-model="email"
+					@input="$v.email.$touch()"
+					:class="{ 'input--invalid': $v.email.$error }"
+				/>
+				<feedback
+					v-if="!$v.email.email"
+					msgText="E-mail incorreto"
+					design="login"
 				/>
 				<main-input
 					type="password"
@@ -32,6 +39,7 @@
 					</router-link>
 					<button
 						class="submit-button"
+						:disabled="$v.$invalid"
 					>
 						Entrar
 					</button>
@@ -42,10 +50,12 @@
 </template>
 
 <script>
+import { required, email } from 'vuelidate/lib/validators';
 import store from '@/services/store';
 import SocialButton from '../components/SocialButton';
 import MainButton from '../components/MainButton';
 import MainInput from '../components/MainInput';
+import FeedbackMessage from '../components/FeedbackMessage';
 
 export default {
 	store,
@@ -58,9 +68,16 @@ export default {
 		};
 	},
 	components: {
-		'social-button': SocialButton,
-		'main-button': MainButton,
-		'main-input': MainInput,
+		SocialButton,
+		MainButton,
+		MainInput,
+		feedback: FeedbackMessage,
+	},
+	validations: {
+		email: {
+			required,
+			email,
+		},
 	},
 	methods: {
 		onSubmit() {

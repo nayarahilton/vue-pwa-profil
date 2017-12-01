@@ -3,7 +3,7 @@
 		<header class="home-header">
 			<slider-items />
 			<tabs-top :links="linksTop"	/>
-			<tabs-bottom />
+			<tabs-bottom-guru />
 		</header>
 		<main class="home-main">
 			<post-card resume="true" />
@@ -15,7 +15,7 @@
 import SliderItems from '@/components/SliderItems';
 import PostCard from '@/components/PostCard';
 import TabsTop from '../components/TabsTop';
-import TabsBottom from '../components/TabsBottom';
+import TabsBottomGuru from '../components/TabsBottomGuru';
 
 export default {
 	data() {
@@ -37,7 +37,7 @@ export default {
 	components: {
 		'slider-items': SliderItems,
 		'tabs-top': TabsTop,
-		'tabs-bottom': TabsBottom,
+		'tabs-bottom-guru': TabsBottomGuru,
 		'post-card': PostCard,
 	},
 };

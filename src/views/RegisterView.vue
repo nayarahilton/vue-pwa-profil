@@ -1,7 +1,7 @@
 <template>
 	<div class="register">
 		<status-bar
-			:link="{ name: 'bemvindo' }"
+			link="/bemvindo"
 			title="Cadastro"
 		/>
 		<main class="register-main">

@@ -19,7 +19,7 @@
 		</div>
 
 		<post-card />
-		<tabs-bottom />
+		<tabs-bottom-guru />
 	</div>
 </template>
 
@@ -28,7 +28,7 @@ import { find } from 'lodash';
 import StatusBar from '@/components/StatusBar';
 import PostCard from '@/components/PostCard';
 import ProfileResume from '@/components/ProfileResume';
-import TabsBottom from '../components/TabsBottom';
+import TabsBottomGuru from '../components/TabsBottomGuru';
 
 export default {
 	data() {
@@ -40,7 +40,7 @@ export default {
 		'status-bar': StatusBar,
 		'post-card': PostCard,
 		'profile-resume': ProfileResume,
-		'tabs-bottom': TabsBottom,
+		'tabs-bottom-guru': TabsBottomGuru,
 	},
 	mounted() {
 		this.card = find(this.$root.card, card => card['.key'] === this.$route.params.id);

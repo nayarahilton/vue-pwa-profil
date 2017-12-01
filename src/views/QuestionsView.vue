@@ -5,7 +5,7 @@
 				link="/home"
 				title="Perguntas"
 			/>
-			<tabs-bottom />
+			<tabs-bottom-guru />
 		</header>
 		<main class="questions-main">
 			<main-titles
@@ -21,7 +21,7 @@
 import StatusBar from '@/components/StatusBar';
 import MainTitles from '@/components/MainTitles';
 import QuestionBox from '@/components/QuestionBox';
-import TabsBottom from '../components/TabsBottom';
+import TabsBottomGuru from '../components/TabsBottomGuru';
 
 export default {
 	data() {
@@ -50,7 +50,7 @@ export default {
 		'status-bar': StatusBar,
 		'question-box': QuestionBox,
 		'main-titles': MainTitles,
-		'tabs-bottom': TabsBottom,
+		'tabs-bottom-guru': TabsBottomGuru,
 	},
 };
 </script>
