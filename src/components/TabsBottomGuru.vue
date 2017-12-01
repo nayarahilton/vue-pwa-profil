@@ -41,7 +41,12 @@ export default {
 				{
 					class: 'responder',
 					url: '/perguntas',
-					name: 'perguntas',
+					name: 'responder',
+				},
+				{
+					class: 'perfil',
+					url: '/perfil',
+					name: 'perfil',
 				},
 			],
 		};
