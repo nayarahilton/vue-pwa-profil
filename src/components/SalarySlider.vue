@@ -1,7 +1,11 @@
 <template>
 	<div>
 		<swiper :options="swiperOption" class="salaries">
-			<swiper-slide lass="profession_info-slider_item" v-for="(salary, index) in salaries">
+			<swiper-slide
+				lass="profession_info-slider_item"
+				v-for="(salary, index) in salaries"
+				:key="salary.salary"
+			>
 				<strong class="profession_info-slider_text">{{salary.year}}</strong>
 				<p class="profession_info-slider_salary">{{salary.salary}}</p>
 			</swiper-slide>

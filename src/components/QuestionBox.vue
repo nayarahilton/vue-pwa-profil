@@ -1,7 +1,11 @@
 <template>
 	<div>
 		<swiper v-if="slideBox === 'true'" :options="swiperOption" class="questions-wrapper">
-			<swiper-slide v-for="(slide, index) in slides"  class="questions-box">
+			<swiper-slide
+				v-for="(slide, index) in slides"
+				class="questions-box"
+				:key="slide.question"
+			>
 				<p class="profession"  v-if="profession == 'true'">{{professionName}}</p>
 				<p class="questions-holder" v-if="questions == 'true'">{{slide.question}}</p>
 				<div class="answer-holder" v-if="answers == 'true'">

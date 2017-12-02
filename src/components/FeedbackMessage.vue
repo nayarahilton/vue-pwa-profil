@@ -3,17 +3,13 @@
 		class="feedback"
 		:class="feedbackStyle"
 	>
-		{{ msgText }}
+		<slot></slot>
 	</span>
 </template>
 
 <script>
 export default {
 	props: {
-		msgText: {
-			required: true,
-			type: String,
-		},
 		design: {
 			type: String,
 		},
@@ -35,6 +31,7 @@ export default {
 
 	.feedback
 		background transparent
+		display block
 		font-size 14pt
 		font-weight 600
 		margin-bottom 20px

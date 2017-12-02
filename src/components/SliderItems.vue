@@ -1,7 +1,10 @@
 <template>
 	<div class="slider">
 		<swiper :options="swiperOption" >
-			<swiper-slide v-for="(slide, index) in slides">
+			<swiper-slide
+				v-for="(slide, index) in slides"
+				:key="slide.text"
+			>
 				<div class="slider_img-holder">
 					<img class="slider_img" :src="slide.src" />
 				</div>
