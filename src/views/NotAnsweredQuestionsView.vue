@@ -5,7 +5,7 @@
 			title="Perguntas não respondidas"
 		/>
 		<main class="main">
-			<question-box :questions="questions" profession="true" professionName="#designdigital"></question-box>
+			<question-box :boxs="questions" questions="true" profession="true" professionName="#designdigital"></question-box>
 		</main>
 	</div>
 </template>

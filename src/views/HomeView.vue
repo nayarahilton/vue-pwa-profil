@@ -1,7 +1,7 @@
 <template>
 	<div class="home">
 		<header class="home-header">
-			<slider-items />
+			<slider-items class="stories" :slides="stories"/>
 			<tabs-top :links="linksTop"	/>
 			<tabs-bottom-guru />
 		</header>
@@ -20,6 +20,52 @@ import TabsBottomGuru from '../components/TabsBottomGuru';
 export default {
 	data() {
 		return {
+			stories: [
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@nayarahilton',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@lucassilva',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@prisanttos',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@vinibueno',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@lilisantos',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@nayarahilton',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@lucassilva',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@nayarahilton',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@lucassilva',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@nayarahilton',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@lucassilva',
+				},
+			],
 			linksTop: [
 				{
 					class: 'minha-area',

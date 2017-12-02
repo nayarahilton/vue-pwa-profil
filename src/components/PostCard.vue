@@ -113,6 +113,7 @@ export default {
 		padding 10px 0
 		box-sizing border-box
 		border-bottom 1px solid #eee
+		margin-top 10px
 		margin-bottom 40px
 		background #fff
 		max-width 500px
@@ -168,7 +169,4 @@ export default {
 		+ .hash
 			margin-left 10px
 
-	@media screen and (min-width 480px)
-		.card
-			margin-top 40px
 </style>

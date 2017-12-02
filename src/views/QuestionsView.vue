@@ -12,7 +12,7 @@
 				:title-text="profession"
 				subtitle-text="Toque no balão para responder"
 			/>
-			<question-box :questions="questions"></question-box>
+			<question-box :boxs="questions" questions="true"></question-box>
 		</main>
 	</div>
 </template>

@@ -6,7 +6,7 @@
 				nickname="Nayara Hilton"
 				username="@nayarahilton"
 				profession="#Profissão"
-				linkto="/profile"
+				linkto="/perfil"
 			>
 			</profile-resume>
 

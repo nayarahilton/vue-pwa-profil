@@ -4,7 +4,7 @@
 			link="/home"
 			title="Home"
 		/>
-		<slider-items />
+		<slider-items class="stories" :slides="stories"/>
 		<div class="profession_resume">
 			<div class="profession_img-holder">
 				<img class="profession_img" src="http://nosrc.fbiz.com.br/640x480/ddd/777" alt="">
@@ -17,36 +17,25 @@
 			</div>
 		</div>
 		<div class="profession_features">
-			<ul class="profession_features-list">
-				<li class="profession_features-item" v-for="item in items">
-					<div class="profession_features_img-holder">
-						<img class="profession_features_img" src="http://nosrc.fbiz.com.br/640x480/ddd/777" />
-					</div>
-					<p class="profession_features_text">{{item.text}}</p>
-				</li>
-			</ul>
+			<slider-items class="features" :slides="features"/>
 		</div>
 		<div class="profession_info-slider">
 			<h2 class="profession_info-slider_title">O que é Design Digital?</h2>
 			<div class="profession_faq">
 				<div>
-					<question-box :questions="questions" answers="true" class="profession_info-slider_list"></question-box>
+					<question-box :slides="whatIs" slideBox="true" answers="true" class="profession_info-slider_list"></question-box>
+					<!-- <question-box :boxs="whatIs" answers="true" class="profession_info-slider_list"></question-box> -->
 				</div>
 			</div>
 		</div>
 		<div class="profession_info-slider">
 			<h2 class="profession_info-slider_title">Média Salarial por tempo de profissão</h2>
-			<ul class="profession_info-slider_list">
-				<li class="profession_info-slider_item" v-for="item in salaries">
-					<strong class="profession_info-slider_text">{{item.year}}</strong>
-					<p class="profession_info-slider_salary">{{item.salary}}</p>
-				</li>
-			</ul>
+			<salary-slider :salaries="salaries" />
 		</div>
 		<div class="profession_faq">
 			<h2 class="profession_faq_title">Principais Dúvidas</h2>
 			<div>
-				<question-box :questions="questions" answers="true" class="profession_info-slider_list"></question-box>
+				<question-box :slides="faq" slideBox="true" questions="true" answers="true" class="profession_info-slider_list"></question-box>
 			</div>
 		</div>
 		<post-card resume="true" />
@@ -61,19 +50,82 @@ import PostCard from '@/components/PostCard';
 import MainButton from '@/components/MainButton';
 import StatusBar from '@/components/StatusBar';
 import QuestionBox from '@/components/QuestionBox';
+import SalarySlider from '@/components/SalarySlider';
 
 export default {
 	data() {
 		return {
 			card: null,
-			items: [
-				{ text: 'Ajudo pessoas' },
-				{ text: 'Salvo vidas' },
-				{ text: 'Ajudo animais' },
-				{ text: 'Viajo muito' },
-				{ text: 'Trabalho de casa' },
+			features: [
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: 'Ajudo pessoas',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: 'Salvo vidas',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: 'Ajudo animais',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: 'Salvo vidas',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: 'Ajudo animais',
+				},
+
 			],
-			questions: [
+			stories: [
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@nayarahilton',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@lucassilva',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@prisanttos',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@nayarahilton',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@lucassilva',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@prisanttos',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@vinibueno',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@lilisantos',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@nayarahilton',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@lucassilva',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@prisanttos',
+				},
+			],
+			faq: [
 				{
 					question: 'Entrar direto na faculdade de Design ou fazer um curso?',
 					answer: 'Lorem ipsum',
@@ -85,10 +137,25 @@ export default {
 				{
 					question: 'Entrar direto na faculdade de Design ou fazer um curso?',
 					answer: 'Lorem ipsum',
+				},
+			],
+			whatIs: [
+				{
+					answer: 'Lorem ipsum 2',
+				},
+				{
+					answer: 'Lorem ipsum 2',
+				},
+				{
+					answer: 'Lorem ipsum 2',
 				},
 			],
 
 			salaries: [
+				{
+					year: 'Até 1 ano',
+					salary: 'R$ 1.000,00',
+				},
 				{
 					year: 'Até 2 anos',
 					salary: 'R$ 3.000,00',
@@ -101,6 +168,10 @@ export default {
 					year: 'Até 10 anos',
 					salary: 'R$ 10.000,00',
 				},
+				{
+					year: 'Mais de 10 anos',
+					salary: 'R$ 18.000,00',
+				},
 			],
 		};
 	},
@@ -112,6 +183,7 @@ export default {
 		'main-button': MainButton,
 		'status-bar': StatusBar,
 		'question-box': QuestionBox,
+		'salary-slider': SalarySlider,
 	},
 };
 </script>
@@ -119,9 +191,6 @@ export default {
 <style lang="stylus">
 
 	@import '../assets/styles/*'
-
-	strong
-		display block
 
 	.reactions
 		justify-content flex-end
@@ -131,9 +200,6 @@ export default {
 		margin-bottom 10px
 
 	.profession
-		background #fff
-
-
 		&_resume
 			max-width 500px
 			margin 0 auto
@@ -145,9 +211,10 @@ export default {
 			width 150px
 			height 150px
 			background #fff
-			border-radius 50%
+			border-radius 10px 10px 10px 0px
 			display inline-block
 			position relative
+			padding 3px
 
 		&_img
 			position absolute
@@ -156,19 +223,20 @@ export default {
 			transform translate(-50%, -50%)
 			width 150px
 			height 150px
-			border-radius 50%
+			border-radius 10px 10px 10px 0px
 			object-fit cover
 			object-position center
 
 			&-strip
 				background $blue
-				border-radius 10px 10px 10px 0px
+				border-radius 5px 5px 5px 0px
 				color $white
 				position absolute
 				left 50%
 				transform translateX(-50%)
-				width 180px
-				bottom 0
+				width 200px
+				padding 5px
+				bottom 15px
 
 		&_name
 			margin 0
@@ -180,100 +248,16 @@ export default {
 			align-items center
 			padding 20px
 			margin 20px 0
-			border-top 1px solid $gray
-			border-bottom 1px solid $gray
+			border-top 1px solid #f4f4f4
+			border-bottom 1px solid #f4f4f4
 
 		&_followers
 			color $pink
 
-		&_features
-			box-shadow -2px 9px 18px 0px #00000026
-			padding-bottom 20px
-			position relative
-
-		&_features-list
-			nowrap-list()
-			holder()
-
-		&_features-item
-			nowrap-list-item()
-			align-items center
-			min-width 70px
-
-		&_features_img-holder
-			light-border()
-			width 65px
-			height 65px
-			border-radius 50%
-			background #fff
-
-		&_features_img
-			object-fit cover
-			object-position center
-			border-radius 50%
-			width 65px
-			height 65px
-
-		&_features_text
-			font-size 14px
-			line-height 16px
-			margin-top 10px
-
 		&_info-slider
-			border-bottom 1px solid #ddd
-			background #eee
+			border-bottom 1px solid #f6f6f6
+			background #f9f9f9
 			padding 30px 0
-
-		&_info-slider_list
-			list-style none
-			margin 0
-			padding 0
-			max-width 100%
-			nowrap-list()
-			holder()
-
-			.question-box
-				margin 0 10px 30px 10px
-
-				&:first-child
-					margin-left 20px
-
-
-		&_info-slider_item,
-			nowrap-list-item()
-			text-align left
-			min-width 32%
-			max-width none
-
-			&.-text
-				min-width 70%
-
-				.profession_info-slider_text:not(p)
-					font-size 15px
-					margin-bottom 5px
-
-				&:not(:first-child)
-					margin-left 35px
-
-
-		&_info-slider_title
-			holder()
-			font-size 16px
-			line-height 100%
-			margin 0 auto 20px auto
-			font-size 15px
-			padding 0 20px
-			color $blue
-
-		&_info-slider_text
-			line-height 19px
-			margin 0
-			font-size 14px
-
-		&_info-slider_salary
-			font-size 17px
-			margin 0
-			line-height 18px
 
 		&_faq
 			holder()

@@ -1,31 +1,40 @@
 <template>
-		<div class="slider">
-		<ul class="slider_list">
-			<li class="slider_list-item" v-for="item in items">
+	<div class="slider">
+		<swiper :options="swiperOption" >
+			<swiper-slide v-for="(slide, index) in slides">
 				<div class="slider_img-holder">
-					<img class="slider_img" src="http://nosrc.fbiz.com.br/640x480/ddd/777" />
+					<img class="slider_img" :src="slide.src" />
 				</div>
-				<p class="slider_text">{{item.text}}</p>
-			</li>
-		</ul>
+				<p class="slider_text">{{slide.text}}</p>
+			</swiper-slide>
+		</swiper>
 	</div>
 </template>
 
 <script>
+import Vue from 'vue';
+import VueAwesomeSwiper from 'vue-awesome-swiper';
+
+Vue.use(VueAwesomeSwiper, this.swiperOption);
+
+
 export default {
+	props: {
+		slides: {
+			type: Array,
+		},
+	},
 	data() {
 		return {
-			items: [
-				{ text: '@nayarahilton' },
-				{ text: '@prisantos' },
-				{ text: '@lucasilva' },
-				{ text: '@lilisantos' },
-				{ text: '@vinicuisbueno' },
-				{ text: '@gabriellopes' },
-				{ text: '@rachelaquino' },
-				{ text: 'Outro' },
-				{ text: 'Outro' },
-			],
+			swiperOption: {
+				slidesPerView: 'auto',
+				spaceBetween: 0,
+				pagination: {
+					el: '.swiper-pagination',
+					clickable: true,
+				},
+			},
+
 		};
 	},
 };
@@ -34,39 +43,79 @@ export default {
 
 <style lang="stylus">
 	@import '../assets/styles/*'
+	@import '../../node_modules/swiper/dist/css/swiper.css';
 
 	.slider
-		padding 20px 0
-		box-sizing border-box
 		background #fff
 
-		&_list
-			nowrap-list()
-			holder()
+	.swiper-container
+		overflow initial
+		holder()
 
-		&_list-item
-			nowrap-list-item()
-			min-width 60px
-			max-width 100px
+	.swiper-wrapper
+		align-items center
+		padding 0 20px
 
-		&_text
-			margin-bottom 0
-			margin-top 0px
-			font-size 12px
+	.swiper-slide
+		width 80px
+		padding 20px 5px
+		text-align center
+		cursor pointer
 
+	img
+		max-width 100%
+
+
+	.slider
 		&_img-holder
 			light-border()
-			width 50px
-			height 50px
-			border-radius 50%
+			border-radius 10px 10px 10px 0px
 			background #fff
+			margin 0 auto
+			padding 2px
 
 		&_img
 			object-fit cover
 			object-position center
-			border-radius 50%
-			width 50px
-			height 50px
+			border-radius 10px 10px 10px 0px
+
+	.stories
+		.slider
+			&_img-holder
+				width 50px
+				height 50px
+
+			&_img
+				width 50px
+				height 50px
+
+			&_text
+				margin-bottom 0
+				margin-top 5px
+				font-size 12px
+				overflow hidden
+
+	.features
+		.swiper-slide
+			width 90px
+
+		.slider
+			&_img-holder
+				width 70px
+				height 70px
+
+			&_img
+				width 70px
+				height 70px
+
+			&_text
+				margin-bottom 0
+				margin-top 10px
+				font-size 17px
+				white-space normal
+				line-height 19px
+				padding 0 10px
+				box-sizing border-box
 
 
 </style>
