@@ -11,7 +11,7 @@
 
 <style lang="stylus" scoped>
 	@import '../assets/styles/_colors'
-	$border-radius = 10px
+	$border-radius = 10px 10px 10px 0
 
 	.main-btn
 	    display block

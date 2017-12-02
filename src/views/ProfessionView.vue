@@ -4,7 +4,7 @@
 			link="/home"
 			title="Home"
 		/>
-		<slider-items />
+		<slider-items class="stories" :slides="stories"/>
 		<div class="profession_resume">
 			<div class="profession_img-holder">
 				<img class="profession_img" src="http://nosrc.fbiz.com.br/640x480/ddd/777" alt="">
@@ -17,14 +17,7 @@
 			</div>
 		</div>
 		<div class="profession_features">
-			<ul class="profession_features-list">
-				<li class="profession_features-item" v-for="item in items">
-					<div class="profession_features_img-holder">
-						<img class="profession_features_img" src="http://nosrc.fbiz.com.br/640x480/ddd/777" />
-					</div>
-					<p class="profession_features_text">{{item.text}}</p>
-				</li>
-			</ul>
+			<slider-items class="features" :slides="features"/>
 		</div>
 		<div class="profession_info-slider">
 			<h2 class="profession_info-slider_title">O que é Design Digital?</h2>
@@ -66,12 +59,69 @@ export default {
 	data() {
 		return {
 			card: null,
-			items: [
-				{ text: 'Ajudo pessoas' },
-				{ text: 'Salvo vidas' },
-				{ text: 'Ajudo animais' },
-				{ text: 'Viajo muito' },
-				{ text: 'Trabalho de casa' },
+			features: [
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: 'Ajudo pessoas',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: 'Salvo vidas',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: 'Ajudo animais',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: 'Viajo muito',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: 'Trabalho de casa',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: 'Ajudo pessoas',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: 'Salvo vidas',
+				},
+			],
+			stories: [
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@nayarahilton',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@lucassilva',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@prisanttos',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@vinibueno',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@lilisantos',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@nayarahilton',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@lucassilva',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@prisanttos',
+				},
 			],
 			questions: [
 				{
@@ -120,9 +170,6 @@ export default {
 
 	@import '../assets/styles/*'
 
-	strong
-		display block
-
 	.reactions
 		justify-content flex-end
 		margin-top 5px
@@ -132,7 +179,6 @@ export default {
 
 	.profession
 		background #fff
-
 
 		&_resume
 			max-width 500px
@@ -145,9 +191,10 @@ export default {
 			width 150px
 			height 150px
 			background #fff
-			border-radius 50%
+			border-radius 10px 10px 10px 0px
 			display inline-block
 			position relative
+			padding 3px
 
 		&_img
 			position absolute
@@ -156,19 +203,20 @@ export default {
 			transform translate(-50%, -50%)
 			width 150px
 			height 150px
-			border-radius 50%
+			border-radius 10px 10px 10px 0px
 			object-fit cover
 			object-position center
 
 			&-strip
 				background $blue
-				border-radius 10px 10px 10px 0px
+				border-radius 5px 5px 5px 0px
 				color $white
 				position absolute
 				left 50%
 				transform translateX(-50%)
-				width 180px
-				bottom 0
+				width 200px
+				padding 5px
+				bottom 15px
 
 		&_name
 			margin 0
@@ -185,39 +233,6 @@ export default {
 
 		&_followers
 			color $pink
-
-		&_features
-			box-shadow -2px 9px 18px 0px #00000026
-			padding-bottom 20px
-			position relative
-
-		&_features-list
-			nowrap-list()
-			holder()
-
-		&_features-item
-			nowrap-list-item()
-			align-items center
-			min-width 70px
-
-		&_features_img-holder
-			light-border()
-			width 65px
-			height 65px
-			border-radius 50%
-			background #fff
-
-		&_features_img
-			object-fit cover
-			object-position center
-			border-radius 50%
-			width 65px
-			height 65px
-
-		&_features_text
-			font-size 14px
-			line-height 16px
-			margin-top 10px
 
 		&_info-slider
 			border-bottom 1px solid #ddd
