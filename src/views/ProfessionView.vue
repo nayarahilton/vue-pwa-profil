@@ -24,7 +24,6 @@
 			<div class="profession_faq">
 				<div>
 					<question-box :slides="whatIs" slideBox="true" answers="true" class="profession_info-slider_list"></question-box>
-					<!-- <question-box :boxs="whatIs" answers="true" class="profession_info-slider_list"></question-box> -->
 				</div>
 			</div>
 		</div>
