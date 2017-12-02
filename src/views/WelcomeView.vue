@@ -5,57 +5,85 @@
 			<h1 class="title">{{ msg }}</h1>
 		</div>
 
-		<div class="btn-holder">
-			<form @submit.prevent="onSubmit">
-				<social-button
-					textInner="Entrar com o Linkedin"
-					design="login"
-				/>
-				<main-input
-					type="email"
-					placeholder="Email"
-					design="login"
-					v-model="email"
-					@input="$v.email.$touch()"
-					:class="{ 'input--invalid': $v.email.$error }"
-				/>
-				<feedback
-					v-if="!$v.email.email"
-					msgText="E-mail incorreto"
-					design="login"
-				/>
-				<main-input
-					type="password"
-					placeholder="Senha"
-					design="login"
-					v-model="password"
-				/>
-				<div class="login-holder">
-					<router-link
-						class="link"
-						:to="{ name: 'cadastro' }"
-					>
-						Criar cadastro
-					</router-link>
-					<button
-						class="submit-button"
-						:disabled="$v.$invalid"
-					>
-						Entrar
-					</button>
-				</div>
-			</form>
-		</div>
+		<form @submit.prevent="validateBeforeSubmit">
+			<social-button
+				textInner="Entrar com o Linkedin"
+				design="login"
+			/>
+			<main-input
+				type="email"
+				name="email"
+				placeholder="Email"
+				design="login"
+				v-model="email"
+				v-validate="'required|email'"
+				:class="{ 'input--invalid': errors.has('email') }"
+				data-vv-delay="2000"
+			/>
+			<feedback
+				v-show="errors.has('email')"
+				design="login"
+			>
+				{{ errors.first('email') }}
+			</feedback>
+			<main-input
+				type="password"
+				name="password"
+				placeholder="Senha"
+				design="login"
+				v-model="password"
+				v-validate="'required|min:6'"
+				:class="{ 'input--invalid': errors.has('password') }"
+				data-vv-delay="2000"
+			/>
+			<feedback
+				v-show="errors.has('password')"
+				design="login"
+			>
+				{{ errors.first('password') }}
+			</feedback>
+			<div class="login-holder">
+				<router-link
+					class="link"
+					:to="{ name: 'cadastro' }"
+				>
+					Criar cadastro
+				</router-link>
+				<button
+					class="submit-button"
+				>
+					Entrar
+				</button>
+			</div>
+		</form>
 	</div>
 </template>
 
 <script>
-import { required, email } from 'vuelidate/lib/validators';
+import { Validator } from 'vee-validate';
 import store from '@/services/store';
 import SocialButton from '../components/SocialButton';
 import MainButton from '../components/MainButton';
 import MainInput from '../components/MainInput';
 import FeedbackMessage from '../components/FeedbackMessage';
+
+const dict = {
+	pt: {
+		custom: {
+			email: {
+				required: 'Por favor, insira seu e-mail',
+				email: 'E-mail inválido',
+			},
+			password: {
+				required: 'Por favor, digite sua senha',
+				min: 'Sua senha deve ter no mínimo 6 caracteres',
+			},
+		},
+	},
+};
+
+Validator.updateDictionary(dict);
+Validator.setLocale('pt');
 
 export default {
 	store,
@@ -73,13 +101,14 @@ export default {
 		MainInput,
 		feedback: FeedbackMessage,
 	},
-	validations: {
-		email: {
-			required,
-			email,
-		},
-	},
 	methods: {
+		validateBeforeSubmit() {
+			this.$validator.validateAll().then((result) => {
+				if (result) {
+					this.onSubmit();
+				}
+			});
+		},
 		onSubmit() {
 			const formData = {
 				email: this.email,
@@ -169,5 +198,8 @@ export default {
 		display flex
 		align-items center
 		justify-content space-between
+
+	form
+		width 100%
 
 </style>

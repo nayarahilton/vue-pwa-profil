@@ -9,38 +9,69 @@
 				title-text="Seus dados"
 				subtitle-text="Todos os campos são obrigatórios"
 			/>
-			<form @submit.prevent>
+			<form @submit.prevent="validateBeforeSubmit">
 				<main-input
 					type="text"
 					name="username"
 					id="username"
 					placeholder="Nome de usuário"
 					v-model="username"
+					v-validate="'required|min:6'"
+					:class="{ 'input--invalid': errors.has('username') }"
+					data-vv-delay="1000"
 				/>
+				<feedback
+					v-show="errors.has('username')"
+				>
+					{{ errors.first('username') }}
+				</feedback>
 				<main-input
 					type="text"
 					name="name"
 					id="name"
 					placeholder="Nome"
 					v-model="name"
+					v-validate="'required|min:6'"
+					:class="{ 'input--invalid': errors.has('name') }"
+					data-vv-delay="1000"
 				/>
+				<feedback
+					v-show="errors.has('name')"
+				>
+					{{ errors.first('name') }}
+				</feedback>
 				<main-input
 					type="email"
 					name="email"
 					id="email"
 					placeholder="E-mail"
 					v-model="email"
+					v-validate="'required|email'"
+					:class="{ 'input--invalid': errors.has('email') }"
+					data-vv-delay="1000"
 				/>
+				<feedback
+					v-show="errors.has('email')"
+				>
+					{{ errors.first('email') }}
+				</feedback>
 				<main-input
 					type="password"
 					name="password"
 					id="password"
 					placeholder="Senha"
 					v-model="password"
+					v-validate="'required|min:6'"
+					:class="{ 'input--invalid': errors.has('password') }"
+					data-vv-delay="1000"
 				/>
+				<feedback
+					v-show="errors.has('password')"
+				>
+					{{ errors.first('password') }}
+				</feedback>
 				<button
 					class="submit-button"
-					@click="onSubmit"
 				>
 					Próximo
 				</button>
@@ -50,9 +81,37 @@
 </template>
 
 <script>
+import { Validator } from 'vee-validate';
 import StatusBar from '../components/StatusBar';
 import MainTitles from '../components/MainTitles';
 import MainInput from '../components/MainInput';
+import FeedbackMessage from '../components/FeedbackMessage';
+
+const dict = {
+	pt: {
+		custom: {
+			username: {
+				required: 'Por favor, insira seu nome de usuário',
+				min: 'Seu nome de usuário deve ter no mínimo 6 caracteres',
+			},
+			name: {
+				required: 'Por favor, insira seu nome de usuário',
+				min: 'Por favor, insira seu nome completo',
+			},
+			email: {
+				required: 'Por favor, insira seu nome completo',
+				email: 'E-mail inválido',
+			},
+			password: {
+				required: 'Por favor, digite sua senha',
+				min: 'Sua senha deve ter no mínimo 6 caracteres',
+			},
+		},
+	},
+};
+
+Validator.updateDictionary(dict);
+Validator.setLocale('pt');
 
 export default {
 	data() {
@@ -65,11 +124,19 @@ export default {
 		};
 	},
 	components: {
-		'status-bar': StatusBar,
-		'main-titles': MainTitles,
-		'main-input': MainInput,
+		StatusBar,
+		MainTitles,
+		MainInput,
+		feedback: FeedbackMessage,
 	},
 	methods: {
+		validateBeforeSubmit() {
+			this.$validator.validateAll().then((result) => {
+				if (result) {
+					this.onSubmit();
+				}
+			});
+		},
 		onSubmit() {
 			const formData = {
 				type: this.type,
