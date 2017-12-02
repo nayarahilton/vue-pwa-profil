@@ -3,7 +3,7 @@
 import Vue from 'vue';
 import Vuefire from 'vuefire';
 import VueResource from 'vue-resource';
-import Vuelidate from 'vuelidate';
+import VeeValidate from 'vee-validate';
 import axios from 'axios';
 import VueFormWizard from 'vue-form-wizard';
 import 'vue-form-wizard/dist/vue-form-wizard.min.css';
@@ -19,7 +19,7 @@ Vue.config.productionTip = false;
 
 Vue.use(Vuefire);
 Vue.use(VueResource);
-Vue.use(Vuelidate);
+Vue.use(VeeValidate);
 Vue.use(VueFormWizard);
 
 Vue.config.productionTip = false;
