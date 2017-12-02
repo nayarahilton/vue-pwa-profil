@@ -49,8 +49,12 @@ export default {
 		background #fff
 
 	.swiper-container
-		holder()
 		overflow initial
+		holder()
+
+	.swiper-wrapper
+		align-items center
+		// justify-content center
 
 	.swiper-slide
 		width 80px

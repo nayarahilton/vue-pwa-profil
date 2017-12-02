@@ -23,7 +23,7 @@
 			<h2 class="profession_info-slider_title">O que é Design Digital?</h2>
 			<div class="profession_faq">
 				<div>
-					<question-box :questions="questions" answers="true" class="profession_info-slider_list"></question-box>
+					<question-box :boxs="whatIs" answers="true" class="profession_info-slider_list"></question-box>
 				</div>
 			</div>
 		</div>
@@ -39,7 +39,7 @@
 		<div class="profession_faq">
 			<h2 class="profession_faq_title">Principais Dúvidas</h2>
 			<div>
-				<question-box :questions="questions" answers="true" class="profession_info-slider_list"></question-box>
+				<question-box :boxs="faq" questions="true" answers="true" class="profession_info-slider_list"></question-box>
 			</div>
 		</div>
 		<post-card resume="true" />
@@ -74,22 +74,27 @@ export default {
 				},
 				{
 					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
-					text: 'Viajo muito',
-				},
-				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
-					text: 'Trabalho de casa',
-				},
-				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
-					text: 'Ajudo pessoas',
-				},
-				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
 					text: 'Salvo vidas',
 				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: 'Ajudo animais',
+				},
+
 			],
 			stories: [
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@nayarahilton',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@lucassilva',
+				},
+				{
+					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					text: '@prisanttos',
+				},
 				{
 					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
 					text: '@nayarahilton',
@@ -123,7 +128,7 @@ export default {
 					text: '@prisanttos',
 				},
 			],
-			questions: [
+			faq: [
 				{
 					question: 'Entrar direto na faculdade de Design ou fazer um curso?',
 					answer: 'Lorem ipsum',
@@ -135,6 +140,17 @@ export default {
 				{
 					question: 'Entrar direto na faculdade de Design ou fazer um curso?',
 					answer: 'Lorem ipsum',
+				},
+			],
+			whatIs: [
+				{
+					answer: 'Lorem ipsum 2',
+				},
+				{
+					answer: 'Lorem ipsum 2',
+				},
+				{
+					answer: 'Lorem ipsum 2',
 				},
 			],
 
