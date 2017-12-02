@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<swiper v-if="slideBox === 'true'" :options="swiperOption" class="questions-holder">
+		<swiper v-if="slideBox === 'true'" :options="swiperOption" class="questions-wrapper">
 			<swiper-slide v-for="(slide, index) in slides"  class="questions-box">
 				<p class="profession"  v-if="profession == 'true'">{{professionName}}</p>
 				<p class="questions-holder" v-if="questions == 'true'">{{slide.question}}</p>
@@ -137,7 +137,7 @@ export default {
 			padding 0 15px
 
 
-	.questions-holder
+	.questions-wrapper
 
 		.swiper-container
 			overflow initial

@@ -28,15 +28,10 @@
 				</div>
 			</div>
 		</div>
-		<!-- <div class="profession_info-slider">
+		<div class="profession_info-slider">
 			<h2 class="profession_info-slider_title">Média Salarial por tempo de profissão</h2>
-			<ul class="profession_info-slider_list">
-				<li class="profession_info-slider_item" v-for="item in salaries">
-					<strong class="profession_info-slider_text">{{item.year}}</strong>
-					<p class="profession_info-slider_salary">{{item.salary}}</p>
-				</li>
-			</ul>
-		</div> -->
+			<salary-slider :salaries="salaries" />
+		</div>
 		<div class="profession_faq">
 			<h2 class="profession_faq_title">Principais Dúvidas</h2>
 			<div>
@@ -55,6 +50,7 @@ import PostCard from '@/components/PostCard';
 import MainButton from '@/components/MainButton';
 import StatusBar from '@/components/StatusBar';
 import QuestionBox from '@/components/QuestionBox';
+import SalarySlider from '@/components/SalarySlider';
 
 export default {
 	data() {
@@ -157,6 +153,10 @@ export default {
 
 			salaries: [
 				{
+					year: 'Até 1 ano',
+					salary: 'R$ 1.000,00',
+				},
+				{
 					year: 'Até 2 anos',
 					salary: 'R$ 3.000,00',
 				},
@@ -167,6 +167,10 @@ export default {
 				{
 					year: 'Até 10 anos',
 					salary: 'R$ 10.000,00',
+				},
+				{
+					year: 'Mais de 10 anos',
+					salary: 'R$ 18.000,00',
 				},
 			],
 		};
@@ -179,6 +183,7 @@ export default {
 		'main-button': MainButton,
 		'status-bar': StatusBar,
 		'question-box': QuestionBox,
+		'salary-slider': SalarySlider,
 	},
 };
 </script>
@@ -253,25 +258,6 @@ export default {
 			border-bottom 1px solid #f6f6f6
 			background #f9f9f9
 			padding 30px 0
-
-		&_info-slider_title
-			holder()
-			font-size 16px
-			line-height 100%
-			margin 0 auto 20px auto
-			font-size 15px
-			padding 0 20px
-			color $blue
-
-		&_info-slider_text
-			line-height 19px
-			margin 0
-			font-size 14px
-
-		&_info-slider_salary
-			font-size 17px
-			margin 0
-			line-height 18px
 
 		&_faq
 			holder()

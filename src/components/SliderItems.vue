@@ -54,6 +54,7 @@ export default {
 
 	.swiper-wrapper
 		align-items center
+		padding 0 20px
 
 	.swiper-slide
 		width 80px
