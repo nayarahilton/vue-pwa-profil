@@ -23,11 +23,12 @@
 			<h2 class="profession_info-slider_title">O que é Design Digital?</h2>
 			<div class="profession_faq">
 				<div>
-					<question-box :boxs="whatIs" answers="true" class="profession_info-slider_list"></question-box>
+					<question-box :slides="whatIs" slideBox="true" answers="true" class="profession_info-slider_list"></question-box>
+					<!-- <question-box :boxs="whatIs" answers="true" class="profession_info-slider_list"></question-box> -->
 				</div>
 			</div>
 		</div>
-		<div class="profession_info-slider">
+		<!-- <div class="profession_info-slider">
 			<h2 class="profession_info-slider_title">Média Salarial por tempo de profissão</h2>
 			<ul class="profession_info-slider_list">
 				<li class="profession_info-slider_item" v-for="item in salaries">
@@ -35,11 +36,11 @@
 					<p class="profession_info-slider_salary">{{item.salary}}</p>
 				</li>
 			</ul>
-		</div>
+		</div> -->
 		<div class="profession_faq">
 			<h2 class="profession_faq_title">Principais Dúvidas</h2>
 			<div>
-				<question-box :boxs="faq" questions="true" answers="true" class="profession_info-slider_list"></question-box>
+				<question-box :slides="faq" slideBox="true" questions="true" answers="true" class="profession_info-slider_list"></question-box>
 			</div>
 		</div>
 		<post-card resume="true" />
@@ -194,8 +195,6 @@ export default {
 		margin-bottom 10px
 
 	.profession
-		background #fff
-
 		&_resume
 			max-width 500px
 			margin 0 auto
@@ -244,48 +243,16 @@ export default {
 			align-items center
 			padding 20px
 			margin 20px 0
-			border-top 1px solid $gray
-			border-bottom 1px solid $gray
+			border-top 1px solid #f4f4f4
+			border-bottom 1px solid #f4f4f4
 
 		&_followers
 			color $pink
 
 		&_info-slider
-			border-bottom 1px solid #ddd
-			background #eee
+			border-bottom 1px solid #f6f6f6
+			background #f9f9f9
 			padding 30px 0
-
-		&_info-slider_list
-			list-style none
-			margin 0
-			padding 0
-			max-width 100%
-			nowrap-list()
-			holder()
-
-			.question-box
-				margin 0 10px 30px 10px
-
-				&:first-child
-					margin-left 20px
-
-
-		&_info-slider_item,
-			nowrap-list-item()
-			text-align left
-			min-width 32%
-			max-width none
-
-			&.-text
-				min-width 70%
-
-				.profession_info-slider_text:not(p)
-					font-size 15px
-					margin-bottom 5px
-
-				&:not(:first-child)
-					margin-left 35px
-
 
 		&_info-slider_title
 			holder()

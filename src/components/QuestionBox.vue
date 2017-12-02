@@ -1,6 +1,26 @@
 <template>
 	<div>
-		<div class="questions-box"
+		<swiper v-if="slideBox === 'true'" :options="swiperOption" class="questions-holder">
+			<swiper-slide v-for="(slide, index) in slides"  class="questions-box">
+				<p class="profession"  v-if="profession == 'true'">{{professionName}}</p>
+				<p class="questions-holder" v-if="questions == 'true'">{{slide.question}}</p>
+				<div class="answer-holder" v-if="answers == 'true'">
+					<main-titles
+						:title-text="slide.answer"
+					/>
+					<profile-resume
+						:image="'http://nosrc.fbiz.com.br/640x480/ddd/777'"
+						nickname="Nayara Hilton"
+						username="@nayarahilton"
+						profession="#Profissão"
+						@click.native="goToProfile(picture['.key'])"
+						resume="true"
+					></profile-resume>
+				</div>
+			</swiper-slide>
+		</swiper>
+
+		<div v-else class="questions-box"
 			v-for="box in boxs"
 			:key="box.id"
 		>
@@ -24,11 +44,31 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import ProfileResume from '@/components/ProfileResume';
 import MainTitles from '@/components/MainTitles';
+import VueAwesomeSwiper from 'vue-awesome-swiper';
+
+Vue.use(VueAwesomeSwiper, this.swiperOption);
 
 export default {
+	data() {
+		return {
+			swiperOption: {
+				slidesPerView: 'auto',
+				spaceBetween: 20,
+				pagination: {
+					el: '.swiper-pagination',
+					clickable: true,
+				},
+			},
+
+		};
+	},
 	props: {
+		slideBox: {
+			type: String,
+		},
 		boxs: {
 			type: Array,
 		},
@@ -42,6 +82,9 @@ export default {
 			type: String,
 		},
 		professionName: {
+			type: String,
+		},
+		slides: {
 			type: String,
 		},
 	},
@@ -61,6 +104,9 @@ export default {
 		padding 0 15px
 		font-size 16px
 
+	.questions-box
+		text-align left
+
 	.answer-holder
 		padding 0 15px
 
@@ -70,6 +116,9 @@ export default {
 	.questions-holder + .answer-holder
 		border-top 2px solid $pink
 		margin-top 15px
+
+	.info-holder
+		text-align left
 
 
 	.titles__title
@@ -86,4 +135,21 @@ export default {
 
 		&-text
 			padding 0 15px
+
+
+	.questions-holder
+
+		.swiper-container
+			overflow initial
+			holder()
+
+		.swiper-wrapper
+			align-items center
+
+		.swiper-slide
+			width 80%
+
+		img
+			max-width 100%
+
 </style>

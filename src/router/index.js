@@ -73,12 +73,12 @@ export default new Router({
 			component: RegisterAprendizView,
 		},
 		{
-			path: '/profile',
+			path: '/perfil',
 			name: 'profile',
 			component: ProfileView,
 		},
 		{
-			path: '/profession',
+			path: '/profissao',
 			name: 'profession',
 			component: ProfessionView,
 		},
@@ -93,7 +93,7 @@ export default new Router({
 			component: AskView,
 		},
 		{
-			path: '/resposta',
+			path: '/responder',
 			name: 'resposta',
 			component: AnswerView,
 		},
@@ -103,17 +103,17 @@ export default new Router({
 			component: QuestionsView,
 		},
 		{
-			path: '/feedback-answer',
+			path: '/sucesso-perguntas',
 			name: 'feedback-answer',
 			component: FeedbackAnswerView,
 		},
 		{
-			path: '/answered-questions',
+			path: '/perguntas-respondidas',
 			name: 'answered-questions',
 			component: AnsweredQuestionsView,
 		},
 		{
-			path: '/not-answered-questions',
+			path: '/perguntas-nao-respondidas',
 			name: 'not-answered-questions',
 			component: NotAnsweredQuestionsView,
 		},

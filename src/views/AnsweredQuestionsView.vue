@@ -5,7 +5,7 @@
 			title="Perguntas Respondidas"
 		/>
 		<main class="main">
-			<question-box :questions="questions" profession="true" answers="true" professionName="#designdigital"></question-box>
+			<question-box :boxs="questions" profession="true" answers="true" professionName="#designdigital"></question-box>
 		</main>
 	</div>
 </template>

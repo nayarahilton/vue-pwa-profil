@@ -54,7 +54,6 @@ export default {
 
 	.swiper-wrapper
 		align-items center
-		// justify-content center
 
 	.swiper-slide
 		width 80px
