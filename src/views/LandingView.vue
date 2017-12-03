@@ -23,7 +23,7 @@
 				<div class="col">
 					<img class="logo" src="../assets/logotipo.svg" alt="Profil Logo">
 					<p class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem eum nobis, aperiam debitis delectus culpa adipisci quos, illo saepe sequi praesentium perferendis vitae laboriosam repellendus alias consequatur earum nisi fugit.</p>
-					<main-button buttonType="router" linkto="/welcome" text-inner="Crie uma conta"></main-button>
+					<main-button buttonType="router" linkto="/bemvindo" text-inner="Crie uma conta"></main-button>
 				</div>
 				<img class="mobile-img" src="../assets/img/mobile-hand.png" alt="">
 				<img class="mobile-img-mob" src="../assets/img/mobile-hand-mob.png" alt="">
@@ -54,7 +54,7 @@
 				<div class="img">
 					<p>Explore o profil</p>
 					<img src="../assets/img/mockup.png" alt="">
-					<main-button buttonType="router" linkto="/welcome" text-inner="Crie uma conta"></main-button>
+					<main-button buttonType="router" linkto="/bemvindo" text-inner="Crie uma conta"></main-button>
 				</div>
 				<div class="features">
 					<ul class="feature-list">

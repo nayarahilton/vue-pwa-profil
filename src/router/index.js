@@ -119,11 +119,11 @@ export default new Router({
 		},
 		{
 			path: '*',
-			redirect: '/home',
+			redirect: '/landing',
 		},
 		{
 			path: '/',
-			redirect: '/home',
+			redirect: '/landing',
 		},
 		{
 			path: '/landing',
