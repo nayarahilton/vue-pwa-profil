@@ -120,10 +120,24 @@ export default {
 		color $white
 		background-position 50%
 
+		.content-holder
+			position relative
+			z-index 2
+
 		@media (max-width 768px)
 			background-image url('../assets/img/header-bg.jpg')
 			align-items center
+			position relative
 
+			&:after
+				content ''
+				position absolute
+				top 0
+				left 0
+				right 0
+				bottom 0
+				background-image -webkit-linear-gradient(-120deg, rgba(188,0,135,0.9), rgba(0,132,250,0.7))
+				box-shadow inset -1px -4px 20px 0px rgba(0, 0, 0, 0.1)
 
 	.logo-symbol
 		margin-left 15px
@@ -231,6 +245,21 @@ export default {
 		background-image url('../assets/img/about-bg.jpg')
 		text-shadow 1px 1px 1px rgba(0, 0, 0, .3)
 		color white
+		position relative
+
+		&:after
+			content ''
+			position absolute
+			top 0
+			bottom 0
+			right 0
+			left 0
+			background rgba(0, 0, 0, 0.5)
+
+		.col
+			position relative
+			z-index 2
+
 
 		.text
 			text-align center
@@ -242,6 +271,9 @@ export default {
 
 		@media screen and (max-width 767px)
 			text-align center
+
+			.col:first-child
+				max-width 300px
 
 			.title
 				color $blue
