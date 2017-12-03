@@ -199,7 +199,14 @@ export default {
 		align-items center
 		justify-content space-between
 
+	.presentation-holder
+		holder()
+
 	form
+		holder()
 		width 100%
+
+	.submit-button
+		width auto
 
 </style>
