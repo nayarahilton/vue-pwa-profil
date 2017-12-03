@@ -81,14 +81,12 @@ export default {
 			object-fit cover
 			object-position center
 			border-radius 10px 10px 10px 0px
+			width 100%
+			height 100%
 
 	.stories
 		.slider
 			&_img-holder
-				width 50px
-				height 50px
-
-			&_img
 				width 50px
 				height 50px
 
@@ -104,10 +102,6 @@ export default {
 
 		.slider
 			&_img-holder
-				width 70px
-				height 70px
-
-			&_img
 				width 70px
 				height 70px
 

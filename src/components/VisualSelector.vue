@@ -50,6 +50,8 @@ export default {
 <style lang="stylus" scoped>
 	@import '../assets/styles/_colors'
 
+	$border-radius = 10px 10px 10px 0
+
 	.visual-selectors
 		background transparent
 		font-size 12pt
@@ -58,7 +60,7 @@ export default {
 
 		.visual-selector
 			border 1px solid $dark-pink
-			border-radius 15px
+			border-radius $border-radius
 			color $dark-pink
 			display block
 			font-size 16pt

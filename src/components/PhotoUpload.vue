@@ -89,7 +89,7 @@ export default {
 		& + label
 			background transparent
 			border 2px solid $pink
-			border-radius 50%
+			border-radius 10px 10px 10px 0
 			color $dark-gray
 			display inline-block
 			font-size 12pt
@@ -105,7 +105,7 @@ export default {
 				cursor pointer
 
 	.image-preview
-		border-radius 50%
+		border-radius 10px 10px 10px 0
 		height 150px
 		left 0
 		margin 0 auto
@@ -117,7 +117,7 @@ export default {
 
 		&__img
 			border 2px solid $pink
-			border-radius 50%
+			border-radius 10px 10px 10px 0
 			height 150px
 			object-fit cover
 			object-position center

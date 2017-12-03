@@ -32,7 +32,7 @@ export default {
 
 <style lang="stylus" scoped>
 	@import '../assets/styles/_colors'
-	$border-radius = 10px
+	$border-radius = 10px 10px 10px 0
 
 	.social-btn
 		background-color #fff
@@ -52,7 +52,7 @@ export default {
 
 	.icon
 		background-color $blue
-		border-radius 0 $border-radius $border-radius 0
+		border-radius 0 10px 10px 0
 		padding 2px
 		width 40px
 		position absolute

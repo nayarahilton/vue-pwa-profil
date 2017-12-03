@@ -131,7 +131,7 @@ export default {
 	.questions
 		&-box
 			border 1px solid $pink
-			border-radius 10px
+			border-radius 10px 10px 10px 0px
 			box-sizing border-box
 			padding 15px 0
 			margin-top 10px

@@ -131,9 +131,8 @@ export default {
 	@import '../assets/styles/_mixins'
 	@import '../assets/styles/_colors'
 
-
+	$border-radius = 10px 10px 10px 0
 	$header-height = 56px
-	$border-radius = 10px
 
 	::-webkit-input-placeholder
 		color #fff
@@ -208,5 +207,6 @@ export default {
 
 	.submit-button
 		width auto
+		border-radius $border-radius
 
 </style>

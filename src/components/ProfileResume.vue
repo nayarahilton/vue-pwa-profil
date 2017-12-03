@@ -32,17 +32,20 @@ export default {
 		color #222
 
 	.img-holder
-		width 50px
-		height 50px
-		border-radius 50%
+		width 55px
+		height 55px
+		border-radius 10px 10px 10px 0px
 		overflow hidden
 		position relative
 		border 2px solid $pink
 		box-shadow 2px 1px 5px 0px alpha($dark-gray, 0.6)
+		padding 2px
+		box-sizing border-box
 
 		img
-			height 50px
-			width 50px
+			height 100%
+			width 100%
+			border-radius 10px 10px 10px 0px
 			object-fit cover
 			object-position center
 

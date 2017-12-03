@@ -220,8 +220,8 @@ export default {
 			left 50%
 			top 50%
 			transform translate(-50%, -50%)
-			width 150px
-			height 150px
+			width 100%
+			height 100%
 			border-radius 10px 10px 10px 0px
 			object-fit cover
 			object-position center
