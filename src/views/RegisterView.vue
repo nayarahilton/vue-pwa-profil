@@ -27,3 +27,16 @@ export default {
 	},
 };
 </script>
+<style lang="stylus">
+	@import '../assets/styles/*'
+
+	.register-main
+		holder()
+
+		@media (min-width 768px)
+			display flex
+			align-items center
+			justify-content center
+			flex-direction column
+			min-height calc(100vh - 90px)
+</style>
