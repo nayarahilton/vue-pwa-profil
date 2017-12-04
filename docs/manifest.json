@@ -38,7 +38,7 @@
 			"type": "image/png"
 		}
 	],
-	"start_url": "/vue-pwa-profil/",
+	"start_url": "/vue-pwa-profil/bemvindo",
 	"display": "standalone",
 	"background_color": "#ffffff",
 	"theme_color": "#0084FA"
