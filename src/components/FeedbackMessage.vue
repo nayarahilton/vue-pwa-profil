@@ -34,15 +34,22 @@ export default {
 		display block
 		font-size 14pt
 		font-weight 600
-		margin-bottom 20px
+		margin-top 10px
+		margin-bottom 15px
 		padding 0
 		width 100%
 
 		&--login
-			color lightness(red, 70%)
+			color $white
+			background $pink
+			padding 2px 10px
+			border-radius 10px 10px 10px 0
 			text-align center
+			display inline-block
+			width auto
+			font-size 15px
 
 		&--main
-			color red
+			color $pink
 			text-align left
 </style>

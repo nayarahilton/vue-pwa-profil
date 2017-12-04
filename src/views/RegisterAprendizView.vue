@@ -10,6 +10,7 @@
 				subtitle-text="Todos os campos são obrigatórios"
 			/>
 			<form @submit.prevent="validateBeforeSubmit">
+
 				<main-input
 					type="text"
 					name="username"
@@ -20,26 +21,14 @@
 					:class="{ 'input--invalid': errors.has('username') }"
 					data-vv-delay="1000"
 				/>
+
 				<feedback
 					v-show="errors.has('username')"
 				>
 					{{ errors.first('username') }}
 				</feedback>
-				<main-input
-					type="text"
-					name="name"
-					id="name"
-					placeholder="Nome"
-					v-model="name"
-					v-validate="'required|min:6'"
-					:class="{ 'input--invalid': errors.has('name') }"
-					data-vv-delay="1000"
-				/>
-				<feedback
-					v-show="errors.has('name')"
-				>
-					{{ errors.first('name') }}
-				</feedback>
+
+
 				<main-input
 					type="email"
 					name="email"
@@ -50,11 +39,14 @@
 					:class="{ 'input--invalid': errors.has('email') }"
 					data-vv-delay="1000"
 				/>
+
 				<feedback
 					v-show="errors.has('email')"
 				>
 					{{ errors.first('email') }}
 				</feedback>
+
+
 				<main-input
 					type="password"
 					name="password"
@@ -65,11 +57,13 @@
 					:class="{ 'input--invalid': errors.has('password') }"
 					data-vv-delay="1000"
 				/>
+
 				<feedback
 					v-show="errors.has('password')"
 				>
 					{{ errors.first('password') }}
 				</feedback>
+
 				<button
 					class="submit-button"
 				>
@@ -91,20 +85,16 @@ const dict = {
 	pt: {
 		custom: {
 			username: {
-				required: 'Por favor, insira seu nome de usuário',
-				min: 'Seu nome de usuário deve ter no mínimo 6 caracteres',
-			},
-			name: {
-				required: 'Por favor, insira seu nome de usuário',
-				min: 'Por favor, insira seu nome completo',
+				required: 'Por favor, insira seu nome de usuário.',
+				min: 'Seu nome de usuário deve ter no mínimo 6 caracteres.',
 			},
 			email: {
-				required: 'Por favor, insira seu nome completo',
-				email: 'E-mail inválido',
+				required: 'Por favor, insira um e-mail válido.',
+				email: 'E-mail inválido.',
 			},
 			password: {
-				required: 'Por favor, digite sua senha',
-				min: 'Sua senha deve ter no mínimo 6 caracteres',
+				required: 'Por favor, digite sua senha.',
+				min: 'Sua senha deve ter no mínimo 6 caracteres.',
 			},
 		},
 	},
@@ -170,4 +160,5 @@ export default {
 
 	.submit-button
 		width 100%
+		margin-top 20px
 </style>

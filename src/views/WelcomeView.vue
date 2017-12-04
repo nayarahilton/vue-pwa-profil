@@ -10,6 +10,7 @@
 				textInner="Entrar com o Linkedin"
 				design="login"
 			/>
+
 			<main-input
 				type="email"
 				name="email"
@@ -20,12 +21,15 @@
 				:class="{ 'input--invalid': errors.has('email') }"
 				data-vv-delay="2000"
 			/>
+
 			<feedback
 				v-show="errors.has('email')"
 				design="login"
 			>
 				{{ errors.first('email') }}
 			</feedback>
+
+
 			<main-input
 				type="password"
 				name="password"
@@ -36,12 +40,14 @@
 				:class="{ 'input--invalid': errors.has('password') }"
 				data-vv-delay="2000"
 			/>
+
 			<feedback
 				v-show="errors.has('password')"
 				design="login"
 			>
 				{{ errors.first('password') }}
 			</feedback>
+
 			<div class="login-holder">
 				<router-link
 					class="link"
@@ -193,6 +199,10 @@ export default {
 			line-height 30px
 
 
+	.social-button
+		margin-top 30px
+
+
 	.login-holder
 		display flex
 		align-items center
@@ -207,6 +217,7 @@ export default {
 
 	.submit-button
 		width auto
+		margin-top 10px
 		border-radius $border-radius
 
 </style>

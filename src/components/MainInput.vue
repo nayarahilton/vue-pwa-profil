@@ -59,7 +59,7 @@ export default {
 	.input
 		background transparent
 		font-size 12pt
-		margin-bottom 20px
+		margin-top 15px
 		padding 15px
 		width 100%
 
@@ -78,6 +78,6 @@ export default {
 			color #fff
 
 		&--invalid
-			border-color red
-			background rgba(255, 0, 0, 0.20);
+			border-color $pink
+			background rgba(188, 0, 135, 0.2);
 </style>
