@@ -30,6 +30,24 @@
 
 
 				<main-input
+					type="text"
+					name="name"
+					id="name"
+					placeholder="Nome"
+					v-model="name"
+					v-validate="'required|min:6'"
+					:class="{ 'input--invalid': errors.has('name') }"
+					data-vv-delay="1000"
+				/>
+
+				<feedback
+					v-show="errors.has('name')"
+				>
+					{{ errors.first('name') }}
+				</feedback>
+
+
+				<main-input
 					type="email"
 					name="email"
 					id="email"
@@ -87,6 +105,10 @@ const dict = {
 			username: {
 				required: 'Por favor, insira seu nome de usuário.',
 				min: 'Seu nome de usuário deve ter no mínimo 6 caracteres.',
+			},
+			name: {
+				required: 'Por favor, insira seu nome completo.',
+				min: 'Por favor, insira seu nome completo.',
 			},
 			email: {
 				required: 'Por favor, insira um e-mail válido.',
