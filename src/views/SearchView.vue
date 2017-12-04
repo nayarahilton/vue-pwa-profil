@@ -67,14 +67,15 @@ export default {
 <style lang="stylus">
 	@import '../assets/styles/*'
 
-	main
+	.search-view
 		padding 0
-		holder()
 
 	.search-holder,
 	.profession-holder
+		holder()
 		margin-top 30px
 		box-sizing border-box
+
 
 	.search-holder
 		padding 0 20px
