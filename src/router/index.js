@@ -9,7 +9,7 @@ import RegisterGuruView from '@/views/RegisterGuruView';
 import RegisterAprendizView from '@/views/RegisterAprendizView';
 import ProfileView from '@/views/ProfileView';
 import FeedbackView from '@/views/FeedbackView';
-import CameraView from '@/views/CameraView';
+import PostView from '@/views/PostView';
 import ProfessionView from '@/views/ProfessionView';
 import AskView from '@/views/AskView';
 import AnswerView from '@/views/AnswerView';
@@ -44,7 +44,7 @@ export default new Router({
 		{
 			path: '/postar',
 			name: 'postar',
-			component: CameraView,
+			component: PostView,
 		},
 		{
 			path: '/buscar',

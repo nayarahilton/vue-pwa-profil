@@ -22,7 +22,7 @@
 			<div class="content">
 				<div class="col">
 					<img class="logo" src="../assets/logotipo.svg" alt="Profil Logo">
-					<p class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem eum nobis, aperiam debitis delectus culpa adipisci quos, illo saepe sequi praesentium perferendis vitae laboriosam repellendus alias consequatur earum nisi fugit.</p>
+					<p class="text">Escolher uma profissão nunca foi fácil. Mas com Profil vai ser. Profil conecta a rotina de profissionais com os estudantes que estão em fase pré-vestibular. Assim você conhece uma profissão nova com aquele que vive ela diariamente: o profissional. <strong>PROFIL, a descoberta de um futuro ideal, de acordo com o seu perfil.</strong></p>
 					<main-button buttonType="router" linkto="/bemvindo" text-inner="Crie uma conta"></main-button>
 				</div>
 				<img class="mobile-img" src="../assets/img/mobile-hand.png" alt="">
@@ -34,12 +34,12 @@
 				<div class="col">
 					<div class="guru-icon"></div>
 					<h2 class="title">Guru</h2>
-					<p class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem eum nobis, aperiam debitis delectus culpa adipisci quos, illo saepe sequi praesentium perferendis vitae laboriosam repellendus alias consequatur earum nisi fugit.</p>
+					<p class="text">No Profil, você, profissional de qualquer área, compartilha sua rotina profissional e informações sobre sua carreira, para que jovens do ensino médio descubram o máximo de informação possível sobre diversas profissões. Além disso, você ainda recebe moedas por este conteúdo, que podem ser trocadas por prêmios.</p>
 				</div>
 				<div class="col">
 					<div class="aprendiz-icon"></div>
 					<h2 class="title">Aprendiz</h2>
-					<p class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem eum nobis, aperiam debitis delectus culpa adipisci quos, illo saepe sequi praesentium perferendis vitae laboriosam repellendus alias consequatur earum nisi fugit.</p>
+					<p class="text">No Profil, você, jovem do ensino médio, acompanha a rotina de profissionais de diversas áreas, que compartilham seu dia a dia e diversas informações sobre a profissão e a carreira que a pessoa seguiu. Além disto, você ainda recebe moedas de acordo com a sua interação no Profil, que podem ser trocadas por prêmios.</p>
 				</div>
 			</div>
 		</section>
