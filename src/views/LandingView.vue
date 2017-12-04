@@ -206,18 +206,10 @@ export default {
 			transform translate(-50%, -50%)
 
 
-
-	holder()
+	.content
 		max-width 1100px
 		box-sizing border-box
 		margin 0 auto
-
-	.container
-		holder()
-
-
-	.content
-		holder()
 		display flex
 		align-items center
 		min-height 100vh
