@@ -18,6 +18,7 @@ import FeedbackAnswerView from '@/views/FeedbackAnswerView';
 import AnsweredQuestionsView from '@/views/AnsweredQuestionsView';
 import NotAnsweredQuestionsView from '@/views/NotAnsweredQuestionsView';
 import LandingView from '@/views/LandingView';
+import SearchView from '@/views/SearchView';
 
 Vue.use(Router);
 
@@ -44,6 +45,11 @@ export default new Router({
 			path: '/postar',
 			name: 'postar',
 			component: CameraView,
+		},
+		{
+			path: '/buscar',
+			name: 'search-view',
+			component: SearchView,
 		},
 		{
 			path: '/bemvindo',
