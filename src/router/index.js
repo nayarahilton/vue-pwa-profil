@@ -8,6 +8,7 @@ import RegisterView from '@/views/RegisterView';
 import RegisterGuruView from '@/views/RegisterGuruView';
 import RegisterAprendizView from '@/views/RegisterAprendizView';
 import ProfileView from '@/views/ProfileView';
+import MyProfileView from '@/views/MyProfileView';
 import FeedbackView from '@/views/FeedbackView';
 import PostView from '@/views/PostView';
 import ProfessionView from '@/views/ProfessionView';
@@ -82,6 +83,11 @@ export default new Router({
 			path: '/perfil',
 			name: 'profile',
 			component: ProfileView,
+		},
+		{
+			path: '/meu-perfil',
+			name: 'my-profile',
+			component: MyProfileView,
 		},
 		{
 			path: '/profissao',
