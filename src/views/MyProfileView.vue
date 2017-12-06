@@ -2,14 +2,10 @@
 	<div class="profile">
 		<div class="profile-info">
 			<profile-resume
-				:image="card.url"
 				nickname="Nayara Hilton"
 				username="@nayarahilton"
 				profession="#Profissão"
-				linkto="/perfil"
-			>
-			</profile-resume>
-
+			/>
 			<div class="status">
 				<span class="point"> 1000 moedas </span> <span class="level"> Nível 2 </span>
 			</div>
