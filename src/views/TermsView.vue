@@ -1,24 +1,16 @@
 <template>
-	<div class="post">
+	<div class="terms">
 		<header>
 			<status-bar
 				link="/home"
-				title="Postar"
+				title="Termos de Compromisso"
 			/>
 			<tabs-bottom-guru />
 		</header>
-		<section class="post-section">
-			<photo-upload
-				:src="imageData"
-				labelText="Escolha uma foto"
-			/>
-			<main-textarea
-				v-model="title"
-				placeholder="Escreva uma legenda"
-			/>
-			<main-button
-				text-inner="Postar conteúdo"
-				@click.prevent.native="post"
+		<section class="terms-section">
+			<main-titles
+				title-text="Termos de Compromisso"
+				subtitle-text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus veniam omnis, distinctio amet alias, quam hic dolorem aut quos recusandae molestiae tempore. Dolor, delectus. Error sint commodi eligendi eos vero!"
 			/>
 		</section>
 	</div>
@@ -27,9 +19,10 @@
 import postContent from '@/mixins/postContent';
 import StatusBar from '@/components/StatusBar';
 import MainButton from '@/components/MainButton';
-import TabsBottomGuru from '../components/TabsBottomGuru';
-import PhotoUpload from '../components/PhotoUpload';
-import MainTextarea from '../components/MainTextarea';
+import TabsBottomGuru from '@/components/TabsBottomGuru';
+import PhotoUpload from '@/components/PhotoUpload';
+import MainTextarea from '@/components/MainTextarea';
+import MainTitles from '@/components/MainTitles';
 
 export default {
 	mixins: [postContent],
@@ -45,6 +38,7 @@ export default {
 		'tabs-bottom-guru': TabsBottomGuru,
 		'photo-upload': PhotoUpload,
 		'main-textarea': MainTextarea,
+		'main-titles': MainTitles,
 	},
 	methods: {
 		post() {
@@ -64,22 +58,16 @@ export default {
 <style lang="stylus">
 	@import '../assets/styles/*'
 
-	.post-section
+	.terms-section
 		holder()
 		padding 10px 20px
 		box-sizing border-box
 		margin-bottom 50px
 
-		.main-btn
-			margin-top 10px
-
 		.input-file + label,
 		.image-preview,
 		.image-preview__img
-			margin-top 10px
-			margin-bottom 10px
-			border-radius 10px 10px 10px 0
 			width 100%
-
+			border-radius 10px
 
 </style>

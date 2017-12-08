@@ -1,24 +1,23 @@
 <template>
-	<div class="post">
+	<div class="contact">
 		<header>
 			<status-bar
 				link="/home"
-				title="Postar"
+				title="Fale Conosco"
 			/>
 			<tabs-bottom-guru />
 		</header>
-		<section class="post-section">
-			<photo-upload
-				:src="imageData"
-				labelText="Escolha uma foto"
-			/>
+		<section class="contact-section">
 			<main-textarea
 				v-model="title"
-				placeholder="Escreva uma legenda"
+				placeholder="Algum problema ou dúvida? Conte para gente!"
+			/>
+			<photo-upload
+				:src="imageData"
+				labelText="Adicione uma foto"
 			/>
 			<main-button
-				text-inner="Postar conteúdo"
-				@click.prevent.native="post"
+				text-inner="Enviar"
 			/>
 		</section>
 	</div>
@@ -27,9 +26,9 @@
 import postContent from '@/mixins/postContent';
 import StatusBar from '@/components/StatusBar';
 import MainButton from '@/components/MainButton';
-import TabsBottomGuru from '../components/TabsBottomGuru';
-import PhotoUpload from '../components/PhotoUpload';
-import MainTextarea from '../components/MainTextarea';
+import TabsBottomGuru from '@/components/TabsBottomGuru';
+import PhotoUpload from '@/components/PhotoUpload';
+import MainTextarea from '@/components/MainTextarea';
 
 export default {
 	mixins: [postContent],
@@ -64,22 +63,23 @@ export default {
 <style lang="stylus">
 	@import '../assets/styles/*'
 
-	.post-section
+	.contact-section
 		holder()
 		padding 10px 20px
 		box-sizing border-box
 		margin-bottom 50px
 
 		.main-btn
+			margin 20px 0 10px 0
+
+		.textarea--main
+			margin-bottom 10px
 			margin-top 10px
 
 		.input-file + label,
 		.image-preview,
 		.image-preview__img
-			margin-top 10px
-			margin-bottom 10px
-			border-radius 10px 10px 10px 0
 			width 100%
-
+			border-radius 10px 10px 10px 0
 
 </style>

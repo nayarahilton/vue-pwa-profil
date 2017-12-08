@@ -4,42 +4,14 @@
 			<button @click="showMenu" class="nav-button">
 				<span class="nav-icon">☰</span>
 			</button>
-			<span class="logo">Profil</span>
 		</header>
 		<nav class="nav">
 			<ul class="nav-list">
 				<li>
-					<router-link class="nav-link" to="/Home" @click.native="hideMenu">Home</router-link>
+					<router-link class="nav-link" to="/contato" @click.native="hideMenu">Fale Conosco</router-link>
 				</li>
 				<li>
-					<router-link class="nav-link" to="/camera" @click.native="hideMenu">Post a picture</router-link>
-				</li>
-				<li>
-					<router-link class="nav-link" to="/" @click.native="hideMenu">Login</router-link>
-				</li>
-				<li>
-					<router-link class="nav-link" to="/register" @click.native="hideMenu">Cadastro</router-link>
-				</li>
-				<li>
-					<router-link class="nav-link" to="/profession" @click.native="hideMenu">Profession</router-link>
-				</li>
-				<li>
-					<router-link class="nav-link" to="/ask" @click.native="hideMenu">AskView</router-link>
-				</li>
-				<li>
-					<router-link class="nav-link" to="/answer" @click.native="hideMenu">AnswerView</router-link>
-				</li>
-				<li>
-					<router-link class="nav-link" to="/questions" @click.native="hideMenu">QuestionsView</router-link>
-				</li>
-				<li>
-					<router-link class="nav-link" to="/feedback-answer" @click.native="hideMenu">FeedbackAnswerView</router-link>
-				</li>
-				<li>
-					<router-link class="nav-link" to="/answered-questions" @click.native="hideMenu">AnsweredQuestionsView</router-link>
-				</li>
-				<li>
-					<router-link class="nav-link" to="/not-answered-questions" @click.native="hideMenu">NotAnsweredQuestionsView</router-link>
+					<router-link class="nav-link" to="/termos" @click.native="hideMenu">Termos de política e privacidade</router-link>
 				</li>
 			</ul>
 			<div class="ofuscator" @click="hideMenu"></div>
@@ -51,10 +23,12 @@
 export default {
 	methods: {
 		showMenu: function showMenu() {
-			document.querySelector('.nav').classList.add('-show');
+			document.querySelector('.nav').classList.toggle('-show');
+			document.querySelector('.nav-button').classList.toggle('-rotate');
 		},
 		hideMenu: function hideMenu() {
 			document.querySelector('.nav').classList.remove('-show');
+			document.querySelector('.nav-button').classList.remove('-rotate');
 		},
 	},
 };
@@ -65,25 +39,52 @@ export default {
 	$header-height = 56px
 
     .nav-button
-		color $blue
-		border 1px solid #ddd
-		font-size 20px
-		background-color #f9f9f9
-		height 56px
-		width 56px
+		color $white
+		border none
+		font-size 35px
+		height 36px
+		width 36px
 		position absolute
+		right 15px
+		top 15px
+		background transparent
+		transition transform .4s ease-in-out
+		z-index 5
+		cursor pointer
+
+		.nav-icon
+			position absolute
+			top 50%
+			left 50%
+			transform translate(-50%, -50%)
+
+
+		&.-rotate
+			transform rotate(90deg)
+
+		&:focus
+			outline none
 
 	.nav
-		background #ffffff
+		background $blue
+		color $white
 		padding 20px
 		box-sizing border-box
 		position fixed
-		z-index 1
+		z-index 10
 		width 230px
 		height 100vh
 		top 0
 		transform translateX(-230px)
 		transition transform .4s ease-in-out
+
+		a
+			color $white
+			font-size 18px
+			line-height 120%
+			padding 15px 0px
+			display block
+			box-sizing border-box
 
 	.ofuscator
 		background rgba(0, 0, 0, 0.8)
@@ -112,25 +113,11 @@ export default {
 		padding 0
 
 	.header
-		margin 0
-		box-sizing border-box
-		color #ffffff
-		background-color #ffffff
-		border-bottom 1px solid rgba(0, 0, 0, .1)
-		display flex
-		align-items center
+		position absolute
+		z-index 20
+		top 0
+		right 0
 		height $header-height
 
-	.logo
-		font-size 20px
-		letter-spacing 0.6em
-		text-transform uppercase
-		font-weight 700
-		box-sizing border-box
-		padding 3px
-		padding-left calc(0.6em + 3px)
-		border-radius 14px 14px 14px 0
-		background-color $blue
-		margin 0 auto
 </style>
 

@@ -54,7 +54,6 @@ export default {
 	.textarea
 		background transparent
 		font-size 12pt
-		margin-bottom 20px
 		padding 15px
 		width 100%
 
@@ -64,6 +63,6 @@ export default {
 
 		&--main
 			border 1px solid $gray
-			border-radius 15px
+			border-radius 10px 10px 10px 0
 			color $dark-gray
 </style>

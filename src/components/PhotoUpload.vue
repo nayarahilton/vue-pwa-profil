@@ -70,7 +70,6 @@ export default {
 
 	.photo-upload
 		height auto
-		margin 20px 0
 		position relative
 		text-align center
 		width 100%
