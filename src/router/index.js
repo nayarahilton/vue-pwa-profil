@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import WelcomeView from '@/views/WelcomeView';
 import store from '@/services/store';
 import HomeView from '@/views/HomeView';
+import ForgotPasswordView from '@/views/ForgotPasswordView';
 import DetailView from '@/views/DetailView';
 import RegisterView from '@/views/RegisterView';
 import RegisterGuruView from '@/views/RegisterGuruView';
@@ -63,6 +64,11 @@ export default new Router({
 					next();
 				}
 			},
+		},
+		{
+			path: '/esqueci-senha',
+			name: 'esqueci-senha',
+			component: ForgotPasswordView,
 		},
 		{
 			path: '/cadastro',
