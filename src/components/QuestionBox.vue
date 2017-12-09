@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<swiper v-if="slideBox === 'true'" :options="swiperOption" class="questions-wrapper">
+		<!-- <swiper v-if="slideBox === 'true'" :options="swiperOption" class="questions-wrapper">
 			<swiper-slide
 				v-for="(question, index) in this.getQuestions()"
 				class="questions-box"
@@ -22,28 +22,29 @@
 					></profile-resume>
 				</div>
 			</swiper-slide>
-		</swiper>
+		</swiper> -->
 
 
-		<div v-else class="questions-box"
+		<div class="questions-box"
 			v-for="question in this.getQuestions()"
 			:key="question.id"
-			@click.native="goToAnswer(question.id)"
 		>
-			<p class="profession"  v-if="profession == 'true'">{{question.profession}}</p>
-			<p class="questions-holder" v-if="questions == 'true'">{{question.question}}</p>
-			<div class="answer-holder" v-if="answers == 'true'">
-				<main-titles
-					:title-text="question.answers"
-				/>
-				<profile-resume
-					:image="'http://nosrc.fbiz.com.br/640x480/ddd/777'"
-					nickname="Nayara Hilton"
-					username="@nayarahilton"
-					profession="#Profissão"
-					@click.native="goToProfile(picture['.key'])"
-					resume="true"
-				></profile-resume>
+			<div @click="goToAnswer(question['.key'])">
+				<p class="profession"  v-if="profession == 'true'">{{question.profession}}</p>
+				<p class="questions-holder" v-if="questions == 'true'">{{question.question}}</p>
+				<div class="answer-holder" v-if="answers == 'true'">
+					<main-titles
+						:title-text="question.answers"
+					/>
+					<profile-resume
+						:image="'http://nosrc.fbiz.com.br/640x480/ddd/777'"
+						nickname="Nayara Hilton"
+						username="@nayarahilton"
+						profession="#Profissão"
+						@click.native="goToProfile(picture['.key'])"
+						resume="true"
+					></profile-resume>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -72,13 +73,18 @@ export default {
 		};
 	},
 	methods: {
+		/* eslint-disable */
 		getQuestions() {
+			console.log('hey')
 			if (navigator.onLine) {
+				console.log(true)
 				return this.$root.faq;
 			}
-			return JSON.parse(localStorage.getItem('faq'));
+			return JSON.parse(localStorage.getItem('questions'));
 		},
 		goToAnswer(id) {
+
+			console.log('helo', id)
 			this.$router.push({ name: 'responder', params: { id } });
 		},
 	},
@@ -117,6 +123,7 @@ export default {
 
 	.questions-box
 		text-align left
+		cursor pointer
 
 	.answer-holder
 		padding 0 15px

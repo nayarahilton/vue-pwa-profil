@@ -1,12 +1,12 @@
 <template>
 	<div class="ask">
 		<status-bar
-			link="/home"
+			link="/perguntas"
 			title="Respoder"
 		/>
 		<main class="register-main">
 			<main-titles
-				:title-text="question.question"
+				:title-text="faq.question"
 			/>
 			<main-textarea
 				type="text"
@@ -29,22 +29,13 @@ import MainSelect from '@/components/MainSelect';
 import MainButton from '@/components/MainButton';
 
 export default {
-
 	data() {
 		return {
 			faq: null,
-			disabledText: 'Nome da profissão',
-			options: [
-				{
-					value: 'designDigital',
-					text: 'Design Digital',
-				},
-				{
-					value: 'medicina',
-					text: 'Medicina',
-				},
-			],
 		};
+	},
+	mounted() {
+		this.faq = find(this.$root.faq, faq => faq['.key'] === this.$route.params.id);
 	},
 	components: {
 		'status-bar': StatusBar,
@@ -52,9 +43,6 @@ export default {
 		'main-titles': MainTitles,
 		'main-select': MainSelect,
 		'main-button': MainButton,
-	},
-	mounted() {
-		this.faq = find(this.$root.daq, faq => faq['.key'] === this.$route.params.id);
 	},
 };
 </script>
