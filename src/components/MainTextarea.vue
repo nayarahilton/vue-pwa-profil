@@ -54,6 +54,7 @@ export default {
 	.textarea
 		background transparent
 		font-size 12pt
+		margin-top 15px
 		padding 15px
 		width 100%
 
