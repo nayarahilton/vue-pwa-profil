@@ -6,7 +6,7 @@
 		/>
 		<main class="register-main">
 			<main-titles
-				title-text="Entrar direto na faculdade ou fazer um curso antes?"
+				:title-text="question.question"
 			/>
 			<main-textarea
 				type="text"
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { find } from 'lodash';
 import StatusBar from '@/components/StatusBar';
 import MainTextarea from '@/components/MainTextarea';
 import MainTitles from '@/components/MainTitles';
@@ -28,8 +29,10 @@ import MainSelect from '@/components/MainSelect';
 import MainButton from '@/components/MainButton';
 
 export default {
+
 	data() {
 		return {
+			faq: null,
 			disabledText: 'Nome da profissão',
 			options: [
 				{
@@ -49,6 +52,9 @@ export default {
 		'main-titles': MainTitles,
 		'main-select': MainSelect,
 		'main-button': MainButton,
+	},
+	mounted() {
+		this.faq = find(this.$root.daq, faq => faq['.key'] === this.$route.params.id);
 	},
 };
 </script>

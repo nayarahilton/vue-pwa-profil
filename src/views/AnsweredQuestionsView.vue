@@ -5,7 +5,7 @@
 			title="Perguntas Respondidas"
 		/>
 		<main class="main">
-			<question-box :boxs="questions" profession="true" answers="true" professionName="#designdigital"></question-box>
+			<question-box profession="true" answers="true"></question-box>
 		</main>
 	</div>
 </template>
@@ -18,20 +18,6 @@ export default {
 	data() {
 		return {
 			profession: '#Design',
-			questions: [
-				{
-					question: 'Entrar direto na faculdade de Design ou fazer um curso?',
-					answer: 'Lorem ipsum',
-				},
-				{
-					question: 'Dicas para quem está começando?',
-					answer: 'Lorem ipsum',
-				},
-				{
-					question: 'Quais os melhores cursos e escolas de cursos para essa profissão?',
-					answer: 'Lorem ipsum',
-				},
-			],
 		};
 	},
 	components: {

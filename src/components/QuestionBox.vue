@@ -2,15 +2,15 @@
 	<div>
 		<swiper v-if="slideBox === 'true'" :options="swiperOption" class="questions-wrapper">
 			<swiper-slide
-				v-for="(slide, index) in slides"
+				v-for="(question, index) in this.getQuestions()"
 				class="questions-box"
-				:key="slide.question"
+				:key="question.question"
 			>
-				<p class="profession"  v-if="profession == 'true'">{{professionName}}</p>
-				<p class="questions-holder" v-if="questions == 'true'">{{slide.question}}</p>
+				<p class="profession"  v-if="profession == 'true'">{{question.profession}}</p>
+				<p class="questions-holder" v-if="questions == 'true'">{{question.question}}</p>
 				<div class="answer-holder" v-if="answers == 'true'">
 					<main-titles
-						:title-text="slide.answer"
+						:title-text="question.answers"
 					/>
 					<profile-resume
 						:image="'http://nosrc.fbiz.com.br/640x480/ddd/777'"
@@ -24,15 +24,17 @@
 			</swiper-slide>
 		</swiper>
 
+
 		<div v-else class="questions-box"
-			v-for="box in boxs"
-			:key="box.id"
+			v-for="question in this.getQuestions()"
+			:key="question.id"
+			@click.native="goToAnswer(question.id)"
 		>
-			<p class="profession"  v-if="profession == 'true'">{{professionName}}</p>
-			<p class="questions-holder" v-if="questions == 'true'">{{box.question}}</p>
+			<p class="profession"  v-if="profession == 'true'">{{question.profession}}</p>
+			<p class="questions-holder" v-if="questions == 'true'">{{question.question}}</p>
 			<div class="answer-holder" v-if="answers == 'true'">
 				<main-titles
-					:title-text="box.answer"
+					:title-text="question.answers"
 				/>
 				<profile-resume
 					:image="'http://nosrc.fbiz.com.br/640x480/ddd/777'"
@@ -69,14 +71,19 @@ export default {
 
 		};
 	},
+	methods: {
+		getQuestions() {
+			if (navigator.onLine) {
+				return this.$root.faq;
+			}
+			return JSON.parse(localStorage.getItem('faq'));
+		},
+		goToAnswer(id) {
+			this.$router.push({ name: 'responder', params: { id } });
+		},
+	},
 	props: {
 		slideBox: {
-			type: String,
-		},
-		boxs: {
-			type: Array,
-		},
-		answers: {
 			type: String,
 		},
 		questions: {
@@ -85,7 +92,7 @@ export default {
 		profession: {
 			type: String,
 		},
-		professionName: {
+		answers: {
 			type: String,
 		},
 		slides: {

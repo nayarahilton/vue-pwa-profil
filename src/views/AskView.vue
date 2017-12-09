@@ -20,22 +20,27 @@
 				id="name"
 				placeholder="Toque aqui e escreva uma pergunta de até 280 caractéres"
 				:required="true"
+				v-model="text"
 			/>
-			<main-button text-inner="Enviar pergunta" />
+			<main-button text-inner="Enviar pergunta" @click.prevent.native="post" />
 		</main>
 	</div>
 </template>
 
 <script>
+import postQuestion from '@/mixins/postQuestion';
 import StatusBar from '@/components/StatusBar';
 import MainTextarea from '@/components/MainTextarea';
 import MainTitles from '@/components/MainTitles';
 import MainSelect from '@/components/MainSelect';
 import MainButton from '@/components/MainButton';
 
+
 export default {
+	mixins: [postQuestion],
 	data() {
 		return {
+			text: '',
 			disabledText: 'Nome da profissão',
 			options: [
 				{
@@ -56,9 +61,19 @@ export default {
 		'main-select': MainSelect,
 		'main-button': MainButton,
 	},
+	methods: {
+		post() {
+			this.postQuestion(
+				'#designdigital',
+				this.text,
+				[],
+			);
+		},
+	},
 };
 </script>
 
 <style lang="stylus">
-
+	.main-btn
+		margin-top 10px
 </style>

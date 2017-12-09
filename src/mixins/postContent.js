@@ -1,12 +1,16 @@
 const postContent = {
 	methods: {
-		postContent(cardUrl, title) {
+		postContent(_profession, _photo, _description, _username, _user, _favorites, _likes) {
 			this.$root.$firebaseRefs.card.push(
 				{
-					url: cardUrl,
-					comment: title,
-					info: 'Posted by Nay on Tuesday',
-					created_at: -1 * new Date().getTime(),
+					profession: _profession,
+					url: _photo,
+					comment: _description,
+					username: _username,
+					user: _user,
+					favorites: _favorites,
+					likes: _likes,
+					info: -1 * new Date().getTime(),
 				},
 			).then(
 				this.$router.push('/home'),

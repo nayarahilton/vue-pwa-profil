@@ -21,6 +21,8 @@ import AnsweredQuestionsView from '@/views/AnsweredQuestionsView';
 import NotAnsweredQuestionsView from '@/views/NotAnsweredQuestionsView';
 import LandingView from '@/views/LandingView';
 import SearchView from '@/views/SearchView';
+import ContactView from '@/views/ContactView';
+import TermsView from '@/views/TermsView';
 
 Vue.use(Router);
 
@@ -112,7 +114,7 @@ export default new Router({
 		},
 		{
 			path: '/responder',
-			name: 'resposta',
+			name: 'responder',
 			component: AnswerView,
 		},
 		{
@@ -134,6 +136,16 @@ export default new Router({
 			path: '/perguntas-nao-respondidas',
 			name: 'not-answered-questions',
 			component: NotAnsweredQuestionsView,
+		},
+		{
+			path: '/contato',
+			name: 'contact',
+			component: ContactView,
+		},
+		{
+			path: '/termos',
+			name: 'terms',
+			component: TermsView,
 		},
 		{
 			path: '*',

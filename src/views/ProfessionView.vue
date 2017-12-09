@@ -23,7 +23,7 @@
 			<h2 class="profession_info-slider_title">O que é Design Digital?</h2>
 			<div class="profession_faq">
 				<div>
-					<question-box :slides="whatIs" slideBox="true" answers="true" class="profession_info-slider_list"></question-box>
+					<question-box slideBox="true" answers="true" class="profession_info-slider_list"></question-box>
 				</div>
 			</div>
 		</div>
@@ -138,18 +138,6 @@ export default {
 					answer: 'Lorem ipsum',
 				},
 			],
-			whatIs: [
-				{
-					answer: 'Lorem ipsum 2',
-				},
-				{
-					answer: 'Lorem ipsum 2',
-				},
-				{
-					answer: 'Lorem ipsum 2',
-				},
-			],
-
 			salaries: [
 				{
 					year: 'Até 1 ano',

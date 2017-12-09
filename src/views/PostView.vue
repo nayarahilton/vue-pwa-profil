@@ -50,7 +50,14 @@ export default {
 		post() {
 			const img = document.querySelector('.image-preview__img');
 			if (img) {
-				this.postContent(img.src, this.title || '');
+				this.postContent(
+					'#designdigital',
+					img.src, this.title || '',
+					'Nayara Hilton',
+					'@nayarahilton',
+					'0',
+					'0',
+				);
 			} else {
 				/* eslint-disable */
 				alert('Adicione uma imagem');

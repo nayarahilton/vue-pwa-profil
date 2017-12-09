@@ -7,7 +7,7 @@
 		<main class="main">
 			<h2 class="feedback-text">Pergunta respondida!</h2>
 
-			<question-box :questions="questions" answers="true"></question-box>
+			<!-- <question-box :questions="questions" answers="true"></question-box> -->
 
 			<main-button
 				buttonType="router"
