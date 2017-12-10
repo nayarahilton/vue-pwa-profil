@@ -11,7 +11,6 @@ module.exports = {
 	assetsSubDirectory: 'static',
 	// Definindo o caminho dos arquivos estáticos quando a aplicação está no gh-pages
     assetsPublicPath: packageConfig.homepage || '/',
-    assetsPublicPath: '/',
     productionSourceMap: true,
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.
