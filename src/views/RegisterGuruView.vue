@@ -310,7 +310,7 @@ export default {
 			console.log(formData);
 			this.$store.dispatch('signup', formData);
 			setTimeout(() => {
-				this.$router.push('/home');
+				this.$router.push('/feedback-guru');
 			}, 1000);
 		},
 	},

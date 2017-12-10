@@ -10,7 +10,8 @@ import RegisterGuruView from '@/views/RegisterGuruView';
 import RegisterAprendizView from '@/views/RegisterAprendizView';
 import ProfileView from '@/views/ProfileView';
 import MyProfileView from '@/views/MyProfileView';
-import FeedbackView from '@/views/FeedbackView';
+import FeedbackGuruView from '@/views/FeedbackGuruView';
+import FeedbackAprendizView from '@/views/FeedbackAprendizView';
 import PostView from '@/views/PostView';
 import ProfessionView from '@/views/ProfessionView';
 import AskView from '@/views/AskView';
@@ -49,11 +50,25 @@ export default new Router({
 			path: '/postar',
 			name: 'postar',
 			component: PostView,
+			beforeEnter(to, from, next) {
+				if (store.state.idToken) {
+					next();
+				} else {
+					next('/bemvindo');
+				}
+			},
 		},
 		{
 			path: '/buscar',
 			name: 'search-view',
 			component: SearchView,
+			beforeEnter(to, from, next) {
+				if (store.state.idToken) {
+					next();
+				} else {
+					next('/bemvindo');
+				}
+			},
 		},
 		{
 			path: '/bemvindo',
@@ -91,51 +106,133 @@ export default new Router({
 			path: '/perfil',
 			name: 'profile',
 			component: ProfileView,
+			beforeEnter(to, from, next) {
+				if (store.state.idToken) {
+					next();
+				} else {
+					next('/bemvindo');
+				}
+			},
 		},
 		{
 			path: '/meu-perfil',
 			name: 'my-profile',
 			component: MyProfileView,
+			beforeEnter(to, from, next) {
+				if (store.state.idToken) {
+					next();
+				} else {
+					next('/bemvindo');
+				}
+			},
 		},
 		{
 			path: '/profissao',
 			name: 'profession',
 			component: ProfessionView,
+			beforeEnter(to, from, next) {
+				if (store.state.idToken) {
+					next();
+				} else {
+					next('/bemvindo');
+				}
+			},
 		},
 		{
-			path: '/feedback',
+			path: '/feedback-guru',
 			name: 'feedback',
-			component: FeedbackView,
+			component: FeedbackGuruView,
+			beforeEnter(to, from, next) {
+				if (store.state.idToken) {
+					next();
+				} else {
+					next('/bemvindo');
+				}
+			},
+		},
+		{
+			path: '/feedback-aprendiz',
+			name: 'feedback-aprendiz',
+			component: FeedbackAprendizView,
+			beforeEnter(to, from, next) {
+				if (store.state.idToken) {
+					next();
+				} else {
+					next('/bemvindo');
+				}
+			},
 		},
 		{
 			path: '/perguntar',
 			name: 'perguntar',
 			component: AskView,
+			beforeEnter(to, from, next) {
+				if (store.state.idToken) {
+					next();
+				} else {
+					next('/bemvindo');
+				}
+			},
 		},
 		{
 			path: '/responder',
 			name: 'responder',
 			component: AnswerView,
+			beforeEnter(to, from, next) {
+				if (store.state.idToken) {
+					next();
+				} else {
+					next('/bemvindo');
+				}
+			},
 		},
 		{
 			path: '/perguntas',
 			name: 'perguntas',
 			component: QuestionsView,
+			beforeEnter(to, from, next) {
+				if (store.state.idToken) {
+					next();
+				} else {
+					next('/bemvindo');
+				}
+			},
 		},
 		{
 			path: '/sucesso-perguntas',
 			name: 'feedback-answer',
 			component: FeedbackAnswerView,
+			beforeEnter(to, from, next) {
+				if (store.state.idToken) {
+					next();
+				} else {
+					next('/bemvindo');
+				}
+			},
 		},
 		{
 			path: '/perguntas-respondidas',
 			name: 'answered-questions',
 			component: AnsweredQuestionsView,
+			beforeEnter(to, from, next) {
+				if (store.state.idToken) {
+					next();
+				} else {
+					next('/bemvindo');
+				}
+			},
 		},
 		{
 			path: '/perguntas-nao-respondidas',
 			name: 'not-answered-questions',
 			component: NotAnsweredQuestionsView,
+			beforeEnter(to, from, next) {
+				if (store.state.idToken) {
+					next();
+				} else {
+					next('/bemvindo');
+				}
+			},
 		},
 		{
 			path: '/contato',

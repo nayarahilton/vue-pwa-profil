@@ -1,17 +1,27 @@
 <template>
 	<div class="feedback-view">
 		<div class="feedback-img">
-			<img src="/"> 
+			<img class="logo-symbol" src="../assets/icons/register-success-icon.svg" alt="Imagem de um crachá">
 		</div>
 		<div class="feedback-info">
 			<h2 class="feedback-title">
-				{{ title }}
+				Perfil criado <br/>com sucesso!
 			</h2>
 			<p class="feedback-text">
-				{{ text }}
+				Vamos começar espalhando seu conhecimento?
 			</p>
 		</div>
-		<main-button buttonType="router" text-inner="Primeiro post" linkto="/post"></main-button>
+		<main-button
+			buttonType="router"
+			text-inner="Primeiro post"
+			linkto="/postar"
+		/>
+		<router-link
+			class="feedback-link"
+			to="/home"
+		>
+			Depois eu faço isso
+		</router-link>
 	</div>
 </template>
 
@@ -19,12 +29,6 @@
 import MainButton from '../components/MainButton';
 
 export default {
-	data() {
-		return {
-			title: 'Perfil criado com sucesso!',
-			text: 'Vamos começar espalhando seu conheciemento?',
-		};
-	},
 	components: {
 		'main-button': MainButton,
 	},
@@ -32,6 +36,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+	@import '../assets/styles/*'
+
 	.feedback
 		&-view
 			min-height calc(100vh - 56px)
@@ -45,7 +51,6 @@ export default {
 			text-align center
 
 		&-img
-			background purple
 			width 250px
 			height 200px
 
@@ -62,4 +67,13 @@ export default {
 			font-size 18px
 			line-height 100%
 			margin-top 10px
+
+		&-link
+			color $dark-blue
+			font-size 14pt
+			font-weight 700
+			margin-top 40px
+
+	.main-btn
+		margin-top 20px
 </style>
