@@ -29,6 +29,7 @@ new Vue({
 	el: '#app',
 	firebase: {
 		card: database.ref('card').orderByChild('created_at'),
+		faq: database.ref('faq').orderByChild('created_at'),
 	},
 	router,
 	store,

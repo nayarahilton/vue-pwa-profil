@@ -124,20 +124,6 @@ export default {
 					text: '@prisanttos',
 				},
 			],
-			faq: [
-				{
-					question: 'Entrar direto na faculdade de Design ou fazer um curso?',
-					answer: 'Lorem ipsum',
-				},
-				{
-					question: 'Entrar direto na faculdade de Design ou fazer um curso?',
-					answer: 'Lorem ipsum',
-				},
-				{
-					question: 'Entrar direto na faculdade de Design ou fazer um curso?',
-					answer: 'Lorem ipsum',
-				},
-			],
 			salaries: [
 				{
 					year: 'Até 1 ano',

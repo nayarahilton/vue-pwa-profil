@@ -33,8 +33,8 @@
 				<p class="profession"  v-if="profession == 'true'">{{question.profession}}</p>
 				<p class="questions-holder" v-if="questions == 'true'">{{question.question}}</p>
 				<div class="answer-holder" v-if="answers == 'true'">
-					<main-titles
-						:title-text="question.answers"
+					<main-titles v-for="item in question"
+						:title-text="item.answers"
 					/>
 					<profile-resume
 						:image="'http://nosrc.fbiz.com.br/640x480/ddd/777'"

@@ -66,7 +66,7 @@ export default {
 			this.postQuestion(
 				'#designdigital',
 				this.text,
-				[],
+				{},
 			);
 		},
 	},
