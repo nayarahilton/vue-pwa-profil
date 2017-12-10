@@ -2,7 +2,7 @@
 	<div class="register-guru">
 		<status-bar
 			link="/cadastro"
-			title="Cadastro"
+			title="Meu perfil"
 		/>
 		<main class="register-main">
 			<form-wizard
@@ -94,11 +94,41 @@
 					title="Minha profissão"
 				>
 					Minha profissão
+					<main-select />
 				</tab-content>
 				<tab-content
 					title="Características"
 				>
 					Características
+					<checkbox
+						name="comportamental"
+						value="ajudo_pessoas"
+						id="ajudo_pessoas"
+						text="Ajudo pessoas"
+						src="/static/img/icn_cadastro_caracteristica_ajudo-pessoas.svg"
+					/>
+					<checkbox
+						name="comportamental"
+						value="salvo_vidas"
+						id="salvo_vidas"
+						text="Salvo vidas"
+						src="/static/img/icn_cadastro_caracteristica_salvo-vidas.svg"
+					/>
+					<checkbox
+						name="comportamental"
+						value="ajudo_animais"
+						id="ajudo_animais"
+						text="Ajudo animais"
+						src="/static/img/icn_cadastro_caracteristica_ajudo-animais.svg"
+					/>
+					<checkbox
+						name="comportamental"
+						value="contato_natureza"
+						id="contato_natureza"
+						text="Contato com a natureza"
+						src="/static/img/icn_cadastro_caracteristica_contato-natureza.svg"
+					/>
+
 				</tab-content>
 				<button slot="prev" class="hide">Back</button>
 				<button slot="next" class="submit-button">Próximo</button>
@@ -115,7 +145,9 @@ import MainTitles from '../components/MainTitles';
 import MainInput from '../components/MainInput';
 import PhotoUpload from '../components/PhotoUpload';
 import MainTextarea from '../components/MainTextarea';
+import MainSelect from '../components/MainSelect';
 import FeedbackMessage from '../components/FeedbackMessage';
+import CharacteristicCheckbox from '../components/CharacteristicCheckbox';
 
 const dict = {
 	pt: {
@@ -162,7 +194,9 @@ export default {
 		MainInput,
 		MainTextarea,
 		PhotoUpload,
+		MainSelect,
 		feedback: FeedbackMessage,
+		checkbox: CharacteristicCheckbox,
 	},
 	methods: {
 		validateBeforeSubmit() {
