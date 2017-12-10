@@ -89,19 +89,43 @@
 						placeholder="Em apenas 320 caracteres fale um pouco sobre sua profissão."
 						v-model="aboutprofession"
 					/>
+					<main-titles
+						title-text="Qual cidade que você trabalha?"
+						design="center"
+					/>
+					<main-select />
 				</tab-content>
 				<tab-content
 					title="Minha profissão"
 				>
-					Minha profissão
+					<main-titles
+						title-text="Há quanto tempo você trabalha nessa área?"
+						subtitle-text="Sua resposta é anônima e não aparecerá no seu perfil"
+						design="center"
+					/>
+					<main-select />
+					<main-titles
+						title-text="Qual a média do seu salário atual"
+						subtitle-text="Sua resposta é anônima e não aparecerá no seu perfil"
+						design="center"
+					/>
 					<main-select />
 				</tab-content>
 				<tab-content
 					title="Características"
 				>
-					Características
+					<main-titles
+						title-text="Selecione 5 características que descrevem seu trabalho"
+						design="center"
+					/>
+					<h3>Comportamental e biológico</h3>
+					<slider-items check="true" :slides="comportamental"/>
 
-					<slider-items check="true" :slides="features"/>
+					<h3>Suas ferramentas</h3>
+					<slider-items check="true" :slides="ferramentas"/>
+
+					<h3>Seu ambiente de trabalho</h3>
+					<slider-items check="true" :slides="ambiente"/>
 
 				</tab-content>
 				<button slot="prev" class="hide">Back</button>
@@ -153,28 +177,95 @@ Validator.setLocale('pt');
 export default {
 	data() {
 		return {
-			features: [
+			comportamental: [
 				{
+					name: 'comportamental',
+					value: 'ajudo_pessoas',
+					id: 'ajudo_pessoas',
 					src: '/static/img/icn_cadastro_caracteristica_ajudo-pessoas.svg',
 					text: 'Ajudo pessoas',
 				},
 				{
+					name: 'comportamental',
+					value: 'ajudo_animais',
+					id: 'ajudo_animais',
 					src: '/static/img/icn_cadastro_caracteristica_salvo-vidas.svg',
 					text: 'Salvo vidas',
 				},
 				{
+					name: 'comportamental',
+					value: 'salvo_vidas',
+					id: 'salvo_vidas',
 					src: '/static/img/icn_cadastro_caracteristica_ajudo-animais.svg',
 					text: 'Ajudo animais',
 				},
 				{
-					src: '/static/img/icn_cadastro_caracteristica_ajudo-pessoas.svg',
-					text: 'Salvo vidas',
+					name: 'comportamental',
+					value: 'contato_natureza',
+					id: 'contato_natureza',
+					src: '/static/img/icn_cadastro_caracteristica_contato-natureza.svg',
+					text: 'Contato com a natureza',
+				},
+			],
+			ferramentas: [
+				{
+					name: 'ferramentas',
+					value: 'uso_mao',
+					id: 'uso_mao',
+					src: '/static/img/icn_cadastro_caracteristica_uso-mao.svg',
+					text: 'Uso minhas mãos',
 				},
 				{
-					src: '/static/img/icn_cadastro_caracteristica_ajudo-pessoas.svg',
-					text: 'Ajudo animais',
+					name: 'ferramentas',
+					value: 'uso_computador',
+					id: 'uso_computador',
+					src: '/static/img/icn_cadastro_caracteristica_uso-computador.svg',
+					text: 'Uso muito computador',
 				},
-
+				{
+					name: 'ferramentas',
+					value: 'coordenacao_motora',
+					id: 'coordenacao_motora',
+					src: '/static/img/icn_cadastro_caracteristica_coordenacao-motora.svg',
+					text: 'Coordenação motora impecável',
+				},
+				{
+					name: 'ferramentas',
+					value: 'logica_inteligencia',
+					id: 'logica_inteligencia',
+					src: '/static/img/icn_cadastro_caracteristica_logica-inteligencia.svg',
+					text: 'Lógica e inteligência',
+				},
+			],
+			ambiente: [
+				{
+					name: 'ambiente',
+					value: 'viajar',
+					id: 'viajar',
+					src: '/static/img/icn_cadastro_caracteristica_viajar.svg',
+					text: 'Preciso viajar muito',
+				},
+				{
+					name: 'ambiente',
+					value: 'agitado',
+					id: 'agitado',
+					src: '/static/img/icn_cadastro_caracteristica_agitado.svg',
+					text: 'Super agitado',
+				},
+				{
+					name: 'ambiente',
+					value: 'calmo',
+					id: 'calmo',
+					src: '/static/img/icn_cadastro_caracteristica_calmo.svg',
+					text: 'Super calmo',
+				},
+				{
+					name: 'ambiente',
+					value: 'sentado',
+					id: 'sentado',
+					src: '/static/img/icn_cadastro_caracteristica_sentado.svg',
+					text: 'Trabalho sentado',
+				},
 			],
 			type: 1,
 			username: '',
@@ -228,6 +319,12 @@ export default {
 
 <style lang="stylus">
 	@import '../assets/styles/*'
+
+	h3
+		color $dark-gray
+		font-size 14pt
+		font-weight 400
+		margin 0 auto
 
 	.register-main
 		holder()

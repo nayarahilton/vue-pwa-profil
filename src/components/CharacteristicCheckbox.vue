@@ -58,6 +58,7 @@ export default {
 			background transparent
 			border-radius 100%
 			height 70px
+			outline 0
 			width 70px
 			-webkit-appearance: none;
 

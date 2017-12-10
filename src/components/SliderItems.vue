@@ -7,9 +7,9 @@
 			>
 
 			<checkbox v-if="check == 'true'"
-				name="comportamental"
-				value="ajudo_pessoas"
-				id="ajudo_pessoas"
+				:name="slide.name"
+				:value="slide.value"
+				:id="slide.id"
 				:text="slide.text"
 				:src="slide.src"
 			/>
@@ -74,13 +74,12 @@ export default {
 
 	.swiper-wrapper
 		align-items center
-		padding 0 20px
 
 	.swiper-slide
-		width 80px
-		padding 20px 5px
+		padding 0 5px 20px
 		text-align center
 		cursor pointer
+		width auto
 
 	img
 		max-width 100%
