@@ -4,13 +4,13 @@
   "description": "Profil pwa - The professions app made with Vue.js ",
   "author": "Nayara Hilton <naylop@gmail.com>",
   "private": true,
-  "homepage": "https://nayarahilton.github.io/vue-pwa-profil/",
+  "homepage": "https://profil.work/",
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
     "build": "node build/build.js NODE_ENV=production",
     "lint": "eslint --ext .js,.vue src",
-    "serve": "serve dist/",
+    "serve": "serve docs/",
     "deploy": "node ./node_modules/vue-gh-pages/index.js",
     "homepage": "https://github.com/nayarahilton/vue-pwa-profil/"
   },
