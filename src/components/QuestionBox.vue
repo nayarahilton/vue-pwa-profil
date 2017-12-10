@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<!-- <swiper v-if="slideBox === 'true'" :options="swiperOption" class="questions-wrapper">
+		<swiper v-if="slideBox === 'true'" :options="swiperOption" class="questions-wrapper">
 			<swiper-slide
 				v-for="(question, index) in this.getQuestions()"
 				class="questions-box"
@@ -9,8 +9,8 @@
 				<p class="profession"  v-if="profession == 'true'">{{question.profession}}</p>
 				<p class="questions-holder" v-if="questions == 'true'">{{question.question}}</p>
 				<div class="answer-holder" v-if="answers == 'true'">
-					<main-titles
-						:title-text="question.answers"
+					<main-titles v-for="item in question"
+						:title-text="item.answer"
 					/>
 					<profile-resume
 						:image="'http://nosrc.fbiz.com.br/640x480/ddd/777'"
@@ -22,10 +22,10 @@
 					></profile-resume>
 				</div>
 			</swiper-slide>
-		</swiper> -->
+		</swiper>
 
 
-		<div class="questions-box"
+		<div v-else class="questions-box"
 			v-for="question in this.getQuestions()"
 			:key="question.id"
 		>
@@ -34,7 +34,7 @@
 				<p class="questions-holder" v-if="questions == 'true'">{{question.question}}</p>
 				<div class="answer-holder" v-if="answers == 'true'">
 					<main-titles v-for="item in question"
-						:title-text="item.answers"
+						:title-text="item.answer"
 					/>
 					<profile-resume
 						:image="'http://nosrc.fbiz.com.br/640x480/ddd/777'"

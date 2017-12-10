@@ -2,12 +2,12 @@
 	<div class="feedback-answer">
 		<status-bar
 			link="/home"
-			title="Respoder"
+			title="Sucesso"
 		/>
 		<main class="main">
-			<h2 class="feedback-text">Pergunta respondida!</h2>
+			<h2 class="feedback-text">Enviada com sucesso!</h2>
 
-			<!-- <question-box :questions="questions" answers="true"></question-box> -->
+			<question-box questions="true" profession="true" answers="true"></question-box>
 
 			<main-button
 				buttonType="router"
@@ -29,12 +29,6 @@ export default {
 	data() {
 		return {
 			disabledText: 'Nome da profissão',
-			questions: [
-				{
-					question: 'Entrar direto na faculdade de Design ou fazer um curso?',
-					answer: 'Lorem ipsum',
-				},
-			],
 			options: [
 				{
 					value: 'designDigital',
