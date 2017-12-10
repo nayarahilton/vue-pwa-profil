@@ -4,6 +4,7 @@
   "description": "Profil pwa - The professions app made with Vue.js ",
   "author": "Nayara Hilton <naylop@gmail.com>",
   "private": true,
+  "homepage": "https://github.com/nayarahilton/vue-pwa-profil/",
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
