@@ -2,15 +2,15 @@
 	<div>
 		<swiper v-if="slideBox === 'true'" :options="swiperOption" class="questions-wrapper">
 			<swiper-slide
-				v-for="(slide, index) in slides"
+				v-for="(question, index) in this.getQuestions()"
 				class="questions-box"
-				:key="slide.question"
+				:key="question.question"
 			>
-				<p class="profession"  v-if="profession == 'true'">{{professionName}}</p>
-				<p class="questions-holder" v-if="questions == 'true'">{{slide.question}}</p>
+				<p class="profession"  v-if="profession == 'true'">{{question.profession}}</p>
+				<p class="questions-holder" v-if="questions == 'true'">{{question.question}}</p>
 				<div class="answer-holder" v-if="answers == 'true'">
-					<main-titles
-						:title-text="slide.answer"
+					<main-titles v-for="item in question"
+						:title-text="item.answer"
 					/>
 					<profile-resume
 						:image="'http://nosrc.fbiz.com.br/640x480/ddd/777'"
@@ -24,24 +24,27 @@
 			</swiper-slide>
 		</swiper>
 
+
 		<div v-else class="questions-box"
-			v-for="box in boxs"
-			:key="box.id"
+			v-for="question in this.getQuestions()"
+			:key="question.id"
 		>
-			<p class="profession"  v-if="profession == 'true'">{{professionName}}</p>
-			<p class="questions-holder" v-if="questions == 'true'">{{box.question}}</p>
-			<div class="answer-holder" v-if="answers == 'true'">
-				<main-titles
-					:title-text="box.answer"
-				/>
-				<profile-resume
-					:image="'http://nosrc.fbiz.com.br/640x480/ddd/777'"
-					nickname="Nayara Hilton"
-					username="@nayarahilton"
-					profession="#Profissão"
-					@click.native="goToProfile(picture['.key'])"
-					resume="true"
-				></profile-resume>
+			<div @click="goToAnswer(question['.key'])">
+				<p class="profession"  v-if="profession == 'true'">{{question.profession}}</p>
+				<p class="questions-holder" v-if="questions == 'true'">{{question.question}}</p>
+				<div class="answer-holder" v-if="answers == 'true'">
+					<main-titles v-for="item in question"
+						:title-text="item.answer"
+					/>
+					<profile-resume
+						:image="'http://nosrc.fbiz.com.br/640x480/ddd/777'"
+						nickname="Nayara Hilton"
+						username="@nayarahilton"
+						profession="#Profissão"
+						@click.native="goToProfile(picture['.key'])"
+						resume="true"
+					></profile-resume>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -69,14 +72,24 @@ export default {
 
 		};
 	},
+	methods: {
+		/* eslint-disable */
+		getQuestions() {
+			console.log('hey')
+			if (navigator.onLine) {
+				console.log(true)
+				return this.$root.faq;
+			}
+			return JSON.parse(localStorage.getItem('questions'));
+		},
+		goToAnswer(id) {
+
+			console.log('helo', id)
+			this.$router.push({ name: 'responder', params: { id } });
+		},
+	},
 	props: {
 		slideBox: {
-			type: String,
-		},
-		boxs: {
-			type: Array,
-		},
-		answers: {
 			type: String,
 		},
 		questions: {
@@ -85,7 +98,7 @@ export default {
 		profession: {
 			type: String,
 		},
-		professionName: {
+		answers: {
 			type: String,
 		},
 		slides: {
@@ -110,6 +123,7 @@ export default {
 
 	.questions-box
 		text-align left
+		cursor pointer
 
 	.answer-holder
 		padding 0 15px

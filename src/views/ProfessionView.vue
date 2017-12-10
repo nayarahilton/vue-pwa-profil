@@ -19,14 +19,14 @@
 		<div class="profession_features">
 			<slider-items class="features" :slides="features"/>
 		</div>
-		<div class="profession_info-slider">
+		<!-- <div class="profession_info-slider">
 			<h2 class="profession_info-slider_title">O que é Design Digital?</h2>
 			<div class="profession_faq">
 				<div>
-					<question-box :slides="whatIs" slideBox="true" answers="true" class="profession_info-slider_list"></question-box>
+					<question-box slideBox="true" answers="true" class="profession_info-slider_list"></question-box>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<div class="profession_info-slider">
 			<h2 class="profession_info-slider_title">Média Salarial por tempo de profissão</h2>
 			<salary-slider :salaries="salaries" />
@@ -34,7 +34,7 @@
 		<div class="profession_faq">
 			<h2 class="profession_faq_title">Principais Dúvidas</h2>
 			<div>
-				<question-box :slides="faq" slideBox="true" questions="true" answers="true" class="profession_info-slider_list"></question-box>
+				<question-box slideBox="true" questions="true" answers="true" class="profession_info-slider_list"></question-box>
 			</div>
 		</div>
 		<post-card resume="true" />
@@ -124,32 +124,6 @@ export default {
 					text: '@prisanttos',
 				},
 			],
-			faq: [
-				{
-					question: 'Entrar direto na faculdade de Design ou fazer um curso?',
-					answer: 'Lorem ipsum',
-				},
-				{
-					question: 'Entrar direto na faculdade de Design ou fazer um curso?',
-					answer: 'Lorem ipsum',
-				},
-				{
-					question: 'Entrar direto na faculdade de Design ou fazer um curso?',
-					answer: 'Lorem ipsum',
-				},
-			],
-			whatIs: [
-				{
-					answer: 'Lorem ipsum 2',
-				},
-				{
-					answer: 'Lorem ipsum 2',
-				},
-				{
-					answer: 'Lorem ipsum 2',
-				},
-			],
-
 			salaries: [
 				{
 					year: 'Até 1 ano',

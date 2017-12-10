@@ -23,16 +23,16 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(96));
 __export(__webpack_require__(97));
-__export(__webpack_require__(54));
+__export(__webpack_require__(98));
+__export(__webpack_require__(55));
 __export(__webpack_require__(180));
 __export(__webpack_require__(181));
 __export(__webpack_require__(182));
 __export(__webpack_require__(183));
-__export(__webpack_require__(98));
-__export(__webpack_require__(185));
 __export(__webpack_require__(99));
+__export(__webpack_require__(185));
+__export(__webpack_require__(100));
 __export(__webpack_require__(186));
 __export(__webpack_require__(187));
 __export(__webpack_require__(188));
@@ -1264,12 +1264,12 @@ var util_1 = __webpack_require__(0);
 var util_2 = __webpack_require__(2);
 var SortedMap_1 = __webpack_require__(35);
 var Node_1 = __webpack_require__(7);
-var snap_1 = __webpack_require__(76);
+var snap_1 = __webpack_require__(77);
 var PriorityIndex_1 = __webpack_require__(5);
-var KeyIndex_1 = __webpack_require__(23);
-var IndexMap_1 = __webpack_require__(71);
+var KeyIndex_1 = __webpack_require__(24);
+var IndexMap_1 = __webpack_require__(72);
 var LeafNode_1 = __webpack_require__(32);
-var comparators_1 = __webpack_require__(73);
+var comparators_1 = __webpack_require__(74);
 // TODO: For memory savings, don't store priorityNode_ if it's empty.
 var EMPTY_NODE;
 /**
@@ -1863,8 +1863,8 @@ function isNativeBlobDefined() {
 "use strict";
 
 
-var bind = __webpack_require__(104);
-var isBuffer = __webpack_require__(303);
+var bind = __webpack_require__(105);
+var isBuffer = __webpack_require__(304);
 
 /*global toString:true*/
 
@@ -13640,7 +13640,7 @@ Vue$3.compile = compileToFunctions;
 
 /* harmony default export */ __webpack_exports__["a"] = (Vue$3);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(29), __webpack_require__(111).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(30), __webpack_require__(111).setImmediate))
 
 /***/ }),
 /* 19 */
@@ -13793,539 +13793,6 @@ function clone(obj) {
 /* 21 */,
 /* 22 */,
 /* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var Index_1 = __webpack_require__(33);
-var Node_1 = __webpack_require__(7);
-var util_1 = __webpack_require__(2);
-var util_2 = __webpack_require__(0);
-var __EMPTY_NODE;
-var KeyIndex = /** @class */ (function (_super) {
-    __extends(KeyIndex, _super);
-    function KeyIndex() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Object.defineProperty(KeyIndex, "__EMPTY_NODE", {
-        get: function () {
-            return __EMPTY_NODE;
-        },
-        set: function (val) {
-            __EMPTY_NODE = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @inheritDoc
-     */
-    KeyIndex.prototype.compare = function (a, b) {
-        return util_1.nameCompare(a.name, b.name);
-    };
-    /**
-     * @inheritDoc
-     */
-    KeyIndex.prototype.isDefinedOn = function (node) {
-        // We could probably return true here (since every node has a key), but it's never called
-        // so just leaving unimplemented for now.
-        throw util_2.assertionError('KeyIndex.isDefinedOn not expected to be called.');
-    };
-    /**
-     * @inheritDoc
-     */
-    KeyIndex.prototype.indexedValueChanged = function (oldNode, newNode) {
-        return false; // The key for a node never changes.
-    };
-    /**
-     * @inheritDoc
-     */
-    KeyIndex.prototype.minPost = function () {
-        return Node_1.NamedNode.MIN;
-    };
-    /**
-     * @inheritDoc
-     */
-    KeyIndex.prototype.maxPost = function () {
-        // TODO: This should really be created once and cached in a static property, but
-        // NamedNode isn't defined yet, so I can't use it in a static.  Bleh.
-        return new Node_1.NamedNode(util_1.MAX_NAME, __EMPTY_NODE);
-    };
-    /**
-     * @param {*} indexValue
-     * @param {string} name
-     * @return {!NamedNode}
-     */
-    KeyIndex.prototype.makePost = function (indexValue, name) {
-        util_2.assert(typeof indexValue === 'string', 'KeyIndex indexValue must always be a string.');
-        // We just use empty node, but it'll never be compared, since our comparator only looks at name.
-        return new Node_1.NamedNode(indexValue, __EMPTY_NODE);
-    };
-    /**
-     * @return {!string} String representation for inclusion in a query spec
-     */
-    KeyIndex.prototype.toString = function () {
-        return '.key';
-    };
-    return KeyIndex;
-}(Index_1.Index));
-exports.KeyIndex = KeyIndex;
-exports.KEY_INDEX = new KeyIndex();
-
-//# sourceMappingURL=KeyIndex.js.map
-
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var ChildrenNode_1 = __webpack_require__(6);
-var LeafNode_1 = __webpack_require__(32);
-var Node_1 = __webpack_require__(7);
-var util_1 = __webpack_require__(0);
-var util_2 = __webpack_require__(0);
-var childSet_1 = __webpack_require__(72);
-var comparators_1 = __webpack_require__(73);
-var IndexMap_1 = __webpack_require__(71);
-var PriorityIndex_1 = __webpack_require__(5);
-var USE_HINZE = true;
-/**
- * Constructs a snapshot node representing the passed JSON and returns it.
- * @param {*} json JSON to create a node for.
- * @param {?string|?number=} priority Optional priority to use.  This will be ignored if the
- * passed JSON contains a .priority property.
- * @return {!Node}
- */
-function nodeFromJSON(json, priority) {
-    if (priority === void 0) { priority = null; }
-    if (json === null) {
-        return ChildrenNode_1.ChildrenNode.EMPTY_NODE;
-    }
-    if (typeof json === 'object' && '.priority' in json) {
-        priority = json['.priority'];
-    }
-    util_2.assert(priority === null ||
-        typeof priority === 'string' ||
-        typeof priority === 'number' ||
-        (typeof priority === 'object' && '.sv' in priority), 'Invalid priority type found: ' + typeof priority);
-    if (typeof json === 'object' && '.value' in json && json['.value'] !== null) {
-        json = json['.value'];
-    }
-    // Valid leaf nodes include non-objects or server-value wrapper objects
-    if (typeof json !== 'object' || '.sv' in json) {
-        var jsonLeaf = json;
-        return new LeafNode_1.LeafNode(jsonLeaf, nodeFromJSON(priority));
-    }
-    if (!(json instanceof Array) && USE_HINZE) {
-        var children_1 = [];
-        var childrenHavePriority_1 = false;
-        var hinzeJsonObj_1 = json;
-        util_1.forEach(hinzeJsonObj_1, function (key, child) {
-            if (typeof key !== 'string' || key.substring(0, 1) !== '.') {
-                // Ignore metadata nodes
-                var childNode = nodeFromJSON(hinzeJsonObj_1[key]);
-                if (!childNode.isEmpty()) {
-                    childrenHavePriority_1 =
-                        childrenHavePriority_1 || !childNode.getPriority().isEmpty();
-                    children_1.push(new Node_1.NamedNode(key, childNode));
-                }
-            }
-        });
-        if (children_1.length == 0) {
-            return ChildrenNode_1.ChildrenNode.EMPTY_NODE;
-        }
-        var childSet = childSet_1.buildChildSet(children_1, comparators_1.NAME_ONLY_COMPARATOR, function (namedNode) { return namedNode.name; }, comparators_1.NAME_COMPARATOR);
-        if (childrenHavePriority_1) {
-            var sortedChildSet = childSet_1.buildChildSet(children_1, PriorityIndex_1.PRIORITY_INDEX.getCompare());
-            return new ChildrenNode_1.ChildrenNode(childSet, nodeFromJSON(priority), new IndexMap_1.IndexMap({ '.priority': sortedChildSet }, { '.priority': PriorityIndex_1.PRIORITY_INDEX }));
-        }
-        else {
-            return new ChildrenNode_1.ChildrenNode(childSet, nodeFromJSON(priority), IndexMap_1.IndexMap.Default);
-        }
-    }
-    else {
-        var node_1 = ChildrenNode_1.ChildrenNode.EMPTY_NODE;
-        var jsonObj_1 = json;
-        util_1.forEach(jsonObj_1, function (key, childData) {
-            if (util_1.contains(jsonObj_1, key)) {
-                if (key.substring(0, 1) !== '.') {
-                    // ignore metadata nodes.
-                    var childNode = nodeFromJSON(childData);
-                    if (childNode.isLeafNode() || !childNode.isEmpty())
-                        node_1 = node_1.updateImmediateChild(key, childNode);
-                }
-            }
-        });
-        return node_1.updatePriority(nodeFromJSON(priority));
-    }
-}
-exports.nodeFromJSON = nodeFromJSON;
-PriorityIndex_1.setNodeFromJSON(nodeFromJSON);
-
-//# sourceMappingURL=nodeFromJSON.js.map
-
-
-/***/ }),
-/* 25 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StringFormat; });
-/* harmony export (immutable) */ __webpack_exports__["b"] = formatValidator;
-/* unused harmony export StringData */
-/* harmony export (immutable) */ __webpack_exports__["c"] = dataFromString;
-/* unused harmony export utf8Bytes_ */
-/* unused harmony export percentEncodedBytes_ */
-/* unused harmony export base64Bytes_ */
-/* unused harmony export dataURLBytes_ */
-/* unused harmony export dataURLContentType_ */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error__ = __webpack_require__(12);
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-var StringFormat = {
-    RAW: 'raw',
-    BASE64: 'base64',
-    BASE64URL: 'base64url',
-    DATA_URL: 'data_url'
-};
-function formatValidator(stringFormat) {
-    switch (stringFormat) {
-        case StringFormat.RAW:
-        case StringFormat.BASE64:
-        case StringFormat.BASE64URL:
-        case StringFormat.DATA_URL:
-            return;
-        default:
-            throw 'Expected one of the event types: [' +
-                StringFormat.RAW +
-                ', ' +
-                StringFormat.BASE64 +
-                ', ' +
-                StringFormat.BASE64URL +
-                ', ' +
-                StringFormat.DATA_URL +
-                '].';
-    }
-}
-/**
- * @struct
- */
-var StringData = /** @class */ (function () {
-    function StringData(data, opt_contentType) {
-        this.data = data;
-        this.contentType = opt_contentType || null;
-    }
-    return StringData;
-}());
-
-function dataFromString(format, string) {
-    switch (format) {
-        case StringFormat.RAW:
-            return new StringData(utf8Bytes_(string));
-        case StringFormat.BASE64:
-        case StringFormat.BASE64URL:
-            return new StringData(base64Bytes_(format, string));
-        case StringFormat.DATA_URL:
-            return new StringData(dataURLBytes_(string), dataURLContentType_(string));
-    }
-    // assert(false);
-    throw __WEBPACK_IMPORTED_MODULE_0__error__["c" /* unknown */]();
-}
-function utf8Bytes_(string) {
-    var b = [];
-    for (var i = 0; i < string.length; i++) {
-        var c = string.charCodeAt(i);
-        if (c <= 127) {
-            b.push(c);
-        }
-        else {
-            if (c <= 2047) {
-                b.push(192 | (c >> 6), 128 | (c & 63));
-            }
-            else {
-                if ((c & 64512) == 55296) {
-                    // The start of a surrogate pair.
-                    var valid = i < string.length - 1 &&
-                        (string.charCodeAt(i + 1) & 64512) == 56320;
-                    if (!valid) {
-                        // The second surrogate wasn't there.
-                        b.push(239, 191, 189);
-                    }
-                    else {
-                        var hi = c;
-                        var lo = string.charCodeAt(++i);
-                        c = 65536 | ((hi & 1023) << 10) | (lo & 1023);
-                        b.push(240 | (c >> 18), 128 | ((c >> 12) & 63), 128 | ((c >> 6) & 63), 128 | (c & 63));
-                    }
-                }
-                else {
-                    if ((c & 64512) == 56320) {
-                        // Invalid low surrogate.
-                        b.push(239, 191, 189);
-                    }
-                    else {
-                        b.push(224 | (c >> 12), 128 | ((c >> 6) & 63), 128 | (c & 63));
-                    }
-                }
-            }
-        }
-    }
-    return new Uint8Array(b);
-}
-function percentEncodedBytes_(string) {
-    var decoded;
-    try {
-        decoded = decodeURIComponent(string);
-    }
-    catch (e) {
-        throw __WEBPACK_IMPORTED_MODULE_0__error__["j" /* invalidFormat */](StringFormat.DATA_URL, 'Malformed data URL.');
-    }
-    return utf8Bytes_(decoded);
-}
-function base64Bytes_(format, string) {
-    switch (format) {
-        case StringFormat.BASE64: {
-            var hasMinus = string.indexOf('-') !== -1;
-            var hasUnder = string.indexOf('_') !== -1;
-            if (hasMinus || hasUnder) {
-                var invalidChar = hasMinus ? '-' : '_';
-                throw __WEBPACK_IMPORTED_MODULE_0__error__["j" /* invalidFormat */](format, "Invalid character '" +
-                    invalidChar +
-                    "' found: is it base64url encoded?");
-            }
-            break;
-        }
-        case StringFormat.BASE64URL: {
-            var hasPlus = string.indexOf('+') !== -1;
-            var hasSlash = string.indexOf('/') !== -1;
-            if (hasPlus || hasSlash) {
-                var invalidChar = hasPlus ? '+' : '/';
-                throw __WEBPACK_IMPORTED_MODULE_0__error__["j" /* invalidFormat */](format, "Invalid character '" + invalidChar + "' found: is it base64 encoded?");
-            }
-            string = string.replace(/-/g, '+').replace(/_/g, '/');
-            break;
-        }
-    }
-    var bytes;
-    try {
-        bytes = atob(string);
-    }
-    catch (e) {
-        throw __WEBPACK_IMPORTED_MODULE_0__error__["j" /* invalidFormat */](format, 'Invalid character found');
-    }
-    var array = new Uint8Array(bytes.length);
-    for (var i = 0; i < bytes.length; i++) {
-        array[i] = bytes.charCodeAt(i);
-    }
-    return array;
-}
-/**
- * @struct
- */
-var DataURLParts = /** @class */ (function () {
-    function DataURLParts(dataURL) {
-        this.base64 = false;
-        this.contentType = null;
-        var matches = dataURL.match(/^data:([^,]+)?,/);
-        if (matches === null) {
-            throw __WEBPACK_IMPORTED_MODULE_0__error__["j" /* invalidFormat */](StringFormat.DATA_URL, "Must be formatted 'data:[<mediatype>][;base64],<data>");
-        }
-        var middle = matches[1] || null;
-        if (middle != null) {
-            this.base64 = endsWith(middle, ';base64');
-            this.contentType = this.base64
-                ? middle.substring(0, middle.length - ';base64'.length)
-                : middle;
-        }
-        this.rest = dataURL.substring(dataURL.indexOf(',') + 1);
-    }
-    return DataURLParts;
-}());
-function dataURLBytes_(string) {
-    var parts = new DataURLParts(string);
-    if (parts.base64) {
-        return base64Bytes_(StringFormat.BASE64, parts.rest);
-    }
-    else {
-        return percentEncodedBytes_(parts.rest);
-    }
-}
-function dataURLContentType_(string) {
-    var parts = new DataURLParts(string);
-    return parts.contentType;
-}
-function endsWith(s, end) {
-    var longEnough = s.length >= end.length;
-    if (!longEnough) {
-        return false;
-    }
-    return s.substring(s.length - end.length) === end;
-}
-
-//# sourceMappingURL=string.js.map
-
-
-/***/ }),
-/* 26 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return TaskEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return InternalTaskState; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskState; });
-/* harmony export (immutable) */ __webpack_exports__["d"] = taskStateFromInternalTaskState;
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var TaskEvent = {
-    /** Triggered whenever the task changes or progress is updated. */
-    STATE_CHANGED: 'state_changed'
-};
-var InternalTaskState = {
-    RUNNING: 'running',
-    PAUSING: 'pausing',
-    PAUSED: 'paused',
-    SUCCESS: 'success',
-    CANCELING: 'canceling',
-    CANCELED: 'canceled',
-    ERROR: 'error'
-};
-var TaskState = {
-    /** The task is currently transferring data. */
-    RUNNING: 'running',
-    /** The task was paused by the user. */
-    PAUSED: 'paused',
-    /** The task completed successfully. */
-    SUCCESS: 'success',
-    /** The task was canceled. */
-    CANCELED: 'canceled',
-    /** The task failed with an error. */
-    ERROR: 'error'
-};
-function taskStateFromInternalTaskState(state) {
-    switch (state) {
-        case InternalTaskState.RUNNING:
-        case InternalTaskState.PAUSING:
-        case InternalTaskState.CANCELING:
-            return TaskState.RUNNING;
-        case InternalTaskState.PAUSED:
-            return TaskState.PAUSED;
-        case InternalTaskState.SUCCESS:
-            return TaskState.SUCCESS;
-        case InternalTaskState.CANCELED:
-            return TaskState.CANCELED;
-        case InternalTaskState.ERROR:
-            return TaskState.ERROR;
-        default:
-            // TODO(andysoto): assert(false);
-            return TaskState.ERROR;
-    }
-}
-
-//# sourceMappingURL=taskenums.js.map
-
-
-/***/ }),
-/* 27 */,
-/* 28 */,
-/* 29 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 30 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21154,6 +20621,539 @@ var index_esm = {
 
 
 /***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Index_1 = __webpack_require__(33);
+var Node_1 = __webpack_require__(7);
+var util_1 = __webpack_require__(2);
+var util_2 = __webpack_require__(0);
+var __EMPTY_NODE;
+var KeyIndex = /** @class */ (function (_super) {
+    __extends(KeyIndex, _super);
+    function KeyIndex() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Object.defineProperty(KeyIndex, "__EMPTY_NODE", {
+        get: function () {
+            return __EMPTY_NODE;
+        },
+        set: function (val) {
+            __EMPTY_NODE = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * @inheritDoc
+     */
+    KeyIndex.prototype.compare = function (a, b) {
+        return util_1.nameCompare(a.name, b.name);
+    };
+    /**
+     * @inheritDoc
+     */
+    KeyIndex.prototype.isDefinedOn = function (node) {
+        // We could probably return true here (since every node has a key), but it's never called
+        // so just leaving unimplemented for now.
+        throw util_2.assertionError('KeyIndex.isDefinedOn not expected to be called.');
+    };
+    /**
+     * @inheritDoc
+     */
+    KeyIndex.prototype.indexedValueChanged = function (oldNode, newNode) {
+        return false; // The key for a node never changes.
+    };
+    /**
+     * @inheritDoc
+     */
+    KeyIndex.prototype.minPost = function () {
+        return Node_1.NamedNode.MIN;
+    };
+    /**
+     * @inheritDoc
+     */
+    KeyIndex.prototype.maxPost = function () {
+        // TODO: This should really be created once and cached in a static property, but
+        // NamedNode isn't defined yet, so I can't use it in a static.  Bleh.
+        return new Node_1.NamedNode(util_1.MAX_NAME, __EMPTY_NODE);
+    };
+    /**
+     * @param {*} indexValue
+     * @param {string} name
+     * @return {!NamedNode}
+     */
+    KeyIndex.prototype.makePost = function (indexValue, name) {
+        util_2.assert(typeof indexValue === 'string', 'KeyIndex indexValue must always be a string.');
+        // We just use empty node, but it'll never be compared, since our comparator only looks at name.
+        return new Node_1.NamedNode(indexValue, __EMPTY_NODE);
+    };
+    /**
+     * @return {!string} String representation for inclusion in a query spec
+     */
+    KeyIndex.prototype.toString = function () {
+        return '.key';
+    };
+    return KeyIndex;
+}(Index_1.Index));
+exports.KeyIndex = KeyIndex;
+exports.KEY_INDEX = new KeyIndex();
+
+//# sourceMappingURL=KeyIndex.js.map
+
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var ChildrenNode_1 = __webpack_require__(6);
+var LeafNode_1 = __webpack_require__(32);
+var Node_1 = __webpack_require__(7);
+var util_1 = __webpack_require__(0);
+var util_2 = __webpack_require__(0);
+var childSet_1 = __webpack_require__(73);
+var comparators_1 = __webpack_require__(74);
+var IndexMap_1 = __webpack_require__(72);
+var PriorityIndex_1 = __webpack_require__(5);
+var USE_HINZE = true;
+/**
+ * Constructs a snapshot node representing the passed JSON and returns it.
+ * @param {*} json JSON to create a node for.
+ * @param {?string|?number=} priority Optional priority to use.  This will be ignored if the
+ * passed JSON contains a .priority property.
+ * @return {!Node}
+ */
+function nodeFromJSON(json, priority) {
+    if (priority === void 0) { priority = null; }
+    if (json === null) {
+        return ChildrenNode_1.ChildrenNode.EMPTY_NODE;
+    }
+    if (typeof json === 'object' && '.priority' in json) {
+        priority = json['.priority'];
+    }
+    util_2.assert(priority === null ||
+        typeof priority === 'string' ||
+        typeof priority === 'number' ||
+        (typeof priority === 'object' && '.sv' in priority), 'Invalid priority type found: ' + typeof priority);
+    if (typeof json === 'object' && '.value' in json && json['.value'] !== null) {
+        json = json['.value'];
+    }
+    // Valid leaf nodes include non-objects or server-value wrapper objects
+    if (typeof json !== 'object' || '.sv' in json) {
+        var jsonLeaf = json;
+        return new LeafNode_1.LeafNode(jsonLeaf, nodeFromJSON(priority));
+    }
+    if (!(json instanceof Array) && USE_HINZE) {
+        var children_1 = [];
+        var childrenHavePriority_1 = false;
+        var hinzeJsonObj_1 = json;
+        util_1.forEach(hinzeJsonObj_1, function (key, child) {
+            if (typeof key !== 'string' || key.substring(0, 1) !== '.') {
+                // Ignore metadata nodes
+                var childNode = nodeFromJSON(hinzeJsonObj_1[key]);
+                if (!childNode.isEmpty()) {
+                    childrenHavePriority_1 =
+                        childrenHavePriority_1 || !childNode.getPriority().isEmpty();
+                    children_1.push(new Node_1.NamedNode(key, childNode));
+                }
+            }
+        });
+        if (children_1.length == 0) {
+            return ChildrenNode_1.ChildrenNode.EMPTY_NODE;
+        }
+        var childSet = childSet_1.buildChildSet(children_1, comparators_1.NAME_ONLY_COMPARATOR, function (namedNode) { return namedNode.name; }, comparators_1.NAME_COMPARATOR);
+        if (childrenHavePriority_1) {
+            var sortedChildSet = childSet_1.buildChildSet(children_1, PriorityIndex_1.PRIORITY_INDEX.getCompare());
+            return new ChildrenNode_1.ChildrenNode(childSet, nodeFromJSON(priority), new IndexMap_1.IndexMap({ '.priority': sortedChildSet }, { '.priority': PriorityIndex_1.PRIORITY_INDEX }));
+        }
+        else {
+            return new ChildrenNode_1.ChildrenNode(childSet, nodeFromJSON(priority), IndexMap_1.IndexMap.Default);
+        }
+    }
+    else {
+        var node_1 = ChildrenNode_1.ChildrenNode.EMPTY_NODE;
+        var jsonObj_1 = json;
+        util_1.forEach(jsonObj_1, function (key, childData) {
+            if (util_1.contains(jsonObj_1, key)) {
+                if (key.substring(0, 1) !== '.') {
+                    // ignore metadata nodes.
+                    var childNode = nodeFromJSON(childData);
+                    if (childNode.isLeafNode() || !childNode.isEmpty())
+                        node_1 = node_1.updateImmediateChild(key, childNode);
+                }
+            }
+        });
+        return node_1.updatePriority(nodeFromJSON(priority));
+    }
+}
+exports.nodeFromJSON = nodeFromJSON;
+PriorityIndex_1.setNodeFromJSON(nodeFromJSON);
+
+//# sourceMappingURL=nodeFromJSON.js.map
+
+
+/***/ }),
+/* 26 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StringFormat; });
+/* harmony export (immutable) */ __webpack_exports__["b"] = formatValidator;
+/* unused harmony export StringData */
+/* harmony export (immutable) */ __webpack_exports__["c"] = dataFromString;
+/* unused harmony export utf8Bytes_ */
+/* unused harmony export percentEncodedBytes_ */
+/* unused harmony export base64Bytes_ */
+/* unused harmony export dataURLBytes_ */
+/* unused harmony export dataURLContentType_ */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error__ = __webpack_require__(12);
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+var StringFormat = {
+    RAW: 'raw',
+    BASE64: 'base64',
+    BASE64URL: 'base64url',
+    DATA_URL: 'data_url'
+};
+function formatValidator(stringFormat) {
+    switch (stringFormat) {
+        case StringFormat.RAW:
+        case StringFormat.BASE64:
+        case StringFormat.BASE64URL:
+        case StringFormat.DATA_URL:
+            return;
+        default:
+            throw 'Expected one of the event types: [' +
+                StringFormat.RAW +
+                ', ' +
+                StringFormat.BASE64 +
+                ', ' +
+                StringFormat.BASE64URL +
+                ', ' +
+                StringFormat.DATA_URL +
+                '].';
+    }
+}
+/**
+ * @struct
+ */
+var StringData = /** @class */ (function () {
+    function StringData(data, opt_contentType) {
+        this.data = data;
+        this.contentType = opt_contentType || null;
+    }
+    return StringData;
+}());
+
+function dataFromString(format, string) {
+    switch (format) {
+        case StringFormat.RAW:
+            return new StringData(utf8Bytes_(string));
+        case StringFormat.BASE64:
+        case StringFormat.BASE64URL:
+            return new StringData(base64Bytes_(format, string));
+        case StringFormat.DATA_URL:
+            return new StringData(dataURLBytes_(string), dataURLContentType_(string));
+    }
+    // assert(false);
+    throw __WEBPACK_IMPORTED_MODULE_0__error__["c" /* unknown */]();
+}
+function utf8Bytes_(string) {
+    var b = [];
+    for (var i = 0; i < string.length; i++) {
+        var c = string.charCodeAt(i);
+        if (c <= 127) {
+            b.push(c);
+        }
+        else {
+            if (c <= 2047) {
+                b.push(192 | (c >> 6), 128 | (c & 63));
+            }
+            else {
+                if ((c & 64512) == 55296) {
+                    // The start of a surrogate pair.
+                    var valid = i < string.length - 1 &&
+                        (string.charCodeAt(i + 1) & 64512) == 56320;
+                    if (!valid) {
+                        // The second surrogate wasn't there.
+                        b.push(239, 191, 189);
+                    }
+                    else {
+                        var hi = c;
+                        var lo = string.charCodeAt(++i);
+                        c = 65536 | ((hi & 1023) << 10) | (lo & 1023);
+                        b.push(240 | (c >> 18), 128 | ((c >> 12) & 63), 128 | ((c >> 6) & 63), 128 | (c & 63));
+                    }
+                }
+                else {
+                    if ((c & 64512) == 56320) {
+                        // Invalid low surrogate.
+                        b.push(239, 191, 189);
+                    }
+                    else {
+                        b.push(224 | (c >> 12), 128 | ((c >> 6) & 63), 128 | (c & 63));
+                    }
+                }
+            }
+        }
+    }
+    return new Uint8Array(b);
+}
+function percentEncodedBytes_(string) {
+    var decoded;
+    try {
+        decoded = decodeURIComponent(string);
+    }
+    catch (e) {
+        throw __WEBPACK_IMPORTED_MODULE_0__error__["j" /* invalidFormat */](StringFormat.DATA_URL, 'Malformed data URL.');
+    }
+    return utf8Bytes_(decoded);
+}
+function base64Bytes_(format, string) {
+    switch (format) {
+        case StringFormat.BASE64: {
+            var hasMinus = string.indexOf('-') !== -1;
+            var hasUnder = string.indexOf('_') !== -1;
+            if (hasMinus || hasUnder) {
+                var invalidChar = hasMinus ? '-' : '_';
+                throw __WEBPACK_IMPORTED_MODULE_0__error__["j" /* invalidFormat */](format, "Invalid character '" +
+                    invalidChar +
+                    "' found: is it base64url encoded?");
+            }
+            break;
+        }
+        case StringFormat.BASE64URL: {
+            var hasPlus = string.indexOf('+') !== -1;
+            var hasSlash = string.indexOf('/') !== -1;
+            if (hasPlus || hasSlash) {
+                var invalidChar = hasPlus ? '+' : '/';
+                throw __WEBPACK_IMPORTED_MODULE_0__error__["j" /* invalidFormat */](format, "Invalid character '" + invalidChar + "' found: is it base64 encoded?");
+            }
+            string = string.replace(/-/g, '+').replace(/_/g, '/');
+            break;
+        }
+    }
+    var bytes;
+    try {
+        bytes = atob(string);
+    }
+    catch (e) {
+        throw __WEBPACK_IMPORTED_MODULE_0__error__["j" /* invalidFormat */](format, 'Invalid character found');
+    }
+    var array = new Uint8Array(bytes.length);
+    for (var i = 0; i < bytes.length; i++) {
+        array[i] = bytes.charCodeAt(i);
+    }
+    return array;
+}
+/**
+ * @struct
+ */
+var DataURLParts = /** @class */ (function () {
+    function DataURLParts(dataURL) {
+        this.base64 = false;
+        this.contentType = null;
+        var matches = dataURL.match(/^data:([^,]+)?,/);
+        if (matches === null) {
+            throw __WEBPACK_IMPORTED_MODULE_0__error__["j" /* invalidFormat */](StringFormat.DATA_URL, "Must be formatted 'data:[<mediatype>][;base64],<data>");
+        }
+        var middle = matches[1] || null;
+        if (middle != null) {
+            this.base64 = endsWith(middle, ';base64');
+            this.contentType = this.base64
+                ? middle.substring(0, middle.length - ';base64'.length)
+                : middle;
+        }
+        this.rest = dataURL.substring(dataURL.indexOf(',') + 1);
+    }
+    return DataURLParts;
+}());
+function dataURLBytes_(string) {
+    var parts = new DataURLParts(string);
+    if (parts.base64) {
+        return base64Bytes_(StringFormat.BASE64, parts.rest);
+    }
+    else {
+        return percentEncodedBytes_(parts.rest);
+    }
+}
+function dataURLContentType_(string) {
+    var parts = new DataURLParts(string);
+    return parts.contentType;
+}
+function endsWith(s, end) {
+    var longEnough = s.length >= end.length;
+    if (!longEnough) {
+        return false;
+    }
+    return s.substring(s.length - end.length) === end;
+}
+
+//# sourceMappingURL=string.js.map
+
+
+/***/ }),
+/* 27 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return TaskEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return InternalTaskState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskState; });
+/* harmony export (immutable) */ __webpack_exports__["d"] = taskStateFromInternalTaskState;
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var TaskEvent = {
+    /** Triggered whenever the task changes or progress is updated. */
+    STATE_CHANGED: 'state_changed'
+};
+var InternalTaskState = {
+    RUNNING: 'running',
+    PAUSING: 'pausing',
+    PAUSED: 'paused',
+    SUCCESS: 'success',
+    CANCELING: 'canceling',
+    CANCELED: 'canceled',
+    ERROR: 'error'
+};
+var TaskState = {
+    /** The task is currently transferring data. */
+    RUNNING: 'running',
+    /** The task was paused by the user. */
+    PAUSED: 'paused',
+    /** The task completed successfully. */
+    SUCCESS: 'success',
+    /** The task was canceled. */
+    CANCELED: 'canceled',
+    /** The task failed with an error. */
+    ERROR: 'error'
+};
+function taskStateFromInternalTaskState(state) {
+    switch (state) {
+        case InternalTaskState.RUNNING:
+        case InternalTaskState.PAUSING:
+        case InternalTaskState.CANCELING:
+            return TaskState.RUNNING;
+        case InternalTaskState.PAUSED:
+            return TaskState.PAUSED;
+        case InternalTaskState.SUCCESS:
+            return TaskState.SUCCESS;
+        case InternalTaskState.CANCELED:
+            return TaskState.CANCELED;
+        case InternalTaskState.ERROR:
+            return TaskState.ERROR;
+        default:
+            // TODO(andysoto): assert(false);
+            return TaskState.ERROR;
+    }
+}
+
+//# sourceMappingURL=taskenums.js.map
+
+
+/***/ }),
+/* 28 */,
+/* 29 */,
+/* 30 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
 /* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21175,23 +21175,23 @@ var index_esm = {
  * limitations under the License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var ServerValues_1 = __webpack_require__(80);
-var nodeFromJSON_1 = __webpack_require__(24);
+var ServerValues_1 = __webpack_require__(81);
+var nodeFromJSON_1 = __webpack_require__(25);
 var Path_1 = __webpack_require__(3);
-var SparseSnapshotTree_1 = __webpack_require__(68);
+var SparseSnapshotTree_1 = __webpack_require__(69);
 var SyncTree_1 = __webpack_require__(129);
 var SnapshotHolder_1 = __webpack_require__(128);
 var util_1 = __webpack_require__(0);
 var util_2 = __webpack_require__(2);
 var util_3 = __webpack_require__(0);
 var AuthTokenProvider_1 = __webpack_require__(124);
-var StatsManager_1 = __webpack_require__(47);
+var StatsManager_1 = __webpack_require__(48);
 var StatsReporter_1 = __webpack_require__(135);
-var StatsListener_1 = __webpack_require__(77);
+var StatsListener_1 = __webpack_require__(78);
 var EventQueue_1 = __webpack_require__(146);
-var PersistentConnection_1 = __webpack_require__(65);
+var PersistentConnection_1 = __webpack_require__(66);
 var ReadonlyRestClient_1 = __webpack_require__(126);
-var Database_1 = __webpack_require__(62);
+var Database_1 = __webpack_require__(63);
 var INTERRUPT_REASON = 'repo_interrupt';
 /**
  * A connection to a single data repository.
@@ -21712,7 +21712,7 @@ exports.Repo = Repo;
 Object.defineProperty(exports, "__esModule", { value: true });
 var util_1 = __webpack_require__(0);
 var util_2 = __webpack_require__(2);
-var snap_1 = __webpack_require__(76);
+var snap_1 = __webpack_require__(77);
 var __childrenNodeConstructor;
 /**
  * LeafNode is a class for storing leaf nodes in a DataSnapshot.  It
@@ -23185,14 +23185,15 @@ var Location = /** @class */ (function () {
 
 /***/ }),
 /* 41 */,
-/* 42 */
+/* 42 */,
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(191);
 
 /***/ }),
-/* 43 */,
-/* 44 */
+/* 44 */,
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23372,7 +23373,7 @@ exports.DataSnapshot = DataSnapshot;
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23403,18 +23404,18 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var onDisconnect_1 = __webpack_require__(64);
+var onDisconnect_1 = __webpack_require__(65);
 var TransactionResult_1 = __webpack_require__(121);
 var util_1 = __webpack_require__(2);
 var NextPushId_1 = __webpack_require__(138);
-var Query_1 = __webpack_require__(63);
+var Query_1 = __webpack_require__(64);
 var Repo_1 = __webpack_require__(31);
 var Path_1 = __webpack_require__(3);
 var QueryParams_1 = __webpack_require__(148);
 var validation_1 = __webpack_require__(15);
 var util_2 = __webpack_require__(0);
 var util_3 = __webpack_require__(0);
-var SyncPoint_1 = __webpack_require__(69);
+var SyncPoint_1 = __webpack_require__(70);
 var Reference = /** @class */ (function (_super) {
     __extends(Reference, _super);
     /**
@@ -23687,7 +23688,7 @@ SyncPoint_1.SyncPoint.__referenceConstructor = Reference;
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23711,7 +23712,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var util_1 = __webpack_require__(0);
 var Repo_1 = __webpack_require__(31);
 var util_2 = __webpack_require__(2);
-var parser_1 = __webpack_require__(81);
+var parser_1 = __webpack_require__(82);
 var validation_1 = __webpack_require__(15);
 __webpack_require__(127);
 /** @const {string} */
@@ -23827,7 +23828,7 @@ exports.RepoManager = RepoManager;
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23876,7 +23877,7 @@ exports.StatsManager = StatsManager;
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24240,7 +24241,7 @@ exports.ImmutableTree = ImmutableTree;
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24380,7 +24381,7 @@ exports.IndexedFilter = IndexedFilter;
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24394,7 +24395,7 @@ exports.IndexedFilter = IndexedFilter;
 /* harmony export (immutable) */ __webpack_exports__["f"] = looseObjectSpec;
 /* harmony export (immutable) */ __webpack_exports__["e"] = nullFunctionSpec;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__metadata__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__metadata__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__type__ = __webpack_require__(8);
 /**
  * Copyright 2017 Google Inc.
@@ -24534,7 +24535,7 @@ function nullFunctionSpec(opt_optional) {
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24586,7 +24587,7 @@ function remove(array, elem) {
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24601,9 +24602,9 @@ function remove(array, elem) {
 /* harmony export (immutable) */ __webpack_exports__["d"] = metadataValidator;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__json__ = __webpack_require__(170);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__location__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__path__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__path__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__type__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__url__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__url__ = __webpack_require__(54);
 /**
  * Copyright 2017 Google Inc.
  *
@@ -24782,7 +24783,7 @@ function metadataValidator(p) {
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24837,7 +24838,7 @@ function makeQueryString(params) {
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24880,7 +24881,7 @@ exports.CONSTANTS = {
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24903,10 +24904,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(100);
+    adapter = __webpack_require__(101);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(100);
+    adapter = __webpack_require__(101);
   }
   return adapter;
 }
@@ -24977,7365 +24978,11 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(57)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(59)))
 
 /***/ }),
-/* 56 */,
-/* 57 */
-/***/ (function(module, exports) {
-
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
-
-/***/ }),
+/* 57 */,
 /* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-!function(e,t){ true?module.exports=t(__webpack_require__(307),__webpack_require__(304)):"function"==typeof define&&define.amd?define(["swiper","object-assign"],t):"object"==typeof exports?exports.VueAwesomeSwiper=t(require("swiper"),require("object-assign")):e.VueAwesomeSwiper=t(e.swiper,e["object-assign"])}(this,function(e,t){return function(e){function t(s){if(n[s])return n[s].exports;var i=n[s]={i:s,l:!1,exports:{}};return e[s].call(i.exports,i,i.exports,t),i.l=!0,i.exports}var n={};return t.m=e,t.c=n,t.i=function(e){return e},t.d=function(e,n,s){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:s})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="/",t(t.s=4)}([function(t,n){t.exports=e},function(e,t){e.exports=function(e,t,n,s,i,r){var o,a=e=e||{},u=typeof e.default;"object"!==u&&"function"!==u||(o=e,a=e.default);var p="function"==typeof a?a.options:a;t&&(p.render=t.render,p.staticRenderFns=t.staticRenderFns,p._compiled=!0),n&&(p.functional=!0),i&&(p._scopeId=i);var l;if(r?(l=function(e){e=e||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext,e||"undefined"==typeof __VUE_SSR_CONTEXT__||(e=__VUE_SSR_CONTEXT__),s&&s.call(this,e),e&&e._registeredComponents&&e._registeredComponents.add(r)},p._ssrRegister=l):s&&(l=s),l){var d=p.functional,c=d?p.render:p.beforeCreate;d?(p._injectStyles=l,p.render=function(e,t){return l.call(t),c(e,t)}):p.beforeCreate=c?[].concat(c,l):[l]}return{esModule:o,exports:a,options:p}}},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var s=n(5),i=n.n(s),r=n(8),o=n(1),a=o(i.a,r.a,!1,null,null,null);t.default=a.exports},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var s=n(6),i=n.n(s),r=n(7),o=n(1),a=o(i.a,r.a,!1,null,null,null);t.default=a.exports},function(e,t,n){"use strict";function s(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0}),t.install=t.swiperSlide=t.swiper=t.Swiper=void 0;var i=n(0),r=s(i),o=n(2),a=s(o),u=n(3),p=s(u),l=window.Swiper||r.default,d=p.default,c=a.default,f=function(e,t){t&&(p.default.props.globalOptions.default=function(){return t}),e.component(p.default.name,p.default),e.component(a.default.name,a.default)},h={Swiper:l,swiper:d,swiperSlide:c,install:f};t.default=h,t.Swiper=l,t.swiper=d,t.swiperSlide=c,t.install=f},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default={name:"swiper-slide",data:function(){return{slideClass:"swiper-slide"}},ready:function(){this.update()},mounted:function(){this.update(),this.$parent&&this.$parent.options&&this.$parent.options.slideClass&&(this.slideClass=this.$parent.options.slideClass)},updated:function(){this.update()},attached:function(){this.update()},methods:{update:function(){this.$parent&&this.$parent.swiper&&this.$parent.swiper.update&&(this.$parent.swiper.update(!0),this.$parent.options.loop&&this.$parent.swiper.reLoop())}}}},function(e,t,n){"use strict";function s(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var i=n(0),r=s(i),o=n(9),a=s(o),u=window.Swiper||r.default;t.default={name:"swiper",props:{options:{type:Object,default:function(){return{}}},globalOptions:{type:Object,required:!1,default:function(){return{}}}},methods:{update:function(){this.swiper&&this.swiper.update&&this.swiper.update()},mountInstance:function(){var e=(0,a.default)({},this.globalOptions,this.options);this.swiper=new u(this.$el,e)}},data:function(){return{classes:{wrapperClass:"swiper-wrapper"}}},ready:function(){this.swiper||this.mountInstance()},mounted:function(){if(!this.swiper){var e=!1;for(var t in this.classes)this.classes.hasOwnProperty(t)&&this.options[t]&&(e=!0,this.classes[t]=this.options[t]);e?this.$nextTick(this.mountInstance):this.mountInstance()}},activated:function(){this.update()},updated:function(){this.update()},beforeDestroy:function(){this.swiper&&(this.swiper.destroy&&this.swiper.destroy(),delete this.swiper)}}},function(e,t,n){"use strict";var s=function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{staticClass:"swiper-container"},[e._t("parallax-bg"),e._v(" "),n("div",{class:e.classes.wrapperClass},[e._t("default")],2),e._v(" "),e._t("pagination"),e._v(" "),e._t("button-prev"),e._v(" "),e._t("button-next"),e._v(" "),e._t("scrollbar")],2)},i=[],r={render:s,staticRenderFns:i};t.a=r},function(e,t,n){"use strict";var s=function(){var e=this,t=e.$createElement;return(e._self._c||t)("div",{class:e.slideClass},[e._t("default")],2)},i=[],r={render:s,staticRenderFns:i};t.a=r},function(e,n){e.exports=t}])});
-
-/***/ }),
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var util_1 = __webpack_require__(2);
-var parser_1 = __webpack_require__(81);
-var Path_1 = __webpack_require__(3);
-var Reference_1 = __webpack_require__(45);
-var Repo_1 = __webpack_require__(31);
-var RepoManager_1 = __webpack_require__(46);
-var util_2 = __webpack_require__(0);
-var validation_1 = __webpack_require__(15);
-/**
- * Class representing a firebase database.
- * @implements {FirebaseService}
- */
-var Database = /** @class */ (function () {
-    /**
-     * The constructor should not be called by users of our public API.
-     * @param {!Repo} repo_
-     */
-    function Database(repo_) {
-        this.repo_ = repo_;
-        if (!(repo_ instanceof Repo_1.Repo)) {
-            util_1.fatal("Don't call new Database() directly - please use firebase.database().");
-        }
-        /** @type {Reference} */
-        this.root_ = new Reference_1.Reference(repo_, Path_1.Path.Empty);
-        this.INTERNAL = new DatabaseInternals(this);
-    }
-    Object.defineProperty(Database.prototype, "app", {
-        get: function () {
-            return this.repo_.app;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * Returns a reference to the root or the path specified in opt_pathString.
-     * @param {string=} pathString
-     * @return {!Reference} Firebase reference.
-     */
-    Database.prototype.ref = function (pathString) {
-        this.checkDeleted_('ref');
-        util_2.validateArgCount('database.ref', 0, 1, arguments.length);
-        return pathString !== undefined ? this.root_.child(pathString) : this.root_;
-    };
-    /**
-     * Returns a reference to the root or the path specified in url.
-     * We throw a exception if the url is not in the same domain as the
-     * current repo.
-     * @param {string} url
-     * @return {!Reference} Firebase reference.
-     */
-    Database.prototype.refFromURL = function (url) {
-        /** @const {string} */
-        var apiName = 'database.refFromURL';
-        this.checkDeleted_(apiName);
-        util_2.validateArgCount(apiName, 1, 1, arguments.length);
-        var parsedURL = parser_1.parseRepoInfo(url);
-        validation_1.validateUrl(apiName, 1, parsedURL);
-        var repoInfo = parsedURL.repoInfo;
-        if (repoInfo.host !== this.repo_.repoInfo_.host) {
-            util_1.fatal(apiName +
-                ': Host name does not match the current database: ' +
-                '(found ' +
-                repoInfo.host +
-                ' but expected ' +
-                this.repo_.repoInfo_.host +
-                ')');
-        }
-        return this.ref(parsedURL.path.toString());
-    };
-    /**
-     * @param {string} apiName
-     */
-    Database.prototype.checkDeleted_ = function (apiName) {
-        if (this.repo_ === null) {
-            util_1.fatal('Cannot call ' + apiName + ' on a deleted database.');
-        }
-    };
-    // Make individual repo go offline.
-    Database.prototype.goOffline = function () {
-        util_2.validateArgCount('database.goOffline', 0, 0, arguments.length);
-        this.checkDeleted_('goOffline');
-        this.repo_.interrupt();
-    };
-    Database.prototype.goOnline = function () {
-        util_2.validateArgCount('database.goOnline', 0, 0, arguments.length);
-        this.checkDeleted_('goOnline');
-        this.repo_.resume();
-    };
-    Database.ServerValue = {
-        TIMESTAMP: {
-            '.sv': 'timestamp'
-        }
-    };
-    return Database;
-}());
-exports.Database = Database;
-var DatabaseInternals = /** @class */ (function () {
-    /** @param {!Database} database */
-    function DatabaseInternals(database) {
-        this.database = database;
-    }
-    /** @return {Promise<void>} */
-    DatabaseInternals.prototype.delete = function () {
-        this.database.checkDeleted_('delete');
-        RepoManager_1.RepoManager.getInstance().deleteRepo(this.database.repo_);
-        this.database.repo_ = null;
-        this.database.root_ = null;
-        this.database.INTERNAL = null;
-        this.database = null;
-        return Promise.resolve();
-    };
-    return DatabaseInternals;
-}());
-exports.DatabaseInternals = DatabaseInternals;
-
-//# sourceMappingURL=Database.js.map
-
-
-/***/ }),
-/* 63 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var util_1 = __webpack_require__(0);
-var KeyIndex_1 = __webpack_require__(23);
-var PriorityIndex_1 = __webpack_require__(5);
-var ValueIndex_1 = __webpack_require__(75);
-var PathIndex_1 = __webpack_require__(74);
-var util_2 = __webpack_require__(2);
-var Path_1 = __webpack_require__(3);
-var validation_1 = __webpack_require__(15);
-var util_3 = __webpack_require__(0);
-var EventRegistration_1 = __webpack_require__(147);
-var util_4 = __webpack_require__(0);
-var __referenceConstructor;
-/**
- * A Query represents a filter to be applied to a firebase location.  This object purely represents the
- * query expression (and exposes our public API to build the query).  The actual query logic is in ViewBase.js.
- *
- * Since every Firebase reference is a query, Firebase inherits from this object.
- */
-var Query = /** @class */ (function () {
-    function Query(repo, path, queryParams_, orderByCalled_) {
-        this.repo = repo;
-        this.path = path;
-        this.queryParams_ = queryParams_;
-        this.orderByCalled_ = orderByCalled_;
-    }
-    Object.defineProperty(Query, "__referenceConstructor", {
-        get: function () {
-            util_1.assert(__referenceConstructor, 'Reference.ts has not been loaded');
-            return __referenceConstructor;
-        },
-        set: function (val) {
-            __referenceConstructor = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * Validates start/end values for queries.
-     * @param {!QueryParams} params
-     * @private
-     */
-    Query.validateQueryEndpoints_ = function (params) {
-        var startNode = null;
-        var endNode = null;
-        if (params.hasStart()) {
-            startNode = params.getIndexStartValue();
-        }
-        if (params.hasEnd()) {
-            endNode = params.getIndexEndValue();
-        }
-        if (params.getIndex() === KeyIndex_1.KEY_INDEX) {
-            var tooManyArgsError = 'Query: When ordering by key, you may only pass one argument to ' +
-                'startAt(), endAt(), or equalTo().';
-            var wrongArgTypeError = 'Query: When ordering by key, the argument passed to startAt(), endAt(),' +
-                'or equalTo() must be a string.';
-            if (params.hasStart()) {
-                var startName = params.getIndexStartName();
-                if (startName != util_2.MIN_NAME) {
-                    throw new Error(tooManyArgsError);
-                }
-                else if (typeof startNode !== 'string') {
-                    throw new Error(wrongArgTypeError);
-                }
-            }
-            if (params.hasEnd()) {
-                var endName = params.getIndexEndName();
-                if (endName != util_2.MAX_NAME) {
-                    throw new Error(tooManyArgsError);
-                }
-                else if (typeof endNode !== 'string') {
-                    throw new Error(wrongArgTypeError);
-                }
-            }
-        }
-        else if (params.getIndex() === PriorityIndex_1.PRIORITY_INDEX) {
-            if ((startNode != null && !validation_1.isValidPriority(startNode)) ||
-                (endNode != null && !validation_1.isValidPriority(endNode))) {
-                throw new Error('Query: When ordering by priority, the first argument passed to startAt(), ' +
-                    'endAt(), or equalTo() must be a valid priority value (null, a number, or a string).');
-            }
-        }
-        else {
-            util_1.assert(params.getIndex() instanceof PathIndex_1.PathIndex ||
-                params.getIndex() === ValueIndex_1.VALUE_INDEX, 'unknown index type.');
-            if ((startNode != null && typeof startNode === 'object') ||
-                (endNode != null && typeof endNode === 'object')) {
-                throw new Error('Query: First argument passed to startAt(), endAt(), or equalTo() cannot be ' +
-                    'an object.');
-            }
-        }
-    };
-    /**
-     * Validates that limit* has been called with the correct combination of parameters
-     * @param {!QueryParams} params
-     * @private
-     */
-    Query.validateLimit_ = function (params) {
-        if (params.hasStart() &&
-            params.hasEnd() &&
-            params.hasLimit() &&
-            !params.hasAnchoredLimit()) {
-            throw new Error("Query: Can't combine startAt(), endAt(), and limit(). Use limitToFirst() or limitToLast() instead.");
-        }
-    };
-    /**
-     * Validates that no other order by call has been made
-     * @param {!string} fnName
-     * @private
-     */
-    Query.prototype.validateNoPreviousOrderByCall_ = function (fnName) {
-        if (this.orderByCalled_ === true) {
-            throw new Error(fnName + ": You can't combine multiple orderBy calls.");
-        }
-    };
-    /**
-     * @return {!QueryParams}
-     */
-    Query.prototype.getQueryParams = function () {
-        return this.queryParams_;
-    };
-    /**
-     * @return {!Reference}
-     */
-    Query.prototype.getRef = function () {
-        util_3.validateArgCount('Query.ref', 0, 0, arguments.length);
-        // This is a slight hack. We cannot goog.require('fb.api.Firebase'), since Firebase requires fb.api.Query.
-        // However, we will always export 'Firebase' to the global namespace, so it's guaranteed to exist by the time this
-        // method gets called.
-        return new Query.__referenceConstructor(this.repo, this.path);
-    };
-    /**
-     * @param {!string} eventType
-     * @param {!function(DataSnapshot, string=)} callback
-     * @param {(function(Error)|Object)=} cancelCallbackOrContext
-     * @param {Object=} context
-     * @return {!function(DataSnapshot, string=)}
-     */
-    Query.prototype.on = function (eventType, callback, cancelCallbackOrContext, context) {
-        util_3.validateArgCount('Query.on', 2, 4, arguments.length);
-        validation_1.validateEventType('Query.on', 1, eventType, false);
-        util_3.validateCallback('Query.on', 2, callback, false);
-        var ret = Query.getCancelAndContextArgs_('Query.on', cancelCallbackOrContext, context);
-        if (eventType === 'value') {
-            this.onValueEvent(callback, ret.cancel, ret.context);
-        }
-        else {
-            var callbacks = {};
-            callbacks[eventType] = callback;
-            this.onChildEvent(callbacks, ret.cancel, ret.context);
-        }
-        return callback;
-    };
-    /**
-     * @param {!function(!DataSnapshot)} callback
-     * @param {?function(Error)} cancelCallback
-     * @param {?Object} context
-     * @protected
-     */
-    Query.prototype.onValueEvent = function (callback, cancelCallback, context) {
-        var container = new EventRegistration_1.ValueEventRegistration(callback, cancelCallback || null, context || null);
-        this.repo.addEventCallbackForQuery(this, container);
-    };
-    /**
-     * @param {!Object.<string, !function(!DataSnapshot, ?string)>} callbacks
-     * @param {?function(Error)} cancelCallback
-     * @param {?Object} context
-     * @protected
-     */
-    Query.prototype.onChildEvent = function (callbacks, cancelCallback, context) {
-        var container = new EventRegistration_1.ChildEventRegistration(callbacks, cancelCallback, context);
-        this.repo.addEventCallbackForQuery(this, container);
-    };
-    /**
-     * @param {string=} eventType
-     * @param {(function(!DataSnapshot, ?string=))=} callback
-     * @param {Object=} context
-     */
-    Query.prototype.off = function (eventType, callback, context) {
-        util_3.validateArgCount('Query.off', 0, 3, arguments.length);
-        validation_1.validateEventType('Query.off', 1, eventType, true);
-        util_3.validateCallback('Query.off', 2, callback, true);
-        util_3.validateContextObject('Query.off', 3, context, true);
-        var container = null;
-        var callbacks = null;
-        if (eventType === 'value') {
-            var valueCallback = callback || null;
-            container = new EventRegistration_1.ValueEventRegistration(valueCallback, null, context || null);
-        }
-        else if (eventType) {
-            if (callback) {
-                callbacks = {};
-                callbacks[eventType] = callback;
-            }
-            container = new EventRegistration_1.ChildEventRegistration(callbacks, null, context || null);
-        }
-        this.repo.removeEventCallbackForQuery(this, container);
-    };
-    /**
-     * Attaches a listener, waits for the first event, and then removes the listener
-     * @param {!string} eventType
-     * @param {!function(!DataSnapshot, string=)} userCallback
-     * @param cancelOrContext
-     * @param context
-     * @return {!firebase.Promise}
-     */
-    Query.prototype.once = function (eventType, userCallback, cancelOrContext, context) {
-        var _this = this;
-        util_3.validateArgCount('Query.once', 1, 4, arguments.length);
-        validation_1.validateEventType('Query.once', 1, eventType, false);
-        util_3.validateCallback('Query.once', 2, userCallback, true);
-        var ret = Query.getCancelAndContextArgs_('Query.once', cancelOrContext, context);
-        // TODO: Implement this more efficiently (in particular, use 'get' wire protocol for 'value' event)
-        // TODO: consider actually wiring the callbacks into the promise. We cannot do this without a breaking change
-        // because the API currently expects callbacks will be called synchronously if the data is cached, but this is
-        // against the Promise specification.
-        var firstCall = true;
-        var deferred = new util_4.Deferred();
-        // A dummy error handler in case a user wasn't expecting promises
-        deferred.promise.catch(function () { });
-        var onceCallback = function (snapshot) {
-            // NOTE: Even though we unsubscribe, we may get called multiple times if a single action (e.g. set() with JSON)
-            // triggers multiple events (e.g. child_added or child_changed).
-            if (firstCall) {
-                firstCall = false;
-                _this.off(eventType, onceCallback);
-                if (userCallback) {
-                    userCallback.bind(ret.context)(snapshot);
-                }
-                deferred.resolve(snapshot);
-            }
-        };
-        this.on(eventType, onceCallback, 
-        /*cancel=*/ function (err) {
-            _this.off(eventType, onceCallback);
-            if (ret.cancel)
-                ret.cancel.bind(ret.context)(err);
-            deferred.reject(err);
-        });
-        return deferred.promise;
-    };
-    /**
-     * Set a limit and anchor it to the start of the window.
-     * @param {!number} limit
-     * @return {!Query}
-     */
-    Query.prototype.limitToFirst = function (limit) {
-        util_3.validateArgCount('Query.limitToFirst', 1, 1, arguments.length);
-        if (typeof limit !== 'number' ||
-            Math.floor(limit) !== limit ||
-            limit <= 0) {
-            throw new Error('Query.limitToFirst: First argument must be a positive integer.');
-        }
-        if (this.queryParams_.hasLimit()) {
-            throw new Error('Query.limitToFirst: Limit was already set (by another call to limit, ' +
-                'limitToFirst, or limitToLast).');
-        }
-        return new Query(this.repo, this.path, this.queryParams_.limitToFirst(limit), this.orderByCalled_);
-    };
-    /**
-     * Set a limit and anchor it to the end of the window.
-     * @param {!number} limit
-     * @return {!Query}
-     */
-    Query.prototype.limitToLast = function (limit) {
-        util_3.validateArgCount('Query.limitToLast', 1, 1, arguments.length);
-        if (typeof limit !== 'number' ||
-            Math.floor(limit) !== limit ||
-            limit <= 0) {
-            throw new Error('Query.limitToLast: First argument must be a positive integer.');
-        }
-        if (this.queryParams_.hasLimit()) {
-            throw new Error('Query.limitToLast: Limit was already set (by another call to limit, ' +
-                'limitToFirst, or limitToLast).');
-        }
-        return new Query(this.repo, this.path, this.queryParams_.limitToLast(limit), this.orderByCalled_);
-    };
-    /**
-     * Given a child path, return a new query ordered by the specified grandchild path.
-     * @param {!string} path
-     * @return {!Query}
-     */
-    Query.prototype.orderByChild = function (path) {
-        util_3.validateArgCount('Query.orderByChild', 1, 1, arguments.length);
-        if (path === '$key') {
-            throw new Error('Query.orderByChild: "$key" is invalid.  Use Query.orderByKey() instead.');
-        }
-        else if (path === '$priority') {
-            throw new Error('Query.orderByChild: "$priority" is invalid.  Use Query.orderByPriority() instead.');
-        }
-        else if (path === '$value') {
-            throw new Error('Query.orderByChild: "$value" is invalid.  Use Query.orderByValue() instead.');
-        }
-        validation_1.validatePathString('Query.orderByChild', 1, path, false);
-        this.validateNoPreviousOrderByCall_('Query.orderByChild');
-        var parsedPath = new Path_1.Path(path);
-        if (parsedPath.isEmpty()) {
-            throw new Error('Query.orderByChild: cannot pass in empty path.  Use Query.orderByValue() instead.');
-        }
-        var index = new PathIndex_1.PathIndex(parsedPath);
-        var newParams = this.queryParams_.orderBy(index);
-        Query.validateQueryEndpoints_(newParams);
-        return new Query(this.repo, this.path, newParams, /*orderByCalled=*/ true);
-    };
-    /**
-     * Return a new query ordered by the KeyIndex
-     * @return {!Query}
-     */
-    Query.prototype.orderByKey = function () {
-        util_3.validateArgCount('Query.orderByKey', 0, 0, arguments.length);
-        this.validateNoPreviousOrderByCall_('Query.orderByKey');
-        var newParams = this.queryParams_.orderBy(KeyIndex_1.KEY_INDEX);
-        Query.validateQueryEndpoints_(newParams);
-        return new Query(this.repo, this.path, newParams, /*orderByCalled=*/ true);
-    };
-    /**
-     * Return a new query ordered by the PriorityIndex
-     * @return {!Query}
-     */
-    Query.prototype.orderByPriority = function () {
-        util_3.validateArgCount('Query.orderByPriority', 0, 0, arguments.length);
-        this.validateNoPreviousOrderByCall_('Query.orderByPriority');
-        var newParams = this.queryParams_.orderBy(PriorityIndex_1.PRIORITY_INDEX);
-        Query.validateQueryEndpoints_(newParams);
-        return new Query(this.repo, this.path, newParams, /*orderByCalled=*/ true);
-    };
-    /**
-     * Return a new query ordered by the ValueIndex
-     * @return {!Query}
-     */
-    Query.prototype.orderByValue = function () {
-        util_3.validateArgCount('Query.orderByValue', 0, 0, arguments.length);
-        this.validateNoPreviousOrderByCall_('Query.orderByValue');
-        var newParams = this.queryParams_.orderBy(ValueIndex_1.VALUE_INDEX);
-        Query.validateQueryEndpoints_(newParams);
-        return new Query(this.repo, this.path, newParams, /*orderByCalled=*/ true);
-    };
-    /**
-     * @param {number|string|boolean|null} value
-     * @param {?string=} name
-     * @return {!Query}
-     */
-    Query.prototype.startAt = function (value, name) {
-        if (value === void 0) { value = null; }
-        util_3.validateArgCount('Query.startAt', 0, 2, arguments.length);
-        validation_1.validateFirebaseDataArg('Query.startAt', 1, value, this.path, true);
-        validation_1.validateKey('Query.startAt', 2, name, true);
-        var newParams = this.queryParams_.startAt(value, name);
-        Query.validateLimit_(newParams);
-        Query.validateQueryEndpoints_(newParams);
-        if (this.queryParams_.hasStart()) {
-            throw new Error('Query.startAt: Starting point was already set (by another call to startAt ' +
-                'or equalTo).');
-        }
-        // Calling with no params tells us to start at the beginning.
-        if (value === undefined) {
-            value = null;
-            name = null;
-        }
-        return new Query(this.repo, this.path, newParams, this.orderByCalled_);
-    };
-    /**
-     * @param {number|string|boolean|null} value
-     * @param {?string=} name
-     * @return {!Query}
-     */
-    Query.prototype.endAt = function (value, name) {
-        if (value === void 0) { value = null; }
-        util_3.validateArgCount('Query.endAt', 0, 2, arguments.length);
-        validation_1.validateFirebaseDataArg('Query.endAt', 1, value, this.path, true);
-        validation_1.validateKey('Query.endAt', 2, name, true);
-        var newParams = this.queryParams_.endAt(value, name);
-        Query.validateLimit_(newParams);
-        Query.validateQueryEndpoints_(newParams);
-        if (this.queryParams_.hasEnd()) {
-            throw new Error('Query.endAt: Ending point was already set (by another call to endAt or ' +
-                'equalTo).');
-        }
-        return new Query(this.repo, this.path, newParams, this.orderByCalled_);
-    };
-    /**
-     * Load the selection of children with exactly the specified value, and, optionally,
-     * the specified name.
-     * @param {number|string|boolean|null} value
-     * @param {string=} name
-     * @return {!Query}
-     */
-    Query.prototype.equalTo = function (value, name) {
-        util_3.validateArgCount('Query.equalTo', 1, 2, arguments.length);
-        validation_1.validateFirebaseDataArg('Query.equalTo', 1, value, this.path, false);
-        validation_1.validateKey('Query.equalTo', 2, name, true);
-        if (this.queryParams_.hasStart()) {
-            throw new Error('Query.equalTo: Starting point was already set (by another call to startAt or ' +
-                'equalTo).');
-        }
-        if (this.queryParams_.hasEnd()) {
-            throw new Error('Query.equalTo: Ending point was already set (by another call to endAt or ' +
-                'equalTo).');
-        }
-        return this.startAt(value, name).endAt(value, name);
-    };
-    /**
-     * @return {!string} URL for this location.
-     */
-    Query.prototype.toString = function () {
-        util_3.validateArgCount('Query.toString', 0, 0, arguments.length);
-        return this.repo.toString() + this.path.toUrlEncodedString();
-    };
-    // Do not create public documentation. This is intended to make JSON serialization work but is otherwise unnecessary
-    // for end-users.
-    Query.prototype.toJSON = function () {
-        // An optional spacer argument is unnecessary for a string.
-        util_3.validateArgCount('Query.toJSON', 0, 1, arguments.length);
-        return this.toString();
-    };
-    /**
-     * An object representation of the query parameters used by this Query.
-     * @return {!Object}
-     */
-    Query.prototype.queryObject = function () {
-        return this.queryParams_.getQueryObject();
-    };
-    /**
-     * @return {!string}
-     */
-    Query.prototype.queryIdentifier = function () {
-        var obj = this.queryObject();
-        var id = util_2.ObjectToUniqueKey(obj);
-        return id === '{}' ? 'default' : id;
-    };
-    /**
-     * Return true if this query and the provided query are equivalent; otherwise, return false.
-     * @param {Query} other
-     * @return {boolean}
-     */
-    Query.prototype.isEqual = function (other) {
-        util_3.validateArgCount('Query.isEqual', 1, 1, arguments.length);
-        if (!(other instanceof Query)) {
-            var error = 'Query.isEqual failed: First argument must be an instance of firebase.database.Query.';
-            throw new Error(error);
-        }
-        var sameRepo = this.repo === other.repo;
-        var samePath = this.path.equals(other.path);
-        var sameQueryIdentifier = this.queryIdentifier() === other.queryIdentifier();
-        return sameRepo && samePath && sameQueryIdentifier;
-    };
-    /**
-     * Helper used by .on and .once to extract the context and or cancel arguments.
-     * @param {!string} fnName The function name (on or once)
-     * @param {(function(Error)|Object)=} cancelOrContext
-     * @param {Object=} context
-     * @return {{cancel: ?function(Error), context: ?Object}}
-     * @private
-     */
-    Query.getCancelAndContextArgs_ = function (fnName, cancelOrContext, context) {
-        var ret = { cancel: null, context: null };
-        if (cancelOrContext && context) {
-            ret.cancel = cancelOrContext;
-            util_3.validateCallback(fnName, 3, ret.cancel, true);
-            ret.context = context;
-            util_3.validateContextObject(fnName, 4, ret.context, true);
-        }
-        else if (cancelOrContext) {
-            // we have either a cancel callback or a context.
-            if (typeof cancelOrContext === 'object' && cancelOrContext !== null) {
-                // it's a context!
-                ret.context = cancelOrContext;
-            }
-            else if (typeof cancelOrContext === 'function') {
-                ret.cancel = cancelOrContext;
-            }
-            else {
-                throw new Error(util_3.errorPrefix(fnName, 3, true) +
-                    ' must either be a cancel callback or a context object.');
-            }
-        }
-        return ret;
-    };
-    Object.defineProperty(Query.prototype, "ref", {
-        get: function () {
-            return this.getRef();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return Query;
-}());
-exports.Query = Query;
-
-//# sourceMappingURL=Query.js.map
-
-
-/***/ }),
-/* 64 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var util_1 = __webpack_require__(0);
-var validation_1 = __webpack_require__(15);
-var util_2 = __webpack_require__(2);
-var util_3 = __webpack_require__(0);
-/**
- * @constructor
- */
-var OnDisconnect = /** @class */ (function () {
-    /**
-     * @param {!Repo} repo_
-     * @param {!Path} path_
-     */
-    function OnDisconnect(repo_, path_) {
-        this.repo_ = repo_;
-        this.path_ = path_;
-    }
-    /**
-     * @param {function(?Error)=} onComplete
-     * @return {!firebase.Promise}
-     */
-    OnDisconnect.prototype.cancel = function (onComplete) {
-        util_1.validateArgCount('OnDisconnect.cancel', 0, 1, arguments.length);
-        util_1.validateCallback('OnDisconnect.cancel', 1, onComplete, true);
-        var deferred = new util_3.Deferred();
-        this.repo_.onDisconnectCancel(this.path_, deferred.wrapCallback(onComplete));
-        return deferred.promise;
-    };
-    /**
-     * @param {function(?Error)=} onComplete
-     * @return {!firebase.Promise}
-     */
-    OnDisconnect.prototype.remove = function (onComplete) {
-        util_1.validateArgCount('OnDisconnect.remove', 0, 1, arguments.length);
-        validation_1.validateWritablePath('OnDisconnect.remove', this.path_);
-        util_1.validateCallback('OnDisconnect.remove', 1, onComplete, true);
-        var deferred = new util_3.Deferred();
-        this.repo_.onDisconnectSet(this.path_, null, deferred.wrapCallback(onComplete));
-        return deferred.promise;
-    };
-    /**
-     * @param {*} value
-     * @param {function(?Error)=} onComplete
-     * @return {!firebase.Promise}
-     */
-    OnDisconnect.prototype.set = function (value, onComplete) {
-        util_1.validateArgCount('OnDisconnect.set', 1, 2, arguments.length);
-        validation_1.validateWritablePath('OnDisconnect.set', this.path_);
-        validation_1.validateFirebaseDataArg('OnDisconnect.set', 1, value, this.path_, false);
-        util_1.validateCallback('OnDisconnect.set', 2, onComplete, true);
-        var deferred = new util_3.Deferred();
-        this.repo_.onDisconnectSet(this.path_, value, deferred.wrapCallback(onComplete));
-        return deferred.promise;
-    };
-    /**
-     * @param {*} value
-     * @param {number|string|null} priority
-     * @param {function(?Error)=} onComplete
-     * @return {!firebase.Promise}
-     */
-    OnDisconnect.prototype.setWithPriority = function (value, priority, onComplete) {
-        util_1.validateArgCount('OnDisconnect.setWithPriority', 2, 3, arguments.length);
-        validation_1.validateWritablePath('OnDisconnect.setWithPriority', this.path_);
-        validation_1.validateFirebaseDataArg('OnDisconnect.setWithPriority', 1, value, this.path_, false);
-        validation_1.validatePriority('OnDisconnect.setWithPriority', 2, priority, false);
-        util_1.validateCallback('OnDisconnect.setWithPriority', 3, onComplete, true);
-        var deferred = new util_3.Deferred();
-        this.repo_.onDisconnectSetWithPriority(this.path_, value, priority, deferred.wrapCallback(onComplete));
-        return deferred.promise;
-    };
-    /**
-     * @param {!Object} objectToMerge
-     * @param {function(?Error)=} onComplete
-     * @return {!firebase.Promise}
-     */
-    OnDisconnect.prototype.update = function (objectToMerge, onComplete) {
-        util_1.validateArgCount('OnDisconnect.update', 1, 2, arguments.length);
-        validation_1.validateWritablePath('OnDisconnect.update', this.path_);
-        if (Array.isArray(objectToMerge)) {
-            var newObjectToMerge = {};
-            for (var i = 0; i < objectToMerge.length; ++i) {
-                newObjectToMerge['' + i] = objectToMerge[i];
-            }
-            objectToMerge = newObjectToMerge;
-            util_2.warn('Passing an Array to firebase.database.onDisconnect().update() is deprecated. Use set() if you want to overwrite the ' +
-                'existing data, or an Object with integer keys if you really do want to only update some of the children.');
-        }
-        validation_1.validateFirebaseMergeDataArg('OnDisconnect.update', 1, objectToMerge, this.path_, false);
-        util_1.validateCallback('OnDisconnect.update', 2, onComplete, true);
-        var deferred = new util_3.Deferred();
-        this.repo_.onDisconnectUpdate(this.path_, objectToMerge, deferred.wrapCallback(onComplete));
-        return deferred.promise;
-    };
-    return OnDisconnect;
-}());
-exports.OnDisconnect = OnDisconnect;
-
-//# sourceMappingURL=onDisconnect.js.map
-
-
-/***/ }),
-/* 65 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var app_1 = __webpack_require__(13);
-var util_1 = __webpack_require__(0);
-var util_2 = __webpack_require__(0);
-var util_3 = __webpack_require__(0);
-var util_4 = __webpack_require__(2);
-var Path_1 = __webpack_require__(3);
-var VisibilityMonitor_1 = __webpack_require__(141);
-var OnlineMonitor_1 = __webpack_require__(139);
-var util_5 = __webpack_require__(0);
-var Connection_1 = __webpack_require__(85);
-var util_6 = __webpack_require__(0);
-var util_7 = __webpack_require__(0);
-var ServerActions_1 = __webpack_require__(67);
-var RECONNECT_MIN_DELAY = 1000;
-var RECONNECT_MAX_DELAY_DEFAULT = 60 * 5 * 1000; // 5 minutes in milliseconds (Case: 1858)
-var RECONNECT_MAX_DELAY_FOR_ADMINS = 30 * 1000; // 30 seconds for admin clients (likely to be a backend server)
-var RECONNECT_DELAY_MULTIPLIER = 1.3;
-var RECONNECT_DELAY_RESET_TIMEOUT = 30000; // Reset delay back to MIN_DELAY after being connected for 30sec.
-var SERVER_KILL_INTERRUPT_REASON = 'server_kill';
-// If auth fails repeatedly, we'll assume something is wrong and log a warning / back off.
-var INVALID_AUTH_TOKEN_THRESHOLD = 3;
-/**
- * Firebase connection.  Abstracts wire protocol and handles reconnecting.
- *
- * NOTE: All JSON objects sent to the realtime connection must have property names enclosed
- * in quotes to make sure the closure compiler does not minify them.
- */
-var PersistentConnection = /** @class */ (function (_super) {
-    __extends(PersistentConnection, _super);
-    /**
-     * @implements {ServerActions}
-     * @param {!RepoInfo} repoInfo_ Data about the namespace we are connecting to
-     * @param {function(string, *, boolean, ?number)} onDataUpdate_ A callback for new data from the server
-     * @param onConnectStatus_
-     * @param onServerInfoUpdate_
-     * @param authTokenProvider_
-     * @param authOverride_
-     */
-    function PersistentConnection(repoInfo_, onDataUpdate_, onConnectStatus_, onServerInfoUpdate_, authTokenProvider_, authOverride_) {
-        var _this = _super.call(this) || this;
-        _this.repoInfo_ = repoInfo_;
-        _this.onDataUpdate_ = onDataUpdate_;
-        _this.onConnectStatus_ = onConnectStatus_;
-        _this.onServerInfoUpdate_ = onServerInfoUpdate_;
-        _this.authTokenProvider_ = authTokenProvider_;
-        _this.authOverride_ = authOverride_;
-        // Used for diagnostic logging.
-        _this.id = PersistentConnection.nextPersistentConnectionId_++;
-        _this.log_ = util_4.logWrapper('p:' + _this.id + ':');
-        /** @private {Object} */
-        _this.interruptReasons_ = {};
-        _this.listens_ = {};
-        _this.outstandingPuts_ = [];
-        _this.outstandingPutCount_ = 0;
-        _this.onDisconnectRequestQueue_ = [];
-        _this.connected_ = false;
-        _this.reconnectDelay_ = RECONNECT_MIN_DELAY;
-        _this.maxReconnectDelay_ = RECONNECT_MAX_DELAY_DEFAULT;
-        _this.securityDebugCallback_ = null;
-        _this.lastSessionId = null;
-        /** @private {number|null} */
-        _this.establishConnectionTimer_ = null;
-        /** @private {boolean} */
-        _this.visible_ = false;
-        // Before we get connected, we keep a queue of pending messages to send.
-        _this.requestCBHash_ = {};
-        _this.requestNumber_ = 0;
-        /** @private {?{
-         *   sendRequest(Object),
-         *   close()
-         * }} */
-        _this.realtime_ = null;
-        /** @private {string|null} */
-        _this.authToken_ = null;
-        _this.forceTokenRefresh_ = false;
-        _this.invalidAuthTokenCount_ = 0;
-        _this.firstConnection_ = true;
-        _this.lastConnectionAttemptTime_ = null;
-        _this.lastConnectionEstablishedTime_ = null;
-        if (authOverride_ && !util_7.isNodeSdk()) {
-            throw new Error('Auth override specified in options, but not supported on non Node.js platforms');
-        }
-        _this.scheduleConnect_(0);
-        VisibilityMonitor_1.VisibilityMonitor.getInstance().on('visible', _this.onVisible_, _this);
-        if (repoInfo_.host.indexOf('fblocal') === -1) {
-            OnlineMonitor_1.OnlineMonitor.getInstance().on('online', _this.onOnline_, _this);
-        }
-        return _this;
-    }
-    /**
-     * @param {!string} action
-     * @param {*} body
-     * @param {function(*)=} onResponse
-     * @protected
-     */
-    PersistentConnection.prototype.sendRequest = function (action, body, onResponse) {
-        var curReqNum = ++this.requestNumber_;
-        var msg = { r: curReqNum, a: action, b: body };
-        this.log_(util_2.stringify(msg));
-        util_3.assert(this.connected_, "sendRequest call when we're not connected not allowed.");
-        this.realtime_.sendRequest(msg);
-        if (onResponse) {
-            this.requestCBHash_[curReqNum] = onResponse;
-        }
-    };
-    /**
-     * @inheritDoc
-     */
-    PersistentConnection.prototype.listen = function (query, currentHashFn, tag, onComplete) {
-        var queryId = query.queryIdentifier();
-        var pathString = query.path.toString();
-        this.log_('Listen called for ' + pathString + ' ' + queryId);
-        this.listens_[pathString] = this.listens_[pathString] || {};
-        util_3.assert(query.getQueryParams().isDefault() ||
-            !query.getQueryParams().loadsAllData(), 'listen() called for non-default but complete query');
-        util_3.assert(!this.listens_[pathString][queryId], 'listen() called twice for same path/queryId.');
-        var listenSpec = {
-            onComplete: onComplete,
-            hashFn: currentHashFn,
-            query: query,
-            tag: tag
-        };
-        this.listens_[pathString][queryId] = listenSpec;
-        if (this.connected_) {
-            this.sendListen_(listenSpec);
-        }
-    };
-    /**
-     * @param {!{onComplete(),
-     *           hashFn():!string,
-     *           query: !Query,
-     *           tag: ?number}} listenSpec
-     * @private
-     */
-    PersistentConnection.prototype.sendListen_ = function (listenSpec) {
-        var _this = this;
-        var query = listenSpec.query;
-        var pathString = query.path.toString();
-        var queryId = query.queryIdentifier();
-        this.log_('Listen on ' + pathString + ' for ' + queryId);
-        var req = { /*path*/ p: pathString };
-        var action = 'q';
-        // Only bother to send query if it's non-default.
-        if (listenSpec.tag) {
-            req['q'] = query.queryObject();
-            req['t'] = listenSpec.tag;
-        }
-        req['h'] = listenSpec.hashFn();
-        this.sendRequest(action, req, function (message) {
-            var payload = message['d'];
-            var status = message['s'];
-            // print warnings in any case...
-            PersistentConnection.warnOnListenWarnings_(payload, query);
-            var currentListenSpec = _this.listens_[pathString] && _this.listens_[pathString][queryId];
-            // only trigger actions if the listen hasn't been removed and readded
-            if (currentListenSpec === listenSpec) {
-                _this.log_('listen response', message);
-                if (status !== 'ok') {
-                    _this.removeListen_(pathString, queryId);
-                }
-                if (listenSpec.onComplete) {
-                    listenSpec.onComplete(status, payload);
-                }
-            }
-        });
-    };
-    /**
-     * @param {*} payload
-     * @param {!Query} query
-     * @private
-     */
-    PersistentConnection.warnOnListenWarnings_ = function (payload, query) {
-        if (payload && typeof payload === 'object' && util_1.contains(payload, 'w')) {
-            var warnings = util_1.safeGet(payload, 'w');
-            if (Array.isArray(warnings) && ~warnings.indexOf('no_index')) {
-                var indexSpec = '".indexOn": "' +
-                    query
-                        .getQueryParams()
-                        .getIndex()
-                        .toString() +
-                    '"';
-                var indexPath = query.path.toString();
-                util_4.warn("Using an unspecified index. Your data will be downloaded and " +
-                    ("filtered on the client. Consider adding " + indexSpec + " at ") +
-                    (indexPath + " to your security rules for better performance."));
-            }
-        }
-    };
-    /**
-     * @inheritDoc
-     */
-    PersistentConnection.prototype.refreshAuthToken = function (token) {
-        this.authToken_ = token;
-        this.log_('Auth token refreshed');
-        if (this.authToken_) {
-            this.tryAuth();
-        }
-        else {
-            //If we're connected we want to let the server know to unauthenticate us. If we're not connected, simply delete
-            //the credential so we dont become authenticated next time we connect.
-            if (this.connected_) {
-                this.sendRequest('unauth', {}, function () { });
-            }
-        }
-        this.reduceReconnectDelayIfAdminCredential_(token);
-    };
-    /**
-     * @param {!string} credential
-     * @private
-     */
-    PersistentConnection.prototype.reduceReconnectDelayIfAdminCredential_ = function (credential) {
-        // NOTE: This isn't intended to be bulletproof (a malicious developer can always just modify the client).
-        // Additionally, we don't bother resetting the max delay back to the default if auth fails / expires.
-        var isFirebaseSecret = credential && credential.length === 40;
-        if (isFirebaseSecret || util_5.isAdmin(credential)) {
-            this.log_('Admin auth credential detected.  Reducing max reconnect time.');
-            this.maxReconnectDelay_ = RECONNECT_MAX_DELAY_FOR_ADMINS;
-        }
-    };
-    /**
-     * Attempts to authenticate with the given credentials. If the authentication attempt fails, it's triggered like
-     * a auth revoked (the connection is closed).
-     */
-    PersistentConnection.prototype.tryAuth = function () {
-        var _this = this;
-        if (this.connected_ && this.authToken_) {
-            var token_1 = this.authToken_;
-            var authMethod = util_5.isValidFormat(token_1) ? 'auth' : 'gauth';
-            var requestData = { cred: token_1 };
-            if (this.authOverride_ === null) {
-                requestData['noauth'] = true;
-            }
-            else if (typeof this.authOverride_ === 'object') {
-                requestData['authvar'] = this.authOverride_;
-            }
-            this.sendRequest(authMethod, requestData, function (res) {
-                var status = res['s'];
-                var data = res['d'] || 'error';
-                if (_this.authToken_ === token_1) {
-                    if (status === 'ok') {
-                        _this.invalidAuthTokenCount_ = 0;
-                    }
-                    else {
-                        // Triggers reconnect and force refresh for auth token
-                        _this.onAuthRevoked_(status, data);
-                    }
-                }
-            });
-        }
-    };
-    /**
-     * @inheritDoc
-     */
-    PersistentConnection.prototype.unlisten = function (query, tag) {
-        var pathString = query.path.toString();
-        var queryId = query.queryIdentifier();
-        this.log_('Unlisten called for ' + pathString + ' ' + queryId);
-        util_3.assert(query.getQueryParams().isDefault() ||
-            !query.getQueryParams().loadsAllData(), 'unlisten() called for non-default but complete query');
-        var listen = this.removeListen_(pathString, queryId);
-        if (listen && this.connected_) {
-            this.sendUnlisten_(pathString, queryId, query.queryObject(), tag);
-        }
-    };
-    PersistentConnection.prototype.sendUnlisten_ = function (pathString, queryId, queryObj, tag) {
-        this.log_('Unlisten on ' + pathString + ' for ' + queryId);
-        var req = { /*path*/ p: pathString };
-        var action = 'n';
-        // Only bother sending queryId if it's non-default.
-        if (tag) {
-            req['q'] = queryObj;
-            req['t'] = tag;
-        }
-        this.sendRequest(action, req);
-    };
-    /**
-     * @inheritDoc
-     */
-    PersistentConnection.prototype.onDisconnectPut = function (pathString, data, onComplete) {
-        if (this.connected_) {
-            this.sendOnDisconnect_('o', pathString, data, onComplete);
-        }
-        else {
-            this.onDisconnectRequestQueue_.push({
-                pathString: pathString,
-                action: 'o',
-                data: data,
-                onComplete: onComplete
-            });
-        }
-    };
-    /**
-     * @inheritDoc
-     */
-    PersistentConnection.prototype.onDisconnectMerge = function (pathString, data, onComplete) {
-        if (this.connected_) {
-            this.sendOnDisconnect_('om', pathString, data, onComplete);
-        }
-        else {
-            this.onDisconnectRequestQueue_.push({
-                pathString: pathString,
-                action: 'om',
-                data: data,
-                onComplete: onComplete
-            });
-        }
-    };
-    /**
-     * @inheritDoc
-     */
-    PersistentConnection.prototype.onDisconnectCancel = function (pathString, onComplete) {
-        if (this.connected_) {
-            this.sendOnDisconnect_('oc', pathString, null, onComplete);
-        }
-        else {
-            this.onDisconnectRequestQueue_.push({
-                pathString: pathString,
-                action: 'oc',
-                data: null,
-                onComplete: onComplete
-            });
-        }
-    };
-    PersistentConnection.prototype.sendOnDisconnect_ = function (action, pathString, data, onComplete) {
-        var request = { /*path*/ p: pathString, /*data*/ d: data };
-        this.log_('onDisconnect ' + action, request);
-        this.sendRequest(action, request, function (response) {
-            if (onComplete) {
-                setTimeout(function () {
-                    onComplete(response['s'], response['d']);
-                }, Math.floor(0));
-            }
-        });
-    };
-    /**
-     * @inheritDoc
-     */
-    PersistentConnection.prototype.put = function (pathString, data, onComplete, hash) {
-        this.putInternal('p', pathString, data, onComplete, hash);
-    };
-    /**
-     * @inheritDoc
-     */
-    PersistentConnection.prototype.merge = function (pathString, data, onComplete, hash) {
-        this.putInternal('m', pathString, data, onComplete, hash);
-    };
-    PersistentConnection.prototype.putInternal = function (action, pathString, data, onComplete, hash) {
-        var request = {
-            /*path*/ p: pathString,
-            /*data*/ d: data
-        };
-        if (hash !== undefined)
-            request['h'] = hash;
-        // TODO: Only keep track of the most recent put for a given path?
-        this.outstandingPuts_.push({
-            action: action,
-            request: request,
-            onComplete: onComplete
-        });
-        this.outstandingPutCount_++;
-        var index = this.outstandingPuts_.length - 1;
-        if (this.connected_) {
-            this.sendPut_(index);
-        }
-        else {
-            this.log_('Buffering put: ' + pathString);
-        }
-    };
-    PersistentConnection.prototype.sendPut_ = function (index) {
-        var _this = this;
-        var action = this.outstandingPuts_[index].action;
-        var request = this.outstandingPuts_[index].request;
-        var onComplete = this.outstandingPuts_[index].onComplete;
-        this.outstandingPuts_[index].queued = this.connected_;
-        this.sendRequest(action, request, function (message) {
-            _this.log_(action + ' response', message);
-            delete _this.outstandingPuts_[index];
-            _this.outstandingPutCount_--;
-            // Clean up array occasionally.
-            if (_this.outstandingPutCount_ === 0) {
-                _this.outstandingPuts_ = [];
-            }
-            if (onComplete)
-                onComplete(message['s'], message['d']);
-        });
-    };
-    /**
-     * @inheritDoc
-     */
-    PersistentConnection.prototype.reportStats = function (stats) {
-        var _this = this;
-        // If we're not connected, we just drop the stats.
-        if (this.connected_) {
-            var request = { /*counters*/ c: stats };
-            this.log_('reportStats', request);
-            this.sendRequest(/*stats*/ 's', request, function (result) {
-                var status = result['s'];
-                if (status !== 'ok') {
-                    var errorReason = result['d'];
-                    _this.log_('reportStats', 'Error sending stats: ' + errorReason);
-                }
-            });
-        }
-    };
-    /**
-     * @param {*} message
-     * @private
-     */
-    PersistentConnection.prototype.onDataMessage_ = function (message) {
-        if ('r' in message) {
-            // this is a response
-            this.log_('from server: ' + util_2.stringify(message));
-            var reqNum = message['r'];
-            var onResponse = this.requestCBHash_[reqNum];
-            if (onResponse) {
-                delete this.requestCBHash_[reqNum];
-                onResponse(message['b']);
-            }
-        }
-        else if ('error' in message) {
-            throw 'A server-side error has occurred: ' + message['error'];
-        }
-        else if ('a' in message) {
-            // a and b are action and body, respectively
-            this.onDataPush_(message['a'], message['b']);
-        }
-    };
-    PersistentConnection.prototype.onDataPush_ = function (action, body) {
-        this.log_('handleServerMessage', action, body);
-        if (action === 'd')
-            this.onDataUpdate_(body['p'], body['d'], 
-            /*isMerge*/ false, body['t']);
-        else if (action === 'm')
-            this.onDataUpdate_(body['p'], body['d'], 
-            /*isMerge=*/ true, body['t']);
-        else if (action === 'c')
-            this.onListenRevoked_(body['p'], body['q']);
-        else if (action === 'ac')
-            this.onAuthRevoked_(body['s'], body['d']);
-        else if (action === 'sd')
-            this.onSecurityDebugPacket_(body);
-        else
-            util_4.error('Unrecognized action received from server: ' +
-                util_2.stringify(action) +
-                '\nAre you using the latest client?');
-    };
-    PersistentConnection.prototype.onReady_ = function (timestamp, sessionId) {
-        this.log_('connection ready');
-        this.connected_ = true;
-        this.lastConnectionEstablishedTime_ = new Date().getTime();
-        this.handleTimestamp_(timestamp);
-        this.lastSessionId = sessionId;
-        if (this.firstConnection_) {
-            this.sendConnectStats_();
-        }
-        this.restoreState_();
-        this.firstConnection_ = false;
-        this.onConnectStatus_(true);
-    };
-    PersistentConnection.prototype.scheduleConnect_ = function (timeout) {
-        var _this = this;
-        util_3.assert(!this.realtime_, "Scheduling a connect when we're already connected/ing?");
-        if (this.establishConnectionTimer_) {
-            clearTimeout(this.establishConnectionTimer_);
-        }
-        // NOTE: Even when timeout is 0, it's important to do a setTimeout to work around an infuriating "Security Error" in
-        // Firefox when trying to write to our long-polling iframe in some scenarios (e.g. Forge or our unit tests).
-        this.establishConnectionTimer_ = setTimeout(function () {
-            _this.establishConnectionTimer_ = null;
-            _this.establishConnection_();
-        }, Math.floor(timeout));
-    };
-    /**
-     * @param {boolean} visible
-     * @private
-     */
-    PersistentConnection.prototype.onVisible_ = function (visible) {
-        // NOTE: Tabbing away and back to a window will defeat our reconnect backoff, but I think that's fine.
-        if (visible &&
-            !this.visible_ &&
-            this.reconnectDelay_ === this.maxReconnectDelay_) {
-            this.log_('Window became visible.  Reducing delay.');
-            this.reconnectDelay_ = RECONNECT_MIN_DELAY;
-            if (!this.realtime_) {
-                this.scheduleConnect_(0);
-            }
-        }
-        this.visible_ = visible;
-    };
-    PersistentConnection.prototype.onOnline_ = function (online) {
-        if (online) {
-            this.log_('Browser went online.');
-            this.reconnectDelay_ = RECONNECT_MIN_DELAY;
-            if (!this.realtime_) {
-                this.scheduleConnect_(0);
-            }
-        }
-        else {
-            this.log_('Browser went offline.  Killing connection.');
-            if (this.realtime_) {
-                this.realtime_.close();
-            }
-        }
-    };
-    PersistentConnection.prototype.onRealtimeDisconnect_ = function () {
-        this.log_('data client disconnected');
-        this.connected_ = false;
-        this.realtime_ = null;
-        // Since we don't know if our sent transactions succeeded or not, we need to cancel them.
-        this.cancelSentTransactions_();
-        // Clear out the pending requests.
-        this.requestCBHash_ = {};
-        if (this.shouldReconnect_()) {
-            if (!this.visible_) {
-                this.log_("Window isn't visible.  Delaying reconnect.");
-                this.reconnectDelay_ = this.maxReconnectDelay_;
-                this.lastConnectionAttemptTime_ = new Date().getTime();
-            }
-            else if (this.lastConnectionEstablishedTime_) {
-                // If we've been connected long enough, reset reconnect delay to minimum.
-                var timeSinceLastConnectSucceeded = new Date().getTime() - this.lastConnectionEstablishedTime_;
-                if (timeSinceLastConnectSucceeded > RECONNECT_DELAY_RESET_TIMEOUT)
-                    this.reconnectDelay_ = RECONNECT_MIN_DELAY;
-                this.lastConnectionEstablishedTime_ = null;
-            }
-            var timeSinceLastConnectAttempt = new Date().getTime() - this.lastConnectionAttemptTime_;
-            var reconnectDelay = Math.max(0, this.reconnectDelay_ - timeSinceLastConnectAttempt);
-            reconnectDelay = Math.random() * reconnectDelay;
-            this.log_('Trying to reconnect in ' + reconnectDelay + 'ms');
-            this.scheduleConnect_(reconnectDelay);
-            // Adjust reconnect delay for next time.
-            this.reconnectDelay_ = Math.min(this.maxReconnectDelay_, this.reconnectDelay_ * RECONNECT_DELAY_MULTIPLIER);
-        }
-        this.onConnectStatus_(false);
-    };
-    PersistentConnection.prototype.establishConnection_ = function () {
-        if (this.shouldReconnect_()) {
-            this.log_('Making a connection attempt');
-            this.lastConnectionAttemptTime_ = new Date().getTime();
-            this.lastConnectionEstablishedTime_ = null;
-            var onDataMessage_1 = this.onDataMessage_.bind(this);
-            var onReady_1 = this.onReady_.bind(this);
-            var onDisconnect_1 = this.onRealtimeDisconnect_.bind(this);
-            var connId_1 = this.id + ':' + PersistentConnection.nextConnectionId_++;
-            var self_1 = this;
-            var lastSessionId_1 = this.lastSessionId;
-            var canceled_1 = false;
-            var connection_1 = null;
-            var closeFn_1 = function () {
-                if (connection_1) {
-                    connection_1.close();
-                }
-                else {
-                    canceled_1 = true;
-                    onDisconnect_1();
-                }
-            };
-            var sendRequestFn = function (msg) {
-                util_3.assert(connection_1, "sendRequest call when we're not connected not allowed.");
-                connection_1.sendRequest(msg);
-            };
-            this.realtime_ = {
-                close: closeFn_1,
-                sendRequest: sendRequestFn
-            };
-            var forceRefresh = this.forceTokenRefresh_;
-            this.forceTokenRefresh_ = false;
-            // First fetch auth token, and establish connection after fetching the token was successful
-            this.authTokenProvider_
-                .getToken(forceRefresh)
-                .then(function (result) {
-                if (!canceled_1) {
-                    util_4.log('getToken() completed. Creating connection.');
-                    self_1.authToken_ = result && result.accessToken;
-                    connection_1 = new Connection_1.Connection(connId_1, self_1.repoInfo_, onDataMessage_1, onReady_1, onDisconnect_1, 
-                    /* onKill= */ function (reason) {
-                        util_4.warn(reason + ' (' + self_1.repoInfo_.toString() + ')');
-                        self_1.interrupt(SERVER_KILL_INTERRUPT_REASON);
-                    }, lastSessionId_1);
-                }
-                else {
-                    util_4.log('getToken() completed but was canceled');
-                }
-            })
-                .then(null, function (error) {
-                self_1.log_('Failed to get token: ' + error);
-                if (!canceled_1) {
-                    if (util_6.CONSTANTS.NODE_ADMIN) {
-                        // This may be a critical error for the Admin Node.js SDK, so log a warning.
-                        // But getToken() may also just have temporarily failed, so we still want to
-                        // continue retrying.
-                        util_4.warn(error);
-                    }
-                    closeFn_1();
-                }
-            });
-        }
-    };
-    /**
-     * @param {string} reason
-     */
-    PersistentConnection.prototype.interrupt = function (reason) {
-        util_4.log('Interrupting connection for reason: ' + reason);
-        this.interruptReasons_[reason] = true;
-        if (this.realtime_) {
-            this.realtime_.close();
-        }
-        else {
-            if (this.establishConnectionTimer_) {
-                clearTimeout(this.establishConnectionTimer_);
-                this.establishConnectionTimer_ = null;
-            }
-            if (this.connected_) {
-                this.onRealtimeDisconnect_();
-            }
-        }
-    };
-    /**
-     * @param {string} reason
-     */
-    PersistentConnection.prototype.resume = function (reason) {
-        util_4.log('Resuming connection for reason: ' + reason);
-        delete this.interruptReasons_[reason];
-        if (util_1.isEmpty(this.interruptReasons_)) {
-            this.reconnectDelay_ = RECONNECT_MIN_DELAY;
-            if (!this.realtime_) {
-                this.scheduleConnect_(0);
-            }
-        }
-    };
-    PersistentConnection.prototype.handleTimestamp_ = function (timestamp) {
-        var delta = timestamp - new Date().getTime();
-        this.onServerInfoUpdate_({ serverTimeOffset: delta });
-    };
-    PersistentConnection.prototype.cancelSentTransactions_ = function () {
-        for (var i = 0; i < this.outstandingPuts_.length; i++) {
-            var put = this.outstandingPuts_[i];
-            if (put && /*hash*/ 'h' in put.request && put.queued) {
-                if (put.onComplete)
-                    put.onComplete('disconnect');
-                delete this.outstandingPuts_[i];
-                this.outstandingPutCount_--;
-            }
-        }
-        // Clean up array occasionally.
-        if (this.outstandingPutCount_ === 0)
-            this.outstandingPuts_ = [];
-    };
-    /**
-     * @param {!string} pathString
-     * @param {Array.<*>=} query
-     * @private
-     */
-    PersistentConnection.prototype.onListenRevoked_ = function (pathString, query) {
-        // Remove the listen and manufacture a "permission_denied" error for the failed listen.
-        var queryId;
-        if (!query) {
-            queryId = 'default';
-        }
-        else {
-            queryId = query.map(function (q) { return util_4.ObjectToUniqueKey(q); }).join('$');
-        }
-        var listen = this.removeListen_(pathString, queryId);
-        if (listen && listen.onComplete)
-            listen.onComplete('permission_denied');
-    };
-    /**
-     * @param {!string} pathString
-     * @param {!string} queryId
-     * @return {{queries:Array.<Query>, onComplete:function(string)}}
-     * @private
-     */
-    PersistentConnection.prototype.removeListen_ = function (pathString, queryId) {
-        var normalizedPathString = new Path_1.Path(pathString).toString(); // normalize path.
-        var listen;
-        if (this.listens_[normalizedPathString] !== undefined) {
-            listen = this.listens_[normalizedPathString][queryId];
-            delete this.listens_[normalizedPathString][queryId];
-            if (util_1.getCount(this.listens_[normalizedPathString]) === 0) {
-                delete this.listens_[normalizedPathString];
-            }
-        }
-        else {
-            // all listens for this path has already been removed
-            listen = undefined;
-        }
-        return listen;
-    };
-    PersistentConnection.prototype.onAuthRevoked_ = function (statusCode, explanation) {
-        util_4.log('Auth token revoked: ' + statusCode + '/' + explanation);
-        this.authToken_ = null;
-        this.forceTokenRefresh_ = true;
-        this.realtime_.close();
-        if (statusCode === 'invalid_token' || statusCode === 'permission_denied') {
-            // We'll wait a couple times before logging the warning / increasing the
-            // retry period since oauth tokens will report as "invalid" if they're
-            // just expired. Plus there may be transient issues that resolve themselves.
-            this.invalidAuthTokenCount_++;
-            if (this.invalidAuthTokenCount_ >= INVALID_AUTH_TOKEN_THRESHOLD) {
-                // Set a long reconnect delay because recovery is unlikely
-                this.reconnectDelay_ = RECONNECT_MAX_DELAY_FOR_ADMINS;
-                // Notify the auth token provider that the token is invalid, which will log
-                // a warning
-                this.authTokenProvider_.notifyForInvalidToken();
-            }
-        }
-    };
-    PersistentConnection.prototype.onSecurityDebugPacket_ = function (body) {
-        if (this.securityDebugCallback_) {
-            this.securityDebugCallback_(body);
-        }
-        else {
-            if ('msg' in body && typeof console !== 'undefined') {
-                console.log('FIREBASE: ' + body['msg'].replace('\n', '\nFIREBASE: '));
-            }
-        }
-    };
-    PersistentConnection.prototype.restoreState_ = function () {
-        var _this = this;
-        //Re-authenticate ourselves if we have a credential stored.
-        this.tryAuth();
-        // Puts depend on having received the corresponding data update from the server before they complete, so we must
-        // make sure to send listens before puts.
-        util_1.forEach(this.listens_, function (pathString, queries) {
-            util_1.forEach(queries, function (key, listenSpec) {
-                _this.sendListen_(listenSpec);
-            });
-        });
-        for (var i = 0; i < this.outstandingPuts_.length; i++) {
-            if (this.outstandingPuts_[i])
-                this.sendPut_(i);
-        }
-        while (this.onDisconnectRequestQueue_.length) {
-            var request = this.onDisconnectRequestQueue_.shift();
-            this.sendOnDisconnect_(request.action, request.pathString, request.data, request.onComplete);
-        }
-    };
-    /**
-     * Sends client stats for first connection
-     * @private
-     */
-    PersistentConnection.prototype.sendConnectStats_ = function () {
-        var stats = {};
-        var clientName = 'js';
-        if (util_6.CONSTANTS.NODE_ADMIN) {
-            clientName = 'admin_node';
-        }
-        else if (util_6.CONSTANTS.NODE_CLIENT) {
-            clientName = 'node';
-        }
-        stats['sdk.' + clientName + '.' + app_1.default.SDK_VERSION.replace(/\./g, '-')] = 1;
-        if (util_7.isMobileCordova()) {
-            stats['framework.cordova'] = 1;
-        }
-        else if (util_7.isReactNative()) {
-            stats['framework.reactnative'] = 1;
-        }
-        this.reportStats(stats);
-    };
-    /**
-     * @return {boolean}
-     * @private
-     */
-    PersistentConnection.prototype.shouldReconnect_ = function () {
-        var online = OnlineMonitor_1.OnlineMonitor.getInstance().currentlyOnline();
-        return util_1.isEmpty(this.interruptReasons_) && online;
-    };
-    /**
-     * @private
-     */
-    PersistentConnection.nextPersistentConnectionId_ = 0;
-    /**
-     * Counter for number of connections created. Mainly used for tagging in the logs
-     * @type {number}
-     * @private
-     */
-    PersistentConnection.nextConnectionId_ = 0;
-    return PersistentConnection;
-}(ServerActions_1.ServerActions));
-exports.PersistentConnection = PersistentConnection;
-
-//# sourceMappingURL=PersistentConnection.js.map
-
-
-/***/ }),
-/* 66 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var util_1 = __webpack_require__(0);
-var util_2 = __webpack_require__(0);
-var storage_1 = __webpack_require__(34);
-var Constants_1 = __webpack_require__(37);
-/**
- * A class that holds metadata about a Repo object
- *
- * @constructor
- */
-var RepoInfo = /** @class */ (function () {
-    /**
-     * @param {string} host Hostname portion of the url for the repo
-     * @param {boolean} secure Whether or not this repo is accessed over ssl
-     * @param {string} namespace The namespace represented by the repo
-     * @param {boolean} webSocketOnly Whether to prefer websockets over all other transports (used by Nest).
-     * @param {string=} persistenceKey Override the default session persistence storage key
-     */
-    function RepoInfo(host, secure, namespace, webSocketOnly, persistenceKey) {
-        if (persistenceKey === void 0) { persistenceKey = ''; }
-        this.secure = secure;
-        this.namespace = namespace;
-        this.webSocketOnly = webSocketOnly;
-        this.persistenceKey = persistenceKey;
-        this.host = host.toLowerCase();
-        this.domain = this.host.substr(this.host.indexOf('.') + 1);
-        this.internalHost = storage_1.PersistentStorage.get('host:' + host) || this.host;
-    }
-    RepoInfo.prototype.needsQueryParam = function () {
-        return this.host !== this.internalHost;
-    };
-    RepoInfo.prototype.isCacheableHost = function () {
-        return this.internalHost.substr(0, 2) === 's-';
-    };
-    RepoInfo.prototype.isDemoHost = function () {
-        return this.domain === 'firebaseio-demo.com';
-    };
-    RepoInfo.prototype.isCustomHost = function () {
-        return (this.domain !== 'firebaseio.com' && this.domain !== 'firebaseio-demo.com');
-    };
-    RepoInfo.prototype.updateHost = function (newHost) {
-        if (newHost !== this.internalHost) {
-            this.internalHost = newHost;
-            if (this.isCacheableHost()) {
-                storage_1.PersistentStorage.set('host:' + this.host, this.internalHost);
-            }
-        }
-    };
-    /**
-     * Returns the websocket URL for this repo
-     * @param {string} type of connection
-     * @param {Object} params list
-     * @return {string} The URL for this repo
-     */
-    RepoInfo.prototype.connectionURL = function (type, params) {
-        util_1.assert(typeof type === 'string', 'typeof type must == string');
-        util_1.assert(typeof params === 'object', 'typeof params must == object');
-        var connURL;
-        if (type === Constants_1.WEBSOCKET) {
-            connURL =
-                (this.secure ? 'wss://' : 'ws://') + this.internalHost + '/.ws?';
-        }
-        else if (type === Constants_1.LONG_POLLING) {
-            connURL =
-                (this.secure ? 'https://' : 'http://') + this.internalHost + '/.lp?';
-        }
-        else {
-            throw new Error('Unknown connection type: ' + type);
-        }
-        if (this.needsQueryParam()) {
-            params['ns'] = this.namespace;
-        }
-        var pairs = [];
-        util_2.forEach(params, function (key, value) {
-            pairs.push(key + '=' + value);
-        });
-        return connURL + pairs.join('&');
-    };
-    /** @return {string} */
-    RepoInfo.prototype.toString = function () {
-        var str = this.toURLString();
-        if (this.persistenceKey) {
-            str += '<' + this.persistenceKey + '>';
-        }
-        return str;
-    };
-    /** @return {string} */
-    RepoInfo.prototype.toURLString = function () {
-        return (this.secure ? 'https://' : 'http://') + this.host;
-    };
-    return RepoInfo;
-}());
-exports.RepoInfo = RepoInfo;
-
-//# sourceMappingURL=RepoInfo.js.map
-
-
-/***/ }),
-/* 67 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Interface defining the set of actions that can be performed against the Firebase server
- * (basically corresponds to our wire protocol).
- *
- * @interface
- */
-var ServerActions = /** @class */ (function () {
-    function ServerActions() {
-    }
-    /**
-     * @param {string} pathString
-     * @param {*} data
-     * @param {function(string, string)=} onComplete
-     * @param {string=} hash
-     */
-    ServerActions.prototype.put = function (pathString, data, onComplete, hash) { };
-    /**
-     * @param {string} pathString
-     * @param {*} data
-     * @param {function(string, ?string)} onComplete
-     * @param {string=} hash
-     */
-    ServerActions.prototype.merge = function (pathString, data, onComplete, hash) { };
-    /**
-     * Refreshes the auth token for the current connection.
-     * @param {string} token The authentication token
-     */
-    ServerActions.prototype.refreshAuthToken = function (token) { };
-    /**
-     * @param {string} pathString
-     * @param {*} data
-     * @param {function(string, string)=} onComplete
-     */
-    ServerActions.prototype.onDisconnectPut = function (pathString, data, onComplete) { };
-    /**
-     * @param {string} pathString
-     * @param {*} data
-     * @param {function(string, string)=} onComplete
-     */
-    ServerActions.prototype.onDisconnectMerge = function (pathString, data, onComplete) { };
-    /**
-     * @param {string} pathString
-     * @param {function(string, string)=} onComplete
-     */
-    ServerActions.prototype.onDisconnectCancel = function (pathString, onComplete) { };
-    /**
-     * @param {Object.<string, *>} stats
-     */
-    ServerActions.prototype.reportStats = function (stats) { };
-    return ServerActions;
-}());
-exports.ServerActions = ServerActions;
-
-//# sourceMappingURL=ServerActions.js.map
-
-
-/***/ }),
-/* 68 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var Path_1 = __webpack_require__(3);
-var PriorityIndex_1 = __webpack_require__(5);
-var CountedSet_1 = __webpack_require__(78);
-/**
- * Helper class to store a sparse set of snapshots.
- *
- * @constructor
- */
-var SparseSnapshotTree = /** @class */ (function () {
-    function SparseSnapshotTree() {
-        /**
-         * @private
-         * @type {Node}
-         */
-        this.value_ = null;
-        /**
-         * @private
-         * @type {CountedSet}
-         */
-        this.children_ = null;
-    }
-    /**
-     * Gets the node stored at the given path if one exists.
-     *
-     * @param {!Path} path Path to look up snapshot for.
-     * @return {?Node} The retrieved node, or null.
-     */
-    SparseSnapshotTree.prototype.find = function (path) {
-        if (this.value_ != null) {
-            return this.value_.getChild(path);
-        }
-        else if (!path.isEmpty() && this.children_ != null) {
-            var childKey = path.getFront();
-            path = path.popFront();
-            if (this.children_.contains(childKey)) {
-                var childTree = this.children_.get(childKey);
-                return childTree.find(path);
-            }
-            else {
-                return null;
-            }
-        }
-        else {
-            return null;
-        }
-    };
-    /**
-     * Stores the given node at the specified path. If there is already a node
-     * at a shallower path, it merges the new data into that snapshot node.
-     *
-     * @param {!Path} path Path to look up snapshot for.
-     * @param {!Node} data The new data, or null.
-     */
-    SparseSnapshotTree.prototype.remember = function (path, data) {
-        if (path.isEmpty()) {
-            this.value_ = data;
-            this.children_ = null;
-        }
-        else if (this.value_ !== null) {
-            this.value_ = this.value_.updateChild(path, data);
-        }
-        else {
-            if (this.children_ == null) {
-                this.children_ = new CountedSet_1.CountedSet();
-            }
-            var childKey = path.getFront();
-            if (!this.children_.contains(childKey)) {
-                this.children_.add(childKey, new SparseSnapshotTree());
-            }
-            var child = this.children_.get(childKey);
-            path = path.popFront();
-            child.remember(path, data);
-        }
-    };
-    /**
-     * Purge the data at path from the cache.
-     *
-     * @param {!Path} path Path to look up snapshot for.
-     * @return {boolean} True if this node should now be removed.
-     */
-    SparseSnapshotTree.prototype.forget = function (path) {
-        if (path.isEmpty()) {
-            this.value_ = null;
-            this.children_ = null;
-            return true;
-        }
-        else {
-            if (this.value_ !== null) {
-                if (this.value_.isLeafNode()) {
-                    // We're trying to forget a node that doesn't exist
-                    return false;
-                }
-                else {
-                    var value = this.value_;
-                    this.value_ = null;
-                    var self_1 = this;
-                    value.forEachChild(PriorityIndex_1.PRIORITY_INDEX, function (key, tree) {
-                        self_1.remember(new Path_1.Path(key), tree);
-                    });
-                    return this.forget(path);
-                }
-            }
-            else if (this.children_ !== null) {
-                var childKey = path.getFront();
-                path = path.popFront();
-                if (this.children_.contains(childKey)) {
-                    var safeToRemove = this.children_.get(childKey).forget(path);
-                    if (safeToRemove) {
-                        this.children_.remove(childKey);
-                    }
-                }
-                if (this.children_.isEmpty()) {
-                    this.children_ = null;
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            }
-            else {
-                return true;
-            }
-        }
-    };
-    /**
-     * Recursively iterates through all of the stored tree and calls the
-     * callback on each one.
-     *
-     * @param {!Path} prefixPath Path to look up node for.
-     * @param {!Function} func The function to invoke for each tree.
-     */
-    SparseSnapshotTree.prototype.forEachTree = function (prefixPath, func) {
-        if (this.value_ !== null) {
-            func(prefixPath, this.value_);
-        }
-        else {
-            this.forEachChild(function (key, tree) {
-                var path = new Path_1.Path(prefixPath.toString() + '/' + key);
-                tree.forEachTree(path, func);
-            });
-        }
-    };
-    /**
-     * Iterates through each immediate child and triggers the callback.
-     *
-     * @param {!Function} func The function to invoke for each child.
-     */
-    SparseSnapshotTree.prototype.forEachChild = function (func) {
-        if (this.children_ !== null) {
-            this.children_.each(function (key, tree) {
-                func(key, tree);
-            });
-        }
-    };
-    return SparseSnapshotTree;
-}());
-exports.SparseSnapshotTree = SparseSnapshotTree;
-
-//# sourceMappingURL=SparseSnapshotTree.js.map
-
-
-/***/ }),
-/* 69 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var CacheNode_1 = __webpack_require__(36);
-var ChildrenNode_1 = __webpack_require__(6);
-var util_1 = __webpack_require__(0);
-var util_2 = __webpack_require__(0);
-var ViewCache_1 = __webpack_require__(82);
-var View_1 = __webpack_require__(149);
-var __referenceConstructor;
-/**
- * SyncPoint represents a single location in a SyncTree with 1 or more event registrations, meaning we need to
- * maintain 1 or more Views at this location to cache server data and raise appropriate events for server changes
- * and user writes (set, transaction, update).
- *
- * It's responsible for:
- *  - Maintaining the set of 1 or more views necessary at this location (a SyncPoint with 0 views should be removed).
- *  - Proxying user / server operations to the views as appropriate (i.e. applyServerOverwrite,
- *    applyUserOverwrite, etc.)
- */
-var SyncPoint = /** @class */ (function () {
-    function SyncPoint() {
-        /**
-         * The Views being tracked at this location in the tree, stored as a map where the key is a
-         * queryId and the value is the View for that query.
-         *
-         * NOTE: This list will be quite small (usually 1, but perhaps 2 or 3; any more is an odd use case).
-         *
-         * @type {!Object.<!string, !View>}
-         * @private
-         */
-        this.views_ = {};
-    }
-    Object.defineProperty(SyncPoint, "__referenceConstructor", {
-        get: function () {
-            util_1.assert(__referenceConstructor, 'Reference.ts has not been loaded');
-            return __referenceConstructor;
-        },
-        set: function (val) {
-            util_1.assert(!__referenceConstructor, '__referenceConstructor has already been defined');
-            __referenceConstructor = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @return {boolean}
-     */
-    SyncPoint.prototype.isEmpty = function () {
-        return util_2.isEmpty(this.views_);
-    };
-    /**
-     *
-     * @param {!Operation} operation
-     * @param {!WriteTreeRef} writesCache
-     * @param {?Node} optCompleteServerCache
-     * @return {!Array.<!Event>}
-     */
-    SyncPoint.prototype.applyOperation = function (operation, writesCache, optCompleteServerCache) {
-        var queryId = operation.source.queryId;
-        if (queryId !== null) {
-            var view = util_2.safeGet(this.views_, queryId);
-            util_1.assert(view != null, 'SyncTree gave us an op for an invalid query.');
-            return view.applyOperation(operation, writesCache, optCompleteServerCache);
-        }
-        else {
-            var events_1 = [];
-            util_2.forEach(this.views_, function (key, view) {
-                events_1 = events_1.concat(view.applyOperation(operation, writesCache, optCompleteServerCache));
-            });
-            return events_1;
-        }
-    };
-    /**
-     * Add an event callback for the specified query.
-     *
-     * @param {!Query} query
-     * @param {!EventRegistration} eventRegistration
-     * @param {!WriteTreeRef} writesCache
-     * @param {?Node} serverCache Complete server cache, if we have it.
-     * @param {boolean} serverCacheComplete
-     * @return {!Array.<!Event>} Events to raise.
-     */
-    SyncPoint.prototype.addEventRegistration = function (query, eventRegistration, writesCache, serverCache, serverCacheComplete) {
-        var queryId = query.queryIdentifier();
-        var view = util_2.safeGet(this.views_, queryId);
-        if (!view) {
-            // TODO: make writesCache take flag for complete server node
-            var eventCache = writesCache.calcCompleteEventCache(serverCacheComplete ? serverCache : null);
-            var eventCacheComplete = false;
-            if (eventCache) {
-                eventCacheComplete = true;
-            }
-            else if (serverCache instanceof ChildrenNode_1.ChildrenNode) {
-                eventCache = writesCache.calcCompleteEventChildren(serverCache);
-                eventCacheComplete = false;
-            }
-            else {
-                eventCache = ChildrenNode_1.ChildrenNode.EMPTY_NODE;
-                eventCacheComplete = false;
-            }
-            var viewCache = new ViewCache_1.ViewCache(new CacheNode_1.CacheNode(
-            /** @type {!Node} */ (eventCache), eventCacheComplete, false), new CacheNode_1.CacheNode(
-            /** @type {!Node} */ (serverCache), serverCacheComplete, false));
-            view = new View_1.View(query, viewCache);
-            this.views_[queryId] = view;
-        }
-        // This is guaranteed to exist now, we just created anything that was missing
-        view.addEventRegistration(eventRegistration);
-        return view.getInitialEvents(eventRegistration);
-    };
-    /**
-     * Remove event callback(s).  Return cancelEvents if a cancelError is specified.
-     *
-     * If query is the default query, we'll check all views for the specified eventRegistration.
-     * If eventRegistration is null, we'll remove all callbacks for the specified view(s).
-     *
-     * @param {!Query} query
-     * @param {?EventRegistration} eventRegistration If null, remove all callbacks.
-     * @param {Error=} cancelError If a cancelError is provided, appropriate cancel events will be returned.
-     * @return {{removed:!Array.<!Query>, events:!Array.<!Event>}} removed queries and any cancel events
-     */
-    SyncPoint.prototype.removeEventRegistration = function (query, eventRegistration, cancelError) {
-        var queryId = query.queryIdentifier();
-        var removed = [];
-        var cancelEvents = [];
-        var hadCompleteView = this.hasCompleteView();
-        if (queryId === 'default') {
-            // When you do ref.off(...), we search all views for the registration to remove.
-            var self_1 = this;
-            util_2.forEach(this.views_, function (viewQueryId, view) {
-                cancelEvents = cancelEvents.concat(view.removeEventRegistration(eventRegistration, cancelError));
-                if (view.isEmpty()) {
-                    delete self_1.views_[viewQueryId];
-                    // We'll deal with complete views later.
-                    if (!view
-                        .getQuery()
-                        .getQueryParams()
-                        .loadsAllData()) {
-                        removed.push(view.getQuery());
-                    }
-                }
-            });
-        }
-        else {
-            // remove the callback from the specific view.
-            var view = util_2.safeGet(this.views_, queryId);
-            if (view) {
-                cancelEvents = cancelEvents.concat(view.removeEventRegistration(eventRegistration, cancelError));
-                if (view.isEmpty()) {
-                    delete this.views_[queryId];
-                    // We'll deal with complete views later.
-                    if (!view
-                        .getQuery()
-                        .getQueryParams()
-                        .loadsAllData()) {
-                        removed.push(view.getQuery());
-                    }
-                }
-            }
-        }
-        if (hadCompleteView && !this.hasCompleteView()) {
-            // We removed our last complete view.
-            removed.push(new SyncPoint.__referenceConstructor(query.repo, query.path));
-        }
-        return { removed: removed, events: cancelEvents };
-    };
-    /**
-     * @return {!Array.<!View>}
-     */
-    SyncPoint.prototype.getQueryViews = function () {
-        var _this = this;
-        var values = Object.keys(this.views_).map(function (key) { return _this.views_[key]; });
-        return values.filter(function (view) {
-            return !view
-                .getQuery()
-                .getQueryParams()
-                .loadsAllData();
-        });
-    };
-    /**
-     *
-     * @param {!Path} path The path to the desired complete snapshot
-     * @return {?Node} A complete cache, if it exists
-     */
-    SyncPoint.prototype.getCompleteServerCache = function (path) {
-        var serverCache = null;
-        util_2.forEach(this.views_, function (key, view) {
-            serverCache = serverCache || view.getCompleteServerCache(path);
-        });
-        return serverCache;
-    };
-    /**
-     * @param {!Query} query
-     * @return {?View}
-     */
-    SyncPoint.prototype.viewForQuery = function (query) {
-        var params = query.getQueryParams();
-        if (params.loadsAllData()) {
-            return this.getCompleteView();
-        }
-        else {
-            var queryId = query.queryIdentifier();
-            return util_2.safeGet(this.views_, queryId);
-        }
-    };
-    /**
-     * @param {!Query} query
-     * @return {boolean}
-     */
-    SyncPoint.prototype.viewExistsForQuery = function (query) {
-        return this.viewForQuery(query) != null;
-    };
-    /**
-     * @return {boolean}
-     */
-    SyncPoint.prototype.hasCompleteView = function () {
-        return this.getCompleteView() != null;
-    };
-    /**
-     * @return {?View}
-     */
-    SyncPoint.prototype.getCompleteView = function () {
-        var completeView = util_2.findValue(this.views_, function (view) {
-            return view
-                .getQuery()
-                .getQueryParams()
-                .loadsAllData();
-        });
-        return completeView || null;
-    };
-    return SyncPoint;
-}());
-exports.SyncPoint = SyncPoint;
-
-//# sourceMappingURL=SyncPoint.js.map
-
-
-/***/ }),
-/* 70 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var Operation_1 = __webpack_require__(14);
-var Path_1 = __webpack_require__(3);
-/**
- * @param {!OperationSource} source
- * @param {!Path} path
- * @param {!Node} snap
- * @constructor
- * @implements {Operation}
- */
-var Overwrite = /** @class */ (function () {
-    function Overwrite(source, path, snap) {
-        this.source = source;
-        this.path = path;
-        this.snap = snap;
-        /** @inheritDoc */
-        this.type = Operation_1.OperationType.OVERWRITE;
-    }
-    Overwrite.prototype.operationForChild = function (childName) {
-        if (this.path.isEmpty()) {
-            return new Overwrite(this.source, Path_1.Path.Empty, this.snap.getImmediateChild(childName));
-        }
-        else {
-            return new Overwrite(this.source, this.path.popFront(), this.snap);
-        }
-    };
-    return Overwrite;
-}());
-exports.Overwrite = Overwrite;
-
-//# sourceMappingURL=Overwrite.js.map
-
-
-/***/ }),
-/* 71 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var util_1 = __webpack_require__(0);
-var childSet_1 = __webpack_require__(72);
-var util_2 = __webpack_require__(0);
-var Node_1 = __webpack_require__(7);
-var PriorityIndex_1 = __webpack_require__(5);
-var KeyIndex_1 = __webpack_require__(23);
-var _defaultIndexMap;
-var fallbackObject = {};
-/**
- *
- * @param {Object.<string, FallbackType|SortedMap.<NamedNode, Node>>} indexes
- * @param {Object.<string, Index>} indexSet
- * @constructor
- */
-var IndexMap = /** @class */ (function () {
-    function IndexMap(indexes_, indexSet_) {
-        this.indexes_ = indexes_;
-        this.indexSet_ = indexSet_;
-    }
-    Object.defineProperty(IndexMap, "Default", {
-        /**
-         * The default IndexMap for nodes without a priority
-         * @type {!IndexMap}
-         * @const
-         */
-        get: function () {
-            util_1.assert(fallbackObject && PriorityIndex_1.PRIORITY_INDEX, 'ChildrenNode.ts has not been loaded');
-            _defaultIndexMap =
-                _defaultIndexMap ||
-                    new IndexMap({ '.priority': fallbackObject }, { '.priority': PriorityIndex_1.PRIORITY_INDEX });
-            return _defaultIndexMap;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     *
-     * @param {!string} indexKey
-     * @return {?SortedMap.<NamedNode, Node>}
-     */
-    IndexMap.prototype.get = function (indexKey) {
-        var sortedMap = util_2.safeGet(this.indexes_, indexKey);
-        if (!sortedMap)
-            throw new Error('No index defined for ' + indexKey);
-        if (sortedMap === fallbackObject) {
-            // The index exists, but it falls back to just name comparison. Return null so that the calling code uses the
-            // regular child map
-            return null;
-        }
-        else {
-            return sortedMap;
-        }
-    };
-    /**
-     * @param {!Index} indexDefinition
-     * @return {boolean}
-     */
-    IndexMap.prototype.hasIndex = function (indexDefinition) {
-        return util_2.contains(this.indexSet_, indexDefinition.toString());
-    };
-    /**
-     * @param {!Index} indexDefinition
-     * @param {!SortedMap.<string, !Node>} existingChildren
-     * @return {!IndexMap}
-     */
-    IndexMap.prototype.addIndex = function (indexDefinition, existingChildren) {
-        util_1.assert(indexDefinition !== KeyIndex_1.KEY_INDEX, "KeyIndex always exists and isn't meant to be added to the IndexMap.");
-        var childList = [];
-        var sawIndexedValue = false;
-        var iter = existingChildren.getIterator(Node_1.NamedNode.Wrap);
-        var next = iter.getNext();
-        while (next) {
-            sawIndexedValue =
-                sawIndexedValue || indexDefinition.isDefinedOn(next.node);
-            childList.push(next);
-            next = iter.getNext();
-        }
-        var newIndex;
-        if (sawIndexedValue) {
-            newIndex = childSet_1.buildChildSet(childList, indexDefinition.getCompare());
-        }
-        else {
-            newIndex = fallbackObject;
-        }
-        var indexName = indexDefinition.toString();
-        var newIndexSet = util_2.clone(this.indexSet_);
-        newIndexSet[indexName] = indexDefinition;
-        var newIndexes = util_2.clone(this.indexes_);
-        newIndexes[indexName] = newIndex;
-        return new IndexMap(newIndexes, newIndexSet);
-    };
-    /**
-     * Ensure that this node is properly tracked in any indexes that we're maintaining
-     * @param {!NamedNode} namedNode
-     * @param {!SortedMap.<string, !Node>} existingChildren
-     * @return {!IndexMap}
-     */
-    IndexMap.prototype.addToIndexes = function (namedNode, existingChildren) {
-        var _this = this;
-        var newIndexes = util_2.map(this.indexes_, function (indexedChildren, indexName) {
-            var index = util_2.safeGet(_this.indexSet_, indexName);
-            util_1.assert(index, 'Missing index implementation for ' + indexName);
-            if (indexedChildren === fallbackObject) {
-                // Check to see if we need to index everything
-                if (index.isDefinedOn(namedNode.node)) {
-                    // We need to build this index
-                    var childList = [];
-                    var iter = existingChildren.getIterator(Node_1.NamedNode.Wrap);
-                    var next = iter.getNext();
-                    while (next) {
-                        if (next.name != namedNode.name) {
-                            childList.push(next);
-                        }
-                        next = iter.getNext();
-                    }
-                    childList.push(namedNode);
-                    return childSet_1.buildChildSet(childList, index.getCompare());
-                }
-                else {
-                    // No change, this remains a fallback
-                    return fallbackObject;
-                }
-            }
-            else {
-                var existingSnap = existingChildren.get(namedNode.name);
-                var newChildren = indexedChildren;
-                if (existingSnap) {
-                    newChildren = newChildren.remove(new Node_1.NamedNode(namedNode.name, existingSnap));
-                }
-                return newChildren.insert(namedNode, namedNode.node);
-            }
-        });
-        return new IndexMap(newIndexes, this.indexSet_);
-    };
-    /**
-     * Create a new IndexMap instance with the given value removed
-     * @param {!NamedNode} namedNode
-     * @param {!SortedMap.<string, !Node>} existingChildren
-     * @return {!IndexMap}
-     */
-    IndexMap.prototype.removeFromIndexes = function (namedNode, existingChildren) {
-        var newIndexes = util_2.map(this.indexes_, function (indexedChildren) {
-            if (indexedChildren === fallbackObject) {
-                // This is the fallback. Just return it, nothing to do in this case
-                return indexedChildren;
-            }
-            else {
-                var existingSnap = existingChildren.get(namedNode.name);
-                if (existingSnap) {
-                    return indexedChildren.remove(new Node_1.NamedNode(namedNode.name, existingSnap));
-                }
-                else {
-                    // No record of this child
-                    return indexedChildren;
-                }
-            }
-        });
-        return new IndexMap(newIndexes, this.indexSet_);
-    };
-    return IndexMap;
-}());
-exports.IndexMap = IndexMap;
-
-//# sourceMappingURL=IndexMap.js.map
-
-
-/***/ }),
-/* 72 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var SortedMap_1 = __webpack_require__(35);
-var SortedMap_2 = __webpack_require__(35);
-var LOG_2 = Math.log(2);
-/**
- * @constructor
- */
-var Base12Num = /** @class */ (function () {
-    /**
-     * @param {number} length
-     */
-    function Base12Num(length) {
-        var logBase2 = function (num) {
-            return parseInt((Math.log(num) / LOG_2), 10);
-        };
-        var bitMask = function (bits) { return parseInt(Array(bits + 1).join('1'), 2); };
-        this.count = logBase2(length + 1);
-        this.current_ = this.count - 1;
-        var mask = bitMask(this.count);
-        this.bits_ = (length + 1) & mask;
-    }
-    /**
-     * @return {boolean}
-     */
-    Base12Num.prototype.nextBitIsOne = function () {
-        //noinspection JSBitwiseOperatorUsage
-        var result = !(this.bits_ & (0x1 << this.current_));
-        this.current_--;
-        return result;
-    };
-    return Base12Num;
-}());
-/**
- * Takes a list of child nodes and constructs a SortedSet using the given comparison
- * function
- *
- * Uses the algorithm described in the paper linked here:
- * http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.46.1458
- *
- * @template K, V
- * @param {Array.<!NamedNode>} childList Unsorted list of children
- * @param {function(!NamedNode, !NamedNode):number} cmp The comparison method to be used
- * @param {(function(NamedNode):K)=} keyFn An optional function to extract K from a node wrapper, if K's
- *                                                        type is not NamedNode
- * @param {(function(K, K):number)=} mapSortFn An optional override for comparator used by the generated sorted map
- * @return {SortedMap.<K, V>}
- */
-exports.buildChildSet = function (childList, cmp, keyFn, mapSortFn) {
-    childList.sort(cmp);
-    var buildBalancedTree = function (low, high) {
-        var length = high - low;
-        var namedNode;
-        var key;
-        if (length == 0) {
-            return null;
-        }
-        else if (length == 1) {
-            namedNode = childList[low];
-            key = keyFn ? keyFn(namedNode) : namedNode;
-            return new SortedMap_1.LLRBNode(key, namedNode.node, SortedMap_1.LLRBNode.BLACK, null, null);
-        }
-        else {
-            var middle = parseInt((length / 2), 10) + low;
-            var left = buildBalancedTree(low, middle);
-            var right = buildBalancedTree(middle + 1, high);
-            namedNode = childList[middle];
-            key = keyFn ? keyFn(namedNode) : namedNode;
-            return new SortedMap_1.LLRBNode(key, namedNode.node, SortedMap_1.LLRBNode.BLACK, left, right);
-        }
-    };
-    var buildFrom12Array = function (base12) {
-        var node = null;
-        var root = null;
-        var index = childList.length;
-        var buildPennant = function (chunkSize, color) {
-            var low = index - chunkSize;
-            var high = index;
-            index -= chunkSize;
-            var childTree = buildBalancedTree(low + 1, high);
-            var namedNode = childList[low];
-            var key = keyFn ? keyFn(namedNode) : namedNode;
-            attachPennant(new SortedMap_1.LLRBNode(key, namedNode.node, color, null, childTree));
-        };
-        var attachPennant = function (pennant) {
-            if (node) {
-                node.left = pennant;
-                node = pennant;
-            }
-            else {
-                root = pennant;
-                node = pennant;
-            }
-        };
-        for (var i = 0; i < base12.count; ++i) {
-            var isOne = base12.nextBitIsOne();
-            // The number of nodes taken in each slice is 2^(arr.length - (i + 1))
-            var chunkSize = Math.pow(2, base12.count - (i + 1));
-            if (isOne) {
-                buildPennant(chunkSize, SortedMap_1.LLRBNode.BLACK);
-            }
-            else {
-                // current == 2
-                buildPennant(chunkSize, SortedMap_1.LLRBNode.BLACK);
-                buildPennant(chunkSize, SortedMap_1.LLRBNode.RED);
-            }
-        }
-        return root;
-    };
-    var base12 = new Base12Num(childList.length);
-    var root = buildFrom12Array(base12);
-    return new SortedMap_2.SortedMap(mapSortFn || cmp, root);
-};
-
-//# sourceMappingURL=childSet.js.map
-
-
-/***/ }),
-/* 73 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var util_1 = __webpack_require__(2);
-function NAME_ONLY_COMPARATOR(left, right) {
-    return util_1.nameCompare(left.name, right.name);
-}
-exports.NAME_ONLY_COMPARATOR = NAME_ONLY_COMPARATOR;
-function NAME_COMPARATOR(left, right) {
-    return util_1.nameCompare(left, right);
-}
-exports.NAME_COMPARATOR = NAME_COMPARATOR;
-
-//# sourceMappingURL=comparators.js.map
-
-
-/***/ }),
-/* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var util_1 = __webpack_require__(0);
-var util_2 = __webpack_require__(2);
-var Index_1 = __webpack_require__(33);
-var ChildrenNode_1 = __webpack_require__(6);
-var Node_1 = __webpack_require__(7);
-var nodeFromJSON_1 = __webpack_require__(24);
-/**
- * @param {!Path} indexPath
- * @constructor
- * @extends {Index}
- */
-var PathIndex = /** @class */ (function (_super) {
-    __extends(PathIndex, _super);
-    function PathIndex(indexPath_) {
-        var _this = _super.call(this) || this;
-        _this.indexPath_ = indexPath_;
-        util_1.assert(!indexPath_.isEmpty() && indexPath_.getFront() !== '.priority', "Can't create PathIndex with empty path or .priority key");
-        return _this;
-    }
-    /**
-     * @param {!Node} snap
-     * @return {!Node}
-     * @protected
-     */
-    PathIndex.prototype.extractChild = function (snap) {
-        return snap.getChild(this.indexPath_);
-    };
-    /**
-     * @inheritDoc
-     */
-    PathIndex.prototype.isDefinedOn = function (node) {
-        return !node.getChild(this.indexPath_).isEmpty();
-    };
-    /**
-     * @inheritDoc
-     */
-    PathIndex.prototype.compare = function (a, b) {
-        var aChild = this.extractChild(a.node);
-        var bChild = this.extractChild(b.node);
-        var indexCmp = aChild.compareTo(bChild);
-        if (indexCmp === 0) {
-            return util_2.nameCompare(a.name, b.name);
-        }
-        else {
-            return indexCmp;
-        }
-    };
-    /**
-     * @inheritDoc
-     */
-    PathIndex.prototype.makePost = function (indexValue, name) {
-        var valueNode = nodeFromJSON_1.nodeFromJSON(indexValue);
-        var node = ChildrenNode_1.ChildrenNode.EMPTY_NODE.updateChild(this.indexPath_, valueNode);
-        return new Node_1.NamedNode(name, node);
-    };
-    /**
-     * @inheritDoc
-     */
-    PathIndex.prototype.maxPost = function () {
-        var node = ChildrenNode_1.ChildrenNode.EMPTY_NODE.updateChild(this.indexPath_, ChildrenNode_1.MAX_NODE);
-        return new Node_1.NamedNode(util_2.MAX_NAME, node);
-    };
-    /**
-     * @inheritDoc
-     */
-    PathIndex.prototype.toString = function () {
-        return this.indexPath_.slice().join('/');
-    };
-    return PathIndex;
-}(Index_1.Index));
-exports.PathIndex = PathIndex;
-
-//# sourceMappingURL=PathIndex.js.map
-
-
-/***/ }),
-/* 75 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var Index_1 = __webpack_require__(33);
-var Node_1 = __webpack_require__(7);
-var util_1 = __webpack_require__(2);
-var nodeFromJSON_1 = __webpack_require__(24);
-/**
- * @constructor
- * @extends {Index}
- * @private
- */
-var ValueIndex = /** @class */ (function (_super) {
-    __extends(ValueIndex, _super);
-    function ValueIndex() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    /**
-     * @inheritDoc
-     */
-    ValueIndex.prototype.compare = function (a, b) {
-        var indexCmp = a.node.compareTo(b.node);
-        if (indexCmp === 0) {
-            return util_1.nameCompare(a.name, b.name);
-        }
-        else {
-            return indexCmp;
-        }
-    };
-    /**
-     * @inheritDoc
-     */
-    ValueIndex.prototype.isDefinedOn = function (node) {
-        return true;
-    };
-    /**
-     * @inheritDoc
-     */
-    ValueIndex.prototype.indexedValueChanged = function (oldNode, newNode) {
-        return !oldNode.equals(newNode);
-    };
-    /**
-     * @inheritDoc
-     */
-    ValueIndex.prototype.minPost = function () {
-        return Node_1.NamedNode.MIN;
-    };
-    /**
-     * @inheritDoc
-     */
-    ValueIndex.prototype.maxPost = function () {
-        return Node_1.NamedNode.MAX;
-    };
-    /**
-     * @param {*} indexValue
-     * @param {string} name
-     * @return {!NamedNode}
-     */
-    ValueIndex.prototype.makePost = function (indexValue, name) {
-        var valueNode = nodeFromJSON_1.nodeFromJSON(indexValue);
-        return new Node_1.NamedNode(name, valueNode);
-    };
-    /**
-     * @return {!string} String representation for inclusion in a query spec
-     */
-    ValueIndex.prototype.toString = function () {
-        return '.value';
-    };
-    return ValueIndex;
-}(Index_1.Index));
-exports.ValueIndex = ValueIndex;
-exports.VALUE_INDEX = new ValueIndex();
-
-//# sourceMappingURL=ValueIndex.js.map
-
-
-/***/ }),
-/* 76 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var util_1 = __webpack_require__(0);
-var util_2 = __webpack_require__(2);
-var util_3 = __webpack_require__(0);
-var MAX_NODE;
-function setMaxNode(val) {
-    MAX_NODE = val;
-}
-exports.setMaxNode = setMaxNode;
-/**
- * @param {(!string|!number)} priority
- * @return {!string}
- */
-exports.priorityHashText = function (priority) {
-    if (typeof priority === 'number')
-        return 'number:' + util_2.doubleToIEEE754String(priority);
-    else
-        return 'string:' + priority;
-};
-/**
- * Validates that a priority snapshot Node is valid.
- *
- * @param {!Node} priorityNode
- */
-exports.validatePriorityNode = function (priorityNode) {
-    if (priorityNode.isLeafNode()) {
-        var val = priorityNode.val();
-        util_1.assert(typeof val === 'string' ||
-            typeof val === 'number' ||
-            (typeof val === 'object' && util_3.contains(val, '.sv')), 'Priority must be a string or number.');
-    }
-    else {
-        util_1.assert(priorityNode === MAX_NODE || priorityNode.isEmpty(), 'priority of unexpected type.');
-    }
-    // Don't call getPriority() on MAX_NODE to avoid hitting assertion.
-    util_1.assert(priorityNode === MAX_NODE || priorityNode.getPriority().isEmpty(), "Priority nodes can't have a priority of their own.");
-};
-
-//# sourceMappingURL=snap.js.map
-
-
-/***/ }),
-/* 77 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var util_1 = __webpack_require__(0);
-/**
- * Returns the delta from the previous call to get stats.
- *
- * @param collection_ The collection to "listen" to.
- * @constructor
- */
-var StatsListener = /** @class */ (function () {
-    function StatsListener(collection_) {
-        this.collection_ = collection_;
-        this.last_ = null;
-    }
-    StatsListener.prototype.get = function () {
-        var newStats = this.collection_.get();
-        var delta = util_1.clone(newStats);
-        if (this.last_) {
-            util_1.forEach(this.last_, function (stat, value) {
-                delta[stat] = delta[stat] - value;
-            });
-        }
-        this.last_ = newStats;
-        return delta;
-    };
-    return StatsListener;
-}());
-exports.StatsListener = StatsListener;
-
-//# sourceMappingURL=StatsListener.js.map
-
-
-/***/ }),
-/* 78 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var util_1 = __webpack_require__(0);
-/**
- * Implements a set with a count of elements.
- *
- * @template K, V
- */
-var CountedSet = /** @class */ (function () {
-    function CountedSet() {
-        this.set = {};
-    }
-    /**
-     * @param {!K} item
-     * @param {V} val
-     */
-    CountedSet.prototype.add = function (item, val) {
-        this.set[item] = val !== null ? val : true;
-    };
-    /**
-     * @param {!K} key
-     * @return {boolean}
-     */
-    CountedSet.prototype.contains = function (key) {
-        return util_1.contains(this.set, key);
-    };
-    /**
-     * @param {!K} item
-     * @return {V}
-     */
-    CountedSet.prototype.get = function (item) {
-        return this.contains(item) ? this.set[item] : undefined;
-    };
-    /**
-     * @param {!K} item
-     */
-    CountedSet.prototype.remove = function (item) {
-        delete this.set[item];
-    };
-    /**
-     * Deletes everything in the set
-     */
-    CountedSet.prototype.clear = function () {
-        this.set = {};
-    };
-    /**
-     * True if there's nothing in the set
-     * @return {boolean}
-     */
-    CountedSet.prototype.isEmpty = function () {
-        return util_1.isEmpty(this.set);
-    };
-    /**
-     * @return {number} The number of items in the set
-     */
-    CountedSet.prototype.count = function () {
-        return util_1.getCount(this.set);
-    };
-    /**
-     * Run a function on each k,v pair in the set
-     * @param {function(K, V)} fn
-     */
-    CountedSet.prototype.each = function (fn) {
-        util_1.forEach(this.set, function (k, v) { return fn(k, v); });
-    };
-    /**
-     * Mostly for debugging
-     * @return {Array.<K>} The keys present in this CountedSet
-     */
-    CountedSet.prototype.keys = function () {
-        var keys = [];
-        util_1.forEach(this.set, function (k) {
-            keys.push(k);
-        });
-        return keys;
-    };
-    return CountedSet;
-}());
-exports.CountedSet = CountedSet;
-
-//# sourceMappingURL=CountedSet.js.map
-
-
-/***/ }),
-/* 79 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var util_1 = __webpack_require__(0);
-/**
- * Base class to be used if you want to emit events. Call the constructor with
- * the set of allowed event names.
- */
-var EventEmitter = /** @class */ (function () {
-    /**
-     * @param {!Array.<string>} allowedEvents_
-     */
-    function EventEmitter(allowedEvents_) {
-        this.allowedEvents_ = allowedEvents_;
-        this.listeners_ = {};
-        util_1.assert(Array.isArray(allowedEvents_) && allowedEvents_.length > 0, 'Requires a non-empty array');
-    }
-    /**
-     * To be called by derived classes to trigger events.
-     * @param {!string} eventType
-     * @param {...*} var_args
-     */
-    EventEmitter.prototype.trigger = function (eventType) {
-        var var_args = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            var_args[_i - 1] = arguments[_i];
-        }
-        if (Array.isArray(this.listeners_[eventType])) {
-            // Clone the list, since callbacks could add/remove listeners.
-            var listeners = this.listeners_[eventType].slice();
-            for (var i = 0; i < listeners.length; i++) {
-                listeners[i].callback.apply(listeners[i].context, var_args);
-            }
-        }
-    };
-    EventEmitter.prototype.on = function (eventType, callback, context) {
-        this.validateEventType_(eventType);
-        this.listeners_[eventType] = this.listeners_[eventType] || [];
-        this.listeners_[eventType].push({ callback: callback, context: context });
-        var eventData = this.getInitialEvent(eventType);
-        if (eventData) {
-            callback.apply(context, eventData);
-        }
-    };
-    EventEmitter.prototype.off = function (eventType, callback, context) {
-        this.validateEventType_(eventType);
-        var listeners = this.listeners_[eventType] || [];
-        for (var i = 0; i < listeners.length; i++) {
-            if (listeners[i].callback === callback &&
-                (!context || context === listeners[i].context)) {
-                listeners.splice(i, 1);
-                return;
-            }
-        }
-    };
-    EventEmitter.prototype.validateEventType_ = function (eventType) {
-        util_1.assert(this.allowedEvents_.find(function (et) {
-            return et === eventType;
-        }), 'Unknown event: ' + eventType);
-    };
-    return EventEmitter;
-}());
-exports.EventEmitter = EventEmitter;
-
-//# sourceMappingURL=EventEmitter.js.map
-
-
-/***/ }),
-/* 80 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var util_1 = __webpack_require__(0);
-var Path_1 = __webpack_require__(3);
-var SparseSnapshotTree_1 = __webpack_require__(68);
-var LeafNode_1 = __webpack_require__(32);
-var nodeFromJSON_1 = __webpack_require__(24);
-var PriorityIndex_1 = __webpack_require__(5);
-/**
- * Generate placeholders for deferred values.
- * @param {?Object} values
- * @return {!Object}
- */
-exports.generateWithValues = function (values) {
-    values = values || {};
-    values['timestamp'] = values['timestamp'] || new Date().getTime();
-    return values;
-};
-/**
- * Value to use when firing local events. When writing server values, fire
- * local events with an approximate value, otherwise return value as-is.
- * @param {(Object|string|number|boolean)} value
- * @param {!Object} serverValues
- * @return {!(string|number|boolean)}
- */
-exports.resolveDeferredValue = function (value, serverValues) {
-    if (!value || typeof value !== 'object') {
-        return value;
-    }
-    else {
-        util_1.assert('.sv' in value, 'Unexpected leaf node or priority contents');
-        return serverValues[value['.sv']];
-    }
-};
-/**
- * Recursively replace all deferred values and priorities in the tree with the
- * specified generated replacement values.
- * @param {!SparseSnapshotTree} tree
- * @param {!Object} serverValues
- * @return {!SparseSnapshotTree}
- */
-exports.resolveDeferredValueTree = function (tree, serverValues) {
-    var resolvedTree = new SparseSnapshotTree_1.SparseSnapshotTree();
-    tree.forEachTree(new Path_1.Path(''), function (path, node) {
-        resolvedTree.remember(path, exports.resolveDeferredValueSnapshot(node, serverValues));
-    });
-    return resolvedTree;
-};
-/**
- * Recursively replace all deferred values and priorities in the node with the
- * specified generated replacement values.  If there are no server values in the node,
- * it'll be returned as-is.
- * @param {!Node} node
- * @param {!Object} serverValues
- * @return {!Node}
- */
-exports.resolveDeferredValueSnapshot = function (node, serverValues) {
-    var rawPri = node.getPriority().val();
-    var priority = exports.resolveDeferredValue(rawPri, serverValues);
-    var newNode;
-    if (node.isLeafNode()) {
-        var leafNode = node;
-        var value = exports.resolveDeferredValue(leafNode.getValue(), serverValues);
-        if (value !== leafNode.getValue() ||
-            priority !== leafNode.getPriority().val()) {
-            return new LeafNode_1.LeafNode(value, nodeFromJSON_1.nodeFromJSON(priority));
-        }
-        else {
-            return node;
-        }
-    }
-    else {
-        var childrenNode = node;
-        newNode = childrenNode;
-        if (priority !== childrenNode.getPriority().val()) {
-            newNode = newNode.updatePriority(new LeafNode_1.LeafNode(priority));
-        }
-        childrenNode.forEachChild(PriorityIndex_1.PRIORITY_INDEX, function (childName, childNode) {
-            var newChildNode = exports.resolveDeferredValueSnapshot(childNode, serverValues);
-            if (newChildNode !== childNode) {
-                newNode = newNode.updateImmediateChild(childName, newChildNode);
-            }
-        });
-        return newNode;
-    }
-};
-
-//# sourceMappingURL=ServerValues.js.map
-
-
-/***/ }),
-/* 81 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var Path_1 = __webpack_require__(3);
-var RepoInfo_1 = __webpack_require__(66);
-var util_1 = __webpack_require__(2);
-/**
- * @param {!string} pathString
- * @return {string}
- */
-function decodePath(pathString) {
-    var pathStringDecoded = '';
-    var pieces = pathString.split('/');
-    for (var i = 0; i < pieces.length; i++) {
-        if (pieces[i].length > 0) {
-            var piece = pieces[i];
-            try {
-                piece = decodeURIComponent(piece.replace(/\+/g, ' '));
-            }
-            catch (e) { }
-            pathStringDecoded += '/' + piece;
-        }
-    }
-    return pathStringDecoded;
-}
-/**
- *
- * @param {!string} dataURL
- * @return {{repoInfo: !RepoInfo, path: !Path}}
- */
-exports.parseRepoInfo = function (dataURL) {
-    var parsedUrl = exports.parseURL(dataURL), namespace = parsedUrl.subdomain;
-    if (parsedUrl.domain === 'firebase') {
-        util_1.fatal(parsedUrl.host +
-            ' is no longer supported. ' +
-            'Please use <YOUR FIREBASE>.firebaseio.com instead');
-    }
-    // Catch common error of uninitialized namespace value.
-    if (!namespace || namespace == 'undefined') {
-        util_1.fatal('Cannot parse Firebase url. Please use https://<YOUR FIREBASE>.firebaseio.com');
-    }
-    if (!parsedUrl.secure) {
-        util_1.warnIfPageIsSecure();
-    }
-    var webSocketOnly = parsedUrl.scheme === 'ws' || parsedUrl.scheme === 'wss';
-    return {
-        repoInfo: new RepoInfo_1.RepoInfo(parsedUrl.host, parsedUrl.secure, namespace, webSocketOnly),
-        path: new Path_1.Path(parsedUrl.pathString)
-    };
-};
-/**
- *
- * @param {!string} dataURL
- * @return {{host: string, port: number, domain: string, subdomain: string, secure: boolean, scheme: string, pathString: string}}
- */
-exports.parseURL = function (dataURL) {
-    // Default to empty strings in the event of a malformed string.
-    var host = '', domain = '', subdomain = '', pathString = '';
-    // Always default to SSL, unless otherwise specified.
-    var secure = true, scheme = 'https', port = 443;
-    // Don't do any validation here. The caller is responsible for validating the result of parsing.
-    if (typeof dataURL === 'string') {
-        // Parse scheme.
-        var colonInd = dataURL.indexOf('//');
-        if (colonInd >= 0) {
-            scheme = dataURL.substring(0, colonInd - 1);
-            dataURL = dataURL.substring(colonInd + 2);
-        }
-        // Parse host and path.
-        var slashInd = dataURL.indexOf('/');
-        if (slashInd === -1) {
-            slashInd = dataURL.length;
-        }
-        host = dataURL.substring(0, slashInd);
-        pathString = decodePath(dataURL.substring(slashInd));
-        var parts = host.split('.');
-        if (parts.length === 3) {
-            // Normalize namespaces to lowercase to share storage / connection.
-            domain = parts[1];
-            subdomain = parts[0].toLowerCase();
-        }
-        else if (parts.length === 2) {
-            domain = parts[0];
-        }
-        // If we have a port, use scheme for determining if it's secure.
-        colonInd = host.indexOf(':');
-        if (colonInd >= 0) {
-            secure = scheme === 'https' || scheme === 'wss';
-            port = parseInt(host.substring(colonInd + 1), 10);
-        }
-    }
-    return {
-        host: host,
-        port: port,
-        domain: domain,
-        subdomain: subdomain,
-        secure: secure,
-        scheme: scheme,
-        pathString: pathString
-    };
-};
-
-//# sourceMappingURL=parser.js.map
-
-
-/***/ }),
-/* 82 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var ChildrenNode_1 = __webpack_require__(6);
-var CacheNode_1 = __webpack_require__(36);
-/**
- * Stores the data we have cached for a view.
- *
- * serverSnap is the cached server data, eventSnap is the cached event data (server data plus any local writes).
- *
- * @constructor
- */
-var ViewCache = /** @class */ (function () {
-    /**
-     *
-     * @param {!CacheNode} eventCache_
-     * @param {!CacheNode} serverCache_
-     */
-    function ViewCache(eventCache_, serverCache_) {
-        this.eventCache_ = eventCache_;
-        this.serverCache_ = serverCache_;
-    }
-    /**
-     * @param {!Node} eventSnap
-     * @param {boolean} complete
-     * @param {boolean} filtered
-     * @return {!ViewCache}
-     */
-    ViewCache.prototype.updateEventSnap = function (eventSnap, complete, filtered) {
-        return new ViewCache(new CacheNode_1.CacheNode(eventSnap, complete, filtered), this.serverCache_);
-    };
-    /**
-     * @param {!Node} serverSnap
-     * @param {boolean} complete
-     * @param {boolean} filtered
-     * @return {!ViewCache}
-     */
-    ViewCache.prototype.updateServerSnap = function (serverSnap, complete, filtered) {
-        return new ViewCache(this.eventCache_, new CacheNode_1.CacheNode(serverSnap, complete, filtered));
-    };
-    /**
-     * @return {!CacheNode}
-     */
-    ViewCache.prototype.getEventCache = function () {
-        return this.eventCache_;
-    };
-    /**
-     * @return {?Node}
-     */
-    ViewCache.prototype.getCompleteEventSnap = function () {
-        return this.eventCache_.isFullyInitialized()
-            ? this.eventCache_.getNode()
-            : null;
-    };
-    /**
-     * @return {!CacheNode}
-     */
-    ViewCache.prototype.getServerCache = function () {
-        return this.serverCache_;
-    };
-    /**
-     * @return {?Node}
-     */
-    ViewCache.prototype.getCompleteServerSnap = function () {
-        return this.serverCache_.isFullyInitialized()
-            ? this.serverCache_.getNode()
-            : null;
-    };
-    /**
-     * @const
-     * @type {ViewCache}
-     */
-    ViewCache.Empty = new ViewCache(new CacheNode_1.CacheNode(ChildrenNode_1.ChildrenNode.EMPTY_NODE, 
-    /*fullyInitialized=*/ false, 
-    /*filtered=*/ false), new CacheNode_1.CacheNode(ChildrenNode_1.ChildrenNode.EMPTY_NODE, 
-    /*fullyInitialized=*/ false, 
-    /*filtered=*/ false));
-    return ViewCache;
-}());
-exports.ViewCache = ViewCache;
-
-//# sourceMappingURL=ViewCache.js.map
-
-
-/***/ }),
-/* 83 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var IndexedFilter_1 = __webpack_require__(49);
-var PriorityIndex_1 = __webpack_require__(5);
-var Node_1 = __webpack_require__(7);
-var ChildrenNode_1 = __webpack_require__(6);
-/**
- * Filters nodes by range and uses an IndexFilter to track any changes after filtering the node
- *
- * @constructor
- * @implements {NodeFilter}
- */
-var RangedFilter = /** @class */ (function () {
-    /**
-     * @param {!QueryParams} params
-     */
-    function RangedFilter(params) {
-        this.indexedFilter_ = new IndexedFilter_1.IndexedFilter(params.getIndex());
-        this.index_ = params.getIndex();
-        this.startPost_ = RangedFilter.getStartPost_(params);
-        this.endPost_ = RangedFilter.getEndPost_(params);
-    }
-    /**
-     * @return {!NamedNode}
-     */
-    RangedFilter.prototype.getStartPost = function () {
-        return this.startPost_;
-    };
-    /**
-     * @return {!NamedNode}
-     */
-    RangedFilter.prototype.getEndPost = function () {
-        return this.endPost_;
-    };
-    /**
-     * @param {!NamedNode} node
-     * @return {boolean}
-     */
-    RangedFilter.prototype.matches = function (node) {
-        return (this.index_.compare(this.getStartPost(), node) <= 0 &&
-            this.index_.compare(node, this.getEndPost()) <= 0);
-    };
-    /**
-     * @inheritDoc
-     */
-    RangedFilter.prototype.updateChild = function (snap, key, newChild, affectedPath, source, optChangeAccumulator) {
-        if (!this.matches(new Node_1.NamedNode(key, newChild))) {
-            newChild = ChildrenNode_1.ChildrenNode.EMPTY_NODE;
-        }
-        return this.indexedFilter_.updateChild(snap, key, newChild, affectedPath, source, optChangeAccumulator);
-    };
-    /**
-     * @inheritDoc
-     */
-    RangedFilter.prototype.updateFullNode = function (oldSnap, newSnap, optChangeAccumulator) {
-        if (newSnap.isLeafNode()) {
-            // Make sure we have a children node with the correct index, not a leaf node;
-            newSnap = ChildrenNode_1.ChildrenNode.EMPTY_NODE;
-        }
-        var filtered = newSnap.withIndex(this.index_);
-        // Don't support priorities on queries
-        filtered = filtered.updatePriority(ChildrenNode_1.ChildrenNode.EMPTY_NODE);
-        var self = this;
-        newSnap.forEachChild(PriorityIndex_1.PRIORITY_INDEX, function (key, childNode) {
-            if (!self.matches(new Node_1.NamedNode(key, childNode))) {
-                filtered = filtered.updateImmediateChild(key, ChildrenNode_1.ChildrenNode.EMPTY_NODE);
-            }
-        });
-        return this.indexedFilter_.updateFullNode(oldSnap, filtered, optChangeAccumulator);
-    };
-    /**
-     * @inheritDoc
-     */
-    RangedFilter.prototype.updatePriority = function (oldSnap, newPriority) {
-        // Don't support priorities on queries
-        return oldSnap;
-    };
-    /**
-     * @inheritDoc
-     */
-    RangedFilter.prototype.filtersNodes = function () {
-        return true;
-    };
-    /**
-     * @inheritDoc
-     */
-    RangedFilter.prototype.getIndexedFilter = function () {
-        return this.indexedFilter_;
-    };
-    /**
-     * @inheritDoc
-     */
-    RangedFilter.prototype.getIndex = function () {
-        return this.index_;
-    };
-    /**
-     * @param {!QueryParams} params
-     * @return {!NamedNode}
-     * @private
-     */
-    RangedFilter.getStartPost_ = function (params) {
-        if (params.hasStart()) {
-            var startName = params.getIndexStartName();
-            return params.getIndex().makePost(params.getIndexStartValue(), startName);
-        }
-        else {
-            return params.getIndex().minPost();
-        }
-    };
-    /**
-     * @param {!QueryParams} params
-     * @return {!NamedNode}
-     * @private
-     */
-    RangedFilter.getEndPost_ = function (params) {
-        if (params.hasEnd()) {
-            var endName = params.getIndexEndName();
-            return params.getIndex().makePost(params.getIndexEndValue(), endName);
-        }
-        else {
-            return params.getIndex().maxPost();
-        }
-    };
-    return RangedFilter;
-}());
-exports.RangedFilter = RangedFilter;
-
-//# sourceMappingURL=RangedFilter.js.map
-
-
-/***/ }),
-/* 84 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var util_1 = __webpack_require__(2);
-var CountedSet_1 = __webpack_require__(78);
-var StatsManager_1 = __webpack_require__(47);
-var PacketReceiver_1 = __webpack_require__(153);
-var Constants_1 = __webpack_require__(37);
-var util_2 = __webpack_require__(0);
-var util_3 = __webpack_require__(0);
-// URL query parameters associated with longpolling
-exports.FIREBASE_LONGPOLL_START_PARAM = 'start';
-exports.FIREBASE_LONGPOLL_CLOSE_COMMAND = 'close';
-exports.FIREBASE_LONGPOLL_COMMAND_CB_NAME = 'pLPCommand';
-exports.FIREBASE_LONGPOLL_DATA_CB_NAME = 'pRTLPCB';
-exports.FIREBASE_LONGPOLL_ID_PARAM = 'id';
-exports.FIREBASE_LONGPOLL_PW_PARAM = 'pw';
-exports.FIREBASE_LONGPOLL_SERIAL_PARAM = 'ser';
-exports.FIREBASE_LONGPOLL_CALLBACK_ID_PARAM = 'cb';
-exports.FIREBASE_LONGPOLL_SEGMENT_NUM_PARAM = 'seg';
-exports.FIREBASE_LONGPOLL_SEGMENTS_IN_PACKET = 'ts';
-exports.FIREBASE_LONGPOLL_DATA_PARAM = 'd';
-exports.FIREBASE_LONGPOLL_DISCONN_FRAME_PARAM = 'disconn';
-exports.FIREBASE_LONGPOLL_DISCONN_FRAME_REQUEST_PARAM = 'dframe';
-//Data size constants.
-//TODO: Perf: the maximum length actually differs from browser to browser.
-// We should check what browser we're on and set accordingly.
-var MAX_URL_DATA_SIZE = 1870;
-var SEG_HEADER_SIZE = 30; //ie: &seg=8299234&ts=982389123&d=
-var MAX_PAYLOAD_SIZE = MAX_URL_DATA_SIZE - SEG_HEADER_SIZE;
-/**
- * Keepalive period
- * send a fresh request at minimum every 25 seconds. Opera has a maximum request
- * length of 30 seconds that we can't exceed.
- * @const
- * @type {number}
- */
-var KEEPALIVE_REQUEST_INTERVAL = 25000;
-/**
- * How long to wait before aborting a long-polling connection attempt.
- * @const
- * @type {number}
- */
-var LP_CONNECT_TIMEOUT = 30000;
-/**
- * This class manages a single long-polling connection.
- *
- * @constructor
- * @implements {Transport}
- */
-var BrowserPollConnection = /** @class */ (function () {
-    /**
-     * @param {string} connId An identifier for this connection, used for logging
-     * @param {RepoInfo} repoInfo The info for the endpoint to send data to.
-     * @param {string=} transportSessionId Optional transportSessionid if we are reconnecting for an existing
-     *                                         transport session
-     * @param {string=}  lastSessionId Optional lastSessionId if the PersistentConnection has already created a
-     *                                     connection previously
-     */
-    function BrowserPollConnection(connId, repoInfo, transportSessionId, lastSessionId) {
-        this.connId = connId;
-        this.repoInfo = repoInfo;
-        this.transportSessionId = transportSessionId;
-        this.lastSessionId = lastSessionId;
-        this.bytesSent = 0;
-        this.bytesReceived = 0;
-        this.everConnected_ = false;
-        this.log_ = util_1.logWrapper(connId);
-        this.stats_ = StatsManager_1.StatsManager.getCollection(repoInfo);
-        this.urlFn = function (params) {
-            return repoInfo.connectionURL(Constants_1.LONG_POLLING, params);
-        };
-    }
-    /**
-     *
-     * @param {function(Object)} onMessage Callback when messages arrive
-     * @param {function()} onDisconnect Callback with connection lost.
-     */
-    BrowserPollConnection.prototype.open = function (onMessage, onDisconnect) {
-        var _this = this;
-        this.curSegmentNum = 0;
-        this.onDisconnect_ = onDisconnect;
-        this.myPacketOrderer = new PacketReceiver_1.PacketReceiver(onMessage);
-        this.isClosed_ = false;
-        this.connectTimeoutTimer_ = setTimeout(function () {
-            _this.log_('Timed out trying to connect.');
-            // Make sure we clear the host cache
-            _this.onClosed_();
-            _this.connectTimeoutTimer_ = null;
-        }, Math.floor(LP_CONNECT_TIMEOUT));
-        // Ensure we delay the creation of the iframe until the DOM is loaded.
-        util_1.executeWhenDOMReady(function () {
-            if (_this.isClosed_)
-                return;
-            //Set up a callback that gets triggered once a connection is set up.
-            _this.scriptTagHolder = new FirebaseIFrameScriptHolder(function () {
-                var args = [];
-                for (var _i = 0; _i < arguments.length; _i++) {
-                    args[_i] = arguments[_i];
-                }
-                var command = args[0], arg1 = args[1], arg2 = args[2], arg3 = args[3], arg4 = args[4];
-                _this.incrementIncomingBytes_(args);
-                if (!_this.scriptTagHolder)
-                    return; // we closed the connection.
-                if (_this.connectTimeoutTimer_) {
-                    clearTimeout(_this.connectTimeoutTimer_);
-                    _this.connectTimeoutTimer_ = null;
-                }
-                _this.everConnected_ = true;
-                if (command == exports.FIREBASE_LONGPOLL_START_PARAM) {
-                    _this.id = arg1;
-                    _this.password = arg2;
-                }
-                else if (command === exports.FIREBASE_LONGPOLL_CLOSE_COMMAND) {
-                    // Don't clear the host cache. We got a response from the server, so we know it's reachable
-                    if (arg1) {
-                        // We aren't expecting any more data (other than what the server's already in the process of sending us
-                        // through our already open polls), so don't send any more.
-                        _this.scriptTagHolder.sendNewPolls = false;
-                        // arg1 in this case is the last response number sent by the server. We should try to receive
-                        // all of the responses up to this one before closing
-                        _this.myPacketOrderer.closeAfter(arg1, function () {
-                            _this.onClosed_();
-                        });
-                    }
-                    else {
-                        _this.onClosed_();
-                    }
-                }
-                else {
-                    throw new Error('Unrecognized command received: ' + command);
-                }
-            }, function () {
-                var args = [];
-                for (var _i = 0; _i < arguments.length; _i++) {
-                    args[_i] = arguments[_i];
-                }
-                var pN = args[0], data = args[1];
-                _this.incrementIncomingBytes_(args);
-                _this.myPacketOrderer.handleResponse(pN, data);
-            }, function () {
-                _this.onClosed_();
-            }, _this.urlFn);
-            //Send the initial request to connect. The serial number is simply to keep the browser from pulling previous results
-            //from cache.
-            var urlParams = {};
-            urlParams[exports.FIREBASE_LONGPOLL_START_PARAM] = 't';
-            urlParams[exports.FIREBASE_LONGPOLL_SERIAL_PARAM] = Math.floor(Math.random() * 100000000);
-            if (_this.scriptTagHolder.uniqueCallbackIdentifier)
-                urlParams[exports.FIREBASE_LONGPOLL_CALLBACK_ID_PARAM] = _this.scriptTagHolder.uniqueCallbackIdentifier;
-            urlParams[Constants_1.VERSION_PARAM] = Constants_1.PROTOCOL_VERSION;
-            if (_this.transportSessionId) {
-                urlParams[Constants_1.TRANSPORT_SESSION_PARAM] = _this.transportSessionId;
-            }
-            if (_this.lastSessionId) {
-                urlParams[Constants_1.LAST_SESSION_PARAM] = _this.lastSessionId;
-            }
-            if (!util_3.isNodeSdk() &&
-                typeof location !== 'undefined' &&
-                location.href &&
-                location.href.indexOf(Constants_1.FORGE_DOMAIN) !== -1) {
-                urlParams[Constants_1.REFERER_PARAM] = Constants_1.FORGE_REF;
-            }
-            var connectURL = _this.urlFn(urlParams);
-            _this.log_('Connecting via long-poll to ' + connectURL);
-            _this.scriptTagHolder.addTag(connectURL, function () {
-                /* do nothing */
-            });
-        });
-    };
-    /**
-     * Call this when a handshake has completed successfully and we want to consider the connection established
-     */
-    BrowserPollConnection.prototype.start = function () {
-        this.scriptTagHolder.startLongPoll(this.id, this.password);
-        this.addDisconnectPingFrame(this.id, this.password);
-    };
-    /**
-     * Forces long polling to be considered as a potential transport
-     */
-    BrowserPollConnection.forceAllow = function () {
-        BrowserPollConnection.forceAllow_ = true;
-    };
-    /**
-     * Forces longpolling to not be considered as a potential transport
-     */
-    BrowserPollConnection.forceDisallow = function () {
-        BrowserPollConnection.forceDisallow_ = true;
-    };
-    // Static method, use string literal so it can be accessed in a generic way
-    BrowserPollConnection.isAvailable = function () {
-        // NOTE: In React-Native there's normally no 'document', but if you debug a React-Native app in
-        // the Chrome debugger, 'document' is defined, but document.createElement is null (2015/06/08).
-        return (BrowserPollConnection.forceAllow_ ||
-            (!BrowserPollConnection.forceDisallow_ &&
-                typeof document !== 'undefined' &&
-                document.createElement != null &&
-                !util_1.isChromeExtensionContentScript() &&
-                !util_1.isWindowsStoreApp() &&
-                !util_3.isNodeSdk()));
-    };
-    /**
-     * No-op for polling
-     */
-    BrowserPollConnection.prototype.markConnectionHealthy = function () { };
-    /**
-     * Stops polling and cleans up the iframe
-     * @private
-     */
-    BrowserPollConnection.prototype.shutdown_ = function () {
-        this.isClosed_ = true;
-        if (this.scriptTagHolder) {
-            this.scriptTagHolder.close();
-            this.scriptTagHolder = null;
-        }
-        //remove the disconnect frame, which will trigger an XHR call to the server to tell it we're leaving.
-        if (this.myDisconnFrame) {
-            document.body.removeChild(this.myDisconnFrame);
-            this.myDisconnFrame = null;
-        }
-        if (this.connectTimeoutTimer_) {
-            clearTimeout(this.connectTimeoutTimer_);
-            this.connectTimeoutTimer_ = null;
-        }
-    };
-    /**
-     * Triggered when this transport is closed
-     * @private
-     */
-    BrowserPollConnection.prototype.onClosed_ = function () {
-        if (!this.isClosed_) {
-            this.log_('Longpoll is closing itself');
-            this.shutdown_();
-            if (this.onDisconnect_) {
-                this.onDisconnect_(this.everConnected_);
-                this.onDisconnect_ = null;
-            }
-        }
-    };
-    /**
-     * External-facing close handler. RealTime has requested we shut down. Kill our connection and tell the server
-     * that we've left.
-     */
-    BrowserPollConnection.prototype.close = function () {
-        if (!this.isClosed_) {
-            this.log_('Longpoll is being closed.');
-            this.shutdown_();
-        }
-    };
-    /**
-     * Send the JSON object down to the server. It will need to be stringified, base64 encoded, and then
-     * broken into chunks (since URLs have a small maximum length).
-     * @param {!Object} data The JSON data to transmit.
-     */
-    BrowserPollConnection.prototype.send = function (data) {
-        var dataStr = util_2.stringify(data);
-        this.bytesSent += dataStr.length;
-        this.stats_.incrementCounter('bytes_sent', dataStr.length);
-        //first, lets get the base64-encoded data
-        var base64data = util_2.base64Encode(dataStr);
-        //We can only fit a certain amount in each URL, so we need to split this request
-        //up into multiple pieces if it doesn't fit in one request.
-        var dataSegs = util_1.splitStringBySize(base64data, MAX_PAYLOAD_SIZE);
-        //Enqueue each segment for transmission. We assign each chunk a sequential ID and a total number
-        //of segments so that we can reassemble the packet on the server.
-        for (var i = 0; i < dataSegs.length; i++) {
-            this.scriptTagHolder.enqueueSegment(this.curSegmentNum, dataSegs.length, dataSegs[i]);
-            this.curSegmentNum++;
-        }
-    };
-    /**
-     * This is how we notify the server that we're leaving.
-     * We aren't able to send requests with DHTML on a window close event, but we can
-     * trigger XHR requests in some browsers (everything but Opera basically).
-     * @param {!string} id
-     * @param {!string} pw
-     */
-    BrowserPollConnection.prototype.addDisconnectPingFrame = function (id, pw) {
-        if (util_3.isNodeSdk())
-            return;
-        this.myDisconnFrame = document.createElement('iframe');
-        var urlParams = {};
-        urlParams[exports.FIREBASE_LONGPOLL_DISCONN_FRAME_REQUEST_PARAM] = 't';
-        urlParams[exports.FIREBASE_LONGPOLL_ID_PARAM] = id;
-        urlParams[exports.FIREBASE_LONGPOLL_PW_PARAM] = pw;
-        this.myDisconnFrame.src = this.urlFn(urlParams);
-        this.myDisconnFrame.style.display = 'none';
-        document.body.appendChild(this.myDisconnFrame);
-    };
-    /**
-     * Used to track the bytes received by this client
-     * @param {*} args
-     * @private
-     */
-    BrowserPollConnection.prototype.incrementIncomingBytes_ = function (args) {
-        // TODO: This is an annoying perf hit just to track the number of incoming bytes.  Maybe it should be opt-in.
-        var bytesReceived = util_2.stringify(args).length;
-        this.bytesReceived += bytesReceived;
-        this.stats_.incrementCounter('bytes_received', bytesReceived);
-    };
-    return BrowserPollConnection;
-}());
-exports.BrowserPollConnection = BrowserPollConnection;
-/*********************************************************************************************
- * A wrapper around an iframe that is used as a long-polling script holder.
- * @constructor
- *********************************************************************************************/
-var FirebaseIFrameScriptHolder = /** @class */ (function () {
-    /**
-     * @param commandCB - The callback to be called when control commands are recevied from the server.
-     * @param onMessageCB - The callback to be triggered when responses arrive from the server.
-     * @param onDisconnect - The callback to be triggered when this tag holder is closed
-     * @param urlFn - A function that provides the URL of the endpoint to send data to.
-     */
-    function FirebaseIFrameScriptHolder(commandCB, onMessageCB, onDisconnect, urlFn) {
-        this.onDisconnect = onDisconnect;
-        this.urlFn = urlFn;
-        //We maintain a count of all of the outstanding requests, because if we have too many active at once it can cause
-        //problems in some browsers.
-        /**
-         * @type {CountedSet.<number, number>}
-         */
-        this.outstandingRequests = new CountedSet_1.CountedSet();
-        //A queue of the pending segments waiting for transmission to the server.
-        this.pendingSegs = [];
-        //A serial number. We use this for two things:
-        // 1) A way to ensure the browser doesn't cache responses to polls
-        // 2) A way to make the server aware when long-polls arrive in a different order than we started them. The
-        //    server needs to release both polls in this case or it will cause problems in Opera since Opera can only execute
-        //    JSONP code in the order it was added to the iframe.
-        this.currentSerial = Math.floor(Math.random() * 100000000);
-        // This gets set to false when we're "closing down" the connection (e.g. we're switching transports but there's still
-        // incoming data from the server that we're waiting for).
-        this.sendNewPolls = true;
-        if (!util_3.isNodeSdk()) {
-            //Each script holder registers a couple of uniquely named callbacks with the window. These are called from the
-            //iframes where we put the long-polling script tags. We have two callbacks:
-            //   1) Command Callback - Triggered for control issues, like starting a connection.
-            //   2) Message Callback - Triggered when new data arrives.
-            this.uniqueCallbackIdentifier = util_1.LUIDGenerator();
-            window[exports.FIREBASE_LONGPOLL_COMMAND_CB_NAME + this.uniqueCallbackIdentifier] = commandCB;
-            window[exports.FIREBASE_LONGPOLL_DATA_CB_NAME + this.uniqueCallbackIdentifier] = onMessageCB;
-            //Create an iframe for us to add script tags to.
-            this.myIFrame = FirebaseIFrameScriptHolder.createIFrame_();
-            // Set the iframe's contents.
-            var script = '';
-            // if we set a javascript url, it's IE and we need to set the document domain. The javascript url is sufficient
-            // for ie9, but ie8 needs to do it again in the document itself.
-            if (this.myIFrame.src &&
-                this.myIFrame.src.substr(0, 'javascript:'.length) === 'javascript:') {
-                var currentDomain = document.domain;
-                script = '<script>document.domain="' + currentDomain + '";</script>';
-            }
-            var iframeContents = '<html><body>' + script + '</body></html>';
-            try {
-                this.myIFrame.doc.open();
-                this.myIFrame.doc.write(iframeContents);
-                this.myIFrame.doc.close();
-            }
-            catch (e) {
-                util_1.log('frame writing exception');
-                if (e.stack) {
-                    util_1.log(e.stack);
-                }
-                util_1.log(e);
-            }
-        }
-        else {
-            this.commandCB = commandCB;
-            this.onMessageCB = onMessageCB;
-        }
-    }
-    /**
-     * Each browser has its own funny way to handle iframes. Here we mush them all together into one object that I can
-     * actually use.
-     * @private
-     * @return {Element}
-     */
-    FirebaseIFrameScriptHolder.createIFrame_ = function () {
-        var iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        // This is necessary in order to initialize the document inside the iframe
-        if (document.body) {
-            document.body.appendChild(iframe);
-            try {
-                // If document.domain has been modified in IE, this will throw an error, and we need to set the
-                // domain of the iframe's document manually. We can do this via a javascript: url as the src attribute
-                // Also note that we must do this *after* the iframe has been appended to the page. Otherwise it doesn't work.
-                var a = iframe.contentWindow.document;
-                if (!a) {
-                    // Apologies for the log-spam, I need to do something to keep closure from optimizing out the assignment above.
-                    util_1.log('No IE domain setting required');
-                }
-            }
-            catch (e) {
-                var domain = document.domain;
-                iframe.src =
-                    "javascript:void((function(){document.open();document.domain='" +
-                        domain +
-                        "';document.close();})())";
-            }
-        }
-        else {
-            // LongPollConnection attempts to delay initialization until the document is ready, so hopefully this
-            // never gets hit.
-            throw 'Document body has not initialized. Wait to initialize Firebase until after the document is ready.';
-        }
-        // Get the document of the iframe in a browser-specific way.
-        if (iframe.contentDocument) {
-            iframe.doc = iframe.contentDocument; // Firefox, Opera, Safari
-        }
-        else if (iframe.contentWindow) {
-            iframe.doc = iframe.contentWindow.document; // Internet Explorer
-        }
-        else if (iframe.document) {
-            iframe.doc = iframe.document; //others?
-        }
-        return iframe;
-    };
-    /**
-     * Cancel all outstanding queries and remove the frame.
-     */
-    FirebaseIFrameScriptHolder.prototype.close = function () {
-        var _this = this;
-        //Mark this iframe as dead, so no new requests are sent.
-        this.alive = false;
-        if (this.myIFrame) {
-            //We have to actually remove all of the html inside this iframe before removing it from the
-            //window, or IE will continue loading and executing the script tags we've already added, which
-            //can lead to some errors being thrown. Setting innerHTML seems to be the easiest way to do this.
-            this.myIFrame.doc.body.innerHTML = '';
-            setTimeout(function () {
-                if (_this.myIFrame !== null) {
-                    document.body.removeChild(_this.myIFrame);
-                    _this.myIFrame = null;
-                }
-            }, Math.floor(0));
-        }
-        if (util_3.isNodeSdk() && this.myID) {
-            var urlParams = {};
-            urlParams[exports.FIREBASE_LONGPOLL_DISCONN_FRAME_PARAM] = 't';
-            urlParams[exports.FIREBASE_LONGPOLL_ID_PARAM] = this.myID;
-            urlParams[exports.FIREBASE_LONGPOLL_PW_PARAM] = this.myPW;
-            var theURL = this.urlFn(urlParams);
-            FirebaseIFrameScriptHolder.nodeRestRequest(theURL);
-        }
-        // Protect from being called recursively.
-        var onDisconnect = this.onDisconnect;
-        if (onDisconnect) {
-            this.onDisconnect = null;
-            onDisconnect();
-        }
-    };
-    /**
-     * Actually start the long-polling session by adding the first script tag(s) to the iframe.
-     * @param {!string} id - The ID of this connection
-     * @param {!string} pw - The password for this connection
-     */
-    FirebaseIFrameScriptHolder.prototype.startLongPoll = function (id, pw) {
-        this.myID = id;
-        this.myPW = pw;
-        this.alive = true;
-        //send the initial request. If there are requests queued, make sure that we transmit as many as we are currently able to.
-        while (this.newRequest_()) { }
-    };
-    /**
-     * This is called any time someone might want a script tag to be added. It adds a script tag when there aren't
-     * too many outstanding requests and we are still alive.
-     *
-     * If there are outstanding packet segments to send, it sends one. If there aren't, it sends a long-poll anyways if
-     * needed.
-     */
-    FirebaseIFrameScriptHolder.prototype.newRequest_ = function () {
-        // We keep one outstanding request open all the time to receive data, but if we need to send data
-        // (pendingSegs.length > 0) then we create a new request to send the data.  The server will automatically
-        // close the old request.
-        if (this.alive &&
-            this.sendNewPolls &&
-            this.outstandingRequests.count() < (this.pendingSegs.length > 0 ? 2 : 1)) {
-            //construct our url
-            this.currentSerial++;
-            var urlParams = {};
-            urlParams[exports.FIREBASE_LONGPOLL_ID_PARAM] = this.myID;
-            urlParams[exports.FIREBASE_LONGPOLL_PW_PARAM] = this.myPW;
-            urlParams[exports.FIREBASE_LONGPOLL_SERIAL_PARAM] = this.currentSerial;
-            var theURL = this.urlFn(urlParams);
-            //Now add as much data as we can.
-            var curDataString = '';
-            var i = 0;
-            while (this.pendingSegs.length > 0) {
-                //first, lets see if the next segment will fit.
-                var nextSeg = this.pendingSegs[0];
-                if (nextSeg.d.length + SEG_HEADER_SIZE + curDataString.length <=
-                    MAX_URL_DATA_SIZE) {
-                    //great, the segment will fit. Lets append it.
-                    var theSeg = this.pendingSegs.shift();
-                    curDataString =
-                        curDataString +
-                            '&' +
-                            exports.FIREBASE_LONGPOLL_SEGMENT_NUM_PARAM +
-                            i +
-                            '=' +
-                            theSeg.seg +
-                            '&' +
-                            exports.FIREBASE_LONGPOLL_SEGMENTS_IN_PACKET +
-                            i +
-                            '=' +
-                            theSeg.ts +
-                            '&' +
-                            exports.FIREBASE_LONGPOLL_DATA_PARAM +
-                            i +
-                            '=' +
-                            theSeg.d;
-                    i++;
-                }
-                else {
-                    break;
-                }
-            }
-            theURL = theURL + curDataString;
-            this.addLongPollTag_(theURL, this.currentSerial);
-            return true;
-        }
-        else {
-            return false;
-        }
-    };
-    /**
-     * Queue a packet for transmission to the server.
-     * @param segnum - A sequential id for this packet segment used for reassembly
-     * @param totalsegs - The total number of segments in this packet
-     * @param data - The data for this segment.
-     */
-    FirebaseIFrameScriptHolder.prototype.enqueueSegment = function (segnum, totalsegs, data) {
-        //add this to the queue of segments to send.
-        this.pendingSegs.push({ seg: segnum, ts: totalsegs, d: data });
-        //send the data immediately if there isn't already data being transmitted, unless
-        //startLongPoll hasn't been called yet.
-        if (this.alive) {
-            this.newRequest_();
-        }
-    };
-    /**
-     * Add a script tag for a regular long-poll request.
-     * @param {!string} url - The URL of the script tag.
-     * @param {!number} serial - The serial number of the request.
-     * @private
-     */
-    FirebaseIFrameScriptHolder.prototype.addLongPollTag_ = function (url, serial) {
-        var _this = this;
-        //remember that we sent this request.
-        this.outstandingRequests.add(serial, 1);
-        var doNewRequest = function () {
-            _this.outstandingRequests.remove(serial);
-            _this.newRequest_();
-        };
-        // If this request doesn't return on its own accord (by the server sending us some data), we'll
-        // create a new one after the KEEPALIVE interval to make sure we always keep a fresh request open.
-        var keepaliveTimeout = setTimeout(doNewRequest, Math.floor(KEEPALIVE_REQUEST_INTERVAL));
-        var readyStateCB = function () {
-            // Request completed.  Cancel the keepalive.
-            clearTimeout(keepaliveTimeout);
-            // Trigger a new request so we can continue receiving data.
-            doNewRequest();
-        };
-        this.addTag(url, readyStateCB);
-    };
-    /**
-     * Add an arbitrary script tag to the iframe.
-     * @param {!string} url - The URL for the script tag source.
-     * @param {!function()} loadCB - A callback to be triggered once the script has loaded.
-     */
-    FirebaseIFrameScriptHolder.prototype.addTag = function (url, loadCB) {
-        var _this = this;
-        if (util_3.isNodeSdk()) {
-            this.doNodeLongPoll(url, loadCB);
-        }
-        else {
-            setTimeout(function () {
-                try {
-                    // if we're already closed, don't add this poll
-                    if (!_this.sendNewPolls)
-                        return;
-                    var newScript_1 = _this.myIFrame.doc.createElement('script');
-                    newScript_1.type = 'text/javascript';
-                    newScript_1.async = true;
-                    newScript_1.src = url;
-                    newScript_1.onload = newScript_1.onreadystatechange = function () {
-                        var rstate = newScript_1.readyState;
-                        if (!rstate || rstate === 'loaded' || rstate === 'complete') {
-                            newScript_1.onload = newScript_1.onreadystatechange = null;
-                            if (newScript_1.parentNode) {
-                                newScript_1.parentNode.removeChild(newScript_1);
-                            }
-                            loadCB();
-                        }
-                    };
-                    newScript_1.onerror = function () {
-                        util_1.log('Long-poll script failed to load: ' + url);
-                        _this.sendNewPolls = false;
-                        _this.close();
-                    };
-                    _this.myIFrame.doc.body.appendChild(newScript_1);
-                }
-                catch (e) {
-                    // TODO: we should make this error visible somehow
-                }
-            }, Math.floor(1));
-        }
-    };
-    return FirebaseIFrameScriptHolder;
-}());
-exports.FirebaseIFrameScriptHolder = FirebaseIFrameScriptHolder;
-
-//# sourceMappingURL=BrowserPollConnection.js.map
-
-
-/***/ }),
-/* 85 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var util_1 = __webpack_require__(2);
-var storage_1 = __webpack_require__(34);
-var Constants_1 = __webpack_require__(37);
-var TransportManager_1 = __webpack_require__(152);
-// Abort upgrade attempt if it takes longer than 60s.
-var UPGRADE_TIMEOUT = 60000;
-// For some transports (WebSockets), we need to "validate" the transport by exchanging a few requests and responses.
-// If we haven't sent enough requests within 5s, we'll start sending noop ping requests.
-var DELAY_BEFORE_SENDING_EXTRA_REQUESTS = 5000;
-// If the initial data sent triggers a lot of bandwidth (i.e. it's a large put or a listen for a large amount of data)
-// then we may not be able to exchange our ping/pong requests within the healthy timeout.  So if we reach the timeout
-// but we've sent/received enough bytes, we don't cancel the connection.
-var BYTES_SENT_HEALTHY_OVERRIDE = 10 * 1024;
-var BYTES_RECEIVED_HEALTHY_OVERRIDE = 100 * 1024;
-var MESSAGE_TYPE = 't';
-var MESSAGE_DATA = 'd';
-var CONTROL_SHUTDOWN = 's';
-var CONTROL_RESET = 'r';
-var CONTROL_ERROR = 'e';
-var CONTROL_PONG = 'o';
-var SWITCH_ACK = 'a';
-var END_TRANSMISSION = 'n';
-var PING = 'p';
-var SERVER_HELLO = 'h';
-/**
- * Creates a new real-time connection to the server using whichever method works
- * best in the current browser.
- *
- * @constructor
- */
-var Connection = /** @class */ (function () {
-    /**
-     * @param {!string} id - an id for this connection
-     * @param {!RepoInfo} repoInfo_ - the info for the endpoint to connect to
-     * @param {function(Object)} onMessage_ - the callback to be triggered when a server-push message arrives
-     * @param {function(number, string)} onReady_ - the callback to be triggered when this connection is ready to send messages.
-     * @param {function()} onDisconnect_ - the callback to be triggered when a connection was lost
-     * @param {function(string)} onKill_ - the callback to be triggered when this connection has permanently shut down.
-     * @param {string=} lastSessionId - last session id in persistent connection. is used to clean up old session in real-time server
-     */
-    function Connection(id, repoInfo_, onMessage_, onReady_, onDisconnect_, onKill_, lastSessionId) {
-        this.id = id;
-        this.repoInfo_ = repoInfo_;
-        this.onMessage_ = onMessage_;
-        this.onReady_ = onReady_;
-        this.onDisconnect_ = onDisconnect_;
-        this.onKill_ = onKill_;
-        this.lastSessionId = lastSessionId;
-        this.connectionCount = 0;
-        this.pendingDataMessages = [];
-        this.state_ = 0 /* CONNECTING */;
-        this.log_ = util_1.logWrapper('c:' + this.id + ':');
-        this.transportManager_ = new TransportManager_1.TransportManager(repoInfo_);
-        this.log_('Connection created');
-        this.start_();
-    }
-    /**
-     * Starts a connection attempt
-     * @private
-     */
-    Connection.prototype.start_ = function () {
-        var _this = this;
-        var conn = this.transportManager_.initialTransport();
-        this.conn_ = new conn(this.nextTransportId_(), this.repoInfo_, undefined, this.lastSessionId);
-        // For certain transports (WebSockets), we need to send and receive several messages back and forth before we
-        // can consider the transport healthy.
-        this.primaryResponsesRequired_ = conn['responsesRequiredToBeHealthy'] || 0;
-        var onMessageReceived = this.connReceiver_(this.conn_);
-        var onConnectionLost = this.disconnReceiver_(this.conn_);
-        this.tx_ = this.conn_;
-        this.rx_ = this.conn_;
-        this.secondaryConn_ = null;
-        this.isHealthy_ = false;
-        /*
-         * Firefox doesn't like when code from one iframe tries to create another iframe by way of the parent frame.
-         * This can occur in the case of a redirect, i.e. we guessed wrong on what server to connect to and received a reset.
-         * Somehow, setTimeout seems to make this ok. That doesn't make sense from a security perspective, since you should
-         * still have the context of your originating frame.
-         */
-        setTimeout(function () {
-            // this.conn_ gets set to null in some of the tests. Check to make sure it still exists before using it
-            _this.conn_ && _this.conn_.open(onMessageReceived, onConnectionLost);
-        }, Math.floor(0));
-        var healthyTimeout_ms = conn['healthyTimeout'] || 0;
-        if (healthyTimeout_ms > 0) {
-            this.healthyTimeout_ = util_1.setTimeoutNonBlocking(function () {
-                _this.healthyTimeout_ = null;
-                if (!_this.isHealthy_) {
-                    if (_this.conn_ &&
-                        _this.conn_.bytesReceived > BYTES_RECEIVED_HEALTHY_OVERRIDE) {
-                        _this.log_('Connection exceeded healthy timeout but has received ' +
-                            _this.conn_.bytesReceived +
-                            ' bytes.  Marking connection healthy.');
-                        _this.isHealthy_ = true;
-                        _this.conn_.markConnectionHealthy();
-                    }
-                    else if (_this.conn_ &&
-                        _this.conn_.bytesSent > BYTES_SENT_HEALTHY_OVERRIDE) {
-                        _this.log_('Connection exceeded healthy timeout but has sent ' +
-                            _this.conn_.bytesSent +
-                            ' bytes.  Leaving connection alive.');
-                        // NOTE: We don't want to mark it healthy, since we have no guarantee that the bytes have made it to
-                        // the server.
-                    }
-                    else {
-                        _this.log_('Closing unhealthy connection after timeout.');
-                        _this.close();
-                    }
-                }
-            }, Math.floor(healthyTimeout_ms));
-        }
-    };
-    /**
-     * @return {!string}
-     * @private
-     */
-    Connection.prototype.nextTransportId_ = function () {
-        return 'c:' + this.id + ':' + this.connectionCount++;
-    };
-    Connection.prototype.disconnReceiver_ = function (conn) {
-        var _this = this;
-        return function (everConnected) {
-            if (conn === _this.conn_) {
-                _this.onConnectionLost_(everConnected);
-            }
-            else if (conn === _this.secondaryConn_) {
-                _this.log_('Secondary connection lost.');
-                _this.onSecondaryConnectionLost_();
-            }
-            else {
-                _this.log_('closing an old connection');
-            }
-        };
-    };
-    Connection.prototype.connReceiver_ = function (conn) {
-        var _this = this;
-        return function (message) {
-            if (_this.state_ != 2 /* DISCONNECTED */) {
-                if (conn === _this.rx_) {
-                    _this.onPrimaryMessageReceived_(message);
-                }
-                else if (conn === _this.secondaryConn_) {
-                    _this.onSecondaryMessageReceived_(message);
-                }
-                else {
-                    _this.log_('message on old connection');
-                }
-            }
-        };
-    };
-    /**
-     *
-     * @param {Object} dataMsg An arbitrary data message to be sent to the server
-     */
-    Connection.prototype.sendRequest = function (dataMsg) {
-        // wrap in a data message envelope and send it on
-        var msg = { t: 'd', d: dataMsg };
-        this.sendData_(msg);
-    };
-    Connection.prototype.tryCleanupConnection = function () {
-        if (this.tx_ === this.secondaryConn_ && this.rx_ === this.secondaryConn_) {
-            this.log_('cleaning up and promoting a connection: ' + this.secondaryConn_.connId);
-            this.conn_ = this.secondaryConn_;
-            this.secondaryConn_ = null;
-            // the server will shutdown the old connection
-        }
-    };
-    Connection.prototype.onSecondaryControl_ = function (controlData) {
-        if (MESSAGE_TYPE in controlData) {
-            var cmd = controlData[MESSAGE_TYPE];
-            if (cmd === SWITCH_ACK) {
-                this.upgradeIfSecondaryHealthy_();
-            }
-            else if (cmd === CONTROL_RESET) {
-                // Most likely the session wasn't valid. Abandon the switch attempt
-                this.log_('Got a reset on secondary, closing it');
-                this.secondaryConn_.close();
-                // If we were already using this connection for something, than we need to fully close
-                if (this.tx_ === this.secondaryConn_ ||
-                    this.rx_ === this.secondaryConn_) {
-                    this.close();
-                }
-            }
-            else if (cmd === CONTROL_PONG) {
-                this.log_('got pong on secondary.');
-                this.secondaryResponsesRequired_--;
-                this.upgradeIfSecondaryHealthy_();
-            }
-        }
-    };
-    Connection.prototype.onSecondaryMessageReceived_ = function (parsedData) {
-        var layer = util_1.requireKey('t', parsedData);
-        var data = util_1.requireKey('d', parsedData);
-        if (layer == 'c') {
-            this.onSecondaryControl_(data);
-        }
-        else if (layer == 'd') {
-            // got a data message, but we're still second connection. Need to buffer it up
-            this.pendingDataMessages.push(data);
-        }
-        else {
-            throw new Error('Unknown protocol layer: ' + layer);
-        }
-    };
-    Connection.prototype.upgradeIfSecondaryHealthy_ = function () {
-        if (this.secondaryResponsesRequired_ <= 0) {
-            this.log_('Secondary connection is healthy.');
-            this.isHealthy_ = true;
-            this.secondaryConn_.markConnectionHealthy();
-            this.proceedWithUpgrade_();
-        }
-        else {
-            // Send a ping to make sure the connection is healthy.
-            this.log_('sending ping on secondary.');
-            this.secondaryConn_.send({ t: 'c', d: { t: PING, d: {} } });
-        }
-    };
-    Connection.prototype.proceedWithUpgrade_ = function () {
-        // tell this connection to consider itself open
-        this.secondaryConn_.start();
-        // send ack
-        this.log_('sending client ack on secondary');
-        this.secondaryConn_.send({ t: 'c', d: { t: SWITCH_ACK, d: {} } });
-        // send end packet on primary transport, switch to sending on this one
-        // can receive on this one, buffer responses until end received on primary transport
-        this.log_('Ending transmission on primary');
-        this.conn_.send({ t: 'c', d: { t: END_TRANSMISSION, d: {} } });
-        this.tx_ = this.secondaryConn_;
-        this.tryCleanupConnection();
-    };
-    Connection.prototype.onPrimaryMessageReceived_ = function (parsedData) {
-        // Must refer to parsedData properties in quotes, so closure doesn't touch them.
-        var layer = util_1.requireKey('t', parsedData);
-        var data = util_1.requireKey('d', parsedData);
-        if (layer == 'c') {
-            this.onControl_(data);
-        }
-        else if (layer == 'd') {
-            this.onDataMessage_(data);
-        }
-    };
-    Connection.prototype.onDataMessage_ = function (message) {
-        this.onPrimaryResponse_();
-        // We don't do anything with data messages, just kick them up a level
-        this.onMessage_(message);
-    };
-    Connection.prototype.onPrimaryResponse_ = function () {
-        if (!this.isHealthy_) {
-            this.primaryResponsesRequired_--;
-            if (this.primaryResponsesRequired_ <= 0) {
-                this.log_('Primary connection is healthy.');
-                this.isHealthy_ = true;
-                this.conn_.markConnectionHealthy();
-            }
-        }
-    };
-    Connection.prototype.onControl_ = function (controlData) {
-        var cmd = util_1.requireKey(MESSAGE_TYPE, controlData);
-        if (MESSAGE_DATA in controlData) {
-            var payload = controlData[MESSAGE_DATA];
-            if (cmd === SERVER_HELLO) {
-                this.onHandshake_(payload);
-            }
-            else if (cmd === END_TRANSMISSION) {
-                this.log_('recvd end transmission on primary');
-                this.rx_ = this.secondaryConn_;
-                for (var i = 0; i < this.pendingDataMessages.length; ++i) {
-                    this.onDataMessage_(this.pendingDataMessages[i]);
-                }
-                this.pendingDataMessages = [];
-                this.tryCleanupConnection();
-            }
-            else if (cmd === CONTROL_SHUTDOWN) {
-                // This was previously the 'onKill' callback passed to the lower-level connection
-                // payload in this case is the reason for the shutdown. Generally a human-readable error
-                this.onConnectionShutdown_(payload);
-            }
-            else if (cmd === CONTROL_RESET) {
-                // payload in this case is the host we should contact
-                this.onReset_(payload);
-            }
-            else if (cmd === CONTROL_ERROR) {
-                util_1.error('Server Error: ' + payload);
-            }
-            else if (cmd === CONTROL_PONG) {
-                this.log_('got pong on primary.');
-                this.onPrimaryResponse_();
-                this.sendPingOnPrimaryIfNecessary_();
-            }
-            else {
-                util_1.error('Unknown control packet command: ' + cmd);
-            }
-        }
-    };
-    /**
-     *
-     * @param {Object} handshake The handshake data returned from the server
-     * @private
-     */
-    Connection.prototype.onHandshake_ = function (handshake) {
-        var timestamp = handshake.ts;
-        var version = handshake.v;
-        var host = handshake.h;
-        this.sessionId = handshake.s;
-        this.repoInfo_.updateHost(host);
-        // if we've already closed the connection, then don't bother trying to progress further
-        if (this.state_ == 0 /* CONNECTING */) {
-            this.conn_.start();
-            this.onConnectionEstablished_(this.conn_, timestamp);
-            if (Constants_1.PROTOCOL_VERSION !== version) {
-                util_1.warn('Protocol version mismatch detected');
-            }
-            // TODO: do we want to upgrade? when? maybe a delay?
-            this.tryStartUpgrade_();
-        }
-    };
-    Connection.prototype.tryStartUpgrade_ = function () {
-        var conn = this.transportManager_.upgradeTransport();
-        if (conn) {
-            this.startUpgrade_(conn);
-        }
-    };
-    Connection.prototype.startUpgrade_ = function (conn) {
-        var _this = this;
-        this.secondaryConn_ = new conn(this.nextTransportId_(), this.repoInfo_, this.sessionId);
-        // For certain transports (WebSockets), we need to send and receive several messages back and forth before we
-        // can consider the transport healthy.
-        this.secondaryResponsesRequired_ =
-            conn['responsesRequiredToBeHealthy'] || 0;
-        var onMessage = this.connReceiver_(this.secondaryConn_);
-        var onDisconnect = this.disconnReceiver_(this.secondaryConn_);
-        this.secondaryConn_.open(onMessage, onDisconnect);
-        // If we haven't successfully upgraded after UPGRADE_TIMEOUT, give up and kill the secondary.
-        util_1.setTimeoutNonBlocking(function () {
-            if (_this.secondaryConn_) {
-                _this.log_('Timed out trying to upgrade.');
-                _this.secondaryConn_.close();
-            }
-        }, Math.floor(UPGRADE_TIMEOUT));
-    };
-    Connection.prototype.onReset_ = function (host) {
-        this.log_('Reset packet received.  New host: ' + host);
-        this.repoInfo_.updateHost(host);
-        // TODO: if we're already "connected", we need to trigger a disconnect at the next layer up.
-        // We don't currently support resets after the connection has already been established
-        if (this.state_ === 1 /* CONNECTED */) {
-            this.close();
-        }
-        else {
-            // Close whatever connections we have open and start again.
-            this.closeConnections_();
-            this.start_();
-        }
-    };
-    Connection.prototype.onConnectionEstablished_ = function (conn, timestamp) {
-        var _this = this;
-        this.log_('Realtime connection established.');
-        this.conn_ = conn;
-        this.state_ = 1 /* CONNECTED */;
-        if (this.onReady_) {
-            this.onReady_(timestamp, this.sessionId);
-            this.onReady_ = null;
-        }
-        // If after 5 seconds we haven't sent enough requests to the server to get the connection healthy,
-        // send some pings.
-        if (this.primaryResponsesRequired_ === 0) {
-            this.log_('Primary connection is healthy.');
-            this.isHealthy_ = true;
-        }
-        else {
-            util_1.setTimeoutNonBlocking(function () {
-                _this.sendPingOnPrimaryIfNecessary_();
-            }, Math.floor(DELAY_BEFORE_SENDING_EXTRA_REQUESTS));
-        }
-    };
-    Connection.prototype.sendPingOnPrimaryIfNecessary_ = function () {
-        // If the connection isn't considered healthy yet, we'll send a noop ping packet request.
-        if (!this.isHealthy_ && this.state_ === 1 /* CONNECTED */) {
-            this.log_('sending ping on primary.');
-            this.sendData_({ t: 'c', d: { t: PING, d: {} } });
-        }
-    };
-    Connection.prototype.onSecondaryConnectionLost_ = function () {
-        var conn = this.secondaryConn_;
-        this.secondaryConn_ = null;
-        if (this.tx_ === conn || this.rx_ === conn) {
-            // we are relying on this connection already in some capacity. Therefore, a failure is real
-            this.close();
-        }
-    };
-    /**
-     *
-     * @param {boolean} everConnected Whether or not the connection ever reached a server. Used to determine if
-     * we should flush the host cache
-     * @private
-     */
-    Connection.prototype.onConnectionLost_ = function (everConnected) {
-        this.conn_ = null;
-        // NOTE: IF you're seeing a Firefox error for this line, I think it might be because it's getting
-        // called on window close and RealtimeState.CONNECTING is no longer defined.  Just a guess.
-        if (!everConnected && this.state_ === 0 /* CONNECTING */) {
-            this.log_('Realtime connection failed.');
-            // Since we failed to connect at all, clear any cached entry for this namespace in case the machine went away
-            if (this.repoInfo_.isCacheableHost()) {
-                storage_1.PersistentStorage.remove('host:' + this.repoInfo_.host);
-                // reset the internal host to what we would show the user, i.e. <ns>.firebaseio.com
-                this.repoInfo_.internalHost = this.repoInfo_.host;
-            }
-        }
-        else if (this.state_ === 1 /* CONNECTED */) {
-            this.log_('Realtime connection lost.');
-        }
-        this.close();
-    };
-    /**
-     *
-     * @param {string} reason
-     * @private
-     */
-    Connection.prototype.onConnectionShutdown_ = function (reason) {
-        this.log_('Connection shutdown command received. Shutting down...');
-        if (this.onKill_) {
-            this.onKill_(reason);
-            this.onKill_ = null;
-        }
-        // We intentionally don't want to fire onDisconnect (kill is a different case),
-        // so clear the callback.
-        this.onDisconnect_ = null;
-        this.close();
-    };
-    Connection.prototype.sendData_ = function (data) {
-        if (this.state_ !== 1 /* CONNECTED */) {
-            throw 'Connection is not connected';
-        }
-        else {
-            this.tx_.send(data);
-        }
-    };
-    /**
-     * Cleans up this connection, calling the appropriate callbacks
-     */
-    Connection.prototype.close = function () {
-        if (this.state_ !== 2 /* DISCONNECTED */) {
-            this.log_('Closing realtime connection.');
-            this.state_ = 2 /* DISCONNECTED */;
-            this.closeConnections_();
-            if (this.onDisconnect_) {
-                this.onDisconnect_();
-                this.onDisconnect_ = null;
-            }
-        }
-    };
-    /**
-     *
-     * @private
-     */
-    Connection.prototype.closeConnections_ = function () {
-        this.log_('Shutting down all connections');
-        if (this.conn_) {
-            this.conn_.close();
-            this.conn_ = null;
-        }
-        if (this.secondaryConn_) {
-            this.secondaryConn_.close();
-            this.secondaryConn_ = null;
-        }
-        if (this.healthyTimeout_) {
-            clearTimeout(this.healthyTimeout_);
-            this.healthyTimeout_ = null;
-        }
-    };
-    return Connection;
-}());
-exports.Connection = Connection;
-
-//# sourceMappingURL=Connection.js.map
-
-
-/***/ }),
-/* 86 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var app_1 = __webpack_require__(13);
-var util_1 = __webpack_require__(0);
-var util_2 = __webpack_require__(2);
-var StatsManager_1 = __webpack_require__(47);
-var Constants_1 = __webpack_require__(37);
-var util_3 = __webpack_require__(0);
-var storage_1 = __webpack_require__(34);
-var util_4 = __webpack_require__(0);
-var util_5 = __webpack_require__(0);
-var WEBSOCKET_MAX_FRAME_SIZE = 16384;
-var WEBSOCKET_KEEPALIVE_INTERVAL = 45000;
-var WebSocketImpl = null;
-if (typeof MozWebSocket !== 'undefined') {
-    WebSocketImpl = MozWebSocket;
-}
-else if (typeof WebSocket !== 'undefined') {
-    WebSocketImpl = WebSocket;
-}
-function setWebSocketImpl(impl) {
-    WebSocketImpl = impl;
-}
-exports.setWebSocketImpl = setWebSocketImpl;
-/**
- * Create a new websocket connection with the given callbacks.
- * @constructor
- * @implements {Transport}
- */
-var WebSocketConnection = /** @class */ (function () {
-    /**
-     * @param {string} connId identifier for this transport
-     * @param {RepoInfo} repoInfo The info for the websocket endpoint.
-     * @param {string=} transportSessionId Optional transportSessionId if this is connecting to an existing transport
-     *                                         session
-     * @param {string=} lastSessionId Optional lastSessionId if there was a previous connection
-     */
-    function WebSocketConnection(connId, repoInfo, transportSessionId, lastSessionId) {
-        this.connId = connId;
-        this.keepaliveTimer = null;
-        this.frames = null;
-        this.totalFrames = 0;
-        this.bytesSent = 0;
-        this.bytesReceived = 0;
-        this.log_ = util_2.logWrapper(this.connId);
-        this.stats_ = StatsManager_1.StatsManager.getCollection(repoInfo);
-        this.connURL = WebSocketConnection.connectionURL_(repoInfo, transportSessionId, lastSessionId);
-    }
-    /**
-     * @param {RepoInfo} repoInfo The info for the websocket endpoint.
-     * @param {string=} transportSessionId Optional transportSessionId if this is connecting to an existing transport
-     *                                         session
-     * @param {string=} lastSessionId Optional lastSessionId if there was a previous connection
-     * @return {string} connection url
-     * @private
-     */
-    WebSocketConnection.connectionURL_ = function (repoInfo, transportSessionId, lastSessionId) {
-        var urlParams = {};
-        urlParams[Constants_1.VERSION_PARAM] = Constants_1.PROTOCOL_VERSION;
-        if (!util_5.isNodeSdk() &&
-            typeof location !== 'undefined' &&
-            location.href &&
-            location.href.indexOf(Constants_1.FORGE_DOMAIN) !== -1) {
-            urlParams[Constants_1.REFERER_PARAM] = Constants_1.FORGE_REF;
-        }
-        if (transportSessionId) {
-            urlParams[Constants_1.TRANSPORT_SESSION_PARAM] = transportSessionId;
-        }
-        if (lastSessionId) {
-            urlParams[Constants_1.LAST_SESSION_PARAM] = lastSessionId;
-        }
-        return repoInfo.connectionURL(Constants_1.WEBSOCKET, urlParams);
-    };
-    /**
-     *
-     * @param onMessage Callback when messages arrive
-     * @param onDisconnect Callback with connection lost.
-     */
-    WebSocketConnection.prototype.open = function (onMessage, onDisconnect) {
-        var _this = this;
-        this.onDisconnect = onDisconnect;
-        this.onMessage = onMessage;
-        this.log_('Websocket connecting to ' + this.connURL);
-        this.everConnected_ = false;
-        // Assume failure until proven otherwise.
-        storage_1.PersistentStorage.set('previous_websocket_failure', true);
-        try {
-            if (util_5.isNodeSdk()) {
-                var device = util_3.CONSTANTS.NODE_ADMIN ? 'AdminNode' : 'Node';
-                // UA Format: Firebase/<wire_protocol>/<sdk_version>/<platform>/<device>
-                var options = {
-                    headers: {
-                        'User-Agent': "Firebase/" + Constants_1.PROTOCOL_VERSION + "/" + app_1.default.SDK_VERSION + "/" + process.platform + "/" + device
-                    }
-                };
-                // Plumb appropriate http_proxy environment variable into faye-websocket if it exists.
-                var env = __webpack_require__.i({"NODE_ENV":"production"});
-                var proxy = this.connURL.indexOf('wss://') == 0
-                    ? env['HTTPS_PROXY'] || env['https_proxy']
-                    : env['HTTP_PROXY'] || env['http_proxy'];
-                if (proxy) {
-                    options['proxy'] = { origin: proxy };
-                }
-                this.mySock = new WebSocketImpl(this.connURL, [], options);
-            }
-            else {
-                this.mySock = new WebSocketImpl(this.connURL);
-            }
-        }
-        catch (e) {
-            this.log_('Error instantiating WebSocket.');
-            var error = e.message || e.data;
-            if (error) {
-                this.log_(error);
-            }
-            this.onClosed_();
-            return;
-        }
-        this.mySock.onopen = function () {
-            _this.log_('Websocket connected.');
-            _this.everConnected_ = true;
-        };
-        this.mySock.onclose = function () {
-            _this.log_('Websocket connection was disconnected.');
-            _this.mySock = null;
-            _this.onClosed_();
-        };
-        this.mySock.onmessage = function (m) {
-            _this.handleIncomingFrame(m);
-        };
-        this.mySock.onerror = function (e) {
-            _this.log_('WebSocket error.  Closing connection.');
-            var error = e.message || e.data;
-            if (error) {
-                _this.log_(error);
-            }
-            _this.onClosed_();
-        };
-    };
-    /**
-     * No-op for websockets, we don't need to do anything once the connection is confirmed as open
-     */
-    WebSocketConnection.prototype.start = function () { };
-    WebSocketConnection.forceDisallow = function () {
-        WebSocketConnection.forceDisallow_ = true;
-    };
-    WebSocketConnection.isAvailable = function () {
-        var isOldAndroid = false;
-        if (typeof navigator !== 'undefined' && navigator.userAgent) {
-            var oldAndroidRegex = /Android ([0-9]{0,}\.[0-9]{0,})/;
-            var oldAndroidMatch = navigator.userAgent.match(oldAndroidRegex);
-            if (oldAndroidMatch && oldAndroidMatch.length > 1) {
-                if (parseFloat(oldAndroidMatch[1]) < 4.4) {
-                    isOldAndroid = true;
-                }
-            }
-        }
-        return (!isOldAndroid &&
-            WebSocketImpl !== null &&
-            !WebSocketConnection.forceDisallow_);
-    };
-    /**
-     * Returns true if we previously failed to connect with this transport.
-     * @return {boolean}
-     */
-    WebSocketConnection.previouslyFailed = function () {
-        // If our persistent storage is actually only in-memory storage,
-        // we default to assuming that it previously failed to be safe.
-        return (storage_1.PersistentStorage.isInMemoryStorage ||
-            storage_1.PersistentStorage.get('previous_websocket_failure') === true);
-    };
-    WebSocketConnection.prototype.markConnectionHealthy = function () {
-        storage_1.PersistentStorage.remove('previous_websocket_failure');
-    };
-    WebSocketConnection.prototype.appendFrame_ = function (data) {
-        this.frames.push(data);
-        if (this.frames.length == this.totalFrames) {
-            var fullMess = this.frames.join('');
-            this.frames = null;
-            var jsonMess = util_4.jsonEval(fullMess);
-            //handle the message
-            this.onMessage(jsonMess);
-        }
-    };
-    /**
-     * @param {number} frameCount The number of frames we are expecting from the server
-     * @private
-     */
-    WebSocketConnection.prototype.handleNewFrameCount_ = function (frameCount) {
-        this.totalFrames = frameCount;
-        this.frames = [];
-    };
-    /**
-     * Attempts to parse a frame count out of some text. If it can't, assumes a value of 1
-     * @param {!String} data
-     * @return {?String} Any remaining data to be process, or null if there is none
-     * @private
-     */
-    WebSocketConnection.prototype.extractFrameCount_ = function (data) {
-        util_1.assert(this.frames === null, 'We already have a frame buffer');
-        // TODO: The server is only supposed to send up to 9999 frames (i.e. length <= 4), but that isn't being enforced
-        // currently.  So allowing larger frame counts (length <= 6).  See https://app.asana.com/0/search/8688598998380/8237608042508
-        if (data.length <= 6) {
-            var frameCount = Number(data);
-            if (!isNaN(frameCount)) {
-                this.handleNewFrameCount_(frameCount);
-                return null;
-            }
-        }
-        this.handleNewFrameCount_(1);
-        return data;
-    };
-    /**
-     * Process a websocket frame that has arrived from the server.
-     * @param mess The frame data
-     */
-    WebSocketConnection.prototype.handleIncomingFrame = function (mess) {
-        if (this.mySock === null)
-            return; // Chrome apparently delivers incoming packets even after we .close() the connection sometimes.
-        var data = mess['data'];
-        this.bytesReceived += data.length;
-        this.stats_.incrementCounter('bytes_received', data.length);
-        this.resetKeepAlive();
-        if (this.frames !== null) {
-            // we're buffering
-            this.appendFrame_(data);
-        }
-        else {
-            // try to parse out a frame count, otherwise, assume 1 and process it
-            var remainingData = this.extractFrameCount_(data);
-            if (remainingData !== null) {
-                this.appendFrame_(remainingData);
-            }
-        }
-    };
-    /**
-     * Send a message to the server
-     * @param {Object} data The JSON object to transmit
-     */
-    WebSocketConnection.prototype.send = function (data) {
-        this.resetKeepAlive();
-        var dataStr = util_4.stringify(data);
-        this.bytesSent += dataStr.length;
-        this.stats_.incrementCounter('bytes_sent', dataStr.length);
-        //We can only fit a certain amount in each websocket frame, so we need to split this request
-        //up into multiple pieces if it doesn't fit in one request.
-        var dataSegs = util_2.splitStringBySize(dataStr, WEBSOCKET_MAX_FRAME_SIZE);
-        //Send the length header
-        if (dataSegs.length > 1) {
-            this.sendString_(String(dataSegs.length));
-        }
-        //Send the actual data in segments.
-        for (var i = 0; i < dataSegs.length; i++) {
-            this.sendString_(dataSegs[i]);
-        }
-    };
-    WebSocketConnection.prototype.shutdown_ = function () {
-        this.isClosed_ = true;
-        if (this.keepaliveTimer) {
-            clearInterval(this.keepaliveTimer);
-            this.keepaliveTimer = null;
-        }
-        if (this.mySock) {
-            this.mySock.close();
-            this.mySock = null;
-        }
-    };
-    WebSocketConnection.prototype.onClosed_ = function () {
-        if (!this.isClosed_) {
-            this.log_('WebSocket is closing itself');
-            this.shutdown_();
-            // since this is an internal close, trigger the close listener
-            if (this.onDisconnect) {
-                this.onDisconnect(this.everConnected_);
-                this.onDisconnect = null;
-            }
-        }
-    };
-    /**
-     * External-facing close handler.
-     * Close the websocket and kill the connection.
-     */
-    WebSocketConnection.prototype.close = function () {
-        if (!this.isClosed_) {
-            this.log_('WebSocket is being closed');
-            this.shutdown_();
-        }
-    };
-    /**
-     * Kill the current keepalive timer and start a new one, to ensure that it always fires N seconds after
-     * the last activity.
-     */
-    WebSocketConnection.prototype.resetKeepAlive = function () {
-        var _this = this;
-        clearInterval(this.keepaliveTimer);
-        this.keepaliveTimer = setInterval(function () {
-            //If there has been no websocket activity for a while, send a no-op
-            if (_this.mySock) {
-                _this.sendString_('0');
-            }
-            _this.resetKeepAlive();
-        }, Math.floor(WEBSOCKET_KEEPALIVE_INTERVAL));
-    };
-    /**
-     * Send a string over the websocket.
-     *
-     * @param {string} str String to send.
-     * @private
-     */
-    WebSocketConnection.prototype.sendString_ = function (str) {
-        // Firefox seems to sometimes throw exceptions (NS_ERROR_UNEXPECTED) from websocket .send()
-        // calls for some unknown reason.  We treat these as an error and disconnect.
-        // See https://app.asana.com/0/58926111402292/68021340250410
-        try {
-            this.mySock.send(str);
-        }
-        catch (e) {
-            this.log_('Exception thrown from WebSocket.send():', e.message || e.data, 'Closing connection.');
-            setTimeout(this.onClosed_.bind(this), 0);
-        }
-    };
-    /**
-     * Number of response before we consider the connection "healthy."
-     * @type {number}
-     */
-    WebSocketConnection.responsesRequiredToBeHealthy = 2;
-    /**
-     * Time to wait for the connection te become healthy before giving up.
-     * @type {number}
-     */
-    WebSocketConnection.healthyTimeout = 30000;
-    return WebSocketConnection;
-}());
-exports.WebSocketConnection = WebSocketConnection;
-
-//# sourceMappingURL=WebSocketConnection.js.map
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(57)))
-
-/***/ }),
-/* 87 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__firebase_util__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__firebase_util___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__firebase_util__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_errors__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_token_manager__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_notification_permission__ = __webpack_require__(89);
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-
-
-
-
-var SENDER_ID_OPTION_NAME = 'messagingSenderId';
-var ControllerInterface = /** @class */ (function () {
-    /**
-     * An interface of the Messaging Service API
-     * @param {!firebase.app.App} app
-     */
-    function ControllerInterface(app) {
-        var _this = this;
-        this.errorFactory_ = new __WEBPACK_IMPORTED_MODULE_0__firebase_util__["ErrorFactory"]('messaging', 'Messaging', __WEBPACK_IMPORTED_MODULE_1__models_errors__["a" /* default */].map);
-        if (!app.options[SENDER_ID_OPTION_NAME] ||
-            typeof app.options[SENDER_ID_OPTION_NAME] !== 'string') {
-            throw this.errorFactory_.create(__WEBPACK_IMPORTED_MODULE_1__models_errors__["a" /* default */].codes.BAD_SENDER_ID);
-        }
-        this.messagingSenderId_ = app.options[SENDER_ID_OPTION_NAME];
-        this.tokenManager_ = new __WEBPACK_IMPORTED_MODULE_2__models_token_manager__["a" /* default */]();
-        this.app = app;
-        this.INTERNAL = {};
-        this.INTERNAL.delete = function () { return _this.delete; };
-    }
-    /**
-     * @export
-     * @return {Promise<string> | Promise<null>} Returns a promise that
-     * resolves to an FCM token.
-     */
-    ControllerInterface.prototype.getToken = function () {
-        var _this = this;
-        // Check with permissions
-        var currentPermission = this.getNotificationPermission_();
-        if (currentPermission !== __WEBPACK_IMPORTED_MODULE_3__models_notification_permission__["a" /* default */].granted) {
-            if (currentPermission === __WEBPACK_IMPORTED_MODULE_3__models_notification_permission__["a" /* default */].denied) {
-                return Promise.reject(this.errorFactory_.create(__WEBPACK_IMPORTED_MODULE_1__models_errors__["a" /* default */].codes.NOTIFICATIONS_BLOCKED));
-            }
-            // We must wait for permission to be granted
-            return Promise.resolve(null);
-        }
-        return this.getSWRegistration_().then(function (registration) {
-            return _this.tokenManager_
-                .getSavedToken(_this.messagingSenderId_, registration)
-                .then(function (token) {
-                if (token) {
-                    return token;
-                }
-                return _this.tokenManager_.createToken(_this.messagingSenderId_, registration);
-            });
-        });
-    };
-    /**
-     * This method deletes tokens that the token manager looks after and then
-     * unregisters the push subscription if it exists.
-     * @export
-     * @param {string} token
-     * @return {Promise<void>}
-     */
-    ControllerInterface.prototype.deleteToken = function (token) {
-        var _this = this;
-        return this.tokenManager_.deleteToken(token).then(function () {
-            return _this.getSWRegistration_()
-                .then(function (registration) {
-                if (registration) {
-                    return registration.pushManager.getSubscription();
-                }
-            })
-                .then(function (subscription) {
-                if (subscription) {
-                    return subscription.unsubscribe();
-                }
-            });
-        });
-    };
-    ControllerInterface.prototype.getSWRegistration_ = function () {
-        throw this.errorFactory_.create(__WEBPACK_IMPORTED_MODULE_1__models_errors__["a" /* default */].codes.SHOULD_BE_INHERITED);
-    };
-    //
-    // The following methods should only be available in the window.
-    //
-    ControllerInterface.prototype.requestPermission = function () {
-        throw this.errorFactory_.create(__WEBPACK_IMPORTED_MODULE_1__models_errors__["a" /* default */].codes.AVAILABLE_IN_WINDOW);
-    };
-    /**
-     * @export
-     * @param {!ServiceWorkerRegistration} registration
-     */
-    ControllerInterface.prototype.useServiceWorker = function (registration) {
-        throw this.errorFactory_.create(__WEBPACK_IMPORTED_MODULE_1__models_errors__["a" /* default */].codes.AVAILABLE_IN_WINDOW);
-    };
-    /**
-     * @export
-     * @param {!firebase.Observer|function(*)} nextOrObserver
-     * @param {function(!Error)=} optError
-     * @param {function()=} optCompleted
-     * @return {!function()}
-     */
-    ControllerInterface.prototype.onMessage = function (nextOrObserver, optError, optCompleted) {
-        throw this.errorFactory_.create(__WEBPACK_IMPORTED_MODULE_1__models_errors__["a" /* default */].codes.AVAILABLE_IN_WINDOW);
-    };
-    /**
-     * @export
-     * @param {!firebase.Observer|function()} nextOrObserver An observer object
-     * or a function triggered on token refresh.
-     * @param {function(!Error)=} optError Optional A function
-     * triggered on token refresh error.
-     * @param {function()=} optCompleted Optional function triggered when the
-     * observer is removed.
-     * @return {!function()} The unsubscribe function for the observer.
-     */
-    ControllerInterface.prototype.onTokenRefresh = function (nextOrObserver, optError, optCompleted) {
-        throw this.errorFactory_.create(__WEBPACK_IMPORTED_MODULE_1__models_errors__["a" /* default */].codes.AVAILABLE_IN_WINDOW);
-    };
-    //
-    // The following methods are used by the service worker only.
-    //
-    /**
-     * @export
-     * @param {function(Object)} callback
-     */
-    ControllerInterface.prototype.setBackgroundMessageHandler = function (callback) {
-        throw this.errorFactory_.create(__WEBPACK_IMPORTED_MODULE_1__models_errors__["a" /* default */].codes.AVAILABLE_IN_SW);
-    };
-    //
-    // The following methods are used by the service themselves and not exposed
-    // publicly or not expected to be used by developers.
-    //
-    /**
-     * This method is required to adhere to the Firebase interface.
-     * It closes any currently open indexdb database connections.
-     */
-    ControllerInterface.prototype.delete = function () {
-        return this.tokenManager_.closeDatabase();
-    };
-    /**
-     * Returns the current Notification Permission state.
-     * @private
-     * @return {string} The currenct permission state.
-     */
-    ControllerInterface.prototype.getNotificationPermission_ = function () {
-        return Notification.permission;
-    };
-    /**
-     * @protected
-     * @returns {TokenManager}
-     */
-    ControllerInterface.prototype.getTokenManager = function () {
-        return this.tokenManager_;
-    };
-    return ControllerInterface;
-}());
-/* harmony default export */ __webpack_exports__["a"] = (ControllerInterface);
-
-//# sourceMappingURL=controller-interface.js.map
-
-
-/***/ }),
-/* 88 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-var FCM_APPLICATION_SERVER_KEY = [
-    0x04,
-    0x33,
-    0x94,
-    0xf7,
-    0xdf,
-    0xa1,
-    0xeb,
-    0xb1,
-    0xdc,
-    0x03,
-    0xa2,
-    0x5e,
-    0x15,
-    0x71,
-    0xdb,
-    0x48,
-    0xd3,
-    0x2e,
-    0xed,
-    0xed,
-    0xb2,
-    0x34,
-    0xdb,
-    0xb7,
-    0x47,
-    0x3a,
-    0x0c,
-    0x8f,
-    0xc4,
-    0xcc,
-    0xe1,
-    0x6f,
-    0x3c,
-    0x8c,
-    0x84,
-    0xdf,
-    0xab,
-    0xb6,
-    0x66,
-    0x3e,
-    0xf2,
-    0x0c,
-    0xd4,
-    0x8b,
-    0xfe,
-    0xe3,
-    0xf9,
-    0x76,
-    0x2f,
-    0x14,
-    0x1c,
-    0x63,
-    0x08,
-    0x6a,
-    0x6f,
-    0x2d,
-    0xb1,
-    0x1a,
-    0x95,
-    0xb0,
-    0xce,
-    0x37,
-    0xc0,
-    0x9c,
-    0x6e
-];
-var SUBSCRIPTION_DETAILS = {
-    userVisibleOnly: true,
-    applicationServerKey: new Uint8Array(FCM_APPLICATION_SERVER_KEY)
-};
-/* harmony default export */ __webpack_exports__["a"] = ({
-    ENDPOINT: 'https://fcm.googleapis.com',
-    APPLICATION_SERVER_KEY: FCM_APPLICATION_SERVER_KEY,
-    SUBSCRIPTION_OPTIONS: SUBSCRIPTION_DETAILS
-});
-
-//# sourceMappingURL=fcm-details.js.map
-
-
-/***/ }),
-/* 89 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-    granted: 'granted',
-    default: 'default',
-    denied: 'denied'
-});
-
-//# sourceMappingURL=notification-permission.js.map
-
-
-/***/ }),
-/* 90 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-// These fields are strings to prevent closure from thinking goog.getMsg
-// should be used to initialise the values
-var PARAMS = {
-    TYPE_OF_MSG: 'firebase-messaging-msg-type',
-    DATA: 'firebase-messaging-msg-data'
-};
-// This value isn't using the TYPE_OF_MSG short hand as closure
-// expects the variable to be defined via goog.getMsg
-var msgType = {
-    PUSH_MSG_RECEIVED: 'push-msg-received',
-    NOTIFICATION_CLICKED: 'notification-clicked'
-};
-var createNewMsg = function (msgType, msgData) {
-    var message = (_a = {},
-        _a[PARAMS.TYPE_OF_MSG] = msgType,
-        _a[PARAMS.DATA] = msgData,
-        _a);
-    return message;
-    var _a;
-};
-/* harmony default export */ __webpack_exports__["a"] = ({
-    PARAMS: PARAMS,
-    TYPES_OF_MSG: msgType,
-    createNewMsg: createNewMsg
-});
-
-//# sourceMappingURL=worker-page-message.js.map
-
-
-/***/ }),
-/* 91 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FbsBlob; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fs__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__string__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__type__ = __webpack_require__(8);
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-/**
- * @file Provides a Blob-like wrapper for various binary types (including the
- * native Blob type). This makes it possible to upload types like ArrayBuffers,
- * making uploads possible in environments without the native Blob type.
- */
-
-
-
-
-/**
- * @param opt_elideCopy If true, doesn't copy mutable input data
- *     (e.g. Uint8Arrays). Pass true only if you know the objects will not be
- *     modified after this blob's construction.
- */
-var FbsBlob = /** @class */ (function () {
-    function FbsBlob(data, opt_elideCopy) {
-        var size = 0;
-        var blobType = '';
-        if (__WEBPACK_IMPORTED_MODULE_2__type__["f" /* isNativeBlob */](data)) {
-            this.data_ = data;
-            size = data.size;
-            blobType = data.type;
-        }
-        else if (data instanceof ArrayBuffer) {
-            if (opt_elideCopy) {
-                this.data_ = new Uint8Array(data);
-            }
-            else {
-                this.data_ = new Uint8Array(data.byteLength);
-                this.data_.set(new Uint8Array(data));
-            }
-            size = this.data_.length;
-        }
-        else if (data instanceof Uint8Array) {
-            if (opt_elideCopy) {
-                this.data_ = data;
-            }
-            else {
-                this.data_ = new Uint8Array(data.length);
-                this.data_.set(data);
-            }
-            size = data.length;
-        }
-        this.size_ = size;
-        this.type_ = blobType;
-    }
-    FbsBlob.prototype.size = function () {
-        return this.size_;
-    };
-    FbsBlob.prototype.type = function () {
-        return this.type_;
-    };
-    FbsBlob.prototype.slice = function (startByte, endByte) {
-        if (__WEBPACK_IMPORTED_MODULE_2__type__["f" /* isNativeBlob */](this.data_)) {
-            var realBlob = this.data_;
-            var sliced = __WEBPACK_IMPORTED_MODULE_0__fs__["a" /* sliceBlob */](realBlob, startByte, endByte);
-            if (sliced === null) {
-                return null;
-            }
-            return new FbsBlob(sliced);
-        }
-        else {
-            var slice = new Uint8Array(this.data_.buffer, startByte, endByte - startByte);
-            return new FbsBlob(slice, true);
-        }
-    };
-    FbsBlob.getBlob = function () {
-        var var_args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            var_args[_i] = arguments[_i];
-        }
-        if (__WEBPACK_IMPORTED_MODULE_2__type__["g" /* isNativeBlobDefined */]()) {
-            var blobby = var_args.map(function (val) {
-                if (val instanceof FbsBlob) {
-                    return val.data_;
-                }
-                else {
-                    return val;
-                }
-            });
-            return new FbsBlob(__WEBPACK_IMPORTED_MODULE_0__fs__["b" /* getBlob */].apply(null, blobby));
-        }
-        else {
-            var uint8Arrays = var_args.map(function (val) {
-                if (__WEBPACK_IMPORTED_MODULE_2__type__["b" /* isString */](val)) {
-                    return __WEBPACK_IMPORTED_MODULE_1__string__["c" /* dataFromString */](__WEBPACK_IMPORTED_MODULE_1__string__["a" /* StringFormat */].RAW, val).data;
-                }
-                else {
-                    // Blobs don't exist, so this has to be a Uint8Array.
-                    return val.data_;
-                }
-            });
-            var finalLength_1 = 0;
-            uint8Arrays.forEach(function (array) {
-                finalLength_1 += array.byteLength;
-            });
-            var merged_1 = new Uint8Array(finalLength_1);
-            var index_1 = 0;
-            uint8Arrays.forEach(function (array) {
-                for (var i = 0; i < array.length; i++) {
-                    merged_1[index_1++] = array[i];
-                }
-            });
-            return new FbsBlob(merged_1, true);
-        }
-    };
-    FbsBlob.prototype.uploadData = function () {
-        return this.data_;
-    };
-    return FbsBlob;
-}());
-
-
-//# sourceMappingURL=blob.js.map
-
-
-/***/ }),
-/* 92 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["b"] = parent;
-/* harmony export (immutable) */ __webpack_exports__["a"] = child;
-/* harmony export (immutable) */ __webpack_exports__["c"] = lastComponent;
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-/**
- * @fileoverview Contains helper methods for manipulating paths.
- */
-/**
- * @return Null if the path is already at the root.
- */
-function parent(path) {
-    if (path.length == 0) {
-        return null;
-    }
-    var index = path.lastIndexOf('/');
-    if (index === -1) {
-        return '';
-    }
-    var newPath = path.slice(0, index);
-    return newPath;
-}
-function child(path, childPath) {
-    var canonicalChildPath = childPath
-        .split('/')
-        .filter(function (component) {
-        return component.length > 0;
-    })
-        .join('/');
-    if (path.length === 0) {
-        return canonicalChildPath;
-    }
-    else {
-        return path + '/' + canonicalChildPath;
-    }
-}
-/**
- * Returns the last component of a path.
- * '/foo/bar' -> 'bar'
- * '/foo/bar/baz/' -> 'baz/'
- * '/a' -> 'a'
- */
-function lastComponent(path) {
-    var index = path.lastIndexOf('/', path.length - 2);
-    if (index === -1) {
-        return path;
-    }
-    else {
-        return path.slice(index + 1);
-    }
-}
-
-//# sourceMappingURL=path.js.map
-
-
-/***/ }),
-/* 93 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export handlerCheck */
-/* unused harmony export metadataHandler */
-/* unused harmony export sharedErrorHandler */
-/* unused harmony export objectErrorHandler */
-/* harmony export (immutable) */ __webpack_exports__["b"] = getMetadata;
-/* harmony export (immutable) */ __webpack_exports__["c"] = updateMetadata;
-/* harmony export (immutable) */ __webpack_exports__["a"] = deleteObject;
-/* unused harmony export determineContentType_ */
-/* unused harmony export metadataForUpload_ */
-/* harmony export (immutable) */ __webpack_exports__["i"] = multipartUpload;
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return ResumableUploadStatus; });
-/* unused harmony export checkResumeHeader_ */
-/* harmony export (immutable) */ __webpack_exports__["d"] = createResumableUpload;
-/* harmony export (immutable) */ __webpack_exports__["e"] = getResumableUploadStatus;
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return resumableUploadChunkSize; });
-/* harmony export (immutable) */ __webpack_exports__["h"] = continueResumableUpload;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__array__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blob__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__error__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__metadata__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__object__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__requestinfo__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__type__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__url__ = __webpack_require__(53);
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-
-
-
-
-
-
-
-/**
- * Throws the UNKNOWN FirebaseStorageError if cndn is false.
- */
-function handlerCheck(cndn) {
-    if (!cndn) {
-        throw __WEBPACK_IMPORTED_MODULE_2__error__["c" /* unknown */]();
-    }
-}
-function metadataHandler(authWrapper, mappings) {
-    function handler(xhr, text) {
-        var metadata = __WEBPACK_IMPORTED_MODULE_3__metadata__["b" /* fromResourceString */](authWrapper, text, mappings);
-        handlerCheck(metadata !== null);
-        return metadata;
-    }
-    return handler;
-}
-function sharedErrorHandler(location) {
-    function errorHandler(xhr, err) {
-        var newErr;
-        if (xhr.getStatus() === 401) {
-            newErr = __WEBPACK_IMPORTED_MODULE_2__error__["d" /* unauthenticated */]();
-        }
-        else {
-            if (xhr.getStatus() === 402) {
-                newErr = __WEBPACK_IMPORTED_MODULE_2__error__["e" /* quotaExceeded */](location.bucket);
-            }
-            else {
-                if (xhr.getStatus() === 403) {
-                    newErr = __WEBPACK_IMPORTED_MODULE_2__error__["f" /* unauthorized */](location.path);
-                }
-                else {
-                    newErr = err;
-                }
-            }
-        }
-        newErr.setServerResponseProp(err.serverResponseProp());
-        return newErr;
-    }
-    return errorHandler;
-}
-function objectErrorHandler(location) {
-    var shared = sharedErrorHandler(location);
-    function errorHandler(xhr, err) {
-        var newErr = shared(xhr, err);
-        if (xhr.getStatus() === 404) {
-            newErr = __WEBPACK_IMPORTED_MODULE_2__error__["g" /* objectNotFound */](location.path);
-        }
-        newErr.setServerResponseProp(err.serverResponseProp());
-        return newErr;
-    }
-    return errorHandler;
-}
-function getMetadata(authWrapper, location, mappings) {
-    var urlPart = location.fullServerUrl();
-    var url = __WEBPACK_IMPORTED_MODULE_7__url__["a" /* makeNormalUrl */](urlPart);
-    var method = 'GET';
-    var timeout = authWrapper.maxOperationRetryTime();
-    var requestInfo = new __WEBPACK_IMPORTED_MODULE_5__requestinfo__["a" /* RequestInfo */](url, method, metadataHandler(authWrapper, mappings), timeout);
-    requestInfo.errorHandler = objectErrorHandler(location);
-    return requestInfo;
-}
-function updateMetadata(authWrapper, location, metadata, mappings) {
-    var urlPart = location.fullServerUrl();
-    var url = __WEBPACK_IMPORTED_MODULE_7__url__["a" /* makeNormalUrl */](urlPart);
-    var method = 'PATCH';
-    var body = __WEBPACK_IMPORTED_MODULE_3__metadata__["c" /* toResourceString */](metadata, mappings);
-    var headers = { 'Content-Type': 'application/json; charset=utf-8' };
-    var timeout = authWrapper.maxOperationRetryTime();
-    var requestInfo = new __WEBPACK_IMPORTED_MODULE_5__requestinfo__["a" /* RequestInfo */](url, method, metadataHandler(authWrapper, mappings), timeout);
-    requestInfo.headers = headers;
-    requestInfo.body = body;
-    requestInfo.errorHandler = objectErrorHandler(location);
-    return requestInfo;
-}
-function deleteObject(authWrapper, location) {
-    var urlPart = location.fullServerUrl();
-    var url = __WEBPACK_IMPORTED_MODULE_7__url__["a" /* makeNormalUrl */](urlPart);
-    var method = 'DELETE';
-    var timeout = authWrapper.maxOperationRetryTime();
-    function handler(xhr, text) { }
-    var requestInfo = new __WEBPACK_IMPORTED_MODULE_5__requestinfo__["a" /* RequestInfo */](url, method, handler, timeout);
-    requestInfo.successCodes = [200, 204];
-    requestInfo.errorHandler = objectErrorHandler(location);
-    return requestInfo;
-}
-function determineContentType_(metadata, blob) {
-    return ((metadata && metadata['contentType']) ||
-        (blob && blob.type()) ||
-        'application/octet-stream');
-}
-function metadataForUpload_(location, blob, opt_metadata) {
-    var metadata = __WEBPACK_IMPORTED_MODULE_4__object__["a" /* clone */](opt_metadata);
-    metadata['fullPath'] = location.path;
-    metadata['size'] = blob.size();
-    if (!metadata['contentType']) {
-        metadata['contentType'] = determineContentType_(null, blob);
-    }
-    return metadata;
-}
-function multipartUpload(authWrapper, location, mappings, blob, opt_metadata) {
-    var urlPart = location.bucketOnlyServerUrl();
-    var headers = {
-        'X-Goog-Upload-Protocol': 'multipart'
-    };
-    function genBoundary() {
-        var str = '';
-        for (var i = 0; i < 2; i++) {
-            str =
-                str +
-                    Math.random()
-                        .toString()
-                        .slice(2);
-        }
-        return str;
-    }
-    var boundary = genBoundary();
-    headers['Content-Type'] = 'multipart/related; boundary=' + boundary;
-    var metadata = metadataForUpload_(location, blob, opt_metadata);
-    var metadataString = __WEBPACK_IMPORTED_MODULE_3__metadata__["c" /* toResourceString */](metadata, mappings);
-    var preBlobPart = '--' +
-        boundary +
-        '\r\n' +
-        'Content-Type: application/json; charset=utf-8\r\n\r\n' +
-        metadataString +
-        '\r\n--' +
-        boundary +
-        '\r\n' +
-        'Content-Type: ' +
-        metadata['contentType'] +
-        '\r\n\r\n';
-    var postBlobPart = '\r\n--' + boundary + '--';
-    var body = __WEBPACK_IMPORTED_MODULE_1__blob__["a" /* FbsBlob */].getBlob(preBlobPart, blob, postBlobPart);
-    if (body === null) {
-        throw __WEBPACK_IMPORTED_MODULE_2__error__["h" /* cannotSliceBlob */]();
-    }
-    var urlParams = { name: metadata['fullPath'] };
-    var url = __WEBPACK_IMPORTED_MODULE_7__url__["b" /* makeUploadUrl */](urlPart);
-    var method = 'POST';
-    var timeout = authWrapper.maxUploadRetryTime();
-    var requestInfo = new __WEBPACK_IMPORTED_MODULE_5__requestinfo__["a" /* RequestInfo */](url, method, metadataHandler(authWrapper, mappings), timeout);
-    requestInfo.urlParams = urlParams;
-    requestInfo.headers = headers;
-    requestInfo.body = body.uploadData();
-    requestInfo.errorHandler = sharedErrorHandler(location);
-    return requestInfo;
-}
-/**
- * @param current The number of bytes that have been uploaded so far.
- * @param total The total number of bytes in the upload.
- * @param opt_finalized True if the server has finished the upload.
- * @param opt_metadata The upload metadata, should
- *     only be passed if opt_finalized is true.
- * @struct
- */
-var ResumableUploadStatus = /** @class */ (function () {
-    function ResumableUploadStatus(current, total, finalized, metadata) {
-        this.current = current;
-        this.total = total;
-        this.finalized = !!finalized;
-        this.metadata = metadata || null;
-    }
-    return ResumableUploadStatus;
-}());
-
-function checkResumeHeader_(xhr, opt_allowed) {
-    var status;
-    try {
-        status = xhr.getResponseHeader('X-Goog-Upload-Status');
-    }
-    catch (e) {
-        handlerCheck(false);
-    }
-    var allowed = opt_allowed || ['active'];
-    handlerCheck(__WEBPACK_IMPORTED_MODULE_0__array__["a" /* contains */](allowed, status));
-    return status;
-}
-function createResumableUpload(authWrapper, location, mappings, blob, opt_metadata) {
-    var urlPart = location.bucketOnlyServerUrl();
-    var metadata = metadataForUpload_(location, blob, opt_metadata);
-    var urlParams = { name: metadata['fullPath'] };
-    var url = __WEBPACK_IMPORTED_MODULE_7__url__["b" /* makeUploadUrl */](urlPart);
-    var method = 'POST';
-    var headers = {
-        'X-Goog-Upload-Protocol': 'resumable',
-        'X-Goog-Upload-Command': 'start',
-        'X-Goog-Upload-Header-Content-Length': blob.size(),
-        'X-Goog-Upload-Header-Content-Type': metadata['contentType'],
-        'Content-Type': 'application/json; charset=utf-8'
-    };
-    var body = __WEBPACK_IMPORTED_MODULE_3__metadata__["c" /* toResourceString */](metadata, mappings);
-    var timeout = authWrapper.maxUploadRetryTime();
-    function handler(xhr, text) {
-        checkResumeHeader_(xhr);
-        var url;
-        try {
-            url = xhr.getResponseHeader('X-Goog-Upload-URL');
-        }
-        catch (e) {
-            handlerCheck(false);
-        }
-        handlerCheck(__WEBPACK_IMPORTED_MODULE_6__type__["b" /* isString */](url));
-        return url;
-    }
-    var requestInfo = new __WEBPACK_IMPORTED_MODULE_5__requestinfo__["a" /* RequestInfo */](url, method, handler, timeout);
-    requestInfo.urlParams = urlParams;
-    requestInfo.headers = headers;
-    requestInfo.body = body;
-    requestInfo.errorHandler = sharedErrorHandler(location);
-    return requestInfo;
-}
-/**
- * @param url From a call to fbs.requests.createResumableUpload.
- */
-function getResumableUploadStatus(authWrapper, location, url, blob) {
-    var headers = { 'X-Goog-Upload-Command': 'query' };
-    function handler(xhr, text) {
-        var status = checkResumeHeader_(xhr, ['active', 'final']);
-        var sizeString;
-        try {
-            sizeString = xhr.getResponseHeader('X-Goog-Upload-Size-Received');
-        }
-        catch (e) {
-            handlerCheck(false);
-        }
-        var size = parseInt(sizeString, 10);
-        handlerCheck(!isNaN(size));
-        return new ResumableUploadStatus(size, blob.size(), status === 'final');
-    }
-    var method = 'POST';
-    var timeout = authWrapper.maxUploadRetryTime();
-    var requestInfo = new __WEBPACK_IMPORTED_MODULE_5__requestinfo__["a" /* RequestInfo */](url, method, handler, timeout);
-    requestInfo.headers = headers;
-    requestInfo.errorHandler = sharedErrorHandler(location);
-    return requestInfo;
-}
-/**
- * Any uploads via the resumable upload API must transfer a number of bytes
- * that is a multiple of this number.
- */
-var resumableUploadChunkSize = 256 * 1024;
-/**
- * @param url From a call to fbs.requests.createResumableUpload.
- * @param chunkSize Number of bytes to upload.
- * @param opt_status The previous status.
- *     If not passed or null, we start from the beginning.
- * @throws fbs.Error If the upload is already complete, the passed in status
- *     has a final size inconsistent with the blob, or the blob cannot be sliced
- *     for upload.
- */
-function continueResumableUpload(location, authWrapper, url, blob, chunkSize, mappings, opt_status, opt_progressCallback) {
-    // TODO(andysoto): standardize on internal asserts
-    // assert(!(opt_status && opt_status.finalized));
-    var status = new ResumableUploadStatus(0, 0);
-    if (opt_status) {
-        status.current = opt_status.current;
-        status.total = opt_status.total;
-    }
-    else {
-        status.current = 0;
-        status.total = blob.size();
-    }
-    if (blob.size() !== status.total) {
-        throw __WEBPACK_IMPORTED_MODULE_2__error__["i" /* serverFileWrongSize */]();
-    }
-    var bytesLeft = status.total - status.current;
-    var bytesToUpload = bytesLeft;
-    if (chunkSize > 0) {
-        bytesToUpload = Math.min(bytesToUpload, chunkSize);
-    }
-    var startByte = status.current;
-    var endByte = startByte + bytesToUpload;
-    var uploadCommand = bytesToUpload === bytesLeft ? 'upload, finalize' : 'upload';
-    var headers = {
-        'X-Goog-Upload-Command': uploadCommand,
-        'X-Goog-Upload-Offset': status.current
-    };
-    var body = blob.slice(startByte, endByte);
-    if (body === null) {
-        throw __WEBPACK_IMPORTED_MODULE_2__error__["h" /* cannotSliceBlob */]();
-    }
-    function handler(xhr, text) {
-        // TODO(andysoto): Verify the MD5 of each uploaded range:
-        // the 'x-range-md5' header comes back with status code 308 responses.
-        // We'll only be able to bail out though, because you can't re-upload a
-        // range that you previously uploaded.
-        var uploadStatus = checkResumeHeader_(xhr, ['active', 'final']);
-        var newCurrent = status.current + bytesToUpload;
-        var size = blob.size();
-        var metadata;
-        if (uploadStatus === 'final') {
-            metadata = metadataHandler(authWrapper, mappings)(xhr, text);
-        }
-        else {
-            metadata = null;
-        }
-        return new ResumableUploadStatus(newCurrent, size, uploadStatus === 'final', metadata);
-    }
-    var method = 'POST';
-    var timeout = authWrapper.maxUploadRetryTime();
-    var requestInfo = new __WEBPACK_IMPORTED_MODULE_5__requestinfo__["a" /* RequestInfo */](url, method, handler, timeout);
-    requestInfo.headers = headers;
-    requestInfo.body = body.uploadData();
-    requestInfo.progressCallback = opt_progressCallback || null;
-    requestInfo.errorHandler = sharedErrorHandler(location);
-    return requestInfo;
-}
-
-//# sourceMappingURL=requests.js.map
-
-
-/***/ }),
-/* 94 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ErrorCode; });
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-/**
- * @enum{number}
- */
-var ErrorCode;
-(function (ErrorCode) {
-    ErrorCode[ErrorCode["NO_ERROR"] = 0] = "NO_ERROR";
-    ErrorCode[ErrorCode["NETWORK_ERROR"] = 1] = "NETWORK_ERROR";
-    ErrorCode[ErrorCode["ABORT"] = 2] = "ABORT";
-})(ErrorCode = ErrorCode || (ErrorCode = {}));
-
-//# sourceMappingURL=xhrio.js.map
-
-
-/***/ }),
-/* 95 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Reference; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__implementation_args__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__implementation_blob__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__implementation_error__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__implementation_location__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__implementation_metadata__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__implementation_object__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__implementation_path__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__implementation_requests__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__implementation_string__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__implementation_type__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__task__ = __webpack_require__(178);
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-/**
- * @fileoverview Defines the Firebase Storage Reference class.
- */
-
-
-
-
-
-
-
-
-
-
-
-
-/**
- * Provides methods to interact with a bucket in the Firebase Storage service.
- * @param location An fbs.location, or the URL at
- *     which to base this object, in one of the following forms:
- *         gs://<bucket>/<object-path>
- *         http[s]://firebasestorage.googleapis.com/
- *                     <api-version>/b/<bucket>/o/<object-path>
- *     Any query or fragment strings will be ignored in the http[s]
- *     format. If no value is passed, the storage object will use a URL based on
- *     the project ID of the base firebase.App instance.
- */
-var Reference = /** @class */ (function () {
-    function Reference(authWrapper, location) {
-        this.authWrapper = authWrapper;
-        if (location instanceof __WEBPACK_IMPORTED_MODULE_3__implementation_location__["a" /* Location */]) {
-            this.location = location;
-        }
-        else {
-            this.location = __WEBPACK_IMPORTED_MODULE_3__implementation_location__["a" /* Location */].makeFromUrl(location);
-        }
-    }
-    /**
-     * @return The URL for the bucket and path this object references,
-     *     in the form gs://<bucket>/<object-path>
-     * @override
-     */
-    Reference.prototype.toString = function () {
-        __WEBPACK_IMPORTED_MODULE_0__implementation_args__["a" /* validate */]('toString', [], arguments);
-        return 'gs://' + this.location.bucket + '/' + this.location.path;
-    };
-    Reference.prototype.newRef = function (authWrapper, location) {
-        return new Reference(authWrapper, location);
-    };
-    Reference.prototype.mappings = function () {
-        return __WEBPACK_IMPORTED_MODULE_4__implementation_metadata__["a" /* getMappings */]();
-    };
-    /**
-     * @return A reference to the object obtained by
-     *     appending childPath, removing any duplicate, beginning, or trailing
-     *     slashes.
-     */
-    Reference.prototype.child = function (childPath) {
-        __WEBPACK_IMPORTED_MODULE_0__implementation_args__["a" /* validate */]('child', [__WEBPACK_IMPORTED_MODULE_0__implementation_args__["b" /* stringSpec */]()], arguments);
-        var newPath = __WEBPACK_IMPORTED_MODULE_6__implementation_path__["a" /* child */](this.location.path, childPath);
-        var location = new __WEBPACK_IMPORTED_MODULE_3__implementation_location__["a" /* Location */](this.location.bucket, newPath);
-        return this.newRef(this.authWrapper, location);
-    };
-    Object.defineProperty(Reference.prototype, "parent", {
-        /**
-         * @return A reference to the parent of the
-         *     current object, or null if the current object is the root.
-         */
-        get: function () {
-            var newPath = __WEBPACK_IMPORTED_MODULE_6__implementation_path__["b" /* parent */](this.location.path);
-            if (newPath === null) {
-                return null;
-            }
-            var location = new __WEBPACK_IMPORTED_MODULE_3__implementation_location__["a" /* Location */](this.location.bucket, newPath);
-            return this.newRef(this.authWrapper, location);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Reference.prototype, "root", {
-        /**
-         * @return An reference to the root of this
-         *     object's bucket.
-         */
-        get: function () {
-            var location = new __WEBPACK_IMPORTED_MODULE_3__implementation_location__["a" /* Location */](this.location.bucket, '');
-            return this.newRef(this.authWrapper, location);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Reference.prototype, "bucket", {
-        get: function () {
-            return this.location.bucket;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Reference.prototype, "fullPath", {
-        get: function () {
-            return this.location.path;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Reference.prototype, "name", {
-        get: function () {
-            return __WEBPACK_IMPORTED_MODULE_6__implementation_path__["c" /* lastComponent */](this.location.path);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Reference.prototype, "storage", {
-        get: function () {
-            return this.authWrapper.service();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * Uploads a blob to this object's location.
-     * @param data The blob to upload.
-     * @return An UploadTask that lets you control and
-     *     observe the upload.
-     */
-    Reference.prototype.put = function (data, metadata) {
-        if (metadata === void 0) { metadata = null; }
-        __WEBPACK_IMPORTED_MODULE_0__implementation_args__["a" /* validate */]('put', [__WEBPACK_IMPORTED_MODULE_0__implementation_args__["c" /* uploadDataSpec */](), __WEBPACK_IMPORTED_MODULE_0__implementation_args__["d" /* metadataSpec */](true)], arguments);
-        this.throwIfRoot_('put');
-        return new __WEBPACK_IMPORTED_MODULE_10__task__["a" /* UploadTask */](this, this.authWrapper, this.location, this.mappings(), new __WEBPACK_IMPORTED_MODULE_1__implementation_blob__["a" /* FbsBlob */](data), metadata);
-    };
-    /**
-     * Uploads a string to this object's location.
-     * @param string The string to upload.
-     * @param opt_format The format of the string to upload.
-     * @return An UploadTask that lets you control and
-     *     observe the upload.
-     */
-    Reference.prototype.putString = function (string, format, opt_metadata) {
-        if (format === void 0) { format = __WEBPACK_IMPORTED_MODULE_8__implementation_string__["a" /* StringFormat */].RAW; }
-        __WEBPACK_IMPORTED_MODULE_0__implementation_args__["a" /* validate */]('putString', [
-            __WEBPACK_IMPORTED_MODULE_0__implementation_args__["b" /* stringSpec */](),
-            __WEBPACK_IMPORTED_MODULE_0__implementation_args__["b" /* stringSpec */](__WEBPACK_IMPORTED_MODULE_8__implementation_string__["b" /* formatValidator */], true),
-            __WEBPACK_IMPORTED_MODULE_0__implementation_args__["d" /* metadataSpec */](true)
-        ], arguments);
-        this.throwIfRoot_('putString');
-        var data = __WEBPACK_IMPORTED_MODULE_8__implementation_string__["c" /* dataFromString */](format, string);
-        var metadata = __WEBPACK_IMPORTED_MODULE_5__implementation_object__["a" /* clone */](opt_metadata);
-        if (!__WEBPACK_IMPORTED_MODULE_9__implementation_type__["a" /* isDef */](metadata['contentType']) && __WEBPACK_IMPORTED_MODULE_9__implementation_type__["a" /* isDef */](data.contentType)) {
-            metadata['contentType'] = data.contentType;
-        }
-        return new __WEBPACK_IMPORTED_MODULE_10__task__["a" /* UploadTask */](this, this.authWrapper, this.location, this.mappings(), new __WEBPACK_IMPORTED_MODULE_1__implementation_blob__["a" /* FbsBlob */](data.data, true), metadata);
-    };
-    /**
-     * Deletes the object at this location.
-     * @return A promise that resolves if the deletion succeeds.
-     */
-    Reference.prototype.delete = function () {
-        __WEBPACK_IMPORTED_MODULE_0__implementation_args__["a" /* validate */]('delete', [], arguments);
-        this.throwIfRoot_('delete');
-        var self = this;
-        return this.authWrapper.getAuthToken().then(function (authToken) {
-            var requestInfo = __WEBPACK_IMPORTED_MODULE_7__implementation_requests__["a" /* deleteObject */](self.authWrapper, self.location);
-            return self.authWrapper.makeRequest(requestInfo, authToken).getPromise();
-        });
-    };
-    /**
-     *     A promise that resolves with the metadata for this object. If this
-     *     object doesn't exist or metadata cannot be retreived, the promise is
-     *     rejected.
-     */
-    Reference.prototype.getMetadata = function () {
-        __WEBPACK_IMPORTED_MODULE_0__implementation_args__["a" /* validate */]('getMetadata', [], arguments);
-        this.throwIfRoot_('getMetadata');
-        var self = this;
-        return this.authWrapper.getAuthToken().then(function (authToken) {
-            var requestInfo = __WEBPACK_IMPORTED_MODULE_7__implementation_requests__["b" /* getMetadata */](self.authWrapper, self.location, self.mappings());
-            return self.authWrapper.makeRequest(requestInfo, authToken).getPromise();
-        });
-    };
-    /**
-     * Updates the metadata for this object.
-     * @param metadata The new metadata for the object.
-     *     Only values that have been explicitly set will be changed. Explicitly
-     *     setting a value to null will remove the metadata.
-     * @return A promise that resolves
-     *     with the new metadata for this object.
-     *     @see firebaseStorage.Reference.prototype.getMetadata
-     */
-    Reference.prototype.updateMetadata = function (metadata) {
-        __WEBPACK_IMPORTED_MODULE_0__implementation_args__["a" /* validate */]('updateMetadata', [__WEBPACK_IMPORTED_MODULE_0__implementation_args__["d" /* metadataSpec */]()], arguments);
-        this.throwIfRoot_('updateMetadata');
-        var self = this;
-        return this.authWrapper.getAuthToken().then(function (authToken) {
-            var requestInfo = __WEBPACK_IMPORTED_MODULE_7__implementation_requests__["c" /* updateMetadata */](self.authWrapper, self.location, metadata, self.mappings());
-            return self.authWrapper.makeRequest(requestInfo, authToken).getPromise();
-        });
-    };
-    /**
-     * @return A promise that resolves with the download
-     *     URL for this object.
-     */
-    Reference.prototype.getDownloadURL = function () {
-        __WEBPACK_IMPORTED_MODULE_0__implementation_args__["a" /* validate */]('getDownloadURL', [], arguments);
-        this.throwIfRoot_('getDownloadURL');
-        return this.getMetadata().then(function (metadata) {
-            var url = metadata['downloadURLs'][0];
-            if (__WEBPACK_IMPORTED_MODULE_9__implementation_type__["a" /* isDef */](url)) {
-                return url;
-            }
-            else {
-                throw __WEBPACK_IMPORTED_MODULE_2__implementation_error__["a" /* noDownloadURL */]();
-            }
-        });
-    };
-    Reference.prototype.throwIfRoot_ = function (name) {
-        if (this.location.path === '') {
-            throw __WEBPACK_IMPORTED_MODULE_2__implementation_error__["b" /* invalidRootOperation */](name);
-        }
-    };
-    return Reference;
-}());
-
-
-//# sourceMappingURL=reference.js.map
-
-
-/***/ }),
-/* 96 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var constants_1 = __webpack_require__(54);
-/**
- * Throws an error if the provided assertion is falsy
- * @param {*} assertion The assertion to be tested for falsiness
- * @param {!string} message The message to display if the check fails
- */
-exports.assert = function (assertion, message) {
-    if (!assertion) {
-        throw exports.assertionError(message);
-    }
-};
-/**
- * Returns an Error object suitable for throwing.
- * @param {string} message
- * @return {!Error}
- */
-exports.assertionError = function (message) {
-    return new Error('Firebase Database (' +
-        constants_1.CONSTANTS.SDK_VERSION +
-        ') INTERNAL ASSERT FAILED: ' +
-        message);
-};
-
-//# sourceMappingURL=assert.js.map
-
-
-/***/ }),
-/* 97 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-var stringToByteArray = function (str) {
-    var output = [], p = 0;
-    for (var i = 0; i < str.length; i++) {
-        var c = str.charCodeAt(i);
-        while (c > 255) {
-            output[p++] = c & 255;
-            c >>= 8;
-        }
-        output[p++] = c;
-    }
-    return output;
-};
-/**
- * Turns an array of numbers into the string given by the concatenation of the
- * characters to which the numbers correspond.
- * @param {Array<number>} bytes Array of numbers representing characters.
- * @return {string} Stringification of the array.
- */
-var byteArrayToString = function (bytes) {
-    var CHUNK_SIZE = 8192;
-    // Special-case the simple case for speed's sake.
-    if (bytes.length < CHUNK_SIZE) {
-        return String.fromCharCode.apply(null, bytes);
-    }
-    // The remaining logic splits conversion by chunks since
-    // Function#apply() has a maximum parameter count.
-    // See discussion: http://goo.gl/LrWmZ9
-    var str = '';
-    for (var i = 0; i < bytes.length; i += CHUNK_SIZE) {
-        var chunk = bytes.slice(i, i + CHUNK_SIZE);
-        str += String.fromCharCode.apply(null, chunk);
-    }
-    return str;
-};
-// Static lookup maps, lazily populated by init_()
-exports.base64 = {
-    /**
-     * Maps bytes to characters.
-     * @type {Object}
-     * @private
-     */
-    byteToCharMap_: null,
-    /**
-     * Maps characters to bytes.
-     * @type {Object}
-     * @private
-     */
-    charToByteMap_: null,
-    /**
-     * Maps bytes to websafe characters.
-     * @type {Object}
-     * @private
-     */
-    byteToCharMapWebSafe_: null,
-    /**
-     * Maps websafe characters to bytes.
-     * @type {Object}
-     * @private
-     */
-    charToByteMapWebSafe_: null,
-    /**
-     * Our default alphabet, shared between
-     * ENCODED_VALS and ENCODED_VALS_WEBSAFE
-     * @type {string}
-     */
-    ENCODED_VALS_BASE: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' + 'abcdefghijklmnopqrstuvwxyz' + '0123456789',
-    /**
-     * Our default alphabet. Value 64 (=) is special; it means "nothing."
-     * @type {string}
-     */
-    get ENCODED_VALS() {
-        return this.ENCODED_VALS_BASE + '+/=';
-    },
-    /**
-     * Our websafe alphabet.
-     * @type {string}
-     */
-    get ENCODED_VALS_WEBSAFE() {
-        return this.ENCODED_VALS_BASE + '-_.';
-    },
-    /**
-     * Whether this browser supports the atob and btoa functions. This extension
-     * started at Mozilla but is now implemented by many browsers. We use the
-     * ASSUME_* variables to avoid pulling in the full useragent detection library
-     * but still allowing the standard per-browser compilations.
-     *
-     * @type {boolean}
-     */
-    HAS_NATIVE_SUPPORT: typeof atob === 'function',
-    /**
-     * Base64-encode an array of bytes.
-     *
-     * @param {Array<number>|Uint8Array} input An array of bytes (numbers with
-     *     value in [0, 255]) to encode.
-     * @param {boolean=} opt_webSafe Boolean indicating we should use the
-     *     alternative alphabet.
-     * @return {string} The base64 encoded string.
-     */
-    encodeByteArray: function (input, opt_webSafe) {
-        if (!Array.isArray(input)) {
-            throw Error('encodeByteArray takes an array as a parameter');
-        }
-        this.init_();
-        var byteToCharMap = opt_webSafe
-            ? this.byteToCharMapWebSafe_
-            : this.byteToCharMap_;
-        var output = [];
-        for (var i = 0; i < input.length; i += 3) {
-            var byte1 = input[i];
-            var haveByte2 = i + 1 < input.length;
-            var byte2 = haveByte2 ? input[i + 1] : 0;
-            var haveByte3 = i + 2 < input.length;
-            var byte3 = haveByte3 ? input[i + 2] : 0;
-            var outByte1 = byte1 >> 2;
-            var outByte2 = ((byte1 & 0x03) << 4) | (byte2 >> 4);
-            var outByte3 = ((byte2 & 0x0f) << 2) | (byte3 >> 6);
-            var outByte4 = byte3 & 0x3f;
-            if (!haveByte3) {
-                outByte4 = 64;
-                if (!haveByte2) {
-                    outByte3 = 64;
-                }
-            }
-            output.push(byteToCharMap[outByte1], byteToCharMap[outByte2], byteToCharMap[outByte3], byteToCharMap[outByte4]);
-        }
-        return output.join('');
-    },
-    /**
-     * Base64-encode a string.
-     *
-     * @param {string} input A string to encode.
-     * @param {boolean=} opt_webSafe If true, we should use the
-     *     alternative alphabet.
-     * @return {string} The base64 encoded string.
-     */
-    encodeString: function (input, opt_webSafe) {
-        // Shortcut for Mozilla browsers that implement
-        // a native base64 encoder in the form of "btoa/atob"
-        if (this.HAS_NATIVE_SUPPORT && !opt_webSafe) {
-            return btoa(input);
-        }
-        return this.encodeByteArray(stringToByteArray(input), opt_webSafe);
-    },
-    /**
-     * Base64-decode a string.
-     *
-     * @param {string} input to decode.
-     * @param {boolean=} opt_webSafe True if we should use the
-     *     alternative alphabet.
-     * @return {string} string representing the decoded value.
-     */
-    decodeString: function (input, opt_webSafe) {
-        // Shortcut for Mozilla browsers that implement
-        // a native base64 encoder in the form of "btoa/atob"
-        if (this.HAS_NATIVE_SUPPORT && !opt_webSafe) {
-            return atob(input);
-        }
-        return byteArrayToString(this.decodeStringToByteArray(input, opt_webSafe));
-    },
-    /**
-     * Base64-decode a string.
-     *
-     * In base-64 decoding, groups of four characters are converted into three
-     * bytes.  If the encoder did not apply padding, the input length may not
-     * be a multiple of 4.
-     *
-     * In this case, the last group will have fewer than 4 characters, and
-     * padding will be inferred.  If the group has one or two characters, it decodes
-     * to one byte.  If the group has three characters, it decodes to two bytes.
-     *
-     * @param {string} input Input to decode.
-     * @param {boolean=} opt_webSafe True if we should use the web-safe alphabet.
-     * @return {!Array<number>} bytes representing the decoded value.
-     */
-    decodeStringToByteArray: function (input, opt_webSafe) {
-        this.init_();
-        var charToByteMap = opt_webSafe
-            ? this.charToByteMapWebSafe_
-            : this.charToByteMap_;
-        var output = [];
-        for (var i = 0; i < input.length;) {
-            var byte1 = charToByteMap[input.charAt(i++)];
-            var haveByte2 = i < input.length;
-            var byte2 = haveByte2 ? charToByteMap[input.charAt(i)] : 0;
-            ++i;
-            var haveByte3 = i < input.length;
-            var byte3 = haveByte3 ? charToByteMap[input.charAt(i)] : 64;
-            ++i;
-            var haveByte4 = i < input.length;
-            var byte4 = haveByte4 ? charToByteMap[input.charAt(i)] : 64;
-            ++i;
-            if (byte1 == null || byte2 == null || byte3 == null || byte4 == null) {
-                throw Error();
-            }
-            var outByte1 = (byte1 << 2) | (byte2 >> 4);
-            output.push(outByte1);
-            if (byte3 != 64) {
-                var outByte2 = ((byte2 << 4) & 0xf0) | (byte3 >> 2);
-                output.push(outByte2);
-                if (byte4 != 64) {
-                    var outByte3 = ((byte3 << 6) & 0xc0) | byte4;
-                    output.push(outByte3);
-                }
-            }
-        }
-        return output;
-    },
-    /**
-     * Lazy static initialization function. Called before
-     * accessing any of the static map variables.
-     * @private
-     */
-    init_: function () {
-        if (!this.byteToCharMap_) {
-            this.byteToCharMap_ = {};
-            this.charToByteMap_ = {};
-            this.byteToCharMapWebSafe_ = {};
-            this.charToByteMapWebSafe_ = {};
-            // We want quick mappings back and forth, so we precompute two maps.
-            for (var i = 0; i < this.ENCODED_VALS.length; i++) {
-                this.byteToCharMap_[i] = this.ENCODED_VALS.charAt(i);
-                this.charToByteMap_[this.byteToCharMap_[i]] = i;
-                this.byteToCharMapWebSafe_[i] = this.ENCODED_VALS_WEBSAFE.charAt(i);
-                this.charToByteMapWebSafe_[this.byteToCharMapWebSafe_[i]] = i;
-                // Be forgiving when decoding and correctly decode both encodings.
-                if (i >= this.ENCODED_VALS_BASE.length) {
-                    this.charToByteMap_[this.ENCODED_VALS_WEBSAFE.charAt(i)] = i;
-                    this.charToByteMapWebSafe_[this.ENCODED_VALS.charAt(i)] = i;
-                }
-            }
-        }
-    }
-};
-/**
- * URL-safe base64 encoding
- * @param {!string} str
- * @return {!string}
- */
-exports.base64Encode = function (str) {
-    var utf8Bytes = stringToByteArray(str);
-    return exports.base64.encodeByteArray(utf8Bytes, true);
-};
-/**
- * URL-safe base64 decoding
- *
- * NOTE: DO NOT use the global atob() function - it does NOT support the
- * base64Url variant encoding.
- *
- * @param {string} str To be decoded
- * @return {?string} Decoded result, if possible
- */
-exports.base64Decode = function (str) {
-    try {
-        return exports.base64.decodeString(str, true);
-    }
-    catch (e) {
-        console.error('base64Decode failed: ', e);
-    }
-    return null;
-};
-
-//# sourceMappingURL=crypt.js.map
-
-
-/***/ }),
-/* 98 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Evaluates a JSON string into a javascript object.
- *
- * @param {string} str A string containing JSON.
- * @return {*} The javascript object representing the specified JSON.
- */
-function jsonEval(str) {
-    return JSON.parse(str);
-}
-exports.jsonEval = jsonEval;
-/**
- * Returns JSON representing a javascript object.
- * @param {*} data Javascript object to be stringified.
- * @return {string} The JSON contents of the object.
- */
-function stringify(data) {
-    return JSON.stringify(data);
-}
-exports.stringify = stringify;
-
-//# sourceMappingURL=json.js.map
-
-
-/***/ }),
-/* 99 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-// See http://www.devthought.com/2012/01/18/an-object-is-not-a-hash/
-exports.contains = function (obj, key) {
-    return Object.prototype.hasOwnProperty.call(obj, key);
-};
-exports.safeGet = function (obj, key) {
-    if (Object.prototype.hasOwnProperty.call(obj, key))
-        return obj[key];
-    // else return undefined.
-};
-/**
- * Enumerates the keys/values in an object, excluding keys defined on the prototype.
- *
- * @param {?Object.<K,V>} obj Object to enumerate.
- * @param {!function(K, V)} fn Function to call for each key and value.
- * @template K,V
- */
-exports.forEach = function (obj, fn) {
-    for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) {
-            fn(key, obj[key]);
-        }
-    }
-};
-/**
- * Copies all the (own) properties from one object to another.
- * @param {!Object} objTo
- * @param {!Object} objFrom
- * @return {!Object} objTo
- */
-exports.extend = function (objTo, objFrom) {
-    exports.forEach(objFrom, function (key, value) {
-        objTo[key] = value;
-    });
-    return objTo;
-};
-/**
- * Returns a clone of the specified object.
- * @param {!Object} obj
- * @return {!Object} cloned obj.
- */
-exports.clone = function (obj) {
-    return exports.extend({}, obj);
-};
-/**
- * Returns true if obj has typeof "object" and is not null.  Unlike goog.isObject(), does not return true
- * for functions.
- *
- * @param obj {*} A potential object.
- * @returns {boolean} True if it's an object.
- */
-exports.isNonNullObject = function (obj) {
-    return typeof obj === 'object' && obj !== null;
-};
-exports.isEmpty = function (obj) {
-    for (var key in obj) {
-        return false;
-    }
-    return true;
-};
-exports.getCount = function (obj) {
-    var rv = 0;
-    for (var key in obj) {
-        rv++;
-    }
-    return rv;
-};
-exports.map = function (obj, f, opt_obj) {
-    var res = {};
-    for (var key in obj) {
-        res[key] = f.call(opt_obj, obj[key], key, obj);
-    }
-    return res;
-};
-exports.findKey = function (obj, fn, opt_this) {
-    for (var key in obj) {
-        if (fn.call(opt_this, obj[key], key, obj)) {
-            return key;
-        }
-    }
-    return undefined;
-};
-exports.findValue = function (obj, fn, opt_this) {
-    var key = exports.findKey(obj, fn, opt_this);
-    return key && obj[key];
-};
-exports.getAnyKey = function (obj) {
-    for (var key in obj) {
-        return key;
-    }
-};
-exports.getValues = function (obj) {
-    var res = [];
-    var i = 0;
-    for (var key in obj) {
-        res[i++] = obj[key];
-    }
-    return res;
-};
-/**
- * Tests whether every key/value pair in an object pass the test implemented
- * by the provided function
- *
- * @param {?Object.<K,V>} obj Object to test.
- * @param {!function(K, V)} fn Function to call for each key and value.
- * @template K,V
- */
-exports.every = function (obj, fn) {
-    for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) {
-            if (!fn(key, obj[key])) {
-                return false;
-            }
-        }
-    }
-    return true;
-};
-
-//# sourceMappingURL=obj.js.map
-
-
-/***/ }),
-/* 100 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utils = __webpack_require__(9);
-var settle = __webpack_require__(197);
-var buildURL = __webpack_require__(200);
-var parseHeaders = __webpack_require__(206);
-var isURLSameOrigin = __webpack_require__(204);
-var createError = __webpack_require__(103);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(199);
-
-module.exports = function xhrAdapter(config) {
-  return new Promise(function dispatchXhrRequest(resolve, reject) {
-    var requestData = config.data;
-    var requestHeaders = config.headers;
-
-    if (utils.isFormData(requestData)) {
-      delete requestHeaders['Content-Type']; // Let the browser set it
-    }
-
-    var request = new XMLHttpRequest();
-    var loadEvent = 'onreadystatechange';
-    var xDomain = false;
-
-    // For IE 8/9 CORS support
-    // Only supports POST and GET calls and doesn't returns the response headers.
-    // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
-    if ("production" !== 'test' &&
-        typeof window !== 'undefined' &&
-        window.XDomainRequest && !('withCredentials' in request) &&
-        !isURLSameOrigin(config.url)) {
-      request = new window.XDomainRequest();
-      loadEvent = 'onload';
-      xDomain = true;
-      request.onprogress = function handleProgress() {};
-      request.ontimeout = function handleTimeout() {};
-    }
-
-    // HTTP basic authentication
-    if (config.auth) {
-      var username = config.auth.username || '';
-      var password = config.auth.password || '';
-      requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
-    }
-
-    request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
-
-    // Set the request timeout in MS
-    request.timeout = config.timeout;
-
-    // Listen for ready state
-    request[loadEvent] = function handleLoad() {
-      if (!request || (request.readyState !== 4 && !xDomain)) {
-        return;
-      }
-
-      // The request errored out and we didn't get a response, this will be
-      // handled by onerror instead
-      // With one exception: request that using file: protocol, most browsers
-      // will return status as 0 even though it's a successful request
-      if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
-        return;
-      }
-
-      // Prepare the response
-      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
-      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
-      var response = {
-        data: responseData,
-        // IE sends 1223 instead of 204 (https://github.com/axios/axios/issues/201)
-        status: request.status === 1223 ? 204 : request.status,
-        statusText: request.status === 1223 ? 'No Content' : request.statusText,
-        headers: responseHeaders,
-        config: config,
-        request: request
-      };
-
-      settle(resolve, reject, response);
-
-      // Clean up request
-      request = null;
-    };
-
-    // Handle low level network errors
-    request.onerror = function handleError() {
-      // Real errors are hidden from us by the browser
-      // onerror should only fire if it's a network error
-      reject(createError('Network Error', config, null, request));
-
-      // Clean up request
-      request = null;
-    };
-
-    // Handle timeout
-    request.ontimeout = function handleTimeout() {
-      reject(createError('timeout of ' + config.timeout + 'ms exceeded', config, 'ECONNABORTED',
-        request));
-
-      // Clean up request
-      request = null;
-    };
-
-    // Add xsrf header
-    // This is only done if running in a standard browser environment.
-    // Specifically not if we're in a web worker, or react-native.
-    if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(202);
-
-      // Add xsrf header
-      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
-          cookies.read(config.xsrfCookieName) :
-          undefined;
-
-      if (xsrfValue) {
-        requestHeaders[config.xsrfHeaderName] = xsrfValue;
-      }
-    }
-
-    // Add headers to the request
-    if ('setRequestHeader' in request) {
-      utils.forEach(requestHeaders, function setRequestHeader(val, key) {
-        if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
-          // Remove Content-Type if data is undefined
-          delete requestHeaders[key];
-        } else {
-          // Otherwise add header to the request
-          request.setRequestHeader(key, val);
-        }
-      });
-    }
-
-    // Add withCredentials to request if needed
-    if (config.withCredentials) {
-      request.withCredentials = true;
-    }
-
-    // Add responseType to request if needed
-    if (config.responseType) {
-      try {
-        request.responseType = config.responseType;
-      } catch (e) {
-        // Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 2.
-        // But, this can be suppressed for 'json' type as it can be parsed by default 'transformResponse' function.
-        if (config.responseType !== 'json') {
-          throw e;
-        }
-      }
-    }
-
-    // Handle progress if needed
-    if (typeof config.onDownloadProgress === 'function') {
-      request.addEventListener('progress', config.onDownloadProgress);
-    }
-
-    // Not all browsers support upload events
-    if (typeof config.onUploadProgress === 'function' && request.upload) {
-      request.upload.addEventListener('progress', config.onUploadProgress);
-    }
-
-    if (config.cancelToken) {
-      // Handle cancellation
-      config.cancelToken.promise.then(function onCanceled(cancel) {
-        if (!request) {
-          return;
-        }
-
-        request.abort();
-        reject(cancel);
-        // Clean up request
-        request = null;
-      });
-    }
-
-    if (requestData === undefined) {
-      requestData = null;
-    }
-
-    // Send the request
-    request.send(requestData);
-  });
-};
-
-
-/***/ }),
-/* 101 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * A `Cancel` is an object that is thrown when an operation is canceled.
- *
- * @class
- * @param {string=} message The message.
- */
-function Cancel(message) {
-  this.message = message;
-}
-
-Cancel.prototype.toString = function toString() {
-  return 'Cancel' + (this.message ? ': ' + this.message : '');
-};
-
-Cancel.prototype.__CANCEL__ = true;
-
-module.exports = Cancel;
-
-
-/***/ }),
-/* 102 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function isCancel(value) {
-  return !!(value && value.__CANCEL__);
-};
-
-
-/***/ }),
-/* 103 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var enhanceError = __webpack_require__(196);
-
-/**
- * Create an Error with the specified message, config, error code, request and response.
- *
- * @param {string} message The error message.
- * @param {Object} config The config.
- * @param {string} [code] The error code (for example, 'ECONNABORTED').
- * @param {Object} [request] The request.
- * @param {Object} [response] The response.
- * @returns {Error} The created error.
- */
-module.exports = function createError(message, config, code, request, response) {
-  var error = new Error(message);
-  return enhanceError(error, config, code, request, response);
-};
-
-
-/***/ }),
-/* 104 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function bind(fn, thisArg) {
-  return function wrap() {
-    var args = new Array(arguments.length);
-    for (var i = 0; i < args.length; i++) {
-      args[i] = arguments[i];
-    }
-    return fn.apply(thisArg, args);
-  };
-};
-
-
-/***/ }),
-/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -49424,7 +42071,7360 @@ module.exports = function bind(fn, thisArg) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(29), __webpack_require__(385)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(30), __webpack_require__(386)(module)))
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports) {
+
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(e,t){ true?module.exports=t(__webpack_require__(308),__webpack_require__(305)):"function"==typeof define&&define.amd?define(["swiper","object-assign"],t):"object"==typeof exports?exports.VueAwesomeSwiper=t(require("swiper"),require("object-assign")):e.VueAwesomeSwiper=t(e.swiper,e["object-assign"])}(this,function(e,t){return function(e){function t(s){if(n[s])return n[s].exports;var i=n[s]={i:s,l:!1,exports:{}};return e[s].call(i.exports,i,i.exports,t),i.l=!0,i.exports}var n={};return t.m=e,t.c=n,t.i=function(e){return e},t.d=function(e,n,s){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:s})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="/",t(t.s=4)}([function(t,n){t.exports=e},function(e,t){e.exports=function(e,t,n,s,i,r){var o,a=e=e||{},u=typeof e.default;"object"!==u&&"function"!==u||(o=e,a=e.default);var p="function"==typeof a?a.options:a;t&&(p.render=t.render,p.staticRenderFns=t.staticRenderFns,p._compiled=!0),n&&(p.functional=!0),i&&(p._scopeId=i);var l;if(r?(l=function(e){e=e||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext,e||"undefined"==typeof __VUE_SSR_CONTEXT__||(e=__VUE_SSR_CONTEXT__),s&&s.call(this,e),e&&e._registeredComponents&&e._registeredComponents.add(r)},p._ssrRegister=l):s&&(l=s),l){var d=p.functional,c=d?p.render:p.beforeCreate;d?(p._injectStyles=l,p.render=function(e,t){return l.call(t),c(e,t)}):p.beforeCreate=c?[].concat(c,l):[l]}return{esModule:o,exports:a,options:p}}},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var s=n(5),i=n.n(s),r=n(8),o=n(1),a=o(i.a,r.a,!1,null,null,null);t.default=a.exports},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var s=n(6),i=n.n(s),r=n(7),o=n(1),a=o(i.a,r.a,!1,null,null,null);t.default=a.exports},function(e,t,n){"use strict";function s(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0}),t.install=t.swiperSlide=t.swiper=t.Swiper=void 0;var i=n(0),r=s(i),o=n(2),a=s(o),u=n(3),p=s(u),l=window.Swiper||r.default,d=p.default,c=a.default,f=function(e,t){t&&(p.default.props.globalOptions.default=function(){return t}),e.component(p.default.name,p.default),e.component(a.default.name,a.default)},h={Swiper:l,swiper:d,swiperSlide:c,install:f};t.default=h,t.Swiper=l,t.swiper=d,t.swiperSlide=c,t.install=f},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default={name:"swiper-slide",data:function(){return{slideClass:"swiper-slide"}},ready:function(){this.update()},mounted:function(){this.update(),this.$parent&&this.$parent.options&&this.$parent.options.slideClass&&(this.slideClass=this.$parent.options.slideClass)},updated:function(){this.update()},attached:function(){this.update()},methods:{update:function(){this.$parent&&this.$parent.swiper&&this.$parent.swiper.update&&(this.$parent.swiper.update(!0),this.$parent.options.loop&&this.$parent.swiper.reLoop())}}}},function(e,t,n){"use strict";function s(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var i=n(0),r=s(i),o=n(9),a=s(o),u=window.Swiper||r.default;t.default={name:"swiper",props:{options:{type:Object,default:function(){return{}}},globalOptions:{type:Object,required:!1,default:function(){return{}}}},methods:{update:function(){this.swiper&&this.swiper.update&&this.swiper.update()},mountInstance:function(){var e=(0,a.default)({},this.globalOptions,this.options);this.swiper=new u(this.$el,e)}},data:function(){return{classes:{wrapperClass:"swiper-wrapper"}}},ready:function(){this.swiper||this.mountInstance()},mounted:function(){if(!this.swiper){var e=!1;for(var t in this.classes)this.classes.hasOwnProperty(t)&&this.options[t]&&(e=!0,this.classes[t]=this.options[t]);e?this.$nextTick(this.mountInstance):this.mountInstance()}},activated:function(){this.update()},updated:function(){this.update()},beforeDestroy:function(){this.swiper&&(this.swiper.destroy&&this.swiper.destroy(),delete this.swiper)}}},function(e,t,n){"use strict";var s=function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{staticClass:"swiper-container"},[e._t("parallax-bg"),e._v(" "),n("div",{class:e.classes.wrapperClass},[e._t("default")],2),e._v(" "),e._t("pagination"),e._v(" "),e._t("button-prev"),e._v(" "),e._t("button-next"),e._v(" "),e._t("scrollbar")],2)},i=[],r={render:s,staticRenderFns:i};t.a=r},function(e,t,n){"use strict";var s=function(){var e=this,t=e.$createElement;return(e._self._c||t)("div",{class:e.slideClass},[e._t("default")],2)},i=[],r={render:s,staticRenderFns:i};t.a=r},function(e,n){e.exports=t}])});
+
+/***/ }),
+/* 61 */,
+/* 62 */,
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var util_1 = __webpack_require__(2);
+var parser_1 = __webpack_require__(82);
+var Path_1 = __webpack_require__(3);
+var Reference_1 = __webpack_require__(46);
+var Repo_1 = __webpack_require__(31);
+var RepoManager_1 = __webpack_require__(47);
+var util_2 = __webpack_require__(0);
+var validation_1 = __webpack_require__(15);
+/**
+ * Class representing a firebase database.
+ * @implements {FirebaseService}
+ */
+var Database = /** @class */ (function () {
+    /**
+     * The constructor should not be called by users of our public API.
+     * @param {!Repo} repo_
+     */
+    function Database(repo_) {
+        this.repo_ = repo_;
+        if (!(repo_ instanceof Repo_1.Repo)) {
+            util_1.fatal("Don't call new Database() directly - please use firebase.database().");
+        }
+        /** @type {Reference} */
+        this.root_ = new Reference_1.Reference(repo_, Path_1.Path.Empty);
+        this.INTERNAL = new DatabaseInternals(this);
+    }
+    Object.defineProperty(Database.prototype, "app", {
+        get: function () {
+            return this.repo_.app;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Returns a reference to the root or the path specified in opt_pathString.
+     * @param {string=} pathString
+     * @return {!Reference} Firebase reference.
+     */
+    Database.prototype.ref = function (pathString) {
+        this.checkDeleted_('ref');
+        util_2.validateArgCount('database.ref', 0, 1, arguments.length);
+        return pathString !== undefined ? this.root_.child(pathString) : this.root_;
+    };
+    /**
+     * Returns a reference to the root or the path specified in url.
+     * We throw a exception if the url is not in the same domain as the
+     * current repo.
+     * @param {string} url
+     * @return {!Reference} Firebase reference.
+     */
+    Database.prototype.refFromURL = function (url) {
+        /** @const {string} */
+        var apiName = 'database.refFromURL';
+        this.checkDeleted_(apiName);
+        util_2.validateArgCount(apiName, 1, 1, arguments.length);
+        var parsedURL = parser_1.parseRepoInfo(url);
+        validation_1.validateUrl(apiName, 1, parsedURL);
+        var repoInfo = parsedURL.repoInfo;
+        if (repoInfo.host !== this.repo_.repoInfo_.host) {
+            util_1.fatal(apiName +
+                ': Host name does not match the current database: ' +
+                '(found ' +
+                repoInfo.host +
+                ' but expected ' +
+                this.repo_.repoInfo_.host +
+                ')');
+        }
+        return this.ref(parsedURL.path.toString());
+    };
+    /**
+     * @param {string} apiName
+     */
+    Database.prototype.checkDeleted_ = function (apiName) {
+        if (this.repo_ === null) {
+            util_1.fatal('Cannot call ' + apiName + ' on a deleted database.');
+        }
+    };
+    // Make individual repo go offline.
+    Database.prototype.goOffline = function () {
+        util_2.validateArgCount('database.goOffline', 0, 0, arguments.length);
+        this.checkDeleted_('goOffline');
+        this.repo_.interrupt();
+    };
+    Database.prototype.goOnline = function () {
+        util_2.validateArgCount('database.goOnline', 0, 0, arguments.length);
+        this.checkDeleted_('goOnline');
+        this.repo_.resume();
+    };
+    Database.ServerValue = {
+        TIMESTAMP: {
+            '.sv': 'timestamp'
+        }
+    };
+    return Database;
+}());
+exports.Database = Database;
+var DatabaseInternals = /** @class */ (function () {
+    /** @param {!Database} database */
+    function DatabaseInternals(database) {
+        this.database = database;
+    }
+    /** @return {Promise<void>} */
+    DatabaseInternals.prototype.delete = function () {
+        this.database.checkDeleted_('delete');
+        RepoManager_1.RepoManager.getInstance().deleteRepo(this.database.repo_);
+        this.database.repo_ = null;
+        this.database.root_ = null;
+        this.database.INTERNAL = null;
+        this.database = null;
+        return Promise.resolve();
+    };
+    return DatabaseInternals;
+}());
+exports.DatabaseInternals = DatabaseInternals;
+
+//# sourceMappingURL=Database.js.map
+
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var util_1 = __webpack_require__(0);
+var KeyIndex_1 = __webpack_require__(24);
+var PriorityIndex_1 = __webpack_require__(5);
+var ValueIndex_1 = __webpack_require__(76);
+var PathIndex_1 = __webpack_require__(75);
+var util_2 = __webpack_require__(2);
+var Path_1 = __webpack_require__(3);
+var validation_1 = __webpack_require__(15);
+var util_3 = __webpack_require__(0);
+var EventRegistration_1 = __webpack_require__(147);
+var util_4 = __webpack_require__(0);
+var __referenceConstructor;
+/**
+ * A Query represents a filter to be applied to a firebase location.  This object purely represents the
+ * query expression (and exposes our public API to build the query).  The actual query logic is in ViewBase.js.
+ *
+ * Since every Firebase reference is a query, Firebase inherits from this object.
+ */
+var Query = /** @class */ (function () {
+    function Query(repo, path, queryParams_, orderByCalled_) {
+        this.repo = repo;
+        this.path = path;
+        this.queryParams_ = queryParams_;
+        this.orderByCalled_ = orderByCalled_;
+    }
+    Object.defineProperty(Query, "__referenceConstructor", {
+        get: function () {
+            util_1.assert(__referenceConstructor, 'Reference.ts has not been loaded');
+            return __referenceConstructor;
+        },
+        set: function (val) {
+            __referenceConstructor = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Validates start/end values for queries.
+     * @param {!QueryParams} params
+     * @private
+     */
+    Query.validateQueryEndpoints_ = function (params) {
+        var startNode = null;
+        var endNode = null;
+        if (params.hasStart()) {
+            startNode = params.getIndexStartValue();
+        }
+        if (params.hasEnd()) {
+            endNode = params.getIndexEndValue();
+        }
+        if (params.getIndex() === KeyIndex_1.KEY_INDEX) {
+            var tooManyArgsError = 'Query: When ordering by key, you may only pass one argument to ' +
+                'startAt(), endAt(), or equalTo().';
+            var wrongArgTypeError = 'Query: When ordering by key, the argument passed to startAt(), endAt(),' +
+                'or equalTo() must be a string.';
+            if (params.hasStart()) {
+                var startName = params.getIndexStartName();
+                if (startName != util_2.MIN_NAME) {
+                    throw new Error(tooManyArgsError);
+                }
+                else if (typeof startNode !== 'string') {
+                    throw new Error(wrongArgTypeError);
+                }
+            }
+            if (params.hasEnd()) {
+                var endName = params.getIndexEndName();
+                if (endName != util_2.MAX_NAME) {
+                    throw new Error(tooManyArgsError);
+                }
+                else if (typeof endNode !== 'string') {
+                    throw new Error(wrongArgTypeError);
+                }
+            }
+        }
+        else if (params.getIndex() === PriorityIndex_1.PRIORITY_INDEX) {
+            if ((startNode != null && !validation_1.isValidPriority(startNode)) ||
+                (endNode != null && !validation_1.isValidPriority(endNode))) {
+                throw new Error('Query: When ordering by priority, the first argument passed to startAt(), ' +
+                    'endAt(), or equalTo() must be a valid priority value (null, a number, or a string).');
+            }
+        }
+        else {
+            util_1.assert(params.getIndex() instanceof PathIndex_1.PathIndex ||
+                params.getIndex() === ValueIndex_1.VALUE_INDEX, 'unknown index type.');
+            if ((startNode != null && typeof startNode === 'object') ||
+                (endNode != null && typeof endNode === 'object')) {
+                throw new Error('Query: First argument passed to startAt(), endAt(), or equalTo() cannot be ' +
+                    'an object.');
+            }
+        }
+    };
+    /**
+     * Validates that limit* has been called with the correct combination of parameters
+     * @param {!QueryParams} params
+     * @private
+     */
+    Query.validateLimit_ = function (params) {
+        if (params.hasStart() &&
+            params.hasEnd() &&
+            params.hasLimit() &&
+            !params.hasAnchoredLimit()) {
+            throw new Error("Query: Can't combine startAt(), endAt(), and limit(). Use limitToFirst() or limitToLast() instead.");
+        }
+    };
+    /**
+     * Validates that no other order by call has been made
+     * @param {!string} fnName
+     * @private
+     */
+    Query.prototype.validateNoPreviousOrderByCall_ = function (fnName) {
+        if (this.orderByCalled_ === true) {
+            throw new Error(fnName + ": You can't combine multiple orderBy calls.");
+        }
+    };
+    /**
+     * @return {!QueryParams}
+     */
+    Query.prototype.getQueryParams = function () {
+        return this.queryParams_;
+    };
+    /**
+     * @return {!Reference}
+     */
+    Query.prototype.getRef = function () {
+        util_3.validateArgCount('Query.ref', 0, 0, arguments.length);
+        // This is a slight hack. We cannot goog.require('fb.api.Firebase'), since Firebase requires fb.api.Query.
+        // However, we will always export 'Firebase' to the global namespace, so it's guaranteed to exist by the time this
+        // method gets called.
+        return new Query.__referenceConstructor(this.repo, this.path);
+    };
+    /**
+     * @param {!string} eventType
+     * @param {!function(DataSnapshot, string=)} callback
+     * @param {(function(Error)|Object)=} cancelCallbackOrContext
+     * @param {Object=} context
+     * @return {!function(DataSnapshot, string=)}
+     */
+    Query.prototype.on = function (eventType, callback, cancelCallbackOrContext, context) {
+        util_3.validateArgCount('Query.on', 2, 4, arguments.length);
+        validation_1.validateEventType('Query.on', 1, eventType, false);
+        util_3.validateCallback('Query.on', 2, callback, false);
+        var ret = Query.getCancelAndContextArgs_('Query.on', cancelCallbackOrContext, context);
+        if (eventType === 'value') {
+            this.onValueEvent(callback, ret.cancel, ret.context);
+        }
+        else {
+            var callbacks = {};
+            callbacks[eventType] = callback;
+            this.onChildEvent(callbacks, ret.cancel, ret.context);
+        }
+        return callback;
+    };
+    /**
+     * @param {!function(!DataSnapshot)} callback
+     * @param {?function(Error)} cancelCallback
+     * @param {?Object} context
+     * @protected
+     */
+    Query.prototype.onValueEvent = function (callback, cancelCallback, context) {
+        var container = new EventRegistration_1.ValueEventRegistration(callback, cancelCallback || null, context || null);
+        this.repo.addEventCallbackForQuery(this, container);
+    };
+    /**
+     * @param {!Object.<string, !function(!DataSnapshot, ?string)>} callbacks
+     * @param {?function(Error)} cancelCallback
+     * @param {?Object} context
+     * @protected
+     */
+    Query.prototype.onChildEvent = function (callbacks, cancelCallback, context) {
+        var container = new EventRegistration_1.ChildEventRegistration(callbacks, cancelCallback, context);
+        this.repo.addEventCallbackForQuery(this, container);
+    };
+    /**
+     * @param {string=} eventType
+     * @param {(function(!DataSnapshot, ?string=))=} callback
+     * @param {Object=} context
+     */
+    Query.prototype.off = function (eventType, callback, context) {
+        util_3.validateArgCount('Query.off', 0, 3, arguments.length);
+        validation_1.validateEventType('Query.off', 1, eventType, true);
+        util_3.validateCallback('Query.off', 2, callback, true);
+        util_3.validateContextObject('Query.off', 3, context, true);
+        var container = null;
+        var callbacks = null;
+        if (eventType === 'value') {
+            var valueCallback = callback || null;
+            container = new EventRegistration_1.ValueEventRegistration(valueCallback, null, context || null);
+        }
+        else if (eventType) {
+            if (callback) {
+                callbacks = {};
+                callbacks[eventType] = callback;
+            }
+            container = new EventRegistration_1.ChildEventRegistration(callbacks, null, context || null);
+        }
+        this.repo.removeEventCallbackForQuery(this, container);
+    };
+    /**
+     * Attaches a listener, waits for the first event, and then removes the listener
+     * @param {!string} eventType
+     * @param {!function(!DataSnapshot, string=)} userCallback
+     * @param cancelOrContext
+     * @param context
+     * @return {!firebase.Promise}
+     */
+    Query.prototype.once = function (eventType, userCallback, cancelOrContext, context) {
+        var _this = this;
+        util_3.validateArgCount('Query.once', 1, 4, arguments.length);
+        validation_1.validateEventType('Query.once', 1, eventType, false);
+        util_3.validateCallback('Query.once', 2, userCallback, true);
+        var ret = Query.getCancelAndContextArgs_('Query.once', cancelOrContext, context);
+        // TODO: Implement this more efficiently (in particular, use 'get' wire protocol for 'value' event)
+        // TODO: consider actually wiring the callbacks into the promise. We cannot do this without a breaking change
+        // because the API currently expects callbacks will be called synchronously if the data is cached, but this is
+        // against the Promise specification.
+        var firstCall = true;
+        var deferred = new util_4.Deferred();
+        // A dummy error handler in case a user wasn't expecting promises
+        deferred.promise.catch(function () { });
+        var onceCallback = function (snapshot) {
+            // NOTE: Even though we unsubscribe, we may get called multiple times if a single action (e.g. set() with JSON)
+            // triggers multiple events (e.g. child_added or child_changed).
+            if (firstCall) {
+                firstCall = false;
+                _this.off(eventType, onceCallback);
+                if (userCallback) {
+                    userCallback.bind(ret.context)(snapshot);
+                }
+                deferred.resolve(snapshot);
+            }
+        };
+        this.on(eventType, onceCallback, 
+        /*cancel=*/ function (err) {
+            _this.off(eventType, onceCallback);
+            if (ret.cancel)
+                ret.cancel.bind(ret.context)(err);
+            deferred.reject(err);
+        });
+        return deferred.promise;
+    };
+    /**
+     * Set a limit and anchor it to the start of the window.
+     * @param {!number} limit
+     * @return {!Query}
+     */
+    Query.prototype.limitToFirst = function (limit) {
+        util_3.validateArgCount('Query.limitToFirst', 1, 1, arguments.length);
+        if (typeof limit !== 'number' ||
+            Math.floor(limit) !== limit ||
+            limit <= 0) {
+            throw new Error('Query.limitToFirst: First argument must be a positive integer.');
+        }
+        if (this.queryParams_.hasLimit()) {
+            throw new Error('Query.limitToFirst: Limit was already set (by another call to limit, ' +
+                'limitToFirst, or limitToLast).');
+        }
+        return new Query(this.repo, this.path, this.queryParams_.limitToFirst(limit), this.orderByCalled_);
+    };
+    /**
+     * Set a limit and anchor it to the end of the window.
+     * @param {!number} limit
+     * @return {!Query}
+     */
+    Query.prototype.limitToLast = function (limit) {
+        util_3.validateArgCount('Query.limitToLast', 1, 1, arguments.length);
+        if (typeof limit !== 'number' ||
+            Math.floor(limit) !== limit ||
+            limit <= 0) {
+            throw new Error('Query.limitToLast: First argument must be a positive integer.');
+        }
+        if (this.queryParams_.hasLimit()) {
+            throw new Error('Query.limitToLast: Limit was already set (by another call to limit, ' +
+                'limitToFirst, or limitToLast).');
+        }
+        return new Query(this.repo, this.path, this.queryParams_.limitToLast(limit), this.orderByCalled_);
+    };
+    /**
+     * Given a child path, return a new query ordered by the specified grandchild path.
+     * @param {!string} path
+     * @return {!Query}
+     */
+    Query.prototype.orderByChild = function (path) {
+        util_3.validateArgCount('Query.orderByChild', 1, 1, arguments.length);
+        if (path === '$key') {
+            throw new Error('Query.orderByChild: "$key" is invalid.  Use Query.orderByKey() instead.');
+        }
+        else if (path === '$priority') {
+            throw new Error('Query.orderByChild: "$priority" is invalid.  Use Query.orderByPriority() instead.');
+        }
+        else if (path === '$value') {
+            throw new Error('Query.orderByChild: "$value" is invalid.  Use Query.orderByValue() instead.');
+        }
+        validation_1.validatePathString('Query.orderByChild', 1, path, false);
+        this.validateNoPreviousOrderByCall_('Query.orderByChild');
+        var parsedPath = new Path_1.Path(path);
+        if (parsedPath.isEmpty()) {
+            throw new Error('Query.orderByChild: cannot pass in empty path.  Use Query.orderByValue() instead.');
+        }
+        var index = new PathIndex_1.PathIndex(parsedPath);
+        var newParams = this.queryParams_.orderBy(index);
+        Query.validateQueryEndpoints_(newParams);
+        return new Query(this.repo, this.path, newParams, /*orderByCalled=*/ true);
+    };
+    /**
+     * Return a new query ordered by the KeyIndex
+     * @return {!Query}
+     */
+    Query.prototype.orderByKey = function () {
+        util_3.validateArgCount('Query.orderByKey', 0, 0, arguments.length);
+        this.validateNoPreviousOrderByCall_('Query.orderByKey');
+        var newParams = this.queryParams_.orderBy(KeyIndex_1.KEY_INDEX);
+        Query.validateQueryEndpoints_(newParams);
+        return new Query(this.repo, this.path, newParams, /*orderByCalled=*/ true);
+    };
+    /**
+     * Return a new query ordered by the PriorityIndex
+     * @return {!Query}
+     */
+    Query.prototype.orderByPriority = function () {
+        util_3.validateArgCount('Query.orderByPriority', 0, 0, arguments.length);
+        this.validateNoPreviousOrderByCall_('Query.orderByPriority');
+        var newParams = this.queryParams_.orderBy(PriorityIndex_1.PRIORITY_INDEX);
+        Query.validateQueryEndpoints_(newParams);
+        return new Query(this.repo, this.path, newParams, /*orderByCalled=*/ true);
+    };
+    /**
+     * Return a new query ordered by the ValueIndex
+     * @return {!Query}
+     */
+    Query.prototype.orderByValue = function () {
+        util_3.validateArgCount('Query.orderByValue', 0, 0, arguments.length);
+        this.validateNoPreviousOrderByCall_('Query.orderByValue');
+        var newParams = this.queryParams_.orderBy(ValueIndex_1.VALUE_INDEX);
+        Query.validateQueryEndpoints_(newParams);
+        return new Query(this.repo, this.path, newParams, /*orderByCalled=*/ true);
+    };
+    /**
+     * @param {number|string|boolean|null} value
+     * @param {?string=} name
+     * @return {!Query}
+     */
+    Query.prototype.startAt = function (value, name) {
+        if (value === void 0) { value = null; }
+        util_3.validateArgCount('Query.startAt', 0, 2, arguments.length);
+        validation_1.validateFirebaseDataArg('Query.startAt', 1, value, this.path, true);
+        validation_1.validateKey('Query.startAt', 2, name, true);
+        var newParams = this.queryParams_.startAt(value, name);
+        Query.validateLimit_(newParams);
+        Query.validateQueryEndpoints_(newParams);
+        if (this.queryParams_.hasStart()) {
+            throw new Error('Query.startAt: Starting point was already set (by another call to startAt ' +
+                'or equalTo).');
+        }
+        // Calling with no params tells us to start at the beginning.
+        if (value === undefined) {
+            value = null;
+            name = null;
+        }
+        return new Query(this.repo, this.path, newParams, this.orderByCalled_);
+    };
+    /**
+     * @param {number|string|boolean|null} value
+     * @param {?string=} name
+     * @return {!Query}
+     */
+    Query.prototype.endAt = function (value, name) {
+        if (value === void 0) { value = null; }
+        util_3.validateArgCount('Query.endAt', 0, 2, arguments.length);
+        validation_1.validateFirebaseDataArg('Query.endAt', 1, value, this.path, true);
+        validation_1.validateKey('Query.endAt', 2, name, true);
+        var newParams = this.queryParams_.endAt(value, name);
+        Query.validateLimit_(newParams);
+        Query.validateQueryEndpoints_(newParams);
+        if (this.queryParams_.hasEnd()) {
+            throw new Error('Query.endAt: Ending point was already set (by another call to endAt or ' +
+                'equalTo).');
+        }
+        return new Query(this.repo, this.path, newParams, this.orderByCalled_);
+    };
+    /**
+     * Load the selection of children with exactly the specified value, and, optionally,
+     * the specified name.
+     * @param {number|string|boolean|null} value
+     * @param {string=} name
+     * @return {!Query}
+     */
+    Query.prototype.equalTo = function (value, name) {
+        util_3.validateArgCount('Query.equalTo', 1, 2, arguments.length);
+        validation_1.validateFirebaseDataArg('Query.equalTo', 1, value, this.path, false);
+        validation_1.validateKey('Query.equalTo', 2, name, true);
+        if (this.queryParams_.hasStart()) {
+            throw new Error('Query.equalTo: Starting point was already set (by another call to startAt or ' +
+                'equalTo).');
+        }
+        if (this.queryParams_.hasEnd()) {
+            throw new Error('Query.equalTo: Ending point was already set (by another call to endAt or ' +
+                'equalTo).');
+        }
+        return this.startAt(value, name).endAt(value, name);
+    };
+    /**
+     * @return {!string} URL for this location.
+     */
+    Query.prototype.toString = function () {
+        util_3.validateArgCount('Query.toString', 0, 0, arguments.length);
+        return this.repo.toString() + this.path.toUrlEncodedString();
+    };
+    // Do not create public documentation. This is intended to make JSON serialization work but is otherwise unnecessary
+    // for end-users.
+    Query.prototype.toJSON = function () {
+        // An optional spacer argument is unnecessary for a string.
+        util_3.validateArgCount('Query.toJSON', 0, 1, arguments.length);
+        return this.toString();
+    };
+    /**
+     * An object representation of the query parameters used by this Query.
+     * @return {!Object}
+     */
+    Query.prototype.queryObject = function () {
+        return this.queryParams_.getQueryObject();
+    };
+    /**
+     * @return {!string}
+     */
+    Query.prototype.queryIdentifier = function () {
+        var obj = this.queryObject();
+        var id = util_2.ObjectToUniqueKey(obj);
+        return id === '{}' ? 'default' : id;
+    };
+    /**
+     * Return true if this query and the provided query are equivalent; otherwise, return false.
+     * @param {Query} other
+     * @return {boolean}
+     */
+    Query.prototype.isEqual = function (other) {
+        util_3.validateArgCount('Query.isEqual', 1, 1, arguments.length);
+        if (!(other instanceof Query)) {
+            var error = 'Query.isEqual failed: First argument must be an instance of firebase.database.Query.';
+            throw new Error(error);
+        }
+        var sameRepo = this.repo === other.repo;
+        var samePath = this.path.equals(other.path);
+        var sameQueryIdentifier = this.queryIdentifier() === other.queryIdentifier();
+        return sameRepo && samePath && sameQueryIdentifier;
+    };
+    /**
+     * Helper used by .on and .once to extract the context and or cancel arguments.
+     * @param {!string} fnName The function name (on or once)
+     * @param {(function(Error)|Object)=} cancelOrContext
+     * @param {Object=} context
+     * @return {{cancel: ?function(Error), context: ?Object}}
+     * @private
+     */
+    Query.getCancelAndContextArgs_ = function (fnName, cancelOrContext, context) {
+        var ret = { cancel: null, context: null };
+        if (cancelOrContext && context) {
+            ret.cancel = cancelOrContext;
+            util_3.validateCallback(fnName, 3, ret.cancel, true);
+            ret.context = context;
+            util_3.validateContextObject(fnName, 4, ret.context, true);
+        }
+        else if (cancelOrContext) {
+            // we have either a cancel callback or a context.
+            if (typeof cancelOrContext === 'object' && cancelOrContext !== null) {
+                // it's a context!
+                ret.context = cancelOrContext;
+            }
+            else if (typeof cancelOrContext === 'function') {
+                ret.cancel = cancelOrContext;
+            }
+            else {
+                throw new Error(util_3.errorPrefix(fnName, 3, true) +
+                    ' must either be a cancel callback or a context object.');
+            }
+        }
+        return ret;
+    };
+    Object.defineProperty(Query.prototype, "ref", {
+        get: function () {
+            return this.getRef();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Query;
+}());
+exports.Query = Query;
+
+//# sourceMappingURL=Query.js.map
+
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var util_1 = __webpack_require__(0);
+var validation_1 = __webpack_require__(15);
+var util_2 = __webpack_require__(2);
+var util_3 = __webpack_require__(0);
+/**
+ * @constructor
+ */
+var OnDisconnect = /** @class */ (function () {
+    /**
+     * @param {!Repo} repo_
+     * @param {!Path} path_
+     */
+    function OnDisconnect(repo_, path_) {
+        this.repo_ = repo_;
+        this.path_ = path_;
+    }
+    /**
+     * @param {function(?Error)=} onComplete
+     * @return {!firebase.Promise}
+     */
+    OnDisconnect.prototype.cancel = function (onComplete) {
+        util_1.validateArgCount('OnDisconnect.cancel', 0, 1, arguments.length);
+        util_1.validateCallback('OnDisconnect.cancel', 1, onComplete, true);
+        var deferred = new util_3.Deferred();
+        this.repo_.onDisconnectCancel(this.path_, deferred.wrapCallback(onComplete));
+        return deferred.promise;
+    };
+    /**
+     * @param {function(?Error)=} onComplete
+     * @return {!firebase.Promise}
+     */
+    OnDisconnect.prototype.remove = function (onComplete) {
+        util_1.validateArgCount('OnDisconnect.remove', 0, 1, arguments.length);
+        validation_1.validateWritablePath('OnDisconnect.remove', this.path_);
+        util_1.validateCallback('OnDisconnect.remove', 1, onComplete, true);
+        var deferred = new util_3.Deferred();
+        this.repo_.onDisconnectSet(this.path_, null, deferred.wrapCallback(onComplete));
+        return deferred.promise;
+    };
+    /**
+     * @param {*} value
+     * @param {function(?Error)=} onComplete
+     * @return {!firebase.Promise}
+     */
+    OnDisconnect.prototype.set = function (value, onComplete) {
+        util_1.validateArgCount('OnDisconnect.set', 1, 2, arguments.length);
+        validation_1.validateWritablePath('OnDisconnect.set', this.path_);
+        validation_1.validateFirebaseDataArg('OnDisconnect.set', 1, value, this.path_, false);
+        util_1.validateCallback('OnDisconnect.set', 2, onComplete, true);
+        var deferred = new util_3.Deferred();
+        this.repo_.onDisconnectSet(this.path_, value, deferred.wrapCallback(onComplete));
+        return deferred.promise;
+    };
+    /**
+     * @param {*} value
+     * @param {number|string|null} priority
+     * @param {function(?Error)=} onComplete
+     * @return {!firebase.Promise}
+     */
+    OnDisconnect.prototype.setWithPriority = function (value, priority, onComplete) {
+        util_1.validateArgCount('OnDisconnect.setWithPriority', 2, 3, arguments.length);
+        validation_1.validateWritablePath('OnDisconnect.setWithPriority', this.path_);
+        validation_1.validateFirebaseDataArg('OnDisconnect.setWithPriority', 1, value, this.path_, false);
+        validation_1.validatePriority('OnDisconnect.setWithPriority', 2, priority, false);
+        util_1.validateCallback('OnDisconnect.setWithPriority', 3, onComplete, true);
+        var deferred = new util_3.Deferred();
+        this.repo_.onDisconnectSetWithPriority(this.path_, value, priority, deferred.wrapCallback(onComplete));
+        return deferred.promise;
+    };
+    /**
+     * @param {!Object} objectToMerge
+     * @param {function(?Error)=} onComplete
+     * @return {!firebase.Promise}
+     */
+    OnDisconnect.prototype.update = function (objectToMerge, onComplete) {
+        util_1.validateArgCount('OnDisconnect.update', 1, 2, arguments.length);
+        validation_1.validateWritablePath('OnDisconnect.update', this.path_);
+        if (Array.isArray(objectToMerge)) {
+            var newObjectToMerge = {};
+            for (var i = 0; i < objectToMerge.length; ++i) {
+                newObjectToMerge['' + i] = objectToMerge[i];
+            }
+            objectToMerge = newObjectToMerge;
+            util_2.warn('Passing an Array to firebase.database.onDisconnect().update() is deprecated. Use set() if you want to overwrite the ' +
+                'existing data, or an Object with integer keys if you really do want to only update some of the children.');
+        }
+        validation_1.validateFirebaseMergeDataArg('OnDisconnect.update', 1, objectToMerge, this.path_, false);
+        util_1.validateCallback('OnDisconnect.update', 2, onComplete, true);
+        var deferred = new util_3.Deferred();
+        this.repo_.onDisconnectUpdate(this.path_, objectToMerge, deferred.wrapCallback(onComplete));
+        return deferred.promise;
+    };
+    return OnDisconnect;
+}());
+exports.OnDisconnect = OnDisconnect;
+
+//# sourceMappingURL=onDisconnect.js.map
+
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var app_1 = __webpack_require__(13);
+var util_1 = __webpack_require__(0);
+var util_2 = __webpack_require__(0);
+var util_3 = __webpack_require__(0);
+var util_4 = __webpack_require__(2);
+var Path_1 = __webpack_require__(3);
+var VisibilityMonitor_1 = __webpack_require__(141);
+var OnlineMonitor_1 = __webpack_require__(139);
+var util_5 = __webpack_require__(0);
+var Connection_1 = __webpack_require__(86);
+var util_6 = __webpack_require__(0);
+var util_7 = __webpack_require__(0);
+var ServerActions_1 = __webpack_require__(68);
+var RECONNECT_MIN_DELAY = 1000;
+var RECONNECT_MAX_DELAY_DEFAULT = 60 * 5 * 1000; // 5 minutes in milliseconds (Case: 1858)
+var RECONNECT_MAX_DELAY_FOR_ADMINS = 30 * 1000; // 30 seconds for admin clients (likely to be a backend server)
+var RECONNECT_DELAY_MULTIPLIER = 1.3;
+var RECONNECT_DELAY_RESET_TIMEOUT = 30000; // Reset delay back to MIN_DELAY after being connected for 30sec.
+var SERVER_KILL_INTERRUPT_REASON = 'server_kill';
+// If auth fails repeatedly, we'll assume something is wrong and log a warning / back off.
+var INVALID_AUTH_TOKEN_THRESHOLD = 3;
+/**
+ * Firebase connection.  Abstracts wire protocol and handles reconnecting.
+ *
+ * NOTE: All JSON objects sent to the realtime connection must have property names enclosed
+ * in quotes to make sure the closure compiler does not minify them.
+ */
+var PersistentConnection = /** @class */ (function (_super) {
+    __extends(PersistentConnection, _super);
+    /**
+     * @implements {ServerActions}
+     * @param {!RepoInfo} repoInfo_ Data about the namespace we are connecting to
+     * @param {function(string, *, boolean, ?number)} onDataUpdate_ A callback for new data from the server
+     * @param onConnectStatus_
+     * @param onServerInfoUpdate_
+     * @param authTokenProvider_
+     * @param authOverride_
+     */
+    function PersistentConnection(repoInfo_, onDataUpdate_, onConnectStatus_, onServerInfoUpdate_, authTokenProvider_, authOverride_) {
+        var _this = _super.call(this) || this;
+        _this.repoInfo_ = repoInfo_;
+        _this.onDataUpdate_ = onDataUpdate_;
+        _this.onConnectStatus_ = onConnectStatus_;
+        _this.onServerInfoUpdate_ = onServerInfoUpdate_;
+        _this.authTokenProvider_ = authTokenProvider_;
+        _this.authOverride_ = authOverride_;
+        // Used for diagnostic logging.
+        _this.id = PersistentConnection.nextPersistentConnectionId_++;
+        _this.log_ = util_4.logWrapper('p:' + _this.id + ':');
+        /** @private {Object} */
+        _this.interruptReasons_ = {};
+        _this.listens_ = {};
+        _this.outstandingPuts_ = [];
+        _this.outstandingPutCount_ = 0;
+        _this.onDisconnectRequestQueue_ = [];
+        _this.connected_ = false;
+        _this.reconnectDelay_ = RECONNECT_MIN_DELAY;
+        _this.maxReconnectDelay_ = RECONNECT_MAX_DELAY_DEFAULT;
+        _this.securityDebugCallback_ = null;
+        _this.lastSessionId = null;
+        /** @private {number|null} */
+        _this.establishConnectionTimer_ = null;
+        /** @private {boolean} */
+        _this.visible_ = false;
+        // Before we get connected, we keep a queue of pending messages to send.
+        _this.requestCBHash_ = {};
+        _this.requestNumber_ = 0;
+        /** @private {?{
+         *   sendRequest(Object),
+         *   close()
+         * }} */
+        _this.realtime_ = null;
+        /** @private {string|null} */
+        _this.authToken_ = null;
+        _this.forceTokenRefresh_ = false;
+        _this.invalidAuthTokenCount_ = 0;
+        _this.firstConnection_ = true;
+        _this.lastConnectionAttemptTime_ = null;
+        _this.lastConnectionEstablishedTime_ = null;
+        if (authOverride_ && !util_7.isNodeSdk()) {
+            throw new Error('Auth override specified in options, but not supported on non Node.js platforms');
+        }
+        _this.scheduleConnect_(0);
+        VisibilityMonitor_1.VisibilityMonitor.getInstance().on('visible', _this.onVisible_, _this);
+        if (repoInfo_.host.indexOf('fblocal') === -1) {
+            OnlineMonitor_1.OnlineMonitor.getInstance().on('online', _this.onOnline_, _this);
+        }
+        return _this;
+    }
+    /**
+     * @param {!string} action
+     * @param {*} body
+     * @param {function(*)=} onResponse
+     * @protected
+     */
+    PersistentConnection.prototype.sendRequest = function (action, body, onResponse) {
+        var curReqNum = ++this.requestNumber_;
+        var msg = { r: curReqNum, a: action, b: body };
+        this.log_(util_2.stringify(msg));
+        util_3.assert(this.connected_, "sendRequest call when we're not connected not allowed.");
+        this.realtime_.sendRequest(msg);
+        if (onResponse) {
+            this.requestCBHash_[curReqNum] = onResponse;
+        }
+    };
+    /**
+     * @inheritDoc
+     */
+    PersistentConnection.prototype.listen = function (query, currentHashFn, tag, onComplete) {
+        var queryId = query.queryIdentifier();
+        var pathString = query.path.toString();
+        this.log_('Listen called for ' + pathString + ' ' + queryId);
+        this.listens_[pathString] = this.listens_[pathString] || {};
+        util_3.assert(query.getQueryParams().isDefault() ||
+            !query.getQueryParams().loadsAllData(), 'listen() called for non-default but complete query');
+        util_3.assert(!this.listens_[pathString][queryId], 'listen() called twice for same path/queryId.');
+        var listenSpec = {
+            onComplete: onComplete,
+            hashFn: currentHashFn,
+            query: query,
+            tag: tag
+        };
+        this.listens_[pathString][queryId] = listenSpec;
+        if (this.connected_) {
+            this.sendListen_(listenSpec);
+        }
+    };
+    /**
+     * @param {!{onComplete(),
+     *           hashFn():!string,
+     *           query: !Query,
+     *           tag: ?number}} listenSpec
+     * @private
+     */
+    PersistentConnection.prototype.sendListen_ = function (listenSpec) {
+        var _this = this;
+        var query = listenSpec.query;
+        var pathString = query.path.toString();
+        var queryId = query.queryIdentifier();
+        this.log_('Listen on ' + pathString + ' for ' + queryId);
+        var req = { /*path*/ p: pathString };
+        var action = 'q';
+        // Only bother to send query if it's non-default.
+        if (listenSpec.tag) {
+            req['q'] = query.queryObject();
+            req['t'] = listenSpec.tag;
+        }
+        req['h'] = listenSpec.hashFn();
+        this.sendRequest(action, req, function (message) {
+            var payload = message['d'];
+            var status = message['s'];
+            // print warnings in any case...
+            PersistentConnection.warnOnListenWarnings_(payload, query);
+            var currentListenSpec = _this.listens_[pathString] && _this.listens_[pathString][queryId];
+            // only trigger actions if the listen hasn't been removed and readded
+            if (currentListenSpec === listenSpec) {
+                _this.log_('listen response', message);
+                if (status !== 'ok') {
+                    _this.removeListen_(pathString, queryId);
+                }
+                if (listenSpec.onComplete) {
+                    listenSpec.onComplete(status, payload);
+                }
+            }
+        });
+    };
+    /**
+     * @param {*} payload
+     * @param {!Query} query
+     * @private
+     */
+    PersistentConnection.warnOnListenWarnings_ = function (payload, query) {
+        if (payload && typeof payload === 'object' && util_1.contains(payload, 'w')) {
+            var warnings = util_1.safeGet(payload, 'w');
+            if (Array.isArray(warnings) && ~warnings.indexOf('no_index')) {
+                var indexSpec = '".indexOn": "' +
+                    query
+                        .getQueryParams()
+                        .getIndex()
+                        .toString() +
+                    '"';
+                var indexPath = query.path.toString();
+                util_4.warn("Using an unspecified index. Your data will be downloaded and " +
+                    ("filtered on the client. Consider adding " + indexSpec + " at ") +
+                    (indexPath + " to your security rules for better performance."));
+            }
+        }
+    };
+    /**
+     * @inheritDoc
+     */
+    PersistentConnection.prototype.refreshAuthToken = function (token) {
+        this.authToken_ = token;
+        this.log_('Auth token refreshed');
+        if (this.authToken_) {
+            this.tryAuth();
+        }
+        else {
+            //If we're connected we want to let the server know to unauthenticate us. If we're not connected, simply delete
+            //the credential so we dont become authenticated next time we connect.
+            if (this.connected_) {
+                this.sendRequest('unauth', {}, function () { });
+            }
+        }
+        this.reduceReconnectDelayIfAdminCredential_(token);
+    };
+    /**
+     * @param {!string} credential
+     * @private
+     */
+    PersistentConnection.prototype.reduceReconnectDelayIfAdminCredential_ = function (credential) {
+        // NOTE: This isn't intended to be bulletproof (a malicious developer can always just modify the client).
+        // Additionally, we don't bother resetting the max delay back to the default if auth fails / expires.
+        var isFirebaseSecret = credential && credential.length === 40;
+        if (isFirebaseSecret || util_5.isAdmin(credential)) {
+            this.log_('Admin auth credential detected.  Reducing max reconnect time.');
+            this.maxReconnectDelay_ = RECONNECT_MAX_DELAY_FOR_ADMINS;
+        }
+    };
+    /**
+     * Attempts to authenticate with the given credentials. If the authentication attempt fails, it's triggered like
+     * a auth revoked (the connection is closed).
+     */
+    PersistentConnection.prototype.tryAuth = function () {
+        var _this = this;
+        if (this.connected_ && this.authToken_) {
+            var token_1 = this.authToken_;
+            var authMethod = util_5.isValidFormat(token_1) ? 'auth' : 'gauth';
+            var requestData = { cred: token_1 };
+            if (this.authOverride_ === null) {
+                requestData['noauth'] = true;
+            }
+            else if (typeof this.authOverride_ === 'object') {
+                requestData['authvar'] = this.authOverride_;
+            }
+            this.sendRequest(authMethod, requestData, function (res) {
+                var status = res['s'];
+                var data = res['d'] || 'error';
+                if (_this.authToken_ === token_1) {
+                    if (status === 'ok') {
+                        _this.invalidAuthTokenCount_ = 0;
+                    }
+                    else {
+                        // Triggers reconnect and force refresh for auth token
+                        _this.onAuthRevoked_(status, data);
+                    }
+                }
+            });
+        }
+    };
+    /**
+     * @inheritDoc
+     */
+    PersistentConnection.prototype.unlisten = function (query, tag) {
+        var pathString = query.path.toString();
+        var queryId = query.queryIdentifier();
+        this.log_('Unlisten called for ' + pathString + ' ' + queryId);
+        util_3.assert(query.getQueryParams().isDefault() ||
+            !query.getQueryParams().loadsAllData(), 'unlisten() called for non-default but complete query');
+        var listen = this.removeListen_(pathString, queryId);
+        if (listen && this.connected_) {
+            this.sendUnlisten_(pathString, queryId, query.queryObject(), tag);
+        }
+    };
+    PersistentConnection.prototype.sendUnlisten_ = function (pathString, queryId, queryObj, tag) {
+        this.log_('Unlisten on ' + pathString + ' for ' + queryId);
+        var req = { /*path*/ p: pathString };
+        var action = 'n';
+        // Only bother sending queryId if it's non-default.
+        if (tag) {
+            req['q'] = queryObj;
+            req['t'] = tag;
+        }
+        this.sendRequest(action, req);
+    };
+    /**
+     * @inheritDoc
+     */
+    PersistentConnection.prototype.onDisconnectPut = function (pathString, data, onComplete) {
+        if (this.connected_) {
+            this.sendOnDisconnect_('o', pathString, data, onComplete);
+        }
+        else {
+            this.onDisconnectRequestQueue_.push({
+                pathString: pathString,
+                action: 'o',
+                data: data,
+                onComplete: onComplete
+            });
+        }
+    };
+    /**
+     * @inheritDoc
+     */
+    PersistentConnection.prototype.onDisconnectMerge = function (pathString, data, onComplete) {
+        if (this.connected_) {
+            this.sendOnDisconnect_('om', pathString, data, onComplete);
+        }
+        else {
+            this.onDisconnectRequestQueue_.push({
+                pathString: pathString,
+                action: 'om',
+                data: data,
+                onComplete: onComplete
+            });
+        }
+    };
+    /**
+     * @inheritDoc
+     */
+    PersistentConnection.prototype.onDisconnectCancel = function (pathString, onComplete) {
+        if (this.connected_) {
+            this.sendOnDisconnect_('oc', pathString, null, onComplete);
+        }
+        else {
+            this.onDisconnectRequestQueue_.push({
+                pathString: pathString,
+                action: 'oc',
+                data: null,
+                onComplete: onComplete
+            });
+        }
+    };
+    PersistentConnection.prototype.sendOnDisconnect_ = function (action, pathString, data, onComplete) {
+        var request = { /*path*/ p: pathString, /*data*/ d: data };
+        this.log_('onDisconnect ' + action, request);
+        this.sendRequest(action, request, function (response) {
+            if (onComplete) {
+                setTimeout(function () {
+                    onComplete(response['s'], response['d']);
+                }, Math.floor(0));
+            }
+        });
+    };
+    /**
+     * @inheritDoc
+     */
+    PersistentConnection.prototype.put = function (pathString, data, onComplete, hash) {
+        this.putInternal('p', pathString, data, onComplete, hash);
+    };
+    /**
+     * @inheritDoc
+     */
+    PersistentConnection.prototype.merge = function (pathString, data, onComplete, hash) {
+        this.putInternal('m', pathString, data, onComplete, hash);
+    };
+    PersistentConnection.prototype.putInternal = function (action, pathString, data, onComplete, hash) {
+        var request = {
+            /*path*/ p: pathString,
+            /*data*/ d: data
+        };
+        if (hash !== undefined)
+            request['h'] = hash;
+        // TODO: Only keep track of the most recent put for a given path?
+        this.outstandingPuts_.push({
+            action: action,
+            request: request,
+            onComplete: onComplete
+        });
+        this.outstandingPutCount_++;
+        var index = this.outstandingPuts_.length - 1;
+        if (this.connected_) {
+            this.sendPut_(index);
+        }
+        else {
+            this.log_('Buffering put: ' + pathString);
+        }
+    };
+    PersistentConnection.prototype.sendPut_ = function (index) {
+        var _this = this;
+        var action = this.outstandingPuts_[index].action;
+        var request = this.outstandingPuts_[index].request;
+        var onComplete = this.outstandingPuts_[index].onComplete;
+        this.outstandingPuts_[index].queued = this.connected_;
+        this.sendRequest(action, request, function (message) {
+            _this.log_(action + ' response', message);
+            delete _this.outstandingPuts_[index];
+            _this.outstandingPutCount_--;
+            // Clean up array occasionally.
+            if (_this.outstandingPutCount_ === 0) {
+                _this.outstandingPuts_ = [];
+            }
+            if (onComplete)
+                onComplete(message['s'], message['d']);
+        });
+    };
+    /**
+     * @inheritDoc
+     */
+    PersistentConnection.prototype.reportStats = function (stats) {
+        var _this = this;
+        // If we're not connected, we just drop the stats.
+        if (this.connected_) {
+            var request = { /*counters*/ c: stats };
+            this.log_('reportStats', request);
+            this.sendRequest(/*stats*/ 's', request, function (result) {
+                var status = result['s'];
+                if (status !== 'ok') {
+                    var errorReason = result['d'];
+                    _this.log_('reportStats', 'Error sending stats: ' + errorReason);
+                }
+            });
+        }
+    };
+    /**
+     * @param {*} message
+     * @private
+     */
+    PersistentConnection.prototype.onDataMessage_ = function (message) {
+        if ('r' in message) {
+            // this is a response
+            this.log_('from server: ' + util_2.stringify(message));
+            var reqNum = message['r'];
+            var onResponse = this.requestCBHash_[reqNum];
+            if (onResponse) {
+                delete this.requestCBHash_[reqNum];
+                onResponse(message['b']);
+            }
+        }
+        else if ('error' in message) {
+            throw 'A server-side error has occurred: ' + message['error'];
+        }
+        else if ('a' in message) {
+            // a and b are action and body, respectively
+            this.onDataPush_(message['a'], message['b']);
+        }
+    };
+    PersistentConnection.prototype.onDataPush_ = function (action, body) {
+        this.log_('handleServerMessage', action, body);
+        if (action === 'd')
+            this.onDataUpdate_(body['p'], body['d'], 
+            /*isMerge*/ false, body['t']);
+        else if (action === 'm')
+            this.onDataUpdate_(body['p'], body['d'], 
+            /*isMerge=*/ true, body['t']);
+        else if (action === 'c')
+            this.onListenRevoked_(body['p'], body['q']);
+        else if (action === 'ac')
+            this.onAuthRevoked_(body['s'], body['d']);
+        else if (action === 'sd')
+            this.onSecurityDebugPacket_(body);
+        else
+            util_4.error('Unrecognized action received from server: ' +
+                util_2.stringify(action) +
+                '\nAre you using the latest client?');
+    };
+    PersistentConnection.prototype.onReady_ = function (timestamp, sessionId) {
+        this.log_('connection ready');
+        this.connected_ = true;
+        this.lastConnectionEstablishedTime_ = new Date().getTime();
+        this.handleTimestamp_(timestamp);
+        this.lastSessionId = sessionId;
+        if (this.firstConnection_) {
+            this.sendConnectStats_();
+        }
+        this.restoreState_();
+        this.firstConnection_ = false;
+        this.onConnectStatus_(true);
+    };
+    PersistentConnection.prototype.scheduleConnect_ = function (timeout) {
+        var _this = this;
+        util_3.assert(!this.realtime_, "Scheduling a connect when we're already connected/ing?");
+        if (this.establishConnectionTimer_) {
+            clearTimeout(this.establishConnectionTimer_);
+        }
+        // NOTE: Even when timeout is 0, it's important to do a setTimeout to work around an infuriating "Security Error" in
+        // Firefox when trying to write to our long-polling iframe in some scenarios (e.g. Forge or our unit tests).
+        this.establishConnectionTimer_ = setTimeout(function () {
+            _this.establishConnectionTimer_ = null;
+            _this.establishConnection_();
+        }, Math.floor(timeout));
+    };
+    /**
+     * @param {boolean} visible
+     * @private
+     */
+    PersistentConnection.prototype.onVisible_ = function (visible) {
+        // NOTE: Tabbing away and back to a window will defeat our reconnect backoff, but I think that's fine.
+        if (visible &&
+            !this.visible_ &&
+            this.reconnectDelay_ === this.maxReconnectDelay_) {
+            this.log_('Window became visible.  Reducing delay.');
+            this.reconnectDelay_ = RECONNECT_MIN_DELAY;
+            if (!this.realtime_) {
+                this.scheduleConnect_(0);
+            }
+        }
+        this.visible_ = visible;
+    };
+    PersistentConnection.prototype.onOnline_ = function (online) {
+        if (online) {
+            this.log_('Browser went online.');
+            this.reconnectDelay_ = RECONNECT_MIN_DELAY;
+            if (!this.realtime_) {
+                this.scheduleConnect_(0);
+            }
+        }
+        else {
+            this.log_('Browser went offline.  Killing connection.');
+            if (this.realtime_) {
+                this.realtime_.close();
+            }
+        }
+    };
+    PersistentConnection.prototype.onRealtimeDisconnect_ = function () {
+        this.log_('data client disconnected');
+        this.connected_ = false;
+        this.realtime_ = null;
+        // Since we don't know if our sent transactions succeeded or not, we need to cancel them.
+        this.cancelSentTransactions_();
+        // Clear out the pending requests.
+        this.requestCBHash_ = {};
+        if (this.shouldReconnect_()) {
+            if (!this.visible_) {
+                this.log_("Window isn't visible.  Delaying reconnect.");
+                this.reconnectDelay_ = this.maxReconnectDelay_;
+                this.lastConnectionAttemptTime_ = new Date().getTime();
+            }
+            else if (this.lastConnectionEstablishedTime_) {
+                // If we've been connected long enough, reset reconnect delay to minimum.
+                var timeSinceLastConnectSucceeded = new Date().getTime() - this.lastConnectionEstablishedTime_;
+                if (timeSinceLastConnectSucceeded > RECONNECT_DELAY_RESET_TIMEOUT)
+                    this.reconnectDelay_ = RECONNECT_MIN_DELAY;
+                this.lastConnectionEstablishedTime_ = null;
+            }
+            var timeSinceLastConnectAttempt = new Date().getTime() - this.lastConnectionAttemptTime_;
+            var reconnectDelay = Math.max(0, this.reconnectDelay_ - timeSinceLastConnectAttempt);
+            reconnectDelay = Math.random() * reconnectDelay;
+            this.log_('Trying to reconnect in ' + reconnectDelay + 'ms');
+            this.scheduleConnect_(reconnectDelay);
+            // Adjust reconnect delay for next time.
+            this.reconnectDelay_ = Math.min(this.maxReconnectDelay_, this.reconnectDelay_ * RECONNECT_DELAY_MULTIPLIER);
+        }
+        this.onConnectStatus_(false);
+    };
+    PersistentConnection.prototype.establishConnection_ = function () {
+        if (this.shouldReconnect_()) {
+            this.log_('Making a connection attempt');
+            this.lastConnectionAttemptTime_ = new Date().getTime();
+            this.lastConnectionEstablishedTime_ = null;
+            var onDataMessage_1 = this.onDataMessage_.bind(this);
+            var onReady_1 = this.onReady_.bind(this);
+            var onDisconnect_1 = this.onRealtimeDisconnect_.bind(this);
+            var connId_1 = this.id + ':' + PersistentConnection.nextConnectionId_++;
+            var self_1 = this;
+            var lastSessionId_1 = this.lastSessionId;
+            var canceled_1 = false;
+            var connection_1 = null;
+            var closeFn_1 = function () {
+                if (connection_1) {
+                    connection_1.close();
+                }
+                else {
+                    canceled_1 = true;
+                    onDisconnect_1();
+                }
+            };
+            var sendRequestFn = function (msg) {
+                util_3.assert(connection_1, "sendRequest call when we're not connected not allowed.");
+                connection_1.sendRequest(msg);
+            };
+            this.realtime_ = {
+                close: closeFn_1,
+                sendRequest: sendRequestFn
+            };
+            var forceRefresh = this.forceTokenRefresh_;
+            this.forceTokenRefresh_ = false;
+            // First fetch auth token, and establish connection after fetching the token was successful
+            this.authTokenProvider_
+                .getToken(forceRefresh)
+                .then(function (result) {
+                if (!canceled_1) {
+                    util_4.log('getToken() completed. Creating connection.');
+                    self_1.authToken_ = result && result.accessToken;
+                    connection_1 = new Connection_1.Connection(connId_1, self_1.repoInfo_, onDataMessage_1, onReady_1, onDisconnect_1, 
+                    /* onKill= */ function (reason) {
+                        util_4.warn(reason + ' (' + self_1.repoInfo_.toString() + ')');
+                        self_1.interrupt(SERVER_KILL_INTERRUPT_REASON);
+                    }, lastSessionId_1);
+                }
+                else {
+                    util_4.log('getToken() completed but was canceled');
+                }
+            })
+                .then(null, function (error) {
+                self_1.log_('Failed to get token: ' + error);
+                if (!canceled_1) {
+                    if (util_6.CONSTANTS.NODE_ADMIN) {
+                        // This may be a critical error for the Admin Node.js SDK, so log a warning.
+                        // But getToken() may also just have temporarily failed, so we still want to
+                        // continue retrying.
+                        util_4.warn(error);
+                    }
+                    closeFn_1();
+                }
+            });
+        }
+    };
+    /**
+     * @param {string} reason
+     */
+    PersistentConnection.prototype.interrupt = function (reason) {
+        util_4.log('Interrupting connection for reason: ' + reason);
+        this.interruptReasons_[reason] = true;
+        if (this.realtime_) {
+            this.realtime_.close();
+        }
+        else {
+            if (this.establishConnectionTimer_) {
+                clearTimeout(this.establishConnectionTimer_);
+                this.establishConnectionTimer_ = null;
+            }
+            if (this.connected_) {
+                this.onRealtimeDisconnect_();
+            }
+        }
+    };
+    /**
+     * @param {string} reason
+     */
+    PersistentConnection.prototype.resume = function (reason) {
+        util_4.log('Resuming connection for reason: ' + reason);
+        delete this.interruptReasons_[reason];
+        if (util_1.isEmpty(this.interruptReasons_)) {
+            this.reconnectDelay_ = RECONNECT_MIN_DELAY;
+            if (!this.realtime_) {
+                this.scheduleConnect_(0);
+            }
+        }
+    };
+    PersistentConnection.prototype.handleTimestamp_ = function (timestamp) {
+        var delta = timestamp - new Date().getTime();
+        this.onServerInfoUpdate_({ serverTimeOffset: delta });
+    };
+    PersistentConnection.prototype.cancelSentTransactions_ = function () {
+        for (var i = 0; i < this.outstandingPuts_.length; i++) {
+            var put = this.outstandingPuts_[i];
+            if (put && /*hash*/ 'h' in put.request && put.queued) {
+                if (put.onComplete)
+                    put.onComplete('disconnect');
+                delete this.outstandingPuts_[i];
+                this.outstandingPutCount_--;
+            }
+        }
+        // Clean up array occasionally.
+        if (this.outstandingPutCount_ === 0)
+            this.outstandingPuts_ = [];
+    };
+    /**
+     * @param {!string} pathString
+     * @param {Array.<*>=} query
+     * @private
+     */
+    PersistentConnection.prototype.onListenRevoked_ = function (pathString, query) {
+        // Remove the listen and manufacture a "permission_denied" error for the failed listen.
+        var queryId;
+        if (!query) {
+            queryId = 'default';
+        }
+        else {
+            queryId = query.map(function (q) { return util_4.ObjectToUniqueKey(q); }).join('$');
+        }
+        var listen = this.removeListen_(pathString, queryId);
+        if (listen && listen.onComplete)
+            listen.onComplete('permission_denied');
+    };
+    /**
+     * @param {!string} pathString
+     * @param {!string} queryId
+     * @return {{queries:Array.<Query>, onComplete:function(string)}}
+     * @private
+     */
+    PersistentConnection.prototype.removeListen_ = function (pathString, queryId) {
+        var normalizedPathString = new Path_1.Path(pathString).toString(); // normalize path.
+        var listen;
+        if (this.listens_[normalizedPathString] !== undefined) {
+            listen = this.listens_[normalizedPathString][queryId];
+            delete this.listens_[normalizedPathString][queryId];
+            if (util_1.getCount(this.listens_[normalizedPathString]) === 0) {
+                delete this.listens_[normalizedPathString];
+            }
+        }
+        else {
+            // all listens for this path has already been removed
+            listen = undefined;
+        }
+        return listen;
+    };
+    PersistentConnection.prototype.onAuthRevoked_ = function (statusCode, explanation) {
+        util_4.log('Auth token revoked: ' + statusCode + '/' + explanation);
+        this.authToken_ = null;
+        this.forceTokenRefresh_ = true;
+        this.realtime_.close();
+        if (statusCode === 'invalid_token' || statusCode === 'permission_denied') {
+            // We'll wait a couple times before logging the warning / increasing the
+            // retry period since oauth tokens will report as "invalid" if they're
+            // just expired. Plus there may be transient issues that resolve themselves.
+            this.invalidAuthTokenCount_++;
+            if (this.invalidAuthTokenCount_ >= INVALID_AUTH_TOKEN_THRESHOLD) {
+                // Set a long reconnect delay because recovery is unlikely
+                this.reconnectDelay_ = RECONNECT_MAX_DELAY_FOR_ADMINS;
+                // Notify the auth token provider that the token is invalid, which will log
+                // a warning
+                this.authTokenProvider_.notifyForInvalidToken();
+            }
+        }
+    };
+    PersistentConnection.prototype.onSecurityDebugPacket_ = function (body) {
+        if (this.securityDebugCallback_) {
+            this.securityDebugCallback_(body);
+        }
+        else {
+            if ('msg' in body && typeof console !== 'undefined') {
+                console.log('FIREBASE: ' + body['msg'].replace('\n', '\nFIREBASE: '));
+            }
+        }
+    };
+    PersistentConnection.prototype.restoreState_ = function () {
+        var _this = this;
+        //Re-authenticate ourselves if we have a credential stored.
+        this.tryAuth();
+        // Puts depend on having received the corresponding data update from the server before they complete, so we must
+        // make sure to send listens before puts.
+        util_1.forEach(this.listens_, function (pathString, queries) {
+            util_1.forEach(queries, function (key, listenSpec) {
+                _this.sendListen_(listenSpec);
+            });
+        });
+        for (var i = 0; i < this.outstandingPuts_.length; i++) {
+            if (this.outstandingPuts_[i])
+                this.sendPut_(i);
+        }
+        while (this.onDisconnectRequestQueue_.length) {
+            var request = this.onDisconnectRequestQueue_.shift();
+            this.sendOnDisconnect_(request.action, request.pathString, request.data, request.onComplete);
+        }
+    };
+    /**
+     * Sends client stats for first connection
+     * @private
+     */
+    PersistentConnection.prototype.sendConnectStats_ = function () {
+        var stats = {};
+        var clientName = 'js';
+        if (util_6.CONSTANTS.NODE_ADMIN) {
+            clientName = 'admin_node';
+        }
+        else if (util_6.CONSTANTS.NODE_CLIENT) {
+            clientName = 'node';
+        }
+        stats['sdk.' + clientName + '.' + app_1.default.SDK_VERSION.replace(/\./g, '-')] = 1;
+        if (util_7.isMobileCordova()) {
+            stats['framework.cordova'] = 1;
+        }
+        else if (util_7.isReactNative()) {
+            stats['framework.reactnative'] = 1;
+        }
+        this.reportStats(stats);
+    };
+    /**
+     * @return {boolean}
+     * @private
+     */
+    PersistentConnection.prototype.shouldReconnect_ = function () {
+        var online = OnlineMonitor_1.OnlineMonitor.getInstance().currentlyOnline();
+        return util_1.isEmpty(this.interruptReasons_) && online;
+    };
+    /**
+     * @private
+     */
+    PersistentConnection.nextPersistentConnectionId_ = 0;
+    /**
+     * Counter for number of connections created. Mainly used for tagging in the logs
+     * @type {number}
+     * @private
+     */
+    PersistentConnection.nextConnectionId_ = 0;
+    return PersistentConnection;
+}(ServerActions_1.ServerActions));
+exports.PersistentConnection = PersistentConnection;
+
+//# sourceMappingURL=PersistentConnection.js.map
+
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var util_1 = __webpack_require__(0);
+var util_2 = __webpack_require__(0);
+var storage_1 = __webpack_require__(34);
+var Constants_1 = __webpack_require__(37);
+/**
+ * A class that holds metadata about a Repo object
+ *
+ * @constructor
+ */
+var RepoInfo = /** @class */ (function () {
+    /**
+     * @param {string} host Hostname portion of the url for the repo
+     * @param {boolean} secure Whether or not this repo is accessed over ssl
+     * @param {string} namespace The namespace represented by the repo
+     * @param {boolean} webSocketOnly Whether to prefer websockets over all other transports (used by Nest).
+     * @param {string=} persistenceKey Override the default session persistence storage key
+     */
+    function RepoInfo(host, secure, namespace, webSocketOnly, persistenceKey) {
+        if (persistenceKey === void 0) { persistenceKey = ''; }
+        this.secure = secure;
+        this.namespace = namespace;
+        this.webSocketOnly = webSocketOnly;
+        this.persistenceKey = persistenceKey;
+        this.host = host.toLowerCase();
+        this.domain = this.host.substr(this.host.indexOf('.') + 1);
+        this.internalHost = storage_1.PersistentStorage.get('host:' + host) || this.host;
+    }
+    RepoInfo.prototype.needsQueryParam = function () {
+        return this.host !== this.internalHost;
+    };
+    RepoInfo.prototype.isCacheableHost = function () {
+        return this.internalHost.substr(0, 2) === 's-';
+    };
+    RepoInfo.prototype.isDemoHost = function () {
+        return this.domain === 'firebaseio-demo.com';
+    };
+    RepoInfo.prototype.isCustomHost = function () {
+        return (this.domain !== 'firebaseio.com' && this.domain !== 'firebaseio-demo.com');
+    };
+    RepoInfo.prototype.updateHost = function (newHost) {
+        if (newHost !== this.internalHost) {
+            this.internalHost = newHost;
+            if (this.isCacheableHost()) {
+                storage_1.PersistentStorage.set('host:' + this.host, this.internalHost);
+            }
+        }
+    };
+    /**
+     * Returns the websocket URL for this repo
+     * @param {string} type of connection
+     * @param {Object} params list
+     * @return {string} The URL for this repo
+     */
+    RepoInfo.prototype.connectionURL = function (type, params) {
+        util_1.assert(typeof type === 'string', 'typeof type must == string');
+        util_1.assert(typeof params === 'object', 'typeof params must == object');
+        var connURL;
+        if (type === Constants_1.WEBSOCKET) {
+            connURL =
+                (this.secure ? 'wss://' : 'ws://') + this.internalHost + '/.ws?';
+        }
+        else if (type === Constants_1.LONG_POLLING) {
+            connURL =
+                (this.secure ? 'https://' : 'http://') + this.internalHost + '/.lp?';
+        }
+        else {
+            throw new Error('Unknown connection type: ' + type);
+        }
+        if (this.needsQueryParam()) {
+            params['ns'] = this.namespace;
+        }
+        var pairs = [];
+        util_2.forEach(params, function (key, value) {
+            pairs.push(key + '=' + value);
+        });
+        return connURL + pairs.join('&');
+    };
+    /** @return {string} */
+    RepoInfo.prototype.toString = function () {
+        var str = this.toURLString();
+        if (this.persistenceKey) {
+            str += '<' + this.persistenceKey + '>';
+        }
+        return str;
+    };
+    /** @return {string} */
+    RepoInfo.prototype.toURLString = function () {
+        return (this.secure ? 'https://' : 'http://') + this.host;
+    };
+    return RepoInfo;
+}());
+exports.RepoInfo = RepoInfo;
+
+//# sourceMappingURL=RepoInfo.js.map
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Interface defining the set of actions that can be performed against the Firebase server
+ * (basically corresponds to our wire protocol).
+ *
+ * @interface
+ */
+var ServerActions = /** @class */ (function () {
+    function ServerActions() {
+    }
+    /**
+     * @param {string} pathString
+     * @param {*} data
+     * @param {function(string, string)=} onComplete
+     * @param {string=} hash
+     */
+    ServerActions.prototype.put = function (pathString, data, onComplete, hash) { };
+    /**
+     * @param {string} pathString
+     * @param {*} data
+     * @param {function(string, ?string)} onComplete
+     * @param {string=} hash
+     */
+    ServerActions.prototype.merge = function (pathString, data, onComplete, hash) { };
+    /**
+     * Refreshes the auth token for the current connection.
+     * @param {string} token The authentication token
+     */
+    ServerActions.prototype.refreshAuthToken = function (token) { };
+    /**
+     * @param {string} pathString
+     * @param {*} data
+     * @param {function(string, string)=} onComplete
+     */
+    ServerActions.prototype.onDisconnectPut = function (pathString, data, onComplete) { };
+    /**
+     * @param {string} pathString
+     * @param {*} data
+     * @param {function(string, string)=} onComplete
+     */
+    ServerActions.prototype.onDisconnectMerge = function (pathString, data, onComplete) { };
+    /**
+     * @param {string} pathString
+     * @param {function(string, string)=} onComplete
+     */
+    ServerActions.prototype.onDisconnectCancel = function (pathString, onComplete) { };
+    /**
+     * @param {Object.<string, *>} stats
+     */
+    ServerActions.prototype.reportStats = function (stats) { };
+    return ServerActions;
+}());
+exports.ServerActions = ServerActions;
+
+//# sourceMappingURL=ServerActions.js.map
+
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var Path_1 = __webpack_require__(3);
+var PriorityIndex_1 = __webpack_require__(5);
+var CountedSet_1 = __webpack_require__(79);
+/**
+ * Helper class to store a sparse set of snapshots.
+ *
+ * @constructor
+ */
+var SparseSnapshotTree = /** @class */ (function () {
+    function SparseSnapshotTree() {
+        /**
+         * @private
+         * @type {Node}
+         */
+        this.value_ = null;
+        /**
+         * @private
+         * @type {CountedSet}
+         */
+        this.children_ = null;
+    }
+    /**
+     * Gets the node stored at the given path if one exists.
+     *
+     * @param {!Path} path Path to look up snapshot for.
+     * @return {?Node} The retrieved node, or null.
+     */
+    SparseSnapshotTree.prototype.find = function (path) {
+        if (this.value_ != null) {
+            return this.value_.getChild(path);
+        }
+        else if (!path.isEmpty() && this.children_ != null) {
+            var childKey = path.getFront();
+            path = path.popFront();
+            if (this.children_.contains(childKey)) {
+                var childTree = this.children_.get(childKey);
+                return childTree.find(path);
+            }
+            else {
+                return null;
+            }
+        }
+        else {
+            return null;
+        }
+    };
+    /**
+     * Stores the given node at the specified path. If there is already a node
+     * at a shallower path, it merges the new data into that snapshot node.
+     *
+     * @param {!Path} path Path to look up snapshot for.
+     * @param {!Node} data The new data, or null.
+     */
+    SparseSnapshotTree.prototype.remember = function (path, data) {
+        if (path.isEmpty()) {
+            this.value_ = data;
+            this.children_ = null;
+        }
+        else if (this.value_ !== null) {
+            this.value_ = this.value_.updateChild(path, data);
+        }
+        else {
+            if (this.children_ == null) {
+                this.children_ = new CountedSet_1.CountedSet();
+            }
+            var childKey = path.getFront();
+            if (!this.children_.contains(childKey)) {
+                this.children_.add(childKey, new SparseSnapshotTree());
+            }
+            var child = this.children_.get(childKey);
+            path = path.popFront();
+            child.remember(path, data);
+        }
+    };
+    /**
+     * Purge the data at path from the cache.
+     *
+     * @param {!Path} path Path to look up snapshot for.
+     * @return {boolean} True if this node should now be removed.
+     */
+    SparseSnapshotTree.prototype.forget = function (path) {
+        if (path.isEmpty()) {
+            this.value_ = null;
+            this.children_ = null;
+            return true;
+        }
+        else {
+            if (this.value_ !== null) {
+                if (this.value_.isLeafNode()) {
+                    // We're trying to forget a node that doesn't exist
+                    return false;
+                }
+                else {
+                    var value = this.value_;
+                    this.value_ = null;
+                    var self_1 = this;
+                    value.forEachChild(PriorityIndex_1.PRIORITY_INDEX, function (key, tree) {
+                        self_1.remember(new Path_1.Path(key), tree);
+                    });
+                    return this.forget(path);
+                }
+            }
+            else if (this.children_ !== null) {
+                var childKey = path.getFront();
+                path = path.popFront();
+                if (this.children_.contains(childKey)) {
+                    var safeToRemove = this.children_.get(childKey).forget(path);
+                    if (safeToRemove) {
+                        this.children_.remove(childKey);
+                    }
+                }
+                if (this.children_.isEmpty()) {
+                    this.children_ = null;
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            else {
+                return true;
+            }
+        }
+    };
+    /**
+     * Recursively iterates through all of the stored tree and calls the
+     * callback on each one.
+     *
+     * @param {!Path} prefixPath Path to look up node for.
+     * @param {!Function} func The function to invoke for each tree.
+     */
+    SparseSnapshotTree.prototype.forEachTree = function (prefixPath, func) {
+        if (this.value_ !== null) {
+            func(prefixPath, this.value_);
+        }
+        else {
+            this.forEachChild(function (key, tree) {
+                var path = new Path_1.Path(prefixPath.toString() + '/' + key);
+                tree.forEachTree(path, func);
+            });
+        }
+    };
+    /**
+     * Iterates through each immediate child and triggers the callback.
+     *
+     * @param {!Function} func The function to invoke for each child.
+     */
+    SparseSnapshotTree.prototype.forEachChild = function (func) {
+        if (this.children_ !== null) {
+            this.children_.each(function (key, tree) {
+                func(key, tree);
+            });
+        }
+    };
+    return SparseSnapshotTree;
+}());
+exports.SparseSnapshotTree = SparseSnapshotTree;
+
+//# sourceMappingURL=SparseSnapshotTree.js.map
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var CacheNode_1 = __webpack_require__(36);
+var ChildrenNode_1 = __webpack_require__(6);
+var util_1 = __webpack_require__(0);
+var util_2 = __webpack_require__(0);
+var ViewCache_1 = __webpack_require__(83);
+var View_1 = __webpack_require__(149);
+var __referenceConstructor;
+/**
+ * SyncPoint represents a single location in a SyncTree with 1 or more event registrations, meaning we need to
+ * maintain 1 or more Views at this location to cache server data and raise appropriate events for server changes
+ * and user writes (set, transaction, update).
+ *
+ * It's responsible for:
+ *  - Maintaining the set of 1 or more views necessary at this location (a SyncPoint with 0 views should be removed).
+ *  - Proxying user / server operations to the views as appropriate (i.e. applyServerOverwrite,
+ *    applyUserOverwrite, etc.)
+ */
+var SyncPoint = /** @class */ (function () {
+    function SyncPoint() {
+        /**
+         * The Views being tracked at this location in the tree, stored as a map where the key is a
+         * queryId and the value is the View for that query.
+         *
+         * NOTE: This list will be quite small (usually 1, but perhaps 2 or 3; any more is an odd use case).
+         *
+         * @type {!Object.<!string, !View>}
+         * @private
+         */
+        this.views_ = {};
+    }
+    Object.defineProperty(SyncPoint, "__referenceConstructor", {
+        get: function () {
+            util_1.assert(__referenceConstructor, 'Reference.ts has not been loaded');
+            return __referenceConstructor;
+        },
+        set: function (val) {
+            util_1.assert(!__referenceConstructor, '__referenceConstructor has already been defined');
+            __referenceConstructor = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * @return {boolean}
+     */
+    SyncPoint.prototype.isEmpty = function () {
+        return util_2.isEmpty(this.views_);
+    };
+    /**
+     *
+     * @param {!Operation} operation
+     * @param {!WriteTreeRef} writesCache
+     * @param {?Node} optCompleteServerCache
+     * @return {!Array.<!Event>}
+     */
+    SyncPoint.prototype.applyOperation = function (operation, writesCache, optCompleteServerCache) {
+        var queryId = operation.source.queryId;
+        if (queryId !== null) {
+            var view = util_2.safeGet(this.views_, queryId);
+            util_1.assert(view != null, 'SyncTree gave us an op for an invalid query.');
+            return view.applyOperation(operation, writesCache, optCompleteServerCache);
+        }
+        else {
+            var events_1 = [];
+            util_2.forEach(this.views_, function (key, view) {
+                events_1 = events_1.concat(view.applyOperation(operation, writesCache, optCompleteServerCache));
+            });
+            return events_1;
+        }
+    };
+    /**
+     * Add an event callback for the specified query.
+     *
+     * @param {!Query} query
+     * @param {!EventRegistration} eventRegistration
+     * @param {!WriteTreeRef} writesCache
+     * @param {?Node} serverCache Complete server cache, if we have it.
+     * @param {boolean} serverCacheComplete
+     * @return {!Array.<!Event>} Events to raise.
+     */
+    SyncPoint.prototype.addEventRegistration = function (query, eventRegistration, writesCache, serverCache, serverCacheComplete) {
+        var queryId = query.queryIdentifier();
+        var view = util_2.safeGet(this.views_, queryId);
+        if (!view) {
+            // TODO: make writesCache take flag for complete server node
+            var eventCache = writesCache.calcCompleteEventCache(serverCacheComplete ? serverCache : null);
+            var eventCacheComplete = false;
+            if (eventCache) {
+                eventCacheComplete = true;
+            }
+            else if (serverCache instanceof ChildrenNode_1.ChildrenNode) {
+                eventCache = writesCache.calcCompleteEventChildren(serverCache);
+                eventCacheComplete = false;
+            }
+            else {
+                eventCache = ChildrenNode_1.ChildrenNode.EMPTY_NODE;
+                eventCacheComplete = false;
+            }
+            var viewCache = new ViewCache_1.ViewCache(new CacheNode_1.CacheNode(
+            /** @type {!Node} */ (eventCache), eventCacheComplete, false), new CacheNode_1.CacheNode(
+            /** @type {!Node} */ (serverCache), serverCacheComplete, false));
+            view = new View_1.View(query, viewCache);
+            this.views_[queryId] = view;
+        }
+        // This is guaranteed to exist now, we just created anything that was missing
+        view.addEventRegistration(eventRegistration);
+        return view.getInitialEvents(eventRegistration);
+    };
+    /**
+     * Remove event callback(s).  Return cancelEvents if a cancelError is specified.
+     *
+     * If query is the default query, we'll check all views for the specified eventRegistration.
+     * If eventRegistration is null, we'll remove all callbacks for the specified view(s).
+     *
+     * @param {!Query} query
+     * @param {?EventRegistration} eventRegistration If null, remove all callbacks.
+     * @param {Error=} cancelError If a cancelError is provided, appropriate cancel events will be returned.
+     * @return {{removed:!Array.<!Query>, events:!Array.<!Event>}} removed queries and any cancel events
+     */
+    SyncPoint.prototype.removeEventRegistration = function (query, eventRegistration, cancelError) {
+        var queryId = query.queryIdentifier();
+        var removed = [];
+        var cancelEvents = [];
+        var hadCompleteView = this.hasCompleteView();
+        if (queryId === 'default') {
+            // When you do ref.off(...), we search all views for the registration to remove.
+            var self_1 = this;
+            util_2.forEach(this.views_, function (viewQueryId, view) {
+                cancelEvents = cancelEvents.concat(view.removeEventRegistration(eventRegistration, cancelError));
+                if (view.isEmpty()) {
+                    delete self_1.views_[viewQueryId];
+                    // We'll deal with complete views later.
+                    if (!view
+                        .getQuery()
+                        .getQueryParams()
+                        .loadsAllData()) {
+                        removed.push(view.getQuery());
+                    }
+                }
+            });
+        }
+        else {
+            // remove the callback from the specific view.
+            var view = util_2.safeGet(this.views_, queryId);
+            if (view) {
+                cancelEvents = cancelEvents.concat(view.removeEventRegistration(eventRegistration, cancelError));
+                if (view.isEmpty()) {
+                    delete this.views_[queryId];
+                    // We'll deal with complete views later.
+                    if (!view
+                        .getQuery()
+                        .getQueryParams()
+                        .loadsAllData()) {
+                        removed.push(view.getQuery());
+                    }
+                }
+            }
+        }
+        if (hadCompleteView && !this.hasCompleteView()) {
+            // We removed our last complete view.
+            removed.push(new SyncPoint.__referenceConstructor(query.repo, query.path));
+        }
+        return { removed: removed, events: cancelEvents };
+    };
+    /**
+     * @return {!Array.<!View>}
+     */
+    SyncPoint.prototype.getQueryViews = function () {
+        var _this = this;
+        var values = Object.keys(this.views_).map(function (key) { return _this.views_[key]; });
+        return values.filter(function (view) {
+            return !view
+                .getQuery()
+                .getQueryParams()
+                .loadsAllData();
+        });
+    };
+    /**
+     *
+     * @param {!Path} path The path to the desired complete snapshot
+     * @return {?Node} A complete cache, if it exists
+     */
+    SyncPoint.prototype.getCompleteServerCache = function (path) {
+        var serverCache = null;
+        util_2.forEach(this.views_, function (key, view) {
+            serverCache = serverCache || view.getCompleteServerCache(path);
+        });
+        return serverCache;
+    };
+    /**
+     * @param {!Query} query
+     * @return {?View}
+     */
+    SyncPoint.prototype.viewForQuery = function (query) {
+        var params = query.getQueryParams();
+        if (params.loadsAllData()) {
+            return this.getCompleteView();
+        }
+        else {
+            var queryId = query.queryIdentifier();
+            return util_2.safeGet(this.views_, queryId);
+        }
+    };
+    /**
+     * @param {!Query} query
+     * @return {boolean}
+     */
+    SyncPoint.prototype.viewExistsForQuery = function (query) {
+        return this.viewForQuery(query) != null;
+    };
+    /**
+     * @return {boolean}
+     */
+    SyncPoint.prototype.hasCompleteView = function () {
+        return this.getCompleteView() != null;
+    };
+    /**
+     * @return {?View}
+     */
+    SyncPoint.prototype.getCompleteView = function () {
+        var completeView = util_2.findValue(this.views_, function (view) {
+            return view
+                .getQuery()
+                .getQueryParams()
+                .loadsAllData();
+        });
+        return completeView || null;
+    };
+    return SyncPoint;
+}());
+exports.SyncPoint = SyncPoint;
+
+//# sourceMappingURL=SyncPoint.js.map
+
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var Operation_1 = __webpack_require__(14);
+var Path_1 = __webpack_require__(3);
+/**
+ * @param {!OperationSource} source
+ * @param {!Path} path
+ * @param {!Node} snap
+ * @constructor
+ * @implements {Operation}
+ */
+var Overwrite = /** @class */ (function () {
+    function Overwrite(source, path, snap) {
+        this.source = source;
+        this.path = path;
+        this.snap = snap;
+        /** @inheritDoc */
+        this.type = Operation_1.OperationType.OVERWRITE;
+    }
+    Overwrite.prototype.operationForChild = function (childName) {
+        if (this.path.isEmpty()) {
+            return new Overwrite(this.source, Path_1.Path.Empty, this.snap.getImmediateChild(childName));
+        }
+        else {
+            return new Overwrite(this.source, this.path.popFront(), this.snap);
+        }
+    };
+    return Overwrite;
+}());
+exports.Overwrite = Overwrite;
+
+//# sourceMappingURL=Overwrite.js.map
+
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var util_1 = __webpack_require__(0);
+var childSet_1 = __webpack_require__(73);
+var util_2 = __webpack_require__(0);
+var Node_1 = __webpack_require__(7);
+var PriorityIndex_1 = __webpack_require__(5);
+var KeyIndex_1 = __webpack_require__(24);
+var _defaultIndexMap;
+var fallbackObject = {};
+/**
+ *
+ * @param {Object.<string, FallbackType|SortedMap.<NamedNode, Node>>} indexes
+ * @param {Object.<string, Index>} indexSet
+ * @constructor
+ */
+var IndexMap = /** @class */ (function () {
+    function IndexMap(indexes_, indexSet_) {
+        this.indexes_ = indexes_;
+        this.indexSet_ = indexSet_;
+    }
+    Object.defineProperty(IndexMap, "Default", {
+        /**
+         * The default IndexMap for nodes without a priority
+         * @type {!IndexMap}
+         * @const
+         */
+        get: function () {
+            util_1.assert(fallbackObject && PriorityIndex_1.PRIORITY_INDEX, 'ChildrenNode.ts has not been loaded');
+            _defaultIndexMap =
+                _defaultIndexMap ||
+                    new IndexMap({ '.priority': fallbackObject }, { '.priority': PriorityIndex_1.PRIORITY_INDEX });
+            return _defaultIndexMap;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     *
+     * @param {!string} indexKey
+     * @return {?SortedMap.<NamedNode, Node>}
+     */
+    IndexMap.prototype.get = function (indexKey) {
+        var sortedMap = util_2.safeGet(this.indexes_, indexKey);
+        if (!sortedMap)
+            throw new Error('No index defined for ' + indexKey);
+        if (sortedMap === fallbackObject) {
+            // The index exists, but it falls back to just name comparison. Return null so that the calling code uses the
+            // regular child map
+            return null;
+        }
+        else {
+            return sortedMap;
+        }
+    };
+    /**
+     * @param {!Index} indexDefinition
+     * @return {boolean}
+     */
+    IndexMap.prototype.hasIndex = function (indexDefinition) {
+        return util_2.contains(this.indexSet_, indexDefinition.toString());
+    };
+    /**
+     * @param {!Index} indexDefinition
+     * @param {!SortedMap.<string, !Node>} existingChildren
+     * @return {!IndexMap}
+     */
+    IndexMap.prototype.addIndex = function (indexDefinition, existingChildren) {
+        util_1.assert(indexDefinition !== KeyIndex_1.KEY_INDEX, "KeyIndex always exists and isn't meant to be added to the IndexMap.");
+        var childList = [];
+        var sawIndexedValue = false;
+        var iter = existingChildren.getIterator(Node_1.NamedNode.Wrap);
+        var next = iter.getNext();
+        while (next) {
+            sawIndexedValue =
+                sawIndexedValue || indexDefinition.isDefinedOn(next.node);
+            childList.push(next);
+            next = iter.getNext();
+        }
+        var newIndex;
+        if (sawIndexedValue) {
+            newIndex = childSet_1.buildChildSet(childList, indexDefinition.getCompare());
+        }
+        else {
+            newIndex = fallbackObject;
+        }
+        var indexName = indexDefinition.toString();
+        var newIndexSet = util_2.clone(this.indexSet_);
+        newIndexSet[indexName] = indexDefinition;
+        var newIndexes = util_2.clone(this.indexes_);
+        newIndexes[indexName] = newIndex;
+        return new IndexMap(newIndexes, newIndexSet);
+    };
+    /**
+     * Ensure that this node is properly tracked in any indexes that we're maintaining
+     * @param {!NamedNode} namedNode
+     * @param {!SortedMap.<string, !Node>} existingChildren
+     * @return {!IndexMap}
+     */
+    IndexMap.prototype.addToIndexes = function (namedNode, existingChildren) {
+        var _this = this;
+        var newIndexes = util_2.map(this.indexes_, function (indexedChildren, indexName) {
+            var index = util_2.safeGet(_this.indexSet_, indexName);
+            util_1.assert(index, 'Missing index implementation for ' + indexName);
+            if (indexedChildren === fallbackObject) {
+                // Check to see if we need to index everything
+                if (index.isDefinedOn(namedNode.node)) {
+                    // We need to build this index
+                    var childList = [];
+                    var iter = existingChildren.getIterator(Node_1.NamedNode.Wrap);
+                    var next = iter.getNext();
+                    while (next) {
+                        if (next.name != namedNode.name) {
+                            childList.push(next);
+                        }
+                        next = iter.getNext();
+                    }
+                    childList.push(namedNode);
+                    return childSet_1.buildChildSet(childList, index.getCompare());
+                }
+                else {
+                    // No change, this remains a fallback
+                    return fallbackObject;
+                }
+            }
+            else {
+                var existingSnap = existingChildren.get(namedNode.name);
+                var newChildren = indexedChildren;
+                if (existingSnap) {
+                    newChildren = newChildren.remove(new Node_1.NamedNode(namedNode.name, existingSnap));
+                }
+                return newChildren.insert(namedNode, namedNode.node);
+            }
+        });
+        return new IndexMap(newIndexes, this.indexSet_);
+    };
+    /**
+     * Create a new IndexMap instance with the given value removed
+     * @param {!NamedNode} namedNode
+     * @param {!SortedMap.<string, !Node>} existingChildren
+     * @return {!IndexMap}
+     */
+    IndexMap.prototype.removeFromIndexes = function (namedNode, existingChildren) {
+        var newIndexes = util_2.map(this.indexes_, function (indexedChildren) {
+            if (indexedChildren === fallbackObject) {
+                // This is the fallback. Just return it, nothing to do in this case
+                return indexedChildren;
+            }
+            else {
+                var existingSnap = existingChildren.get(namedNode.name);
+                if (existingSnap) {
+                    return indexedChildren.remove(new Node_1.NamedNode(namedNode.name, existingSnap));
+                }
+                else {
+                    // No record of this child
+                    return indexedChildren;
+                }
+            }
+        });
+        return new IndexMap(newIndexes, this.indexSet_);
+    };
+    return IndexMap;
+}());
+exports.IndexMap = IndexMap;
+
+//# sourceMappingURL=IndexMap.js.map
+
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var SortedMap_1 = __webpack_require__(35);
+var SortedMap_2 = __webpack_require__(35);
+var LOG_2 = Math.log(2);
+/**
+ * @constructor
+ */
+var Base12Num = /** @class */ (function () {
+    /**
+     * @param {number} length
+     */
+    function Base12Num(length) {
+        var logBase2 = function (num) {
+            return parseInt((Math.log(num) / LOG_2), 10);
+        };
+        var bitMask = function (bits) { return parseInt(Array(bits + 1).join('1'), 2); };
+        this.count = logBase2(length + 1);
+        this.current_ = this.count - 1;
+        var mask = bitMask(this.count);
+        this.bits_ = (length + 1) & mask;
+    }
+    /**
+     * @return {boolean}
+     */
+    Base12Num.prototype.nextBitIsOne = function () {
+        //noinspection JSBitwiseOperatorUsage
+        var result = !(this.bits_ & (0x1 << this.current_));
+        this.current_--;
+        return result;
+    };
+    return Base12Num;
+}());
+/**
+ * Takes a list of child nodes and constructs a SortedSet using the given comparison
+ * function
+ *
+ * Uses the algorithm described in the paper linked here:
+ * http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.46.1458
+ *
+ * @template K, V
+ * @param {Array.<!NamedNode>} childList Unsorted list of children
+ * @param {function(!NamedNode, !NamedNode):number} cmp The comparison method to be used
+ * @param {(function(NamedNode):K)=} keyFn An optional function to extract K from a node wrapper, if K's
+ *                                                        type is not NamedNode
+ * @param {(function(K, K):number)=} mapSortFn An optional override for comparator used by the generated sorted map
+ * @return {SortedMap.<K, V>}
+ */
+exports.buildChildSet = function (childList, cmp, keyFn, mapSortFn) {
+    childList.sort(cmp);
+    var buildBalancedTree = function (low, high) {
+        var length = high - low;
+        var namedNode;
+        var key;
+        if (length == 0) {
+            return null;
+        }
+        else if (length == 1) {
+            namedNode = childList[low];
+            key = keyFn ? keyFn(namedNode) : namedNode;
+            return new SortedMap_1.LLRBNode(key, namedNode.node, SortedMap_1.LLRBNode.BLACK, null, null);
+        }
+        else {
+            var middle = parseInt((length / 2), 10) + low;
+            var left = buildBalancedTree(low, middle);
+            var right = buildBalancedTree(middle + 1, high);
+            namedNode = childList[middle];
+            key = keyFn ? keyFn(namedNode) : namedNode;
+            return new SortedMap_1.LLRBNode(key, namedNode.node, SortedMap_1.LLRBNode.BLACK, left, right);
+        }
+    };
+    var buildFrom12Array = function (base12) {
+        var node = null;
+        var root = null;
+        var index = childList.length;
+        var buildPennant = function (chunkSize, color) {
+            var low = index - chunkSize;
+            var high = index;
+            index -= chunkSize;
+            var childTree = buildBalancedTree(low + 1, high);
+            var namedNode = childList[low];
+            var key = keyFn ? keyFn(namedNode) : namedNode;
+            attachPennant(new SortedMap_1.LLRBNode(key, namedNode.node, color, null, childTree));
+        };
+        var attachPennant = function (pennant) {
+            if (node) {
+                node.left = pennant;
+                node = pennant;
+            }
+            else {
+                root = pennant;
+                node = pennant;
+            }
+        };
+        for (var i = 0; i < base12.count; ++i) {
+            var isOne = base12.nextBitIsOne();
+            // The number of nodes taken in each slice is 2^(arr.length - (i + 1))
+            var chunkSize = Math.pow(2, base12.count - (i + 1));
+            if (isOne) {
+                buildPennant(chunkSize, SortedMap_1.LLRBNode.BLACK);
+            }
+            else {
+                // current == 2
+                buildPennant(chunkSize, SortedMap_1.LLRBNode.BLACK);
+                buildPennant(chunkSize, SortedMap_1.LLRBNode.RED);
+            }
+        }
+        return root;
+    };
+    var base12 = new Base12Num(childList.length);
+    var root = buildFrom12Array(base12);
+    return new SortedMap_2.SortedMap(mapSortFn || cmp, root);
+};
+
+//# sourceMappingURL=childSet.js.map
+
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var util_1 = __webpack_require__(2);
+function NAME_ONLY_COMPARATOR(left, right) {
+    return util_1.nameCompare(left.name, right.name);
+}
+exports.NAME_ONLY_COMPARATOR = NAME_ONLY_COMPARATOR;
+function NAME_COMPARATOR(left, right) {
+    return util_1.nameCompare(left, right);
+}
+exports.NAME_COMPARATOR = NAME_COMPARATOR;
+
+//# sourceMappingURL=comparators.js.map
+
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var util_1 = __webpack_require__(0);
+var util_2 = __webpack_require__(2);
+var Index_1 = __webpack_require__(33);
+var ChildrenNode_1 = __webpack_require__(6);
+var Node_1 = __webpack_require__(7);
+var nodeFromJSON_1 = __webpack_require__(25);
+/**
+ * @param {!Path} indexPath
+ * @constructor
+ * @extends {Index}
+ */
+var PathIndex = /** @class */ (function (_super) {
+    __extends(PathIndex, _super);
+    function PathIndex(indexPath_) {
+        var _this = _super.call(this) || this;
+        _this.indexPath_ = indexPath_;
+        util_1.assert(!indexPath_.isEmpty() && indexPath_.getFront() !== '.priority', "Can't create PathIndex with empty path or .priority key");
+        return _this;
+    }
+    /**
+     * @param {!Node} snap
+     * @return {!Node}
+     * @protected
+     */
+    PathIndex.prototype.extractChild = function (snap) {
+        return snap.getChild(this.indexPath_);
+    };
+    /**
+     * @inheritDoc
+     */
+    PathIndex.prototype.isDefinedOn = function (node) {
+        return !node.getChild(this.indexPath_).isEmpty();
+    };
+    /**
+     * @inheritDoc
+     */
+    PathIndex.prototype.compare = function (a, b) {
+        var aChild = this.extractChild(a.node);
+        var bChild = this.extractChild(b.node);
+        var indexCmp = aChild.compareTo(bChild);
+        if (indexCmp === 0) {
+            return util_2.nameCompare(a.name, b.name);
+        }
+        else {
+            return indexCmp;
+        }
+    };
+    /**
+     * @inheritDoc
+     */
+    PathIndex.prototype.makePost = function (indexValue, name) {
+        var valueNode = nodeFromJSON_1.nodeFromJSON(indexValue);
+        var node = ChildrenNode_1.ChildrenNode.EMPTY_NODE.updateChild(this.indexPath_, valueNode);
+        return new Node_1.NamedNode(name, node);
+    };
+    /**
+     * @inheritDoc
+     */
+    PathIndex.prototype.maxPost = function () {
+        var node = ChildrenNode_1.ChildrenNode.EMPTY_NODE.updateChild(this.indexPath_, ChildrenNode_1.MAX_NODE);
+        return new Node_1.NamedNode(util_2.MAX_NAME, node);
+    };
+    /**
+     * @inheritDoc
+     */
+    PathIndex.prototype.toString = function () {
+        return this.indexPath_.slice().join('/');
+    };
+    return PathIndex;
+}(Index_1.Index));
+exports.PathIndex = PathIndex;
+
+//# sourceMappingURL=PathIndex.js.map
+
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Index_1 = __webpack_require__(33);
+var Node_1 = __webpack_require__(7);
+var util_1 = __webpack_require__(2);
+var nodeFromJSON_1 = __webpack_require__(25);
+/**
+ * @constructor
+ * @extends {Index}
+ * @private
+ */
+var ValueIndex = /** @class */ (function (_super) {
+    __extends(ValueIndex, _super);
+    function ValueIndex() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * @inheritDoc
+     */
+    ValueIndex.prototype.compare = function (a, b) {
+        var indexCmp = a.node.compareTo(b.node);
+        if (indexCmp === 0) {
+            return util_1.nameCompare(a.name, b.name);
+        }
+        else {
+            return indexCmp;
+        }
+    };
+    /**
+     * @inheritDoc
+     */
+    ValueIndex.prototype.isDefinedOn = function (node) {
+        return true;
+    };
+    /**
+     * @inheritDoc
+     */
+    ValueIndex.prototype.indexedValueChanged = function (oldNode, newNode) {
+        return !oldNode.equals(newNode);
+    };
+    /**
+     * @inheritDoc
+     */
+    ValueIndex.prototype.minPost = function () {
+        return Node_1.NamedNode.MIN;
+    };
+    /**
+     * @inheritDoc
+     */
+    ValueIndex.prototype.maxPost = function () {
+        return Node_1.NamedNode.MAX;
+    };
+    /**
+     * @param {*} indexValue
+     * @param {string} name
+     * @return {!NamedNode}
+     */
+    ValueIndex.prototype.makePost = function (indexValue, name) {
+        var valueNode = nodeFromJSON_1.nodeFromJSON(indexValue);
+        return new Node_1.NamedNode(name, valueNode);
+    };
+    /**
+     * @return {!string} String representation for inclusion in a query spec
+     */
+    ValueIndex.prototype.toString = function () {
+        return '.value';
+    };
+    return ValueIndex;
+}(Index_1.Index));
+exports.ValueIndex = ValueIndex;
+exports.VALUE_INDEX = new ValueIndex();
+
+//# sourceMappingURL=ValueIndex.js.map
+
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var util_1 = __webpack_require__(0);
+var util_2 = __webpack_require__(2);
+var util_3 = __webpack_require__(0);
+var MAX_NODE;
+function setMaxNode(val) {
+    MAX_NODE = val;
+}
+exports.setMaxNode = setMaxNode;
+/**
+ * @param {(!string|!number)} priority
+ * @return {!string}
+ */
+exports.priorityHashText = function (priority) {
+    if (typeof priority === 'number')
+        return 'number:' + util_2.doubleToIEEE754String(priority);
+    else
+        return 'string:' + priority;
+};
+/**
+ * Validates that a priority snapshot Node is valid.
+ *
+ * @param {!Node} priorityNode
+ */
+exports.validatePriorityNode = function (priorityNode) {
+    if (priorityNode.isLeafNode()) {
+        var val = priorityNode.val();
+        util_1.assert(typeof val === 'string' ||
+            typeof val === 'number' ||
+            (typeof val === 'object' && util_3.contains(val, '.sv')), 'Priority must be a string or number.');
+    }
+    else {
+        util_1.assert(priorityNode === MAX_NODE || priorityNode.isEmpty(), 'priority of unexpected type.');
+    }
+    // Don't call getPriority() on MAX_NODE to avoid hitting assertion.
+    util_1.assert(priorityNode === MAX_NODE || priorityNode.getPriority().isEmpty(), "Priority nodes can't have a priority of their own.");
+};
+
+//# sourceMappingURL=snap.js.map
+
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var util_1 = __webpack_require__(0);
+/**
+ * Returns the delta from the previous call to get stats.
+ *
+ * @param collection_ The collection to "listen" to.
+ * @constructor
+ */
+var StatsListener = /** @class */ (function () {
+    function StatsListener(collection_) {
+        this.collection_ = collection_;
+        this.last_ = null;
+    }
+    StatsListener.prototype.get = function () {
+        var newStats = this.collection_.get();
+        var delta = util_1.clone(newStats);
+        if (this.last_) {
+            util_1.forEach(this.last_, function (stat, value) {
+                delta[stat] = delta[stat] - value;
+            });
+        }
+        this.last_ = newStats;
+        return delta;
+    };
+    return StatsListener;
+}());
+exports.StatsListener = StatsListener;
+
+//# sourceMappingURL=StatsListener.js.map
+
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var util_1 = __webpack_require__(0);
+/**
+ * Implements a set with a count of elements.
+ *
+ * @template K, V
+ */
+var CountedSet = /** @class */ (function () {
+    function CountedSet() {
+        this.set = {};
+    }
+    /**
+     * @param {!K} item
+     * @param {V} val
+     */
+    CountedSet.prototype.add = function (item, val) {
+        this.set[item] = val !== null ? val : true;
+    };
+    /**
+     * @param {!K} key
+     * @return {boolean}
+     */
+    CountedSet.prototype.contains = function (key) {
+        return util_1.contains(this.set, key);
+    };
+    /**
+     * @param {!K} item
+     * @return {V}
+     */
+    CountedSet.prototype.get = function (item) {
+        return this.contains(item) ? this.set[item] : undefined;
+    };
+    /**
+     * @param {!K} item
+     */
+    CountedSet.prototype.remove = function (item) {
+        delete this.set[item];
+    };
+    /**
+     * Deletes everything in the set
+     */
+    CountedSet.prototype.clear = function () {
+        this.set = {};
+    };
+    /**
+     * True if there's nothing in the set
+     * @return {boolean}
+     */
+    CountedSet.prototype.isEmpty = function () {
+        return util_1.isEmpty(this.set);
+    };
+    /**
+     * @return {number} The number of items in the set
+     */
+    CountedSet.prototype.count = function () {
+        return util_1.getCount(this.set);
+    };
+    /**
+     * Run a function on each k,v pair in the set
+     * @param {function(K, V)} fn
+     */
+    CountedSet.prototype.each = function (fn) {
+        util_1.forEach(this.set, function (k, v) { return fn(k, v); });
+    };
+    /**
+     * Mostly for debugging
+     * @return {Array.<K>} The keys present in this CountedSet
+     */
+    CountedSet.prototype.keys = function () {
+        var keys = [];
+        util_1.forEach(this.set, function (k) {
+            keys.push(k);
+        });
+        return keys;
+    };
+    return CountedSet;
+}());
+exports.CountedSet = CountedSet;
+
+//# sourceMappingURL=CountedSet.js.map
+
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var util_1 = __webpack_require__(0);
+/**
+ * Base class to be used if you want to emit events. Call the constructor with
+ * the set of allowed event names.
+ */
+var EventEmitter = /** @class */ (function () {
+    /**
+     * @param {!Array.<string>} allowedEvents_
+     */
+    function EventEmitter(allowedEvents_) {
+        this.allowedEvents_ = allowedEvents_;
+        this.listeners_ = {};
+        util_1.assert(Array.isArray(allowedEvents_) && allowedEvents_.length > 0, 'Requires a non-empty array');
+    }
+    /**
+     * To be called by derived classes to trigger events.
+     * @param {!string} eventType
+     * @param {...*} var_args
+     */
+    EventEmitter.prototype.trigger = function (eventType) {
+        var var_args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            var_args[_i - 1] = arguments[_i];
+        }
+        if (Array.isArray(this.listeners_[eventType])) {
+            // Clone the list, since callbacks could add/remove listeners.
+            var listeners = this.listeners_[eventType].slice();
+            for (var i = 0; i < listeners.length; i++) {
+                listeners[i].callback.apply(listeners[i].context, var_args);
+            }
+        }
+    };
+    EventEmitter.prototype.on = function (eventType, callback, context) {
+        this.validateEventType_(eventType);
+        this.listeners_[eventType] = this.listeners_[eventType] || [];
+        this.listeners_[eventType].push({ callback: callback, context: context });
+        var eventData = this.getInitialEvent(eventType);
+        if (eventData) {
+            callback.apply(context, eventData);
+        }
+    };
+    EventEmitter.prototype.off = function (eventType, callback, context) {
+        this.validateEventType_(eventType);
+        var listeners = this.listeners_[eventType] || [];
+        for (var i = 0; i < listeners.length; i++) {
+            if (listeners[i].callback === callback &&
+                (!context || context === listeners[i].context)) {
+                listeners.splice(i, 1);
+                return;
+            }
+        }
+    };
+    EventEmitter.prototype.validateEventType_ = function (eventType) {
+        util_1.assert(this.allowedEvents_.find(function (et) {
+            return et === eventType;
+        }), 'Unknown event: ' + eventType);
+    };
+    return EventEmitter;
+}());
+exports.EventEmitter = EventEmitter;
+
+//# sourceMappingURL=EventEmitter.js.map
+
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var util_1 = __webpack_require__(0);
+var Path_1 = __webpack_require__(3);
+var SparseSnapshotTree_1 = __webpack_require__(69);
+var LeafNode_1 = __webpack_require__(32);
+var nodeFromJSON_1 = __webpack_require__(25);
+var PriorityIndex_1 = __webpack_require__(5);
+/**
+ * Generate placeholders for deferred values.
+ * @param {?Object} values
+ * @return {!Object}
+ */
+exports.generateWithValues = function (values) {
+    values = values || {};
+    values['timestamp'] = values['timestamp'] || new Date().getTime();
+    return values;
+};
+/**
+ * Value to use when firing local events. When writing server values, fire
+ * local events with an approximate value, otherwise return value as-is.
+ * @param {(Object|string|number|boolean)} value
+ * @param {!Object} serverValues
+ * @return {!(string|number|boolean)}
+ */
+exports.resolveDeferredValue = function (value, serverValues) {
+    if (!value || typeof value !== 'object') {
+        return value;
+    }
+    else {
+        util_1.assert('.sv' in value, 'Unexpected leaf node or priority contents');
+        return serverValues[value['.sv']];
+    }
+};
+/**
+ * Recursively replace all deferred values and priorities in the tree with the
+ * specified generated replacement values.
+ * @param {!SparseSnapshotTree} tree
+ * @param {!Object} serverValues
+ * @return {!SparseSnapshotTree}
+ */
+exports.resolveDeferredValueTree = function (tree, serverValues) {
+    var resolvedTree = new SparseSnapshotTree_1.SparseSnapshotTree();
+    tree.forEachTree(new Path_1.Path(''), function (path, node) {
+        resolvedTree.remember(path, exports.resolveDeferredValueSnapshot(node, serverValues));
+    });
+    return resolvedTree;
+};
+/**
+ * Recursively replace all deferred values and priorities in the node with the
+ * specified generated replacement values.  If there are no server values in the node,
+ * it'll be returned as-is.
+ * @param {!Node} node
+ * @param {!Object} serverValues
+ * @return {!Node}
+ */
+exports.resolveDeferredValueSnapshot = function (node, serverValues) {
+    var rawPri = node.getPriority().val();
+    var priority = exports.resolveDeferredValue(rawPri, serverValues);
+    var newNode;
+    if (node.isLeafNode()) {
+        var leafNode = node;
+        var value = exports.resolveDeferredValue(leafNode.getValue(), serverValues);
+        if (value !== leafNode.getValue() ||
+            priority !== leafNode.getPriority().val()) {
+            return new LeafNode_1.LeafNode(value, nodeFromJSON_1.nodeFromJSON(priority));
+        }
+        else {
+            return node;
+        }
+    }
+    else {
+        var childrenNode = node;
+        newNode = childrenNode;
+        if (priority !== childrenNode.getPriority().val()) {
+            newNode = newNode.updatePriority(new LeafNode_1.LeafNode(priority));
+        }
+        childrenNode.forEachChild(PriorityIndex_1.PRIORITY_INDEX, function (childName, childNode) {
+            var newChildNode = exports.resolveDeferredValueSnapshot(childNode, serverValues);
+            if (newChildNode !== childNode) {
+                newNode = newNode.updateImmediateChild(childName, newChildNode);
+            }
+        });
+        return newNode;
+    }
+};
+
+//# sourceMappingURL=ServerValues.js.map
+
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var Path_1 = __webpack_require__(3);
+var RepoInfo_1 = __webpack_require__(67);
+var util_1 = __webpack_require__(2);
+/**
+ * @param {!string} pathString
+ * @return {string}
+ */
+function decodePath(pathString) {
+    var pathStringDecoded = '';
+    var pieces = pathString.split('/');
+    for (var i = 0; i < pieces.length; i++) {
+        if (pieces[i].length > 0) {
+            var piece = pieces[i];
+            try {
+                piece = decodeURIComponent(piece.replace(/\+/g, ' '));
+            }
+            catch (e) { }
+            pathStringDecoded += '/' + piece;
+        }
+    }
+    return pathStringDecoded;
+}
+/**
+ *
+ * @param {!string} dataURL
+ * @return {{repoInfo: !RepoInfo, path: !Path}}
+ */
+exports.parseRepoInfo = function (dataURL) {
+    var parsedUrl = exports.parseURL(dataURL), namespace = parsedUrl.subdomain;
+    if (parsedUrl.domain === 'firebase') {
+        util_1.fatal(parsedUrl.host +
+            ' is no longer supported. ' +
+            'Please use <YOUR FIREBASE>.firebaseio.com instead');
+    }
+    // Catch common error of uninitialized namespace value.
+    if (!namespace || namespace == 'undefined') {
+        util_1.fatal('Cannot parse Firebase url. Please use https://<YOUR FIREBASE>.firebaseio.com');
+    }
+    if (!parsedUrl.secure) {
+        util_1.warnIfPageIsSecure();
+    }
+    var webSocketOnly = parsedUrl.scheme === 'ws' || parsedUrl.scheme === 'wss';
+    return {
+        repoInfo: new RepoInfo_1.RepoInfo(parsedUrl.host, parsedUrl.secure, namespace, webSocketOnly),
+        path: new Path_1.Path(parsedUrl.pathString)
+    };
+};
+/**
+ *
+ * @param {!string} dataURL
+ * @return {{host: string, port: number, domain: string, subdomain: string, secure: boolean, scheme: string, pathString: string}}
+ */
+exports.parseURL = function (dataURL) {
+    // Default to empty strings in the event of a malformed string.
+    var host = '', domain = '', subdomain = '', pathString = '';
+    // Always default to SSL, unless otherwise specified.
+    var secure = true, scheme = 'https', port = 443;
+    // Don't do any validation here. The caller is responsible for validating the result of parsing.
+    if (typeof dataURL === 'string') {
+        // Parse scheme.
+        var colonInd = dataURL.indexOf('//');
+        if (colonInd >= 0) {
+            scheme = dataURL.substring(0, colonInd - 1);
+            dataURL = dataURL.substring(colonInd + 2);
+        }
+        // Parse host and path.
+        var slashInd = dataURL.indexOf('/');
+        if (slashInd === -1) {
+            slashInd = dataURL.length;
+        }
+        host = dataURL.substring(0, slashInd);
+        pathString = decodePath(dataURL.substring(slashInd));
+        var parts = host.split('.');
+        if (parts.length === 3) {
+            // Normalize namespaces to lowercase to share storage / connection.
+            domain = parts[1];
+            subdomain = parts[0].toLowerCase();
+        }
+        else if (parts.length === 2) {
+            domain = parts[0];
+        }
+        // If we have a port, use scheme for determining if it's secure.
+        colonInd = host.indexOf(':');
+        if (colonInd >= 0) {
+            secure = scheme === 'https' || scheme === 'wss';
+            port = parseInt(host.substring(colonInd + 1), 10);
+        }
+    }
+    return {
+        host: host,
+        port: port,
+        domain: domain,
+        subdomain: subdomain,
+        secure: secure,
+        scheme: scheme,
+        pathString: pathString
+    };
+};
+
+//# sourceMappingURL=parser.js.map
+
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var ChildrenNode_1 = __webpack_require__(6);
+var CacheNode_1 = __webpack_require__(36);
+/**
+ * Stores the data we have cached for a view.
+ *
+ * serverSnap is the cached server data, eventSnap is the cached event data (server data plus any local writes).
+ *
+ * @constructor
+ */
+var ViewCache = /** @class */ (function () {
+    /**
+     *
+     * @param {!CacheNode} eventCache_
+     * @param {!CacheNode} serverCache_
+     */
+    function ViewCache(eventCache_, serverCache_) {
+        this.eventCache_ = eventCache_;
+        this.serverCache_ = serverCache_;
+    }
+    /**
+     * @param {!Node} eventSnap
+     * @param {boolean} complete
+     * @param {boolean} filtered
+     * @return {!ViewCache}
+     */
+    ViewCache.prototype.updateEventSnap = function (eventSnap, complete, filtered) {
+        return new ViewCache(new CacheNode_1.CacheNode(eventSnap, complete, filtered), this.serverCache_);
+    };
+    /**
+     * @param {!Node} serverSnap
+     * @param {boolean} complete
+     * @param {boolean} filtered
+     * @return {!ViewCache}
+     */
+    ViewCache.prototype.updateServerSnap = function (serverSnap, complete, filtered) {
+        return new ViewCache(this.eventCache_, new CacheNode_1.CacheNode(serverSnap, complete, filtered));
+    };
+    /**
+     * @return {!CacheNode}
+     */
+    ViewCache.prototype.getEventCache = function () {
+        return this.eventCache_;
+    };
+    /**
+     * @return {?Node}
+     */
+    ViewCache.prototype.getCompleteEventSnap = function () {
+        return this.eventCache_.isFullyInitialized()
+            ? this.eventCache_.getNode()
+            : null;
+    };
+    /**
+     * @return {!CacheNode}
+     */
+    ViewCache.prototype.getServerCache = function () {
+        return this.serverCache_;
+    };
+    /**
+     * @return {?Node}
+     */
+    ViewCache.prototype.getCompleteServerSnap = function () {
+        return this.serverCache_.isFullyInitialized()
+            ? this.serverCache_.getNode()
+            : null;
+    };
+    /**
+     * @const
+     * @type {ViewCache}
+     */
+    ViewCache.Empty = new ViewCache(new CacheNode_1.CacheNode(ChildrenNode_1.ChildrenNode.EMPTY_NODE, 
+    /*fullyInitialized=*/ false, 
+    /*filtered=*/ false), new CacheNode_1.CacheNode(ChildrenNode_1.ChildrenNode.EMPTY_NODE, 
+    /*fullyInitialized=*/ false, 
+    /*filtered=*/ false));
+    return ViewCache;
+}());
+exports.ViewCache = ViewCache;
+
+//# sourceMappingURL=ViewCache.js.map
+
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var IndexedFilter_1 = __webpack_require__(50);
+var PriorityIndex_1 = __webpack_require__(5);
+var Node_1 = __webpack_require__(7);
+var ChildrenNode_1 = __webpack_require__(6);
+/**
+ * Filters nodes by range and uses an IndexFilter to track any changes after filtering the node
+ *
+ * @constructor
+ * @implements {NodeFilter}
+ */
+var RangedFilter = /** @class */ (function () {
+    /**
+     * @param {!QueryParams} params
+     */
+    function RangedFilter(params) {
+        this.indexedFilter_ = new IndexedFilter_1.IndexedFilter(params.getIndex());
+        this.index_ = params.getIndex();
+        this.startPost_ = RangedFilter.getStartPost_(params);
+        this.endPost_ = RangedFilter.getEndPost_(params);
+    }
+    /**
+     * @return {!NamedNode}
+     */
+    RangedFilter.prototype.getStartPost = function () {
+        return this.startPost_;
+    };
+    /**
+     * @return {!NamedNode}
+     */
+    RangedFilter.prototype.getEndPost = function () {
+        return this.endPost_;
+    };
+    /**
+     * @param {!NamedNode} node
+     * @return {boolean}
+     */
+    RangedFilter.prototype.matches = function (node) {
+        return (this.index_.compare(this.getStartPost(), node) <= 0 &&
+            this.index_.compare(node, this.getEndPost()) <= 0);
+    };
+    /**
+     * @inheritDoc
+     */
+    RangedFilter.prototype.updateChild = function (snap, key, newChild, affectedPath, source, optChangeAccumulator) {
+        if (!this.matches(new Node_1.NamedNode(key, newChild))) {
+            newChild = ChildrenNode_1.ChildrenNode.EMPTY_NODE;
+        }
+        return this.indexedFilter_.updateChild(snap, key, newChild, affectedPath, source, optChangeAccumulator);
+    };
+    /**
+     * @inheritDoc
+     */
+    RangedFilter.prototype.updateFullNode = function (oldSnap, newSnap, optChangeAccumulator) {
+        if (newSnap.isLeafNode()) {
+            // Make sure we have a children node with the correct index, not a leaf node;
+            newSnap = ChildrenNode_1.ChildrenNode.EMPTY_NODE;
+        }
+        var filtered = newSnap.withIndex(this.index_);
+        // Don't support priorities on queries
+        filtered = filtered.updatePriority(ChildrenNode_1.ChildrenNode.EMPTY_NODE);
+        var self = this;
+        newSnap.forEachChild(PriorityIndex_1.PRIORITY_INDEX, function (key, childNode) {
+            if (!self.matches(new Node_1.NamedNode(key, childNode))) {
+                filtered = filtered.updateImmediateChild(key, ChildrenNode_1.ChildrenNode.EMPTY_NODE);
+            }
+        });
+        return this.indexedFilter_.updateFullNode(oldSnap, filtered, optChangeAccumulator);
+    };
+    /**
+     * @inheritDoc
+     */
+    RangedFilter.prototype.updatePriority = function (oldSnap, newPriority) {
+        // Don't support priorities on queries
+        return oldSnap;
+    };
+    /**
+     * @inheritDoc
+     */
+    RangedFilter.prototype.filtersNodes = function () {
+        return true;
+    };
+    /**
+     * @inheritDoc
+     */
+    RangedFilter.prototype.getIndexedFilter = function () {
+        return this.indexedFilter_;
+    };
+    /**
+     * @inheritDoc
+     */
+    RangedFilter.prototype.getIndex = function () {
+        return this.index_;
+    };
+    /**
+     * @param {!QueryParams} params
+     * @return {!NamedNode}
+     * @private
+     */
+    RangedFilter.getStartPost_ = function (params) {
+        if (params.hasStart()) {
+            var startName = params.getIndexStartName();
+            return params.getIndex().makePost(params.getIndexStartValue(), startName);
+        }
+        else {
+            return params.getIndex().minPost();
+        }
+    };
+    /**
+     * @param {!QueryParams} params
+     * @return {!NamedNode}
+     * @private
+     */
+    RangedFilter.getEndPost_ = function (params) {
+        if (params.hasEnd()) {
+            var endName = params.getIndexEndName();
+            return params.getIndex().makePost(params.getIndexEndValue(), endName);
+        }
+        else {
+            return params.getIndex().maxPost();
+        }
+    };
+    return RangedFilter;
+}());
+exports.RangedFilter = RangedFilter;
+
+//# sourceMappingURL=RangedFilter.js.map
+
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var util_1 = __webpack_require__(2);
+var CountedSet_1 = __webpack_require__(79);
+var StatsManager_1 = __webpack_require__(48);
+var PacketReceiver_1 = __webpack_require__(153);
+var Constants_1 = __webpack_require__(37);
+var util_2 = __webpack_require__(0);
+var util_3 = __webpack_require__(0);
+// URL query parameters associated with longpolling
+exports.FIREBASE_LONGPOLL_START_PARAM = 'start';
+exports.FIREBASE_LONGPOLL_CLOSE_COMMAND = 'close';
+exports.FIREBASE_LONGPOLL_COMMAND_CB_NAME = 'pLPCommand';
+exports.FIREBASE_LONGPOLL_DATA_CB_NAME = 'pRTLPCB';
+exports.FIREBASE_LONGPOLL_ID_PARAM = 'id';
+exports.FIREBASE_LONGPOLL_PW_PARAM = 'pw';
+exports.FIREBASE_LONGPOLL_SERIAL_PARAM = 'ser';
+exports.FIREBASE_LONGPOLL_CALLBACK_ID_PARAM = 'cb';
+exports.FIREBASE_LONGPOLL_SEGMENT_NUM_PARAM = 'seg';
+exports.FIREBASE_LONGPOLL_SEGMENTS_IN_PACKET = 'ts';
+exports.FIREBASE_LONGPOLL_DATA_PARAM = 'd';
+exports.FIREBASE_LONGPOLL_DISCONN_FRAME_PARAM = 'disconn';
+exports.FIREBASE_LONGPOLL_DISCONN_FRAME_REQUEST_PARAM = 'dframe';
+//Data size constants.
+//TODO: Perf: the maximum length actually differs from browser to browser.
+// We should check what browser we're on and set accordingly.
+var MAX_URL_DATA_SIZE = 1870;
+var SEG_HEADER_SIZE = 30; //ie: &seg=8299234&ts=982389123&d=
+var MAX_PAYLOAD_SIZE = MAX_URL_DATA_SIZE - SEG_HEADER_SIZE;
+/**
+ * Keepalive period
+ * send a fresh request at minimum every 25 seconds. Opera has a maximum request
+ * length of 30 seconds that we can't exceed.
+ * @const
+ * @type {number}
+ */
+var KEEPALIVE_REQUEST_INTERVAL = 25000;
+/**
+ * How long to wait before aborting a long-polling connection attempt.
+ * @const
+ * @type {number}
+ */
+var LP_CONNECT_TIMEOUT = 30000;
+/**
+ * This class manages a single long-polling connection.
+ *
+ * @constructor
+ * @implements {Transport}
+ */
+var BrowserPollConnection = /** @class */ (function () {
+    /**
+     * @param {string} connId An identifier for this connection, used for logging
+     * @param {RepoInfo} repoInfo The info for the endpoint to send data to.
+     * @param {string=} transportSessionId Optional transportSessionid if we are reconnecting for an existing
+     *                                         transport session
+     * @param {string=}  lastSessionId Optional lastSessionId if the PersistentConnection has already created a
+     *                                     connection previously
+     */
+    function BrowserPollConnection(connId, repoInfo, transportSessionId, lastSessionId) {
+        this.connId = connId;
+        this.repoInfo = repoInfo;
+        this.transportSessionId = transportSessionId;
+        this.lastSessionId = lastSessionId;
+        this.bytesSent = 0;
+        this.bytesReceived = 0;
+        this.everConnected_ = false;
+        this.log_ = util_1.logWrapper(connId);
+        this.stats_ = StatsManager_1.StatsManager.getCollection(repoInfo);
+        this.urlFn = function (params) {
+            return repoInfo.connectionURL(Constants_1.LONG_POLLING, params);
+        };
+    }
+    /**
+     *
+     * @param {function(Object)} onMessage Callback when messages arrive
+     * @param {function()} onDisconnect Callback with connection lost.
+     */
+    BrowserPollConnection.prototype.open = function (onMessage, onDisconnect) {
+        var _this = this;
+        this.curSegmentNum = 0;
+        this.onDisconnect_ = onDisconnect;
+        this.myPacketOrderer = new PacketReceiver_1.PacketReceiver(onMessage);
+        this.isClosed_ = false;
+        this.connectTimeoutTimer_ = setTimeout(function () {
+            _this.log_('Timed out trying to connect.');
+            // Make sure we clear the host cache
+            _this.onClosed_();
+            _this.connectTimeoutTimer_ = null;
+        }, Math.floor(LP_CONNECT_TIMEOUT));
+        // Ensure we delay the creation of the iframe until the DOM is loaded.
+        util_1.executeWhenDOMReady(function () {
+            if (_this.isClosed_)
+                return;
+            //Set up a callback that gets triggered once a connection is set up.
+            _this.scriptTagHolder = new FirebaseIFrameScriptHolder(function () {
+                var args = [];
+                for (var _i = 0; _i < arguments.length; _i++) {
+                    args[_i] = arguments[_i];
+                }
+                var command = args[0], arg1 = args[1], arg2 = args[2], arg3 = args[3], arg4 = args[4];
+                _this.incrementIncomingBytes_(args);
+                if (!_this.scriptTagHolder)
+                    return; // we closed the connection.
+                if (_this.connectTimeoutTimer_) {
+                    clearTimeout(_this.connectTimeoutTimer_);
+                    _this.connectTimeoutTimer_ = null;
+                }
+                _this.everConnected_ = true;
+                if (command == exports.FIREBASE_LONGPOLL_START_PARAM) {
+                    _this.id = arg1;
+                    _this.password = arg2;
+                }
+                else if (command === exports.FIREBASE_LONGPOLL_CLOSE_COMMAND) {
+                    // Don't clear the host cache. We got a response from the server, so we know it's reachable
+                    if (arg1) {
+                        // We aren't expecting any more data (other than what the server's already in the process of sending us
+                        // through our already open polls), so don't send any more.
+                        _this.scriptTagHolder.sendNewPolls = false;
+                        // arg1 in this case is the last response number sent by the server. We should try to receive
+                        // all of the responses up to this one before closing
+                        _this.myPacketOrderer.closeAfter(arg1, function () {
+                            _this.onClosed_();
+                        });
+                    }
+                    else {
+                        _this.onClosed_();
+                    }
+                }
+                else {
+                    throw new Error('Unrecognized command received: ' + command);
+                }
+            }, function () {
+                var args = [];
+                for (var _i = 0; _i < arguments.length; _i++) {
+                    args[_i] = arguments[_i];
+                }
+                var pN = args[0], data = args[1];
+                _this.incrementIncomingBytes_(args);
+                _this.myPacketOrderer.handleResponse(pN, data);
+            }, function () {
+                _this.onClosed_();
+            }, _this.urlFn);
+            //Send the initial request to connect. The serial number is simply to keep the browser from pulling previous results
+            //from cache.
+            var urlParams = {};
+            urlParams[exports.FIREBASE_LONGPOLL_START_PARAM] = 't';
+            urlParams[exports.FIREBASE_LONGPOLL_SERIAL_PARAM] = Math.floor(Math.random() * 100000000);
+            if (_this.scriptTagHolder.uniqueCallbackIdentifier)
+                urlParams[exports.FIREBASE_LONGPOLL_CALLBACK_ID_PARAM] = _this.scriptTagHolder.uniqueCallbackIdentifier;
+            urlParams[Constants_1.VERSION_PARAM] = Constants_1.PROTOCOL_VERSION;
+            if (_this.transportSessionId) {
+                urlParams[Constants_1.TRANSPORT_SESSION_PARAM] = _this.transportSessionId;
+            }
+            if (_this.lastSessionId) {
+                urlParams[Constants_1.LAST_SESSION_PARAM] = _this.lastSessionId;
+            }
+            if (!util_3.isNodeSdk() &&
+                typeof location !== 'undefined' &&
+                location.href &&
+                location.href.indexOf(Constants_1.FORGE_DOMAIN) !== -1) {
+                urlParams[Constants_1.REFERER_PARAM] = Constants_1.FORGE_REF;
+            }
+            var connectURL = _this.urlFn(urlParams);
+            _this.log_('Connecting via long-poll to ' + connectURL);
+            _this.scriptTagHolder.addTag(connectURL, function () {
+                /* do nothing */
+            });
+        });
+    };
+    /**
+     * Call this when a handshake has completed successfully and we want to consider the connection established
+     */
+    BrowserPollConnection.prototype.start = function () {
+        this.scriptTagHolder.startLongPoll(this.id, this.password);
+        this.addDisconnectPingFrame(this.id, this.password);
+    };
+    /**
+     * Forces long polling to be considered as a potential transport
+     */
+    BrowserPollConnection.forceAllow = function () {
+        BrowserPollConnection.forceAllow_ = true;
+    };
+    /**
+     * Forces longpolling to not be considered as a potential transport
+     */
+    BrowserPollConnection.forceDisallow = function () {
+        BrowserPollConnection.forceDisallow_ = true;
+    };
+    // Static method, use string literal so it can be accessed in a generic way
+    BrowserPollConnection.isAvailable = function () {
+        // NOTE: In React-Native there's normally no 'document', but if you debug a React-Native app in
+        // the Chrome debugger, 'document' is defined, but document.createElement is null (2015/06/08).
+        return (BrowserPollConnection.forceAllow_ ||
+            (!BrowserPollConnection.forceDisallow_ &&
+                typeof document !== 'undefined' &&
+                document.createElement != null &&
+                !util_1.isChromeExtensionContentScript() &&
+                !util_1.isWindowsStoreApp() &&
+                !util_3.isNodeSdk()));
+    };
+    /**
+     * No-op for polling
+     */
+    BrowserPollConnection.prototype.markConnectionHealthy = function () { };
+    /**
+     * Stops polling and cleans up the iframe
+     * @private
+     */
+    BrowserPollConnection.prototype.shutdown_ = function () {
+        this.isClosed_ = true;
+        if (this.scriptTagHolder) {
+            this.scriptTagHolder.close();
+            this.scriptTagHolder = null;
+        }
+        //remove the disconnect frame, which will trigger an XHR call to the server to tell it we're leaving.
+        if (this.myDisconnFrame) {
+            document.body.removeChild(this.myDisconnFrame);
+            this.myDisconnFrame = null;
+        }
+        if (this.connectTimeoutTimer_) {
+            clearTimeout(this.connectTimeoutTimer_);
+            this.connectTimeoutTimer_ = null;
+        }
+    };
+    /**
+     * Triggered when this transport is closed
+     * @private
+     */
+    BrowserPollConnection.prototype.onClosed_ = function () {
+        if (!this.isClosed_) {
+            this.log_('Longpoll is closing itself');
+            this.shutdown_();
+            if (this.onDisconnect_) {
+                this.onDisconnect_(this.everConnected_);
+                this.onDisconnect_ = null;
+            }
+        }
+    };
+    /**
+     * External-facing close handler. RealTime has requested we shut down. Kill our connection and tell the server
+     * that we've left.
+     */
+    BrowserPollConnection.prototype.close = function () {
+        if (!this.isClosed_) {
+            this.log_('Longpoll is being closed.');
+            this.shutdown_();
+        }
+    };
+    /**
+     * Send the JSON object down to the server. It will need to be stringified, base64 encoded, and then
+     * broken into chunks (since URLs have a small maximum length).
+     * @param {!Object} data The JSON data to transmit.
+     */
+    BrowserPollConnection.prototype.send = function (data) {
+        var dataStr = util_2.stringify(data);
+        this.bytesSent += dataStr.length;
+        this.stats_.incrementCounter('bytes_sent', dataStr.length);
+        //first, lets get the base64-encoded data
+        var base64data = util_2.base64Encode(dataStr);
+        //We can only fit a certain amount in each URL, so we need to split this request
+        //up into multiple pieces if it doesn't fit in one request.
+        var dataSegs = util_1.splitStringBySize(base64data, MAX_PAYLOAD_SIZE);
+        //Enqueue each segment for transmission. We assign each chunk a sequential ID and a total number
+        //of segments so that we can reassemble the packet on the server.
+        for (var i = 0; i < dataSegs.length; i++) {
+            this.scriptTagHolder.enqueueSegment(this.curSegmentNum, dataSegs.length, dataSegs[i]);
+            this.curSegmentNum++;
+        }
+    };
+    /**
+     * This is how we notify the server that we're leaving.
+     * We aren't able to send requests with DHTML on a window close event, but we can
+     * trigger XHR requests in some browsers (everything but Opera basically).
+     * @param {!string} id
+     * @param {!string} pw
+     */
+    BrowserPollConnection.prototype.addDisconnectPingFrame = function (id, pw) {
+        if (util_3.isNodeSdk())
+            return;
+        this.myDisconnFrame = document.createElement('iframe');
+        var urlParams = {};
+        urlParams[exports.FIREBASE_LONGPOLL_DISCONN_FRAME_REQUEST_PARAM] = 't';
+        urlParams[exports.FIREBASE_LONGPOLL_ID_PARAM] = id;
+        urlParams[exports.FIREBASE_LONGPOLL_PW_PARAM] = pw;
+        this.myDisconnFrame.src = this.urlFn(urlParams);
+        this.myDisconnFrame.style.display = 'none';
+        document.body.appendChild(this.myDisconnFrame);
+    };
+    /**
+     * Used to track the bytes received by this client
+     * @param {*} args
+     * @private
+     */
+    BrowserPollConnection.prototype.incrementIncomingBytes_ = function (args) {
+        // TODO: This is an annoying perf hit just to track the number of incoming bytes.  Maybe it should be opt-in.
+        var bytesReceived = util_2.stringify(args).length;
+        this.bytesReceived += bytesReceived;
+        this.stats_.incrementCounter('bytes_received', bytesReceived);
+    };
+    return BrowserPollConnection;
+}());
+exports.BrowserPollConnection = BrowserPollConnection;
+/*********************************************************************************************
+ * A wrapper around an iframe that is used as a long-polling script holder.
+ * @constructor
+ *********************************************************************************************/
+var FirebaseIFrameScriptHolder = /** @class */ (function () {
+    /**
+     * @param commandCB - The callback to be called when control commands are recevied from the server.
+     * @param onMessageCB - The callback to be triggered when responses arrive from the server.
+     * @param onDisconnect - The callback to be triggered when this tag holder is closed
+     * @param urlFn - A function that provides the URL of the endpoint to send data to.
+     */
+    function FirebaseIFrameScriptHolder(commandCB, onMessageCB, onDisconnect, urlFn) {
+        this.onDisconnect = onDisconnect;
+        this.urlFn = urlFn;
+        //We maintain a count of all of the outstanding requests, because if we have too many active at once it can cause
+        //problems in some browsers.
+        /**
+         * @type {CountedSet.<number, number>}
+         */
+        this.outstandingRequests = new CountedSet_1.CountedSet();
+        //A queue of the pending segments waiting for transmission to the server.
+        this.pendingSegs = [];
+        //A serial number. We use this for two things:
+        // 1) A way to ensure the browser doesn't cache responses to polls
+        // 2) A way to make the server aware when long-polls arrive in a different order than we started them. The
+        //    server needs to release both polls in this case or it will cause problems in Opera since Opera can only execute
+        //    JSONP code in the order it was added to the iframe.
+        this.currentSerial = Math.floor(Math.random() * 100000000);
+        // This gets set to false when we're "closing down" the connection (e.g. we're switching transports but there's still
+        // incoming data from the server that we're waiting for).
+        this.sendNewPolls = true;
+        if (!util_3.isNodeSdk()) {
+            //Each script holder registers a couple of uniquely named callbacks with the window. These are called from the
+            //iframes where we put the long-polling script tags. We have two callbacks:
+            //   1) Command Callback - Triggered for control issues, like starting a connection.
+            //   2) Message Callback - Triggered when new data arrives.
+            this.uniqueCallbackIdentifier = util_1.LUIDGenerator();
+            window[exports.FIREBASE_LONGPOLL_COMMAND_CB_NAME + this.uniqueCallbackIdentifier] = commandCB;
+            window[exports.FIREBASE_LONGPOLL_DATA_CB_NAME + this.uniqueCallbackIdentifier] = onMessageCB;
+            //Create an iframe for us to add script tags to.
+            this.myIFrame = FirebaseIFrameScriptHolder.createIFrame_();
+            // Set the iframe's contents.
+            var script = '';
+            // if we set a javascript url, it's IE and we need to set the document domain. The javascript url is sufficient
+            // for ie9, but ie8 needs to do it again in the document itself.
+            if (this.myIFrame.src &&
+                this.myIFrame.src.substr(0, 'javascript:'.length) === 'javascript:') {
+                var currentDomain = document.domain;
+                script = '<script>document.domain="' + currentDomain + '";</script>';
+            }
+            var iframeContents = '<html><body>' + script + '</body></html>';
+            try {
+                this.myIFrame.doc.open();
+                this.myIFrame.doc.write(iframeContents);
+                this.myIFrame.doc.close();
+            }
+            catch (e) {
+                util_1.log('frame writing exception');
+                if (e.stack) {
+                    util_1.log(e.stack);
+                }
+                util_1.log(e);
+            }
+        }
+        else {
+            this.commandCB = commandCB;
+            this.onMessageCB = onMessageCB;
+        }
+    }
+    /**
+     * Each browser has its own funny way to handle iframes. Here we mush them all together into one object that I can
+     * actually use.
+     * @private
+     * @return {Element}
+     */
+    FirebaseIFrameScriptHolder.createIFrame_ = function () {
+        var iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        // This is necessary in order to initialize the document inside the iframe
+        if (document.body) {
+            document.body.appendChild(iframe);
+            try {
+                // If document.domain has been modified in IE, this will throw an error, and we need to set the
+                // domain of the iframe's document manually. We can do this via a javascript: url as the src attribute
+                // Also note that we must do this *after* the iframe has been appended to the page. Otherwise it doesn't work.
+                var a = iframe.contentWindow.document;
+                if (!a) {
+                    // Apologies for the log-spam, I need to do something to keep closure from optimizing out the assignment above.
+                    util_1.log('No IE domain setting required');
+                }
+            }
+            catch (e) {
+                var domain = document.domain;
+                iframe.src =
+                    "javascript:void((function(){document.open();document.domain='" +
+                        domain +
+                        "';document.close();})())";
+            }
+        }
+        else {
+            // LongPollConnection attempts to delay initialization until the document is ready, so hopefully this
+            // never gets hit.
+            throw 'Document body has not initialized. Wait to initialize Firebase until after the document is ready.';
+        }
+        // Get the document of the iframe in a browser-specific way.
+        if (iframe.contentDocument) {
+            iframe.doc = iframe.contentDocument; // Firefox, Opera, Safari
+        }
+        else if (iframe.contentWindow) {
+            iframe.doc = iframe.contentWindow.document; // Internet Explorer
+        }
+        else if (iframe.document) {
+            iframe.doc = iframe.document; //others?
+        }
+        return iframe;
+    };
+    /**
+     * Cancel all outstanding queries and remove the frame.
+     */
+    FirebaseIFrameScriptHolder.prototype.close = function () {
+        var _this = this;
+        //Mark this iframe as dead, so no new requests are sent.
+        this.alive = false;
+        if (this.myIFrame) {
+            //We have to actually remove all of the html inside this iframe before removing it from the
+            //window, or IE will continue loading and executing the script tags we've already added, which
+            //can lead to some errors being thrown. Setting innerHTML seems to be the easiest way to do this.
+            this.myIFrame.doc.body.innerHTML = '';
+            setTimeout(function () {
+                if (_this.myIFrame !== null) {
+                    document.body.removeChild(_this.myIFrame);
+                    _this.myIFrame = null;
+                }
+            }, Math.floor(0));
+        }
+        if (util_3.isNodeSdk() && this.myID) {
+            var urlParams = {};
+            urlParams[exports.FIREBASE_LONGPOLL_DISCONN_FRAME_PARAM] = 't';
+            urlParams[exports.FIREBASE_LONGPOLL_ID_PARAM] = this.myID;
+            urlParams[exports.FIREBASE_LONGPOLL_PW_PARAM] = this.myPW;
+            var theURL = this.urlFn(urlParams);
+            FirebaseIFrameScriptHolder.nodeRestRequest(theURL);
+        }
+        // Protect from being called recursively.
+        var onDisconnect = this.onDisconnect;
+        if (onDisconnect) {
+            this.onDisconnect = null;
+            onDisconnect();
+        }
+    };
+    /**
+     * Actually start the long-polling session by adding the first script tag(s) to the iframe.
+     * @param {!string} id - The ID of this connection
+     * @param {!string} pw - The password for this connection
+     */
+    FirebaseIFrameScriptHolder.prototype.startLongPoll = function (id, pw) {
+        this.myID = id;
+        this.myPW = pw;
+        this.alive = true;
+        //send the initial request. If there are requests queued, make sure that we transmit as many as we are currently able to.
+        while (this.newRequest_()) { }
+    };
+    /**
+     * This is called any time someone might want a script tag to be added. It adds a script tag when there aren't
+     * too many outstanding requests and we are still alive.
+     *
+     * If there are outstanding packet segments to send, it sends one. If there aren't, it sends a long-poll anyways if
+     * needed.
+     */
+    FirebaseIFrameScriptHolder.prototype.newRequest_ = function () {
+        // We keep one outstanding request open all the time to receive data, but if we need to send data
+        // (pendingSegs.length > 0) then we create a new request to send the data.  The server will automatically
+        // close the old request.
+        if (this.alive &&
+            this.sendNewPolls &&
+            this.outstandingRequests.count() < (this.pendingSegs.length > 0 ? 2 : 1)) {
+            //construct our url
+            this.currentSerial++;
+            var urlParams = {};
+            urlParams[exports.FIREBASE_LONGPOLL_ID_PARAM] = this.myID;
+            urlParams[exports.FIREBASE_LONGPOLL_PW_PARAM] = this.myPW;
+            urlParams[exports.FIREBASE_LONGPOLL_SERIAL_PARAM] = this.currentSerial;
+            var theURL = this.urlFn(urlParams);
+            //Now add as much data as we can.
+            var curDataString = '';
+            var i = 0;
+            while (this.pendingSegs.length > 0) {
+                //first, lets see if the next segment will fit.
+                var nextSeg = this.pendingSegs[0];
+                if (nextSeg.d.length + SEG_HEADER_SIZE + curDataString.length <=
+                    MAX_URL_DATA_SIZE) {
+                    //great, the segment will fit. Lets append it.
+                    var theSeg = this.pendingSegs.shift();
+                    curDataString =
+                        curDataString +
+                            '&' +
+                            exports.FIREBASE_LONGPOLL_SEGMENT_NUM_PARAM +
+                            i +
+                            '=' +
+                            theSeg.seg +
+                            '&' +
+                            exports.FIREBASE_LONGPOLL_SEGMENTS_IN_PACKET +
+                            i +
+                            '=' +
+                            theSeg.ts +
+                            '&' +
+                            exports.FIREBASE_LONGPOLL_DATA_PARAM +
+                            i +
+                            '=' +
+                            theSeg.d;
+                    i++;
+                }
+                else {
+                    break;
+                }
+            }
+            theURL = theURL + curDataString;
+            this.addLongPollTag_(theURL, this.currentSerial);
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    /**
+     * Queue a packet for transmission to the server.
+     * @param segnum - A sequential id for this packet segment used for reassembly
+     * @param totalsegs - The total number of segments in this packet
+     * @param data - The data for this segment.
+     */
+    FirebaseIFrameScriptHolder.prototype.enqueueSegment = function (segnum, totalsegs, data) {
+        //add this to the queue of segments to send.
+        this.pendingSegs.push({ seg: segnum, ts: totalsegs, d: data });
+        //send the data immediately if there isn't already data being transmitted, unless
+        //startLongPoll hasn't been called yet.
+        if (this.alive) {
+            this.newRequest_();
+        }
+    };
+    /**
+     * Add a script tag for a regular long-poll request.
+     * @param {!string} url - The URL of the script tag.
+     * @param {!number} serial - The serial number of the request.
+     * @private
+     */
+    FirebaseIFrameScriptHolder.prototype.addLongPollTag_ = function (url, serial) {
+        var _this = this;
+        //remember that we sent this request.
+        this.outstandingRequests.add(serial, 1);
+        var doNewRequest = function () {
+            _this.outstandingRequests.remove(serial);
+            _this.newRequest_();
+        };
+        // If this request doesn't return on its own accord (by the server sending us some data), we'll
+        // create a new one after the KEEPALIVE interval to make sure we always keep a fresh request open.
+        var keepaliveTimeout = setTimeout(doNewRequest, Math.floor(KEEPALIVE_REQUEST_INTERVAL));
+        var readyStateCB = function () {
+            // Request completed.  Cancel the keepalive.
+            clearTimeout(keepaliveTimeout);
+            // Trigger a new request so we can continue receiving data.
+            doNewRequest();
+        };
+        this.addTag(url, readyStateCB);
+    };
+    /**
+     * Add an arbitrary script tag to the iframe.
+     * @param {!string} url - The URL for the script tag source.
+     * @param {!function()} loadCB - A callback to be triggered once the script has loaded.
+     */
+    FirebaseIFrameScriptHolder.prototype.addTag = function (url, loadCB) {
+        var _this = this;
+        if (util_3.isNodeSdk()) {
+            this.doNodeLongPoll(url, loadCB);
+        }
+        else {
+            setTimeout(function () {
+                try {
+                    // if we're already closed, don't add this poll
+                    if (!_this.sendNewPolls)
+                        return;
+                    var newScript_1 = _this.myIFrame.doc.createElement('script');
+                    newScript_1.type = 'text/javascript';
+                    newScript_1.async = true;
+                    newScript_1.src = url;
+                    newScript_1.onload = newScript_1.onreadystatechange = function () {
+                        var rstate = newScript_1.readyState;
+                        if (!rstate || rstate === 'loaded' || rstate === 'complete') {
+                            newScript_1.onload = newScript_1.onreadystatechange = null;
+                            if (newScript_1.parentNode) {
+                                newScript_1.parentNode.removeChild(newScript_1);
+                            }
+                            loadCB();
+                        }
+                    };
+                    newScript_1.onerror = function () {
+                        util_1.log('Long-poll script failed to load: ' + url);
+                        _this.sendNewPolls = false;
+                        _this.close();
+                    };
+                    _this.myIFrame.doc.body.appendChild(newScript_1);
+                }
+                catch (e) {
+                    // TODO: we should make this error visible somehow
+                }
+            }, Math.floor(1));
+        }
+    };
+    return FirebaseIFrameScriptHolder;
+}());
+exports.FirebaseIFrameScriptHolder = FirebaseIFrameScriptHolder;
+
+//# sourceMappingURL=BrowserPollConnection.js.map
+
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var util_1 = __webpack_require__(2);
+var storage_1 = __webpack_require__(34);
+var Constants_1 = __webpack_require__(37);
+var TransportManager_1 = __webpack_require__(152);
+// Abort upgrade attempt if it takes longer than 60s.
+var UPGRADE_TIMEOUT = 60000;
+// For some transports (WebSockets), we need to "validate" the transport by exchanging a few requests and responses.
+// If we haven't sent enough requests within 5s, we'll start sending noop ping requests.
+var DELAY_BEFORE_SENDING_EXTRA_REQUESTS = 5000;
+// If the initial data sent triggers a lot of bandwidth (i.e. it's a large put or a listen for a large amount of data)
+// then we may not be able to exchange our ping/pong requests within the healthy timeout.  So if we reach the timeout
+// but we've sent/received enough bytes, we don't cancel the connection.
+var BYTES_SENT_HEALTHY_OVERRIDE = 10 * 1024;
+var BYTES_RECEIVED_HEALTHY_OVERRIDE = 100 * 1024;
+var MESSAGE_TYPE = 't';
+var MESSAGE_DATA = 'd';
+var CONTROL_SHUTDOWN = 's';
+var CONTROL_RESET = 'r';
+var CONTROL_ERROR = 'e';
+var CONTROL_PONG = 'o';
+var SWITCH_ACK = 'a';
+var END_TRANSMISSION = 'n';
+var PING = 'p';
+var SERVER_HELLO = 'h';
+/**
+ * Creates a new real-time connection to the server using whichever method works
+ * best in the current browser.
+ *
+ * @constructor
+ */
+var Connection = /** @class */ (function () {
+    /**
+     * @param {!string} id - an id for this connection
+     * @param {!RepoInfo} repoInfo_ - the info for the endpoint to connect to
+     * @param {function(Object)} onMessage_ - the callback to be triggered when a server-push message arrives
+     * @param {function(number, string)} onReady_ - the callback to be triggered when this connection is ready to send messages.
+     * @param {function()} onDisconnect_ - the callback to be triggered when a connection was lost
+     * @param {function(string)} onKill_ - the callback to be triggered when this connection has permanently shut down.
+     * @param {string=} lastSessionId - last session id in persistent connection. is used to clean up old session in real-time server
+     */
+    function Connection(id, repoInfo_, onMessage_, onReady_, onDisconnect_, onKill_, lastSessionId) {
+        this.id = id;
+        this.repoInfo_ = repoInfo_;
+        this.onMessage_ = onMessage_;
+        this.onReady_ = onReady_;
+        this.onDisconnect_ = onDisconnect_;
+        this.onKill_ = onKill_;
+        this.lastSessionId = lastSessionId;
+        this.connectionCount = 0;
+        this.pendingDataMessages = [];
+        this.state_ = 0 /* CONNECTING */;
+        this.log_ = util_1.logWrapper('c:' + this.id + ':');
+        this.transportManager_ = new TransportManager_1.TransportManager(repoInfo_);
+        this.log_('Connection created');
+        this.start_();
+    }
+    /**
+     * Starts a connection attempt
+     * @private
+     */
+    Connection.prototype.start_ = function () {
+        var _this = this;
+        var conn = this.transportManager_.initialTransport();
+        this.conn_ = new conn(this.nextTransportId_(), this.repoInfo_, undefined, this.lastSessionId);
+        // For certain transports (WebSockets), we need to send and receive several messages back and forth before we
+        // can consider the transport healthy.
+        this.primaryResponsesRequired_ = conn['responsesRequiredToBeHealthy'] || 0;
+        var onMessageReceived = this.connReceiver_(this.conn_);
+        var onConnectionLost = this.disconnReceiver_(this.conn_);
+        this.tx_ = this.conn_;
+        this.rx_ = this.conn_;
+        this.secondaryConn_ = null;
+        this.isHealthy_ = false;
+        /*
+         * Firefox doesn't like when code from one iframe tries to create another iframe by way of the parent frame.
+         * This can occur in the case of a redirect, i.e. we guessed wrong on what server to connect to and received a reset.
+         * Somehow, setTimeout seems to make this ok. That doesn't make sense from a security perspective, since you should
+         * still have the context of your originating frame.
+         */
+        setTimeout(function () {
+            // this.conn_ gets set to null in some of the tests. Check to make sure it still exists before using it
+            _this.conn_ && _this.conn_.open(onMessageReceived, onConnectionLost);
+        }, Math.floor(0));
+        var healthyTimeout_ms = conn['healthyTimeout'] || 0;
+        if (healthyTimeout_ms > 0) {
+            this.healthyTimeout_ = util_1.setTimeoutNonBlocking(function () {
+                _this.healthyTimeout_ = null;
+                if (!_this.isHealthy_) {
+                    if (_this.conn_ &&
+                        _this.conn_.bytesReceived > BYTES_RECEIVED_HEALTHY_OVERRIDE) {
+                        _this.log_('Connection exceeded healthy timeout but has received ' +
+                            _this.conn_.bytesReceived +
+                            ' bytes.  Marking connection healthy.');
+                        _this.isHealthy_ = true;
+                        _this.conn_.markConnectionHealthy();
+                    }
+                    else if (_this.conn_ &&
+                        _this.conn_.bytesSent > BYTES_SENT_HEALTHY_OVERRIDE) {
+                        _this.log_('Connection exceeded healthy timeout but has sent ' +
+                            _this.conn_.bytesSent +
+                            ' bytes.  Leaving connection alive.');
+                        // NOTE: We don't want to mark it healthy, since we have no guarantee that the bytes have made it to
+                        // the server.
+                    }
+                    else {
+                        _this.log_('Closing unhealthy connection after timeout.');
+                        _this.close();
+                    }
+                }
+            }, Math.floor(healthyTimeout_ms));
+        }
+    };
+    /**
+     * @return {!string}
+     * @private
+     */
+    Connection.prototype.nextTransportId_ = function () {
+        return 'c:' + this.id + ':' + this.connectionCount++;
+    };
+    Connection.prototype.disconnReceiver_ = function (conn) {
+        var _this = this;
+        return function (everConnected) {
+            if (conn === _this.conn_) {
+                _this.onConnectionLost_(everConnected);
+            }
+            else if (conn === _this.secondaryConn_) {
+                _this.log_('Secondary connection lost.');
+                _this.onSecondaryConnectionLost_();
+            }
+            else {
+                _this.log_('closing an old connection');
+            }
+        };
+    };
+    Connection.prototype.connReceiver_ = function (conn) {
+        var _this = this;
+        return function (message) {
+            if (_this.state_ != 2 /* DISCONNECTED */) {
+                if (conn === _this.rx_) {
+                    _this.onPrimaryMessageReceived_(message);
+                }
+                else if (conn === _this.secondaryConn_) {
+                    _this.onSecondaryMessageReceived_(message);
+                }
+                else {
+                    _this.log_('message on old connection');
+                }
+            }
+        };
+    };
+    /**
+     *
+     * @param {Object} dataMsg An arbitrary data message to be sent to the server
+     */
+    Connection.prototype.sendRequest = function (dataMsg) {
+        // wrap in a data message envelope and send it on
+        var msg = { t: 'd', d: dataMsg };
+        this.sendData_(msg);
+    };
+    Connection.prototype.tryCleanupConnection = function () {
+        if (this.tx_ === this.secondaryConn_ && this.rx_ === this.secondaryConn_) {
+            this.log_('cleaning up and promoting a connection: ' + this.secondaryConn_.connId);
+            this.conn_ = this.secondaryConn_;
+            this.secondaryConn_ = null;
+            // the server will shutdown the old connection
+        }
+    };
+    Connection.prototype.onSecondaryControl_ = function (controlData) {
+        if (MESSAGE_TYPE in controlData) {
+            var cmd = controlData[MESSAGE_TYPE];
+            if (cmd === SWITCH_ACK) {
+                this.upgradeIfSecondaryHealthy_();
+            }
+            else if (cmd === CONTROL_RESET) {
+                // Most likely the session wasn't valid. Abandon the switch attempt
+                this.log_('Got a reset on secondary, closing it');
+                this.secondaryConn_.close();
+                // If we were already using this connection for something, than we need to fully close
+                if (this.tx_ === this.secondaryConn_ ||
+                    this.rx_ === this.secondaryConn_) {
+                    this.close();
+                }
+            }
+            else if (cmd === CONTROL_PONG) {
+                this.log_('got pong on secondary.');
+                this.secondaryResponsesRequired_--;
+                this.upgradeIfSecondaryHealthy_();
+            }
+        }
+    };
+    Connection.prototype.onSecondaryMessageReceived_ = function (parsedData) {
+        var layer = util_1.requireKey('t', parsedData);
+        var data = util_1.requireKey('d', parsedData);
+        if (layer == 'c') {
+            this.onSecondaryControl_(data);
+        }
+        else if (layer == 'd') {
+            // got a data message, but we're still second connection. Need to buffer it up
+            this.pendingDataMessages.push(data);
+        }
+        else {
+            throw new Error('Unknown protocol layer: ' + layer);
+        }
+    };
+    Connection.prototype.upgradeIfSecondaryHealthy_ = function () {
+        if (this.secondaryResponsesRequired_ <= 0) {
+            this.log_('Secondary connection is healthy.');
+            this.isHealthy_ = true;
+            this.secondaryConn_.markConnectionHealthy();
+            this.proceedWithUpgrade_();
+        }
+        else {
+            // Send a ping to make sure the connection is healthy.
+            this.log_('sending ping on secondary.');
+            this.secondaryConn_.send({ t: 'c', d: { t: PING, d: {} } });
+        }
+    };
+    Connection.prototype.proceedWithUpgrade_ = function () {
+        // tell this connection to consider itself open
+        this.secondaryConn_.start();
+        // send ack
+        this.log_('sending client ack on secondary');
+        this.secondaryConn_.send({ t: 'c', d: { t: SWITCH_ACK, d: {} } });
+        // send end packet on primary transport, switch to sending on this one
+        // can receive on this one, buffer responses until end received on primary transport
+        this.log_('Ending transmission on primary');
+        this.conn_.send({ t: 'c', d: { t: END_TRANSMISSION, d: {} } });
+        this.tx_ = this.secondaryConn_;
+        this.tryCleanupConnection();
+    };
+    Connection.prototype.onPrimaryMessageReceived_ = function (parsedData) {
+        // Must refer to parsedData properties in quotes, so closure doesn't touch them.
+        var layer = util_1.requireKey('t', parsedData);
+        var data = util_1.requireKey('d', parsedData);
+        if (layer == 'c') {
+            this.onControl_(data);
+        }
+        else if (layer == 'd') {
+            this.onDataMessage_(data);
+        }
+    };
+    Connection.prototype.onDataMessage_ = function (message) {
+        this.onPrimaryResponse_();
+        // We don't do anything with data messages, just kick them up a level
+        this.onMessage_(message);
+    };
+    Connection.prototype.onPrimaryResponse_ = function () {
+        if (!this.isHealthy_) {
+            this.primaryResponsesRequired_--;
+            if (this.primaryResponsesRequired_ <= 0) {
+                this.log_('Primary connection is healthy.');
+                this.isHealthy_ = true;
+                this.conn_.markConnectionHealthy();
+            }
+        }
+    };
+    Connection.prototype.onControl_ = function (controlData) {
+        var cmd = util_1.requireKey(MESSAGE_TYPE, controlData);
+        if (MESSAGE_DATA in controlData) {
+            var payload = controlData[MESSAGE_DATA];
+            if (cmd === SERVER_HELLO) {
+                this.onHandshake_(payload);
+            }
+            else if (cmd === END_TRANSMISSION) {
+                this.log_('recvd end transmission on primary');
+                this.rx_ = this.secondaryConn_;
+                for (var i = 0; i < this.pendingDataMessages.length; ++i) {
+                    this.onDataMessage_(this.pendingDataMessages[i]);
+                }
+                this.pendingDataMessages = [];
+                this.tryCleanupConnection();
+            }
+            else if (cmd === CONTROL_SHUTDOWN) {
+                // This was previously the 'onKill' callback passed to the lower-level connection
+                // payload in this case is the reason for the shutdown. Generally a human-readable error
+                this.onConnectionShutdown_(payload);
+            }
+            else if (cmd === CONTROL_RESET) {
+                // payload in this case is the host we should contact
+                this.onReset_(payload);
+            }
+            else if (cmd === CONTROL_ERROR) {
+                util_1.error('Server Error: ' + payload);
+            }
+            else if (cmd === CONTROL_PONG) {
+                this.log_('got pong on primary.');
+                this.onPrimaryResponse_();
+                this.sendPingOnPrimaryIfNecessary_();
+            }
+            else {
+                util_1.error('Unknown control packet command: ' + cmd);
+            }
+        }
+    };
+    /**
+     *
+     * @param {Object} handshake The handshake data returned from the server
+     * @private
+     */
+    Connection.prototype.onHandshake_ = function (handshake) {
+        var timestamp = handshake.ts;
+        var version = handshake.v;
+        var host = handshake.h;
+        this.sessionId = handshake.s;
+        this.repoInfo_.updateHost(host);
+        // if we've already closed the connection, then don't bother trying to progress further
+        if (this.state_ == 0 /* CONNECTING */) {
+            this.conn_.start();
+            this.onConnectionEstablished_(this.conn_, timestamp);
+            if (Constants_1.PROTOCOL_VERSION !== version) {
+                util_1.warn('Protocol version mismatch detected');
+            }
+            // TODO: do we want to upgrade? when? maybe a delay?
+            this.tryStartUpgrade_();
+        }
+    };
+    Connection.prototype.tryStartUpgrade_ = function () {
+        var conn = this.transportManager_.upgradeTransport();
+        if (conn) {
+            this.startUpgrade_(conn);
+        }
+    };
+    Connection.prototype.startUpgrade_ = function (conn) {
+        var _this = this;
+        this.secondaryConn_ = new conn(this.nextTransportId_(), this.repoInfo_, this.sessionId);
+        // For certain transports (WebSockets), we need to send and receive several messages back and forth before we
+        // can consider the transport healthy.
+        this.secondaryResponsesRequired_ =
+            conn['responsesRequiredToBeHealthy'] || 0;
+        var onMessage = this.connReceiver_(this.secondaryConn_);
+        var onDisconnect = this.disconnReceiver_(this.secondaryConn_);
+        this.secondaryConn_.open(onMessage, onDisconnect);
+        // If we haven't successfully upgraded after UPGRADE_TIMEOUT, give up and kill the secondary.
+        util_1.setTimeoutNonBlocking(function () {
+            if (_this.secondaryConn_) {
+                _this.log_('Timed out trying to upgrade.');
+                _this.secondaryConn_.close();
+            }
+        }, Math.floor(UPGRADE_TIMEOUT));
+    };
+    Connection.prototype.onReset_ = function (host) {
+        this.log_('Reset packet received.  New host: ' + host);
+        this.repoInfo_.updateHost(host);
+        // TODO: if we're already "connected", we need to trigger a disconnect at the next layer up.
+        // We don't currently support resets after the connection has already been established
+        if (this.state_ === 1 /* CONNECTED */) {
+            this.close();
+        }
+        else {
+            // Close whatever connections we have open and start again.
+            this.closeConnections_();
+            this.start_();
+        }
+    };
+    Connection.prototype.onConnectionEstablished_ = function (conn, timestamp) {
+        var _this = this;
+        this.log_('Realtime connection established.');
+        this.conn_ = conn;
+        this.state_ = 1 /* CONNECTED */;
+        if (this.onReady_) {
+            this.onReady_(timestamp, this.sessionId);
+            this.onReady_ = null;
+        }
+        // If after 5 seconds we haven't sent enough requests to the server to get the connection healthy,
+        // send some pings.
+        if (this.primaryResponsesRequired_ === 0) {
+            this.log_('Primary connection is healthy.');
+            this.isHealthy_ = true;
+        }
+        else {
+            util_1.setTimeoutNonBlocking(function () {
+                _this.sendPingOnPrimaryIfNecessary_();
+            }, Math.floor(DELAY_BEFORE_SENDING_EXTRA_REQUESTS));
+        }
+    };
+    Connection.prototype.sendPingOnPrimaryIfNecessary_ = function () {
+        // If the connection isn't considered healthy yet, we'll send a noop ping packet request.
+        if (!this.isHealthy_ && this.state_ === 1 /* CONNECTED */) {
+            this.log_('sending ping on primary.');
+            this.sendData_({ t: 'c', d: { t: PING, d: {} } });
+        }
+    };
+    Connection.prototype.onSecondaryConnectionLost_ = function () {
+        var conn = this.secondaryConn_;
+        this.secondaryConn_ = null;
+        if (this.tx_ === conn || this.rx_ === conn) {
+            // we are relying on this connection already in some capacity. Therefore, a failure is real
+            this.close();
+        }
+    };
+    /**
+     *
+     * @param {boolean} everConnected Whether or not the connection ever reached a server. Used to determine if
+     * we should flush the host cache
+     * @private
+     */
+    Connection.prototype.onConnectionLost_ = function (everConnected) {
+        this.conn_ = null;
+        // NOTE: IF you're seeing a Firefox error for this line, I think it might be because it's getting
+        // called on window close and RealtimeState.CONNECTING is no longer defined.  Just a guess.
+        if (!everConnected && this.state_ === 0 /* CONNECTING */) {
+            this.log_('Realtime connection failed.');
+            // Since we failed to connect at all, clear any cached entry for this namespace in case the machine went away
+            if (this.repoInfo_.isCacheableHost()) {
+                storage_1.PersistentStorage.remove('host:' + this.repoInfo_.host);
+                // reset the internal host to what we would show the user, i.e. <ns>.firebaseio.com
+                this.repoInfo_.internalHost = this.repoInfo_.host;
+            }
+        }
+        else if (this.state_ === 1 /* CONNECTED */) {
+            this.log_('Realtime connection lost.');
+        }
+        this.close();
+    };
+    /**
+     *
+     * @param {string} reason
+     * @private
+     */
+    Connection.prototype.onConnectionShutdown_ = function (reason) {
+        this.log_('Connection shutdown command received. Shutting down...');
+        if (this.onKill_) {
+            this.onKill_(reason);
+            this.onKill_ = null;
+        }
+        // We intentionally don't want to fire onDisconnect (kill is a different case),
+        // so clear the callback.
+        this.onDisconnect_ = null;
+        this.close();
+    };
+    Connection.prototype.sendData_ = function (data) {
+        if (this.state_ !== 1 /* CONNECTED */) {
+            throw 'Connection is not connected';
+        }
+        else {
+            this.tx_.send(data);
+        }
+    };
+    /**
+     * Cleans up this connection, calling the appropriate callbacks
+     */
+    Connection.prototype.close = function () {
+        if (this.state_ !== 2 /* DISCONNECTED */) {
+            this.log_('Closing realtime connection.');
+            this.state_ = 2 /* DISCONNECTED */;
+            this.closeConnections_();
+            if (this.onDisconnect_) {
+                this.onDisconnect_();
+                this.onDisconnect_ = null;
+            }
+        }
+    };
+    /**
+     *
+     * @private
+     */
+    Connection.prototype.closeConnections_ = function () {
+        this.log_('Shutting down all connections');
+        if (this.conn_) {
+            this.conn_.close();
+            this.conn_ = null;
+        }
+        if (this.secondaryConn_) {
+            this.secondaryConn_.close();
+            this.secondaryConn_ = null;
+        }
+        if (this.healthyTimeout_) {
+            clearTimeout(this.healthyTimeout_);
+            this.healthyTimeout_ = null;
+        }
+    };
+    return Connection;
+}());
+exports.Connection = Connection;
+
+//# sourceMappingURL=Connection.js.map
+
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var app_1 = __webpack_require__(13);
+var util_1 = __webpack_require__(0);
+var util_2 = __webpack_require__(2);
+var StatsManager_1 = __webpack_require__(48);
+var Constants_1 = __webpack_require__(37);
+var util_3 = __webpack_require__(0);
+var storage_1 = __webpack_require__(34);
+var util_4 = __webpack_require__(0);
+var util_5 = __webpack_require__(0);
+var WEBSOCKET_MAX_FRAME_SIZE = 16384;
+var WEBSOCKET_KEEPALIVE_INTERVAL = 45000;
+var WebSocketImpl = null;
+if (typeof MozWebSocket !== 'undefined') {
+    WebSocketImpl = MozWebSocket;
+}
+else if (typeof WebSocket !== 'undefined') {
+    WebSocketImpl = WebSocket;
+}
+function setWebSocketImpl(impl) {
+    WebSocketImpl = impl;
+}
+exports.setWebSocketImpl = setWebSocketImpl;
+/**
+ * Create a new websocket connection with the given callbacks.
+ * @constructor
+ * @implements {Transport}
+ */
+var WebSocketConnection = /** @class */ (function () {
+    /**
+     * @param {string} connId identifier for this transport
+     * @param {RepoInfo} repoInfo The info for the websocket endpoint.
+     * @param {string=} transportSessionId Optional transportSessionId if this is connecting to an existing transport
+     *                                         session
+     * @param {string=} lastSessionId Optional lastSessionId if there was a previous connection
+     */
+    function WebSocketConnection(connId, repoInfo, transportSessionId, lastSessionId) {
+        this.connId = connId;
+        this.keepaliveTimer = null;
+        this.frames = null;
+        this.totalFrames = 0;
+        this.bytesSent = 0;
+        this.bytesReceived = 0;
+        this.log_ = util_2.logWrapper(this.connId);
+        this.stats_ = StatsManager_1.StatsManager.getCollection(repoInfo);
+        this.connURL = WebSocketConnection.connectionURL_(repoInfo, transportSessionId, lastSessionId);
+    }
+    /**
+     * @param {RepoInfo} repoInfo The info for the websocket endpoint.
+     * @param {string=} transportSessionId Optional transportSessionId if this is connecting to an existing transport
+     *                                         session
+     * @param {string=} lastSessionId Optional lastSessionId if there was a previous connection
+     * @return {string} connection url
+     * @private
+     */
+    WebSocketConnection.connectionURL_ = function (repoInfo, transportSessionId, lastSessionId) {
+        var urlParams = {};
+        urlParams[Constants_1.VERSION_PARAM] = Constants_1.PROTOCOL_VERSION;
+        if (!util_5.isNodeSdk() &&
+            typeof location !== 'undefined' &&
+            location.href &&
+            location.href.indexOf(Constants_1.FORGE_DOMAIN) !== -1) {
+            urlParams[Constants_1.REFERER_PARAM] = Constants_1.FORGE_REF;
+        }
+        if (transportSessionId) {
+            urlParams[Constants_1.TRANSPORT_SESSION_PARAM] = transportSessionId;
+        }
+        if (lastSessionId) {
+            urlParams[Constants_1.LAST_SESSION_PARAM] = lastSessionId;
+        }
+        return repoInfo.connectionURL(Constants_1.WEBSOCKET, urlParams);
+    };
+    /**
+     *
+     * @param onMessage Callback when messages arrive
+     * @param onDisconnect Callback with connection lost.
+     */
+    WebSocketConnection.prototype.open = function (onMessage, onDisconnect) {
+        var _this = this;
+        this.onDisconnect = onDisconnect;
+        this.onMessage = onMessage;
+        this.log_('Websocket connecting to ' + this.connURL);
+        this.everConnected_ = false;
+        // Assume failure until proven otherwise.
+        storage_1.PersistentStorage.set('previous_websocket_failure', true);
+        try {
+            if (util_5.isNodeSdk()) {
+                var device = util_3.CONSTANTS.NODE_ADMIN ? 'AdminNode' : 'Node';
+                // UA Format: Firebase/<wire_protocol>/<sdk_version>/<platform>/<device>
+                var options = {
+                    headers: {
+                        'User-Agent': "Firebase/" + Constants_1.PROTOCOL_VERSION + "/" + app_1.default.SDK_VERSION + "/" + process.platform + "/" + device
+                    }
+                };
+                // Plumb appropriate http_proxy environment variable into faye-websocket if it exists.
+                var env = __webpack_require__.i({"NODE_ENV":"production"});
+                var proxy = this.connURL.indexOf('wss://') == 0
+                    ? env['HTTPS_PROXY'] || env['https_proxy']
+                    : env['HTTP_PROXY'] || env['http_proxy'];
+                if (proxy) {
+                    options['proxy'] = { origin: proxy };
+                }
+                this.mySock = new WebSocketImpl(this.connURL, [], options);
+            }
+            else {
+                this.mySock = new WebSocketImpl(this.connURL);
+            }
+        }
+        catch (e) {
+            this.log_('Error instantiating WebSocket.');
+            var error = e.message || e.data;
+            if (error) {
+                this.log_(error);
+            }
+            this.onClosed_();
+            return;
+        }
+        this.mySock.onopen = function () {
+            _this.log_('Websocket connected.');
+            _this.everConnected_ = true;
+        };
+        this.mySock.onclose = function () {
+            _this.log_('Websocket connection was disconnected.');
+            _this.mySock = null;
+            _this.onClosed_();
+        };
+        this.mySock.onmessage = function (m) {
+            _this.handleIncomingFrame(m);
+        };
+        this.mySock.onerror = function (e) {
+            _this.log_('WebSocket error.  Closing connection.');
+            var error = e.message || e.data;
+            if (error) {
+                _this.log_(error);
+            }
+            _this.onClosed_();
+        };
+    };
+    /**
+     * No-op for websockets, we don't need to do anything once the connection is confirmed as open
+     */
+    WebSocketConnection.prototype.start = function () { };
+    WebSocketConnection.forceDisallow = function () {
+        WebSocketConnection.forceDisallow_ = true;
+    };
+    WebSocketConnection.isAvailable = function () {
+        var isOldAndroid = false;
+        if (typeof navigator !== 'undefined' && navigator.userAgent) {
+            var oldAndroidRegex = /Android ([0-9]{0,}\.[0-9]{0,})/;
+            var oldAndroidMatch = navigator.userAgent.match(oldAndroidRegex);
+            if (oldAndroidMatch && oldAndroidMatch.length > 1) {
+                if (parseFloat(oldAndroidMatch[1]) < 4.4) {
+                    isOldAndroid = true;
+                }
+            }
+        }
+        return (!isOldAndroid &&
+            WebSocketImpl !== null &&
+            !WebSocketConnection.forceDisallow_);
+    };
+    /**
+     * Returns true if we previously failed to connect with this transport.
+     * @return {boolean}
+     */
+    WebSocketConnection.previouslyFailed = function () {
+        // If our persistent storage is actually only in-memory storage,
+        // we default to assuming that it previously failed to be safe.
+        return (storage_1.PersistentStorage.isInMemoryStorage ||
+            storage_1.PersistentStorage.get('previous_websocket_failure') === true);
+    };
+    WebSocketConnection.prototype.markConnectionHealthy = function () {
+        storage_1.PersistentStorage.remove('previous_websocket_failure');
+    };
+    WebSocketConnection.prototype.appendFrame_ = function (data) {
+        this.frames.push(data);
+        if (this.frames.length == this.totalFrames) {
+            var fullMess = this.frames.join('');
+            this.frames = null;
+            var jsonMess = util_4.jsonEval(fullMess);
+            //handle the message
+            this.onMessage(jsonMess);
+        }
+    };
+    /**
+     * @param {number} frameCount The number of frames we are expecting from the server
+     * @private
+     */
+    WebSocketConnection.prototype.handleNewFrameCount_ = function (frameCount) {
+        this.totalFrames = frameCount;
+        this.frames = [];
+    };
+    /**
+     * Attempts to parse a frame count out of some text. If it can't, assumes a value of 1
+     * @param {!String} data
+     * @return {?String} Any remaining data to be process, or null if there is none
+     * @private
+     */
+    WebSocketConnection.prototype.extractFrameCount_ = function (data) {
+        util_1.assert(this.frames === null, 'We already have a frame buffer');
+        // TODO: The server is only supposed to send up to 9999 frames (i.e. length <= 4), but that isn't being enforced
+        // currently.  So allowing larger frame counts (length <= 6).  See https://app.asana.com/0/search/8688598998380/8237608042508
+        if (data.length <= 6) {
+            var frameCount = Number(data);
+            if (!isNaN(frameCount)) {
+                this.handleNewFrameCount_(frameCount);
+                return null;
+            }
+        }
+        this.handleNewFrameCount_(1);
+        return data;
+    };
+    /**
+     * Process a websocket frame that has arrived from the server.
+     * @param mess The frame data
+     */
+    WebSocketConnection.prototype.handleIncomingFrame = function (mess) {
+        if (this.mySock === null)
+            return; // Chrome apparently delivers incoming packets even after we .close() the connection sometimes.
+        var data = mess['data'];
+        this.bytesReceived += data.length;
+        this.stats_.incrementCounter('bytes_received', data.length);
+        this.resetKeepAlive();
+        if (this.frames !== null) {
+            // we're buffering
+            this.appendFrame_(data);
+        }
+        else {
+            // try to parse out a frame count, otherwise, assume 1 and process it
+            var remainingData = this.extractFrameCount_(data);
+            if (remainingData !== null) {
+                this.appendFrame_(remainingData);
+            }
+        }
+    };
+    /**
+     * Send a message to the server
+     * @param {Object} data The JSON object to transmit
+     */
+    WebSocketConnection.prototype.send = function (data) {
+        this.resetKeepAlive();
+        var dataStr = util_4.stringify(data);
+        this.bytesSent += dataStr.length;
+        this.stats_.incrementCounter('bytes_sent', dataStr.length);
+        //We can only fit a certain amount in each websocket frame, so we need to split this request
+        //up into multiple pieces if it doesn't fit in one request.
+        var dataSegs = util_2.splitStringBySize(dataStr, WEBSOCKET_MAX_FRAME_SIZE);
+        //Send the length header
+        if (dataSegs.length > 1) {
+            this.sendString_(String(dataSegs.length));
+        }
+        //Send the actual data in segments.
+        for (var i = 0; i < dataSegs.length; i++) {
+            this.sendString_(dataSegs[i]);
+        }
+    };
+    WebSocketConnection.prototype.shutdown_ = function () {
+        this.isClosed_ = true;
+        if (this.keepaliveTimer) {
+            clearInterval(this.keepaliveTimer);
+            this.keepaliveTimer = null;
+        }
+        if (this.mySock) {
+            this.mySock.close();
+            this.mySock = null;
+        }
+    };
+    WebSocketConnection.prototype.onClosed_ = function () {
+        if (!this.isClosed_) {
+            this.log_('WebSocket is closing itself');
+            this.shutdown_();
+            // since this is an internal close, trigger the close listener
+            if (this.onDisconnect) {
+                this.onDisconnect(this.everConnected_);
+                this.onDisconnect = null;
+            }
+        }
+    };
+    /**
+     * External-facing close handler.
+     * Close the websocket and kill the connection.
+     */
+    WebSocketConnection.prototype.close = function () {
+        if (!this.isClosed_) {
+            this.log_('WebSocket is being closed');
+            this.shutdown_();
+        }
+    };
+    /**
+     * Kill the current keepalive timer and start a new one, to ensure that it always fires N seconds after
+     * the last activity.
+     */
+    WebSocketConnection.prototype.resetKeepAlive = function () {
+        var _this = this;
+        clearInterval(this.keepaliveTimer);
+        this.keepaliveTimer = setInterval(function () {
+            //If there has been no websocket activity for a while, send a no-op
+            if (_this.mySock) {
+                _this.sendString_('0');
+            }
+            _this.resetKeepAlive();
+        }, Math.floor(WEBSOCKET_KEEPALIVE_INTERVAL));
+    };
+    /**
+     * Send a string over the websocket.
+     *
+     * @param {string} str String to send.
+     * @private
+     */
+    WebSocketConnection.prototype.sendString_ = function (str) {
+        // Firefox seems to sometimes throw exceptions (NS_ERROR_UNEXPECTED) from websocket .send()
+        // calls for some unknown reason.  We treat these as an error and disconnect.
+        // See https://app.asana.com/0/58926111402292/68021340250410
+        try {
+            this.mySock.send(str);
+        }
+        catch (e) {
+            this.log_('Exception thrown from WebSocket.send():', e.message || e.data, 'Closing connection.');
+            setTimeout(this.onClosed_.bind(this), 0);
+        }
+    };
+    /**
+     * Number of response before we consider the connection "healthy."
+     * @type {number}
+     */
+    WebSocketConnection.responsesRequiredToBeHealthy = 2;
+    /**
+     * Time to wait for the connection te become healthy before giving up.
+     * @type {number}
+     */
+    WebSocketConnection.healthyTimeout = 30000;
+    return WebSocketConnection;
+}());
+exports.WebSocketConnection = WebSocketConnection;
+
+//# sourceMappingURL=WebSocketConnection.js.map
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(59)))
+
+/***/ }),
+/* 88 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__firebase_util__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__firebase_util___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__firebase_util__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_errors__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_token_manager__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_notification_permission__ = __webpack_require__(90);
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+
+
+
+var SENDER_ID_OPTION_NAME = 'messagingSenderId';
+var ControllerInterface = /** @class */ (function () {
+    /**
+     * An interface of the Messaging Service API
+     * @param {!firebase.app.App} app
+     */
+    function ControllerInterface(app) {
+        var _this = this;
+        this.errorFactory_ = new __WEBPACK_IMPORTED_MODULE_0__firebase_util__["ErrorFactory"]('messaging', 'Messaging', __WEBPACK_IMPORTED_MODULE_1__models_errors__["a" /* default */].map);
+        if (!app.options[SENDER_ID_OPTION_NAME] ||
+            typeof app.options[SENDER_ID_OPTION_NAME] !== 'string') {
+            throw this.errorFactory_.create(__WEBPACK_IMPORTED_MODULE_1__models_errors__["a" /* default */].codes.BAD_SENDER_ID);
+        }
+        this.messagingSenderId_ = app.options[SENDER_ID_OPTION_NAME];
+        this.tokenManager_ = new __WEBPACK_IMPORTED_MODULE_2__models_token_manager__["a" /* default */]();
+        this.app = app;
+        this.INTERNAL = {};
+        this.INTERNAL.delete = function () { return _this.delete; };
+    }
+    /**
+     * @export
+     * @return {Promise<string> | Promise<null>} Returns a promise that
+     * resolves to an FCM token.
+     */
+    ControllerInterface.prototype.getToken = function () {
+        var _this = this;
+        // Check with permissions
+        var currentPermission = this.getNotificationPermission_();
+        if (currentPermission !== __WEBPACK_IMPORTED_MODULE_3__models_notification_permission__["a" /* default */].granted) {
+            if (currentPermission === __WEBPACK_IMPORTED_MODULE_3__models_notification_permission__["a" /* default */].denied) {
+                return Promise.reject(this.errorFactory_.create(__WEBPACK_IMPORTED_MODULE_1__models_errors__["a" /* default */].codes.NOTIFICATIONS_BLOCKED));
+            }
+            // We must wait for permission to be granted
+            return Promise.resolve(null);
+        }
+        return this.getSWRegistration_().then(function (registration) {
+            return _this.tokenManager_
+                .getSavedToken(_this.messagingSenderId_, registration)
+                .then(function (token) {
+                if (token) {
+                    return token;
+                }
+                return _this.tokenManager_.createToken(_this.messagingSenderId_, registration);
+            });
+        });
+    };
+    /**
+     * This method deletes tokens that the token manager looks after and then
+     * unregisters the push subscription if it exists.
+     * @export
+     * @param {string} token
+     * @return {Promise<void>}
+     */
+    ControllerInterface.prototype.deleteToken = function (token) {
+        var _this = this;
+        return this.tokenManager_.deleteToken(token).then(function () {
+            return _this.getSWRegistration_()
+                .then(function (registration) {
+                if (registration) {
+                    return registration.pushManager.getSubscription();
+                }
+            })
+                .then(function (subscription) {
+                if (subscription) {
+                    return subscription.unsubscribe();
+                }
+            });
+        });
+    };
+    ControllerInterface.prototype.getSWRegistration_ = function () {
+        throw this.errorFactory_.create(__WEBPACK_IMPORTED_MODULE_1__models_errors__["a" /* default */].codes.SHOULD_BE_INHERITED);
+    };
+    //
+    // The following methods should only be available in the window.
+    //
+    ControllerInterface.prototype.requestPermission = function () {
+        throw this.errorFactory_.create(__WEBPACK_IMPORTED_MODULE_1__models_errors__["a" /* default */].codes.AVAILABLE_IN_WINDOW);
+    };
+    /**
+     * @export
+     * @param {!ServiceWorkerRegistration} registration
+     */
+    ControllerInterface.prototype.useServiceWorker = function (registration) {
+        throw this.errorFactory_.create(__WEBPACK_IMPORTED_MODULE_1__models_errors__["a" /* default */].codes.AVAILABLE_IN_WINDOW);
+    };
+    /**
+     * @export
+     * @param {!firebase.Observer|function(*)} nextOrObserver
+     * @param {function(!Error)=} optError
+     * @param {function()=} optCompleted
+     * @return {!function()}
+     */
+    ControllerInterface.prototype.onMessage = function (nextOrObserver, optError, optCompleted) {
+        throw this.errorFactory_.create(__WEBPACK_IMPORTED_MODULE_1__models_errors__["a" /* default */].codes.AVAILABLE_IN_WINDOW);
+    };
+    /**
+     * @export
+     * @param {!firebase.Observer|function()} nextOrObserver An observer object
+     * or a function triggered on token refresh.
+     * @param {function(!Error)=} optError Optional A function
+     * triggered on token refresh error.
+     * @param {function()=} optCompleted Optional function triggered when the
+     * observer is removed.
+     * @return {!function()} The unsubscribe function for the observer.
+     */
+    ControllerInterface.prototype.onTokenRefresh = function (nextOrObserver, optError, optCompleted) {
+        throw this.errorFactory_.create(__WEBPACK_IMPORTED_MODULE_1__models_errors__["a" /* default */].codes.AVAILABLE_IN_WINDOW);
+    };
+    //
+    // The following methods are used by the service worker only.
+    //
+    /**
+     * @export
+     * @param {function(Object)} callback
+     */
+    ControllerInterface.prototype.setBackgroundMessageHandler = function (callback) {
+        throw this.errorFactory_.create(__WEBPACK_IMPORTED_MODULE_1__models_errors__["a" /* default */].codes.AVAILABLE_IN_SW);
+    };
+    //
+    // The following methods are used by the service themselves and not exposed
+    // publicly or not expected to be used by developers.
+    //
+    /**
+     * This method is required to adhere to the Firebase interface.
+     * It closes any currently open indexdb database connections.
+     */
+    ControllerInterface.prototype.delete = function () {
+        return this.tokenManager_.closeDatabase();
+    };
+    /**
+     * Returns the current Notification Permission state.
+     * @private
+     * @return {string} The currenct permission state.
+     */
+    ControllerInterface.prototype.getNotificationPermission_ = function () {
+        return Notification.permission;
+    };
+    /**
+     * @protected
+     * @returns {TokenManager}
+     */
+    ControllerInterface.prototype.getTokenManager = function () {
+        return this.tokenManager_;
+    };
+    return ControllerInterface;
+}());
+/* harmony default export */ __webpack_exports__["a"] = (ControllerInterface);
+
+//# sourceMappingURL=controller-interface.js.map
+
+
+/***/ }),
+/* 89 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+var FCM_APPLICATION_SERVER_KEY = [
+    0x04,
+    0x33,
+    0x94,
+    0xf7,
+    0xdf,
+    0xa1,
+    0xeb,
+    0xb1,
+    0xdc,
+    0x03,
+    0xa2,
+    0x5e,
+    0x15,
+    0x71,
+    0xdb,
+    0x48,
+    0xd3,
+    0x2e,
+    0xed,
+    0xed,
+    0xb2,
+    0x34,
+    0xdb,
+    0xb7,
+    0x47,
+    0x3a,
+    0x0c,
+    0x8f,
+    0xc4,
+    0xcc,
+    0xe1,
+    0x6f,
+    0x3c,
+    0x8c,
+    0x84,
+    0xdf,
+    0xab,
+    0xb6,
+    0x66,
+    0x3e,
+    0xf2,
+    0x0c,
+    0xd4,
+    0x8b,
+    0xfe,
+    0xe3,
+    0xf9,
+    0x76,
+    0x2f,
+    0x14,
+    0x1c,
+    0x63,
+    0x08,
+    0x6a,
+    0x6f,
+    0x2d,
+    0xb1,
+    0x1a,
+    0x95,
+    0xb0,
+    0xce,
+    0x37,
+    0xc0,
+    0x9c,
+    0x6e
+];
+var SUBSCRIPTION_DETAILS = {
+    userVisibleOnly: true,
+    applicationServerKey: new Uint8Array(FCM_APPLICATION_SERVER_KEY)
+};
+/* harmony default export */ __webpack_exports__["a"] = ({
+    ENDPOINT: 'https://fcm.googleapis.com',
+    APPLICATION_SERVER_KEY: FCM_APPLICATION_SERVER_KEY,
+    SUBSCRIPTION_OPTIONS: SUBSCRIPTION_DETAILS
+});
+
+//# sourceMappingURL=fcm-details.js.map
+
+
+/***/ }),
+/* 90 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    granted: 'granted',
+    default: 'default',
+    denied: 'denied'
+});
+
+//# sourceMappingURL=notification-permission.js.map
+
+
+/***/ }),
+/* 91 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// These fields are strings to prevent closure from thinking goog.getMsg
+// should be used to initialise the values
+var PARAMS = {
+    TYPE_OF_MSG: 'firebase-messaging-msg-type',
+    DATA: 'firebase-messaging-msg-data'
+};
+// This value isn't using the TYPE_OF_MSG short hand as closure
+// expects the variable to be defined via goog.getMsg
+var msgType = {
+    PUSH_MSG_RECEIVED: 'push-msg-received',
+    NOTIFICATION_CLICKED: 'notification-clicked'
+};
+var createNewMsg = function (msgType, msgData) {
+    var message = (_a = {},
+        _a[PARAMS.TYPE_OF_MSG] = msgType,
+        _a[PARAMS.DATA] = msgData,
+        _a);
+    return message;
+    var _a;
+};
+/* harmony default export */ __webpack_exports__["a"] = ({
+    PARAMS: PARAMS,
+    TYPES_OF_MSG: msgType,
+    createNewMsg: createNewMsg
+});
+
+//# sourceMappingURL=worker-page-message.js.map
+
+
+/***/ }),
+/* 92 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FbsBlob; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fs__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__string__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__type__ = __webpack_require__(8);
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * @file Provides a Blob-like wrapper for various binary types (including the
+ * native Blob type). This makes it possible to upload types like ArrayBuffers,
+ * making uploads possible in environments without the native Blob type.
+ */
+
+
+
+
+/**
+ * @param opt_elideCopy If true, doesn't copy mutable input data
+ *     (e.g. Uint8Arrays). Pass true only if you know the objects will not be
+ *     modified after this blob's construction.
+ */
+var FbsBlob = /** @class */ (function () {
+    function FbsBlob(data, opt_elideCopy) {
+        var size = 0;
+        var blobType = '';
+        if (__WEBPACK_IMPORTED_MODULE_2__type__["f" /* isNativeBlob */](data)) {
+            this.data_ = data;
+            size = data.size;
+            blobType = data.type;
+        }
+        else if (data instanceof ArrayBuffer) {
+            if (opt_elideCopy) {
+                this.data_ = new Uint8Array(data);
+            }
+            else {
+                this.data_ = new Uint8Array(data.byteLength);
+                this.data_.set(new Uint8Array(data));
+            }
+            size = this.data_.length;
+        }
+        else if (data instanceof Uint8Array) {
+            if (opt_elideCopy) {
+                this.data_ = data;
+            }
+            else {
+                this.data_ = new Uint8Array(data.length);
+                this.data_.set(data);
+            }
+            size = data.length;
+        }
+        this.size_ = size;
+        this.type_ = blobType;
+    }
+    FbsBlob.prototype.size = function () {
+        return this.size_;
+    };
+    FbsBlob.prototype.type = function () {
+        return this.type_;
+    };
+    FbsBlob.prototype.slice = function (startByte, endByte) {
+        if (__WEBPACK_IMPORTED_MODULE_2__type__["f" /* isNativeBlob */](this.data_)) {
+            var realBlob = this.data_;
+            var sliced = __WEBPACK_IMPORTED_MODULE_0__fs__["a" /* sliceBlob */](realBlob, startByte, endByte);
+            if (sliced === null) {
+                return null;
+            }
+            return new FbsBlob(sliced);
+        }
+        else {
+            var slice = new Uint8Array(this.data_.buffer, startByte, endByte - startByte);
+            return new FbsBlob(slice, true);
+        }
+    };
+    FbsBlob.getBlob = function () {
+        var var_args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            var_args[_i] = arguments[_i];
+        }
+        if (__WEBPACK_IMPORTED_MODULE_2__type__["g" /* isNativeBlobDefined */]()) {
+            var blobby = var_args.map(function (val) {
+                if (val instanceof FbsBlob) {
+                    return val.data_;
+                }
+                else {
+                    return val;
+                }
+            });
+            return new FbsBlob(__WEBPACK_IMPORTED_MODULE_0__fs__["b" /* getBlob */].apply(null, blobby));
+        }
+        else {
+            var uint8Arrays = var_args.map(function (val) {
+                if (__WEBPACK_IMPORTED_MODULE_2__type__["b" /* isString */](val)) {
+                    return __WEBPACK_IMPORTED_MODULE_1__string__["c" /* dataFromString */](__WEBPACK_IMPORTED_MODULE_1__string__["a" /* StringFormat */].RAW, val).data;
+                }
+                else {
+                    // Blobs don't exist, so this has to be a Uint8Array.
+                    return val.data_;
+                }
+            });
+            var finalLength_1 = 0;
+            uint8Arrays.forEach(function (array) {
+                finalLength_1 += array.byteLength;
+            });
+            var merged_1 = new Uint8Array(finalLength_1);
+            var index_1 = 0;
+            uint8Arrays.forEach(function (array) {
+                for (var i = 0; i < array.length; i++) {
+                    merged_1[index_1++] = array[i];
+                }
+            });
+            return new FbsBlob(merged_1, true);
+        }
+    };
+    FbsBlob.prototype.uploadData = function () {
+        return this.data_;
+    };
+    return FbsBlob;
+}());
+
+
+//# sourceMappingURL=blob.js.map
+
+
+/***/ }),
+/* 93 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = parent;
+/* harmony export (immutable) */ __webpack_exports__["a"] = child;
+/* harmony export (immutable) */ __webpack_exports__["c"] = lastComponent;
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * @fileoverview Contains helper methods for manipulating paths.
+ */
+/**
+ * @return Null if the path is already at the root.
+ */
+function parent(path) {
+    if (path.length == 0) {
+        return null;
+    }
+    var index = path.lastIndexOf('/');
+    if (index === -1) {
+        return '';
+    }
+    var newPath = path.slice(0, index);
+    return newPath;
+}
+function child(path, childPath) {
+    var canonicalChildPath = childPath
+        .split('/')
+        .filter(function (component) {
+        return component.length > 0;
+    })
+        .join('/');
+    if (path.length === 0) {
+        return canonicalChildPath;
+    }
+    else {
+        return path + '/' + canonicalChildPath;
+    }
+}
+/**
+ * Returns the last component of a path.
+ * '/foo/bar' -> 'bar'
+ * '/foo/bar/baz/' -> 'baz/'
+ * '/a' -> 'a'
+ */
+function lastComponent(path) {
+    var index = path.lastIndexOf('/', path.length - 2);
+    if (index === -1) {
+        return path;
+    }
+    else {
+        return path.slice(index + 1);
+    }
+}
+
+//# sourceMappingURL=path.js.map
+
+
+/***/ }),
+/* 94 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export handlerCheck */
+/* unused harmony export metadataHandler */
+/* unused harmony export sharedErrorHandler */
+/* unused harmony export objectErrorHandler */
+/* harmony export (immutable) */ __webpack_exports__["b"] = getMetadata;
+/* harmony export (immutable) */ __webpack_exports__["c"] = updateMetadata;
+/* harmony export (immutable) */ __webpack_exports__["a"] = deleteObject;
+/* unused harmony export determineContentType_ */
+/* unused harmony export metadataForUpload_ */
+/* harmony export (immutable) */ __webpack_exports__["i"] = multipartUpload;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return ResumableUploadStatus; });
+/* unused harmony export checkResumeHeader_ */
+/* harmony export (immutable) */ __webpack_exports__["d"] = createResumableUpload;
+/* harmony export (immutable) */ __webpack_exports__["e"] = getResumableUploadStatus;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return resumableUploadChunkSize; });
+/* harmony export (immutable) */ __webpack_exports__["h"] = continueResumableUpload;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__array__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blob__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__error__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__metadata__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__object__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__requestinfo__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__type__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__url__ = __webpack_require__(54);
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+
+
+
+
+
+
+/**
+ * Throws the UNKNOWN FirebaseStorageError if cndn is false.
+ */
+function handlerCheck(cndn) {
+    if (!cndn) {
+        throw __WEBPACK_IMPORTED_MODULE_2__error__["c" /* unknown */]();
+    }
+}
+function metadataHandler(authWrapper, mappings) {
+    function handler(xhr, text) {
+        var metadata = __WEBPACK_IMPORTED_MODULE_3__metadata__["b" /* fromResourceString */](authWrapper, text, mappings);
+        handlerCheck(metadata !== null);
+        return metadata;
+    }
+    return handler;
+}
+function sharedErrorHandler(location) {
+    function errorHandler(xhr, err) {
+        var newErr;
+        if (xhr.getStatus() === 401) {
+            newErr = __WEBPACK_IMPORTED_MODULE_2__error__["d" /* unauthenticated */]();
+        }
+        else {
+            if (xhr.getStatus() === 402) {
+                newErr = __WEBPACK_IMPORTED_MODULE_2__error__["e" /* quotaExceeded */](location.bucket);
+            }
+            else {
+                if (xhr.getStatus() === 403) {
+                    newErr = __WEBPACK_IMPORTED_MODULE_2__error__["f" /* unauthorized */](location.path);
+                }
+                else {
+                    newErr = err;
+                }
+            }
+        }
+        newErr.setServerResponseProp(err.serverResponseProp());
+        return newErr;
+    }
+    return errorHandler;
+}
+function objectErrorHandler(location) {
+    var shared = sharedErrorHandler(location);
+    function errorHandler(xhr, err) {
+        var newErr = shared(xhr, err);
+        if (xhr.getStatus() === 404) {
+            newErr = __WEBPACK_IMPORTED_MODULE_2__error__["g" /* objectNotFound */](location.path);
+        }
+        newErr.setServerResponseProp(err.serverResponseProp());
+        return newErr;
+    }
+    return errorHandler;
+}
+function getMetadata(authWrapper, location, mappings) {
+    var urlPart = location.fullServerUrl();
+    var url = __WEBPACK_IMPORTED_MODULE_7__url__["a" /* makeNormalUrl */](urlPart);
+    var method = 'GET';
+    var timeout = authWrapper.maxOperationRetryTime();
+    var requestInfo = new __WEBPACK_IMPORTED_MODULE_5__requestinfo__["a" /* RequestInfo */](url, method, metadataHandler(authWrapper, mappings), timeout);
+    requestInfo.errorHandler = objectErrorHandler(location);
+    return requestInfo;
+}
+function updateMetadata(authWrapper, location, metadata, mappings) {
+    var urlPart = location.fullServerUrl();
+    var url = __WEBPACK_IMPORTED_MODULE_7__url__["a" /* makeNormalUrl */](urlPart);
+    var method = 'PATCH';
+    var body = __WEBPACK_IMPORTED_MODULE_3__metadata__["c" /* toResourceString */](metadata, mappings);
+    var headers = { 'Content-Type': 'application/json; charset=utf-8' };
+    var timeout = authWrapper.maxOperationRetryTime();
+    var requestInfo = new __WEBPACK_IMPORTED_MODULE_5__requestinfo__["a" /* RequestInfo */](url, method, metadataHandler(authWrapper, mappings), timeout);
+    requestInfo.headers = headers;
+    requestInfo.body = body;
+    requestInfo.errorHandler = objectErrorHandler(location);
+    return requestInfo;
+}
+function deleteObject(authWrapper, location) {
+    var urlPart = location.fullServerUrl();
+    var url = __WEBPACK_IMPORTED_MODULE_7__url__["a" /* makeNormalUrl */](urlPart);
+    var method = 'DELETE';
+    var timeout = authWrapper.maxOperationRetryTime();
+    function handler(xhr, text) { }
+    var requestInfo = new __WEBPACK_IMPORTED_MODULE_5__requestinfo__["a" /* RequestInfo */](url, method, handler, timeout);
+    requestInfo.successCodes = [200, 204];
+    requestInfo.errorHandler = objectErrorHandler(location);
+    return requestInfo;
+}
+function determineContentType_(metadata, blob) {
+    return ((metadata && metadata['contentType']) ||
+        (blob && blob.type()) ||
+        'application/octet-stream');
+}
+function metadataForUpload_(location, blob, opt_metadata) {
+    var metadata = __WEBPACK_IMPORTED_MODULE_4__object__["a" /* clone */](opt_metadata);
+    metadata['fullPath'] = location.path;
+    metadata['size'] = blob.size();
+    if (!metadata['contentType']) {
+        metadata['contentType'] = determineContentType_(null, blob);
+    }
+    return metadata;
+}
+function multipartUpload(authWrapper, location, mappings, blob, opt_metadata) {
+    var urlPart = location.bucketOnlyServerUrl();
+    var headers = {
+        'X-Goog-Upload-Protocol': 'multipart'
+    };
+    function genBoundary() {
+        var str = '';
+        for (var i = 0; i < 2; i++) {
+            str =
+                str +
+                    Math.random()
+                        .toString()
+                        .slice(2);
+        }
+        return str;
+    }
+    var boundary = genBoundary();
+    headers['Content-Type'] = 'multipart/related; boundary=' + boundary;
+    var metadata = metadataForUpload_(location, blob, opt_metadata);
+    var metadataString = __WEBPACK_IMPORTED_MODULE_3__metadata__["c" /* toResourceString */](metadata, mappings);
+    var preBlobPart = '--' +
+        boundary +
+        '\r\n' +
+        'Content-Type: application/json; charset=utf-8\r\n\r\n' +
+        metadataString +
+        '\r\n--' +
+        boundary +
+        '\r\n' +
+        'Content-Type: ' +
+        metadata['contentType'] +
+        '\r\n\r\n';
+    var postBlobPart = '\r\n--' + boundary + '--';
+    var body = __WEBPACK_IMPORTED_MODULE_1__blob__["a" /* FbsBlob */].getBlob(preBlobPart, blob, postBlobPart);
+    if (body === null) {
+        throw __WEBPACK_IMPORTED_MODULE_2__error__["h" /* cannotSliceBlob */]();
+    }
+    var urlParams = { name: metadata['fullPath'] };
+    var url = __WEBPACK_IMPORTED_MODULE_7__url__["b" /* makeUploadUrl */](urlPart);
+    var method = 'POST';
+    var timeout = authWrapper.maxUploadRetryTime();
+    var requestInfo = new __WEBPACK_IMPORTED_MODULE_5__requestinfo__["a" /* RequestInfo */](url, method, metadataHandler(authWrapper, mappings), timeout);
+    requestInfo.urlParams = urlParams;
+    requestInfo.headers = headers;
+    requestInfo.body = body.uploadData();
+    requestInfo.errorHandler = sharedErrorHandler(location);
+    return requestInfo;
+}
+/**
+ * @param current The number of bytes that have been uploaded so far.
+ * @param total The total number of bytes in the upload.
+ * @param opt_finalized True if the server has finished the upload.
+ * @param opt_metadata The upload metadata, should
+ *     only be passed if opt_finalized is true.
+ * @struct
+ */
+var ResumableUploadStatus = /** @class */ (function () {
+    function ResumableUploadStatus(current, total, finalized, metadata) {
+        this.current = current;
+        this.total = total;
+        this.finalized = !!finalized;
+        this.metadata = metadata || null;
+    }
+    return ResumableUploadStatus;
+}());
+
+function checkResumeHeader_(xhr, opt_allowed) {
+    var status;
+    try {
+        status = xhr.getResponseHeader('X-Goog-Upload-Status');
+    }
+    catch (e) {
+        handlerCheck(false);
+    }
+    var allowed = opt_allowed || ['active'];
+    handlerCheck(__WEBPACK_IMPORTED_MODULE_0__array__["a" /* contains */](allowed, status));
+    return status;
+}
+function createResumableUpload(authWrapper, location, mappings, blob, opt_metadata) {
+    var urlPart = location.bucketOnlyServerUrl();
+    var metadata = metadataForUpload_(location, blob, opt_metadata);
+    var urlParams = { name: metadata['fullPath'] };
+    var url = __WEBPACK_IMPORTED_MODULE_7__url__["b" /* makeUploadUrl */](urlPart);
+    var method = 'POST';
+    var headers = {
+        'X-Goog-Upload-Protocol': 'resumable',
+        'X-Goog-Upload-Command': 'start',
+        'X-Goog-Upload-Header-Content-Length': blob.size(),
+        'X-Goog-Upload-Header-Content-Type': metadata['contentType'],
+        'Content-Type': 'application/json; charset=utf-8'
+    };
+    var body = __WEBPACK_IMPORTED_MODULE_3__metadata__["c" /* toResourceString */](metadata, mappings);
+    var timeout = authWrapper.maxUploadRetryTime();
+    function handler(xhr, text) {
+        checkResumeHeader_(xhr);
+        var url;
+        try {
+            url = xhr.getResponseHeader('X-Goog-Upload-URL');
+        }
+        catch (e) {
+            handlerCheck(false);
+        }
+        handlerCheck(__WEBPACK_IMPORTED_MODULE_6__type__["b" /* isString */](url));
+        return url;
+    }
+    var requestInfo = new __WEBPACK_IMPORTED_MODULE_5__requestinfo__["a" /* RequestInfo */](url, method, handler, timeout);
+    requestInfo.urlParams = urlParams;
+    requestInfo.headers = headers;
+    requestInfo.body = body;
+    requestInfo.errorHandler = sharedErrorHandler(location);
+    return requestInfo;
+}
+/**
+ * @param url From a call to fbs.requests.createResumableUpload.
+ */
+function getResumableUploadStatus(authWrapper, location, url, blob) {
+    var headers = { 'X-Goog-Upload-Command': 'query' };
+    function handler(xhr, text) {
+        var status = checkResumeHeader_(xhr, ['active', 'final']);
+        var sizeString;
+        try {
+            sizeString = xhr.getResponseHeader('X-Goog-Upload-Size-Received');
+        }
+        catch (e) {
+            handlerCheck(false);
+        }
+        var size = parseInt(sizeString, 10);
+        handlerCheck(!isNaN(size));
+        return new ResumableUploadStatus(size, blob.size(), status === 'final');
+    }
+    var method = 'POST';
+    var timeout = authWrapper.maxUploadRetryTime();
+    var requestInfo = new __WEBPACK_IMPORTED_MODULE_5__requestinfo__["a" /* RequestInfo */](url, method, handler, timeout);
+    requestInfo.headers = headers;
+    requestInfo.errorHandler = sharedErrorHandler(location);
+    return requestInfo;
+}
+/**
+ * Any uploads via the resumable upload API must transfer a number of bytes
+ * that is a multiple of this number.
+ */
+var resumableUploadChunkSize = 256 * 1024;
+/**
+ * @param url From a call to fbs.requests.createResumableUpload.
+ * @param chunkSize Number of bytes to upload.
+ * @param opt_status The previous status.
+ *     If not passed or null, we start from the beginning.
+ * @throws fbs.Error If the upload is already complete, the passed in status
+ *     has a final size inconsistent with the blob, or the blob cannot be sliced
+ *     for upload.
+ */
+function continueResumableUpload(location, authWrapper, url, blob, chunkSize, mappings, opt_status, opt_progressCallback) {
+    // TODO(andysoto): standardize on internal asserts
+    // assert(!(opt_status && opt_status.finalized));
+    var status = new ResumableUploadStatus(0, 0);
+    if (opt_status) {
+        status.current = opt_status.current;
+        status.total = opt_status.total;
+    }
+    else {
+        status.current = 0;
+        status.total = blob.size();
+    }
+    if (blob.size() !== status.total) {
+        throw __WEBPACK_IMPORTED_MODULE_2__error__["i" /* serverFileWrongSize */]();
+    }
+    var bytesLeft = status.total - status.current;
+    var bytesToUpload = bytesLeft;
+    if (chunkSize > 0) {
+        bytesToUpload = Math.min(bytesToUpload, chunkSize);
+    }
+    var startByte = status.current;
+    var endByte = startByte + bytesToUpload;
+    var uploadCommand = bytesToUpload === bytesLeft ? 'upload, finalize' : 'upload';
+    var headers = {
+        'X-Goog-Upload-Command': uploadCommand,
+        'X-Goog-Upload-Offset': status.current
+    };
+    var body = blob.slice(startByte, endByte);
+    if (body === null) {
+        throw __WEBPACK_IMPORTED_MODULE_2__error__["h" /* cannotSliceBlob */]();
+    }
+    function handler(xhr, text) {
+        // TODO(andysoto): Verify the MD5 of each uploaded range:
+        // the 'x-range-md5' header comes back with status code 308 responses.
+        // We'll only be able to bail out though, because you can't re-upload a
+        // range that you previously uploaded.
+        var uploadStatus = checkResumeHeader_(xhr, ['active', 'final']);
+        var newCurrent = status.current + bytesToUpload;
+        var size = blob.size();
+        var metadata;
+        if (uploadStatus === 'final') {
+            metadata = metadataHandler(authWrapper, mappings)(xhr, text);
+        }
+        else {
+            metadata = null;
+        }
+        return new ResumableUploadStatus(newCurrent, size, uploadStatus === 'final', metadata);
+    }
+    var method = 'POST';
+    var timeout = authWrapper.maxUploadRetryTime();
+    var requestInfo = new __WEBPACK_IMPORTED_MODULE_5__requestinfo__["a" /* RequestInfo */](url, method, handler, timeout);
+    requestInfo.headers = headers;
+    requestInfo.body = body.uploadData();
+    requestInfo.progressCallback = opt_progressCallback || null;
+    requestInfo.errorHandler = sharedErrorHandler(location);
+    return requestInfo;
+}
+
+//# sourceMappingURL=requests.js.map
+
+
+/***/ }),
+/* 95 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ErrorCode; });
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * @enum{number}
+ */
+var ErrorCode;
+(function (ErrorCode) {
+    ErrorCode[ErrorCode["NO_ERROR"] = 0] = "NO_ERROR";
+    ErrorCode[ErrorCode["NETWORK_ERROR"] = 1] = "NETWORK_ERROR";
+    ErrorCode[ErrorCode["ABORT"] = 2] = "ABORT";
+})(ErrorCode = ErrorCode || (ErrorCode = {}));
+
+//# sourceMappingURL=xhrio.js.map
+
+
+/***/ }),
+/* 96 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Reference; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__implementation_args__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__implementation_blob__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__implementation_error__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__implementation_location__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__implementation_metadata__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__implementation_object__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__implementation_path__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__implementation_requests__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__implementation_string__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__implementation_type__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__task__ = __webpack_require__(178);
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * @fileoverview Defines the Firebase Storage Reference class.
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Provides methods to interact with a bucket in the Firebase Storage service.
+ * @param location An fbs.location, or the URL at
+ *     which to base this object, in one of the following forms:
+ *         gs://<bucket>/<object-path>
+ *         http[s]://firebasestorage.googleapis.com/
+ *                     <api-version>/b/<bucket>/o/<object-path>
+ *     Any query or fragment strings will be ignored in the http[s]
+ *     format. If no value is passed, the storage object will use a URL based on
+ *     the project ID of the base firebase.App instance.
+ */
+var Reference = /** @class */ (function () {
+    function Reference(authWrapper, location) {
+        this.authWrapper = authWrapper;
+        if (location instanceof __WEBPACK_IMPORTED_MODULE_3__implementation_location__["a" /* Location */]) {
+            this.location = location;
+        }
+        else {
+            this.location = __WEBPACK_IMPORTED_MODULE_3__implementation_location__["a" /* Location */].makeFromUrl(location);
+        }
+    }
+    /**
+     * @return The URL for the bucket and path this object references,
+     *     in the form gs://<bucket>/<object-path>
+     * @override
+     */
+    Reference.prototype.toString = function () {
+        __WEBPACK_IMPORTED_MODULE_0__implementation_args__["a" /* validate */]('toString', [], arguments);
+        return 'gs://' + this.location.bucket + '/' + this.location.path;
+    };
+    Reference.prototype.newRef = function (authWrapper, location) {
+        return new Reference(authWrapper, location);
+    };
+    Reference.prototype.mappings = function () {
+        return __WEBPACK_IMPORTED_MODULE_4__implementation_metadata__["a" /* getMappings */]();
+    };
+    /**
+     * @return A reference to the object obtained by
+     *     appending childPath, removing any duplicate, beginning, or trailing
+     *     slashes.
+     */
+    Reference.prototype.child = function (childPath) {
+        __WEBPACK_IMPORTED_MODULE_0__implementation_args__["a" /* validate */]('child', [__WEBPACK_IMPORTED_MODULE_0__implementation_args__["b" /* stringSpec */]()], arguments);
+        var newPath = __WEBPACK_IMPORTED_MODULE_6__implementation_path__["a" /* child */](this.location.path, childPath);
+        var location = new __WEBPACK_IMPORTED_MODULE_3__implementation_location__["a" /* Location */](this.location.bucket, newPath);
+        return this.newRef(this.authWrapper, location);
+    };
+    Object.defineProperty(Reference.prototype, "parent", {
+        /**
+         * @return A reference to the parent of the
+         *     current object, or null if the current object is the root.
+         */
+        get: function () {
+            var newPath = __WEBPACK_IMPORTED_MODULE_6__implementation_path__["b" /* parent */](this.location.path);
+            if (newPath === null) {
+                return null;
+            }
+            var location = new __WEBPACK_IMPORTED_MODULE_3__implementation_location__["a" /* Location */](this.location.bucket, newPath);
+            return this.newRef(this.authWrapper, location);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Reference.prototype, "root", {
+        /**
+         * @return An reference to the root of this
+         *     object's bucket.
+         */
+        get: function () {
+            var location = new __WEBPACK_IMPORTED_MODULE_3__implementation_location__["a" /* Location */](this.location.bucket, '');
+            return this.newRef(this.authWrapper, location);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Reference.prototype, "bucket", {
+        get: function () {
+            return this.location.bucket;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Reference.prototype, "fullPath", {
+        get: function () {
+            return this.location.path;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Reference.prototype, "name", {
+        get: function () {
+            return __WEBPACK_IMPORTED_MODULE_6__implementation_path__["c" /* lastComponent */](this.location.path);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Reference.prototype, "storage", {
+        get: function () {
+            return this.authWrapper.service();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Uploads a blob to this object's location.
+     * @param data The blob to upload.
+     * @return An UploadTask that lets you control and
+     *     observe the upload.
+     */
+    Reference.prototype.put = function (data, metadata) {
+        if (metadata === void 0) { metadata = null; }
+        __WEBPACK_IMPORTED_MODULE_0__implementation_args__["a" /* validate */]('put', [__WEBPACK_IMPORTED_MODULE_0__implementation_args__["c" /* uploadDataSpec */](), __WEBPACK_IMPORTED_MODULE_0__implementation_args__["d" /* metadataSpec */](true)], arguments);
+        this.throwIfRoot_('put');
+        return new __WEBPACK_IMPORTED_MODULE_10__task__["a" /* UploadTask */](this, this.authWrapper, this.location, this.mappings(), new __WEBPACK_IMPORTED_MODULE_1__implementation_blob__["a" /* FbsBlob */](data), metadata);
+    };
+    /**
+     * Uploads a string to this object's location.
+     * @param string The string to upload.
+     * @param opt_format The format of the string to upload.
+     * @return An UploadTask that lets you control and
+     *     observe the upload.
+     */
+    Reference.prototype.putString = function (string, format, opt_metadata) {
+        if (format === void 0) { format = __WEBPACK_IMPORTED_MODULE_8__implementation_string__["a" /* StringFormat */].RAW; }
+        __WEBPACK_IMPORTED_MODULE_0__implementation_args__["a" /* validate */]('putString', [
+            __WEBPACK_IMPORTED_MODULE_0__implementation_args__["b" /* stringSpec */](),
+            __WEBPACK_IMPORTED_MODULE_0__implementation_args__["b" /* stringSpec */](__WEBPACK_IMPORTED_MODULE_8__implementation_string__["b" /* formatValidator */], true),
+            __WEBPACK_IMPORTED_MODULE_0__implementation_args__["d" /* metadataSpec */](true)
+        ], arguments);
+        this.throwIfRoot_('putString');
+        var data = __WEBPACK_IMPORTED_MODULE_8__implementation_string__["c" /* dataFromString */](format, string);
+        var metadata = __WEBPACK_IMPORTED_MODULE_5__implementation_object__["a" /* clone */](opt_metadata);
+        if (!__WEBPACK_IMPORTED_MODULE_9__implementation_type__["a" /* isDef */](metadata['contentType']) && __WEBPACK_IMPORTED_MODULE_9__implementation_type__["a" /* isDef */](data.contentType)) {
+            metadata['contentType'] = data.contentType;
+        }
+        return new __WEBPACK_IMPORTED_MODULE_10__task__["a" /* UploadTask */](this, this.authWrapper, this.location, this.mappings(), new __WEBPACK_IMPORTED_MODULE_1__implementation_blob__["a" /* FbsBlob */](data.data, true), metadata);
+    };
+    /**
+     * Deletes the object at this location.
+     * @return A promise that resolves if the deletion succeeds.
+     */
+    Reference.prototype.delete = function () {
+        __WEBPACK_IMPORTED_MODULE_0__implementation_args__["a" /* validate */]('delete', [], arguments);
+        this.throwIfRoot_('delete');
+        var self = this;
+        return this.authWrapper.getAuthToken().then(function (authToken) {
+            var requestInfo = __WEBPACK_IMPORTED_MODULE_7__implementation_requests__["a" /* deleteObject */](self.authWrapper, self.location);
+            return self.authWrapper.makeRequest(requestInfo, authToken).getPromise();
+        });
+    };
+    /**
+     *     A promise that resolves with the metadata for this object. If this
+     *     object doesn't exist or metadata cannot be retreived, the promise is
+     *     rejected.
+     */
+    Reference.prototype.getMetadata = function () {
+        __WEBPACK_IMPORTED_MODULE_0__implementation_args__["a" /* validate */]('getMetadata', [], arguments);
+        this.throwIfRoot_('getMetadata');
+        var self = this;
+        return this.authWrapper.getAuthToken().then(function (authToken) {
+            var requestInfo = __WEBPACK_IMPORTED_MODULE_7__implementation_requests__["b" /* getMetadata */](self.authWrapper, self.location, self.mappings());
+            return self.authWrapper.makeRequest(requestInfo, authToken).getPromise();
+        });
+    };
+    /**
+     * Updates the metadata for this object.
+     * @param metadata The new metadata for the object.
+     *     Only values that have been explicitly set will be changed. Explicitly
+     *     setting a value to null will remove the metadata.
+     * @return A promise that resolves
+     *     with the new metadata for this object.
+     *     @see firebaseStorage.Reference.prototype.getMetadata
+     */
+    Reference.prototype.updateMetadata = function (metadata) {
+        __WEBPACK_IMPORTED_MODULE_0__implementation_args__["a" /* validate */]('updateMetadata', [__WEBPACK_IMPORTED_MODULE_0__implementation_args__["d" /* metadataSpec */]()], arguments);
+        this.throwIfRoot_('updateMetadata');
+        var self = this;
+        return this.authWrapper.getAuthToken().then(function (authToken) {
+            var requestInfo = __WEBPACK_IMPORTED_MODULE_7__implementation_requests__["c" /* updateMetadata */](self.authWrapper, self.location, metadata, self.mappings());
+            return self.authWrapper.makeRequest(requestInfo, authToken).getPromise();
+        });
+    };
+    /**
+     * @return A promise that resolves with the download
+     *     URL for this object.
+     */
+    Reference.prototype.getDownloadURL = function () {
+        __WEBPACK_IMPORTED_MODULE_0__implementation_args__["a" /* validate */]('getDownloadURL', [], arguments);
+        this.throwIfRoot_('getDownloadURL');
+        return this.getMetadata().then(function (metadata) {
+            var url = metadata['downloadURLs'][0];
+            if (__WEBPACK_IMPORTED_MODULE_9__implementation_type__["a" /* isDef */](url)) {
+                return url;
+            }
+            else {
+                throw __WEBPACK_IMPORTED_MODULE_2__implementation_error__["a" /* noDownloadURL */]();
+            }
+        });
+    };
+    Reference.prototype.throwIfRoot_ = function (name) {
+        if (this.location.path === '') {
+            throw __WEBPACK_IMPORTED_MODULE_2__implementation_error__["b" /* invalidRootOperation */](name);
+        }
+    };
+    return Reference;
+}());
+
+
+//# sourceMappingURL=reference.js.map
+
+
+/***/ }),
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var constants_1 = __webpack_require__(55);
+/**
+ * Throws an error if the provided assertion is falsy
+ * @param {*} assertion The assertion to be tested for falsiness
+ * @param {!string} message The message to display if the check fails
+ */
+exports.assert = function (assertion, message) {
+    if (!assertion) {
+        throw exports.assertionError(message);
+    }
+};
+/**
+ * Returns an Error object suitable for throwing.
+ * @param {string} message
+ * @return {!Error}
+ */
+exports.assertionError = function (message) {
+    return new Error('Firebase Database (' +
+        constants_1.CONSTANTS.SDK_VERSION +
+        ') INTERNAL ASSERT FAILED: ' +
+        message);
+};
+
+//# sourceMappingURL=assert.js.map
+
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var stringToByteArray = function (str) {
+    var output = [], p = 0;
+    for (var i = 0; i < str.length; i++) {
+        var c = str.charCodeAt(i);
+        while (c > 255) {
+            output[p++] = c & 255;
+            c >>= 8;
+        }
+        output[p++] = c;
+    }
+    return output;
+};
+/**
+ * Turns an array of numbers into the string given by the concatenation of the
+ * characters to which the numbers correspond.
+ * @param {Array<number>} bytes Array of numbers representing characters.
+ * @return {string} Stringification of the array.
+ */
+var byteArrayToString = function (bytes) {
+    var CHUNK_SIZE = 8192;
+    // Special-case the simple case for speed's sake.
+    if (bytes.length < CHUNK_SIZE) {
+        return String.fromCharCode.apply(null, bytes);
+    }
+    // The remaining logic splits conversion by chunks since
+    // Function#apply() has a maximum parameter count.
+    // See discussion: http://goo.gl/LrWmZ9
+    var str = '';
+    for (var i = 0; i < bytes.length; i += CHUNK_SIZE) {
+        var chunk = bytes.slice(i, i + CHUNK_SIZE);
+        str += String.fromCharCode.apply(null, chunk);
+    }
+    return str;
+};
+// Static lookup maps, lazily populated by init_()
+exports.base64 = {
+    /**
+     * Maps bytes to characters.
+     * @type {Object}
+     * @private
+     */
+    byteToCharMap_: null,
+    /**
+     * Maps characters to bytes.
+     * @type {Object}
+     * @private
+     */
+    charToByteMap_: null,
+    /**
+     * Maps bytes to websafe characters.
+     * @type {Object}
+     * @private
+     */
+    byteToCharMapWebSafe_: null,
+    /**
+     * Maps websafe characters to bytes.
+     * @type {Object}
+     * @private
+     */
+    charToByteMapWebSafe_: null,
+    /**
+     * Our default alphabet, shared between
+     * ENCODED_VALS and ENCODED_VALS_WEBSAFE
+     * @type {string}
+     */
+    ENCODED_VALS_BASE: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' + 'abcdefghijklmnopqrstuvwxyz' + '0123456789',
+    /**
+     * Our default alphabet. Value 64 (=) is special; it means "nothing."
+     * @type {string}
+     */
+    get ENCODED_VALS() {
+        return this.ENCODED_VALS_BASE + '+/=';
+    },
+    /**
+     * Our websafe alphabet.
+     * @type {string}
+     */
+    get ENCODED_VALS_WEBSAFE() {
+        return this.ENCODED_VALS_BASE + '-_.';
+    },
+    /**
+     * Whether this browser supports the atob and btoa functions. This extension
+     * started at Mozilla but is now implemented by many browsers. We use the
+     * ASSUME_* variables to avoid pulling in the full useragent detection library
+     * but still allowing the standard per-browser compilations.
+     *
+     * @type {boolean}
+     */
+    HAS_NATIVE_SUPPORT: typeof atob === 'function',
+    /**
+     * Base64-encode an array of bytes.
+     *
+     * @param {Array<number>|Uint8Array} input An array of bytes (numbers with
+     *     value in [0, 255]) to encode.
+     * @param {boolean=} opt_webSafe Boolean indicating we should use the
+     *     alternative alphabet.
+     * @return {string} The base64 encoded string.
+     */
+    encodeByteArray: function (input, opt_webSafe) {
+        if (!Array.isArray(input)) {
+            throw Error('encodeByteArray takes an array as a parameter');
+        }
+        this.init_();
+        var byteToCharMap = opt_webSafe
+            ? this.byteToCharMapWebSafe_
+            : this.byteToCharMap_;
+        var output = [];
+        for (var i = 0; i < input.length; i += 3) {
+            var byte1 = input[i];
+            var haveByte2 = i + 1 < input.length;
+            var byte2 = haveByte2 ? input[i + 1] : 0;
+            var haveByte3 = i + 2 < input.length;
+            var byte3 = haveByte3 ? input[i + 2] : 0;
+            var outByte1 = byte1 >> 2;
+            var outByte2 = ((byte1 & 0x03) << 4) | (byte2 >> 4);
+            var outByte3 = ((byte2 & 0x0f) << 2) | (byte3 >> 6);
+            var outByte4 = byte3 & 0x3f;
+            if (!haveByte3) {
+                outByte4 = 64;
+                if (!haveByte2) {
+                    outByte3 = 64;
+                }
+            }
+            output.push(byteToCharMap[outByte1], byteToCharMap[outByte2], byteToCharMap[outByte3], byteToCharMap[outByte4]);
+        }
+        return output.join('');
+    },
+    /**
+     * Base64-encode a string.
+     *
+     * @param {string} input A string to encode.
+     * @param {boolean=} opt_webSafe If true, we should use the
+     *     alternative alphabet.
+     * @return {string} The base64 encoded string.
+     */
+    encodeString: function (input, opt_webSafe) {
+        // Shortcut for Mozilla browsers that implement
+        // a native base64 encoder in the form of "btoa/atob"
+        if (this.HAS_NATIVE_SUPPORT && !opt_webSafe) {
+            return btoa(input);
+        }
+        return this.encodeByteArray(stringToByteArray(input), opt_webSafe);
+    },
+    /**
+     * Base64-decode a string.
+     *
+     * @param {string} input to decode.
+     * @param {boolean=} opt_webSafe True if we should use the
+     *     alternative alphabet.
+     * @return {string} string representing the decoded value.
+     */
+    decodeString: function (input, opt_webSafe) {
+        // Shortcut for Mozilla browsers that implement
+        // a native base64 encoder in the form of "btoa/atob"
+        if (this.HAS_NATIVE_SUPPORT && !opt_webSafe) {
+            return atob(input);
+        }
+        return byteArrayToString(this.decodeStringToByteArray(input, opt_webSafe));
+    },
+    /**
+     * Base64-decode a string.
+     *
+     * In base-64 decoding, groups of four characters are converted into three
+     * bytes.  If the encoder did not apply padding, the input length may not
+     * be a multiple of 4.
+     *
+     * In this case, the last group will have fewer than 4 characters, and
+     * padding will be inferred.  If the group has one or two characters, it decodes
+     * to one byte.  If the group has three characters, it decodes to two bytes.
+     *
+     * @param {string} input Input to decode.
+     * @param {boolean=} opt_webSafe True if we should use the web-safe alphabet.
+     * @return {!Array<number>} bytes representing the decoded value.
+     */
+    decodeStringToByteArray: function (input, opt_webSafe) {
+        this.init_();
+        var charToByteMap = opt_webSafe
+            ? this.charToByteMapWebSafe_
+            : this.charToByteMap_;
+        var output = [];
+        for (var i = 0; i < input.length;) {
+            var byte1 = charToByteMap[input.charAt(i++)];
+            var haveByte2 = i < input.length;
+            var byte2 = haveByte2 ? charToByteMap[input.charAt(i)] : 0;
+            ++i;
+            var haveByte3 = i < input.length;
+            var byte3 = haveByte3 ? charToByteMap[input.charAt(i)] : 64;
+            ++i;
+            var haveByte4 = i < input.length;
+            var byte4 = haveByte4 ? charToByteMap[input.charAt(i)] : 64;
+            ++i;
+            if (byte1 == null || byte2 == null || byte3 == null || byte4 == null) {
+                throw Error();
+            }
+            var outByte1 = (byte1 << 2) | (byte2 >> 4);
+            output.push(outByte1);
+            if (byte3 != 64) {
+                var outByte2 = ((byte2 << 4) & 0xf0) | (byte3 >> 2);
+                output.push(outByte2);
+                if (byte4 != 64) {
+                    var outByte3 = ((byte3 << 6) & 0xc0) | byte4;
+                    output.push(outByte3);
+                }
+            }
+        }
+        return output;
+    },
+    /**
+     * Lazy static initialization function. Called before
+     * accessing any of the static map variables.
+     * @private
+     */
+    init_: function () {
+        if (!this.byteToCharMap_) {
+            this.byteToCharMap_ = {};
+            this.charToByteMap_ = {};
+            this.byteToCharMapWebSafe_ = {};
+            this.charToByteMapWebSafe_ = {};
+            // We want quick mappings back and forth, so we precompute two maps.
+            for (var i = 0; i < this.ENCODED_VALS.length; i++) {
+                this.byteToCharMap_[i] = this.ENCODED_VALS.charAt(i);
+                this.charToByteMap_[this.byteToCharMap_[i]] = i;
+                this.byteToCharMapWebSafe_[i] = this.ENCODED_VALS_WEBSAFE.charAt(i);
+                this.charToByteMapWebSafe_[this.byteToCharMapWebSafe_[i]] = i;
+                // Be forgiving when decoding and correctly decode both encodings.
+                if (i >= this.ENCODED_VALS_BASE.length) {
+                    this.charToByteMap_[this.ENCODED_VALS_WEBSAFE.charAt(i)] = i;
+                    this.charToByteMapWebSafe_[this.ENCODED_VALS.charAt(i)] = i;
+                }
+            }
+        }
+    }
+};
+/**
+ * URL-safe base64 encoding
+ * @param {!string} str
+ * @return {!string}
+ */
+exports.base64Encode = function (str) {
+    var utf8Bytes = stringToByteArray(str);
+    return exports.base64.encodeByteArray(utf8Bytes, true);
+};
+/**
+ * URL-safe base64 decoding
+ *
+ * NOTE: DO NOT use the global atob() function - it does NOT support the
+ * base64Url variant encoding.
+ *
+ * @param {string} str To be decoded
+ * @return {?string} Decoded result, if possible
+ */
+exports.base64Decode = function (str) {
+    try {
+        return exports.base64.decodeString(str, true);
+    }
+    catch (e) {
+        console.error('base64Decode failed: ', e);
+    }
+    return null;
+};
+
+//# sourceMappingURL=crypt.js.map
+
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Evaluates a JSON string into a javascript object.
+ *
+ * @param {string} str A string containing JSON.
+ * @return {*} The javascript object representing the specified JSON.
+ */
+function jsonEval(str) {
+    return JSON.parse(str);
+}
+exports.jsonEval = jsonEval;
+/**
+ * Returns JSON representing a javascript object.
+ * @param {*} data Javascript object to be stringified.
+ * @return {string} The JSON contents of the object.
+ */
+function stringify(data) {
+    return JSON.stringify(data);
+}
+exports.stringify = stringify;
+
+//# sourceMappingURL=json.js.map
+
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+// See http://www.devthought.com/2012/01/18/an-object-is-not-a-hash/
+exports.contains = function (obj, key) {
+    return Object.prototype.hasOwnProperty.call(obj, key);
+};
+exports.safeGet = function (obj, key) {
+    if (Object.prototype.hasOwnProperty.call(obj, key))
+        return obj[key];
+    // else return undefined.
+};
+/**
+ * Enumerates the keys/values in an object, excluding keys defined on the prototype.
+ *
+ * @param {?Object.<K,V>} obj Object to enumerate.
+ * @param {!function(K, V)} fn Function to call for each key and value.
+ * @template K,V
+ */
+exports.forEach = function (obj, fn) {
+    for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            fn(key, obj[key]);
+        }
+    }
+};
+/**
+ * Copies all the (own) properties from one object to another.
+ * @param {!Object} objTo
+ * @param {!Object} objFrom
+ * @return {!Object} objTo
+ */
+exports.extend = function (objTo, objFrom) {
+    exports.forEach(objFrom, function (key, value) {
+        objTo[key] = value;
+    });
+    return objTo;
+};
+/**
+ * Returns a clone of the specified object.
+ * @param {!Object} obj
+ * @return {!Object} cloned obj.
+ */
+exports.clone = function (obj) {
+    return exports.extend({}, obj);
+};
+/**
+ * Returns true if obj has typeof "object" and is not null.  Unlike goog.isObject(), does not return true
+ * for functions.
+ *
+ * @param obj {*} A potential object.
+ * @returns {boolean} True if it's an object.
+ */
+exports.isNonNullObject = function (obj) {
+    return typeof obj === 'object' && obj !== null;
+};
+exports.isEmpty = function (obj) {
+    for (var key in obj) {
+        return false;
+    }
+    return true;
+};
+exports.getCount = function (obj) {
+    var rv = 0;
+    for (var key in obj) {
+        rv++;
+    }
+    return rv;
+};
+exports.map = function (obj, f, opt_obj) {
+    var res = {};
+    for (var key in obj) {
+        res[key] = f.call(opt_obj, obj[key], key, obj);
+    }
+    return res;
+};
+exports.findKey = function (obj, fn, opt_this) {
+    for (var key in obj) {
+        if (fn.call(opt_this, obj[key], key, obj)) {
+            return key;
+        }
+    }
+    return undefined;
+};
+exports.findValue = function (obj, fn, opt_this) {
+    var key = exports.findKey(obj, fn, opt_this);
+    return key && obj[key];
+};
+exports.getAnyKey = function (obj) {
+    for (var key in obj) {
+        return key;
+    }
+};
+exports.getValues = function (obj) {
+    var res = [];
+    var i = 0;
+    for (var key in obj) {
+        res[i++] = obj[key];
+    }
+    return res;
+};
+/**
+ * Tests whether every key/value pair in an object pass the test implemented
+ * by the provided function
+ *
+ * @param {?Object.<K,V>} obj Object to test.
+ * @param {!function(K, V)} fn Function to call for each key and value.
+ * @template K,V
+ */
+exports.every = function (obj, fn) {
+    for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            if (!fn(key, obj[key])) {
+                return false;
+            }
+        }
+    }
+    return true;
+};
+
+//# sourceMappingURL=obj.js.map
+
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(9);
+var settle = __webpack_require__(197);
+var buildURL = __webpack_require__(200);
+var parseHeaders = __webpack_require__(206);
+var isURLSameOrigin = __webpack_require__(204);
+var createError = __webpack_require__(104);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(199);
+
+module.exports = function xhrAdapter(config) {
+  return new Promise(function dispatchXhrRequest(resolve, reject) {
+    var requestData = config.data;
+    var requestHeaders = config.headers;
+
+    if (utils.isFormData(requestData)) {
+      delete requestHeaders['Content-Type']; // Let the browser set it
+    }
+
+    var request = new XMLHttpRequest();
+    var loadEvent = 'onreadystatechange';
+    var xDomain = false;
+
+    // For IE 8/9 CORS support
+    // Only supports POST and GET calls and doesn't returns the response headers.
+    // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
+    if ("production" !== 'test' &&
+        typeof window !== 'undefined' &&
+        window.XDomainRequest && !('withCredentials' in request) &&
+        !isURLSameOrigin(config.url)) {
+      request = new window.XDomainRequest();
+      loadEvent = 'onload';
+      xDomain = true;
+      request.onprogress = function handleProgress() {};
+      request.ontimeout = function handleTimeout() {};
+    }
+
+    // HTTP basic authentication
+    if (config.auth) {
+      var username = config.auth.username || '';
+      var password = config.auth.password || '';
+      requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
+    }
+
+    request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
+
+    // Set the request timeout in MS
+    request.timeout = config.timeout;
+
+    // Listen for ready state
+    request[loadEvent] = function handleLoad() {
+      if (!request || (request.readyState !== 4 && !xDomain)) {
+        return;
+      }
+
+      // The request errored out and we didn't get a response, this will be
+      // handled by onerror instead
+      // With one exception: request that using file: protocol, most browsers
+      // will return status as 0 even though it's a successful request
+      if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+        return;
+      }
+
+      // Prepare the response
+      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
+      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
+      var response = {
+        data: responseData,
+        // IE sends 1223 instead of 204 (https://github.com/axios/axios/issues/201)
+        status: request.status === 1223 ? 204 : request.status,
+        statusText: request.status === 1223 ? 'No Content' : request.statusText,
+        headers: responseHeaders,
+        config: config,
+        request: request
+      };
+
+      settle(resolve, reject, response);
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle low level network errors
+    request.onerror = function handleError() {
+      // Real errors are hidden from us by the browser
+      // onerror should only fire if it's a network error
+      reject(createError('Network Error', config, null, request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle timeout
+    request.ontimeout = function handleTimeout() {
+      reject(createError('timeout of ' + config.timeout + 'ms exceeded', config, 'ECONNABORTED',
+        request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Add xsrf header
+    // This is only done if running in a standard browser environment.
+    // Specifically not if we're in a web worker, or react-native.
+    if (utils.isStandardBrowserEnv()) {
+      var cookies = __webpack_require__(202);
+
+      // Add xsrf header
+      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
+          cookies.read(config.xsrfCookieName) :
+          undefined;
+
+      if (xsrfValue) {
+        requestHeaders[config.xsrfHeaderName] = xsrfValue;
+      }
+    }
+
+    // Add headers to the request
+    if ('setRequestHeader' in request) {
+      utils.forEach(requestHeaders, function setRequestHeader(val, key) {
+        if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
+          // Remove Content-Type if data is undefined
+          delete requestHeaders[key];
+        } else {
+          // Otherwise add header to the request
+          request.setRequestHeader(key, val);
+        }
+      });
+    }
+
+    // Add withCredentials to request if needed
+    if (config.withCredentials) {
+      request.withCredentials = true;
+    }
+
+    // Add responseType to request if needed
+    if (config.responseType) {
+      try {
+        request.responseType = config.responseType;
+      } catch (e) {
+        // Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 2.
+        // But, this can be suppressed for 'json' type as it can be parsed by default 'transformResponse' function.
+        if (config.responseType !== 'json') {
+          throw e;
+        }
+      }
+    }
+
+    // Handle progress if needed
+    if (typeof config.onDownloadProgress === 'function') {
+      request.addEventListener('progress', config.onDownloadProgress);
+    }
+
+    // Not all browsers support upload events
+    if (typeof config.onUploadProgress === 'function' && request.upload) {
+      request.upload.addEventListener('progress', config.onUploadProgress);
+    }
+
+    if (config.cancelToken) {
+      // Handle cancellation
+      config.cancelToken.promise.then(function onCanceled(cancel) {
+        if (!request) {
+          return;
+        }
+
+        request.abort();
+        reject(cancel);
+        // Clean up request
+        request = null;
+      });
+    }
+
+    if (requestData === undefined) {
+      requestData = null;
+    }
+
+    // Send the request
+    request.send(requestData);
+  });
+};
+
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * A `Cancel` is an object that is thrown when an operation is canceled.
+ *
+ * @class
+ * @param {string=} message The message.
+ */
+function Cancel(message) {
+  this.message = message;
+}
+
+Cancel.prototype.toString = function toString() {
+  return 'Cancel' + (this.message ? ': ' + this.message : '');
+};
+
+Cancel.prototype.__CANCEL__ = true;
+
+module.exports = Cancel;
+
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function isCancel(value) {
+  return !!(value && value.__CANCEL__);
+};
+
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var enhanceError = __webpack_require__(196);
+
+/**
+ * Create an Error with the specified message, config, error code, request and response.
+ *
+ * @param {string} message The error message.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ * @returns {Error} The created error.
+ */
+module.exports = function createError(message, config, code, request, response) {
+  var error = new Error(message);
+  return enhanceError(error, config, code, request, response);
+};
+
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function bind(fn, thisArg) {
+  return function wrap() {
+    var args = new Array(arguments.length);
+    for (var i = 0; i < args.length; i++) {
+      args[i] = arguments[i];
+    }
+    return fn.apply(thisArg, args);
+  };
+};
+
 
 /***/ }),
 /* 106 */,
@@ -49485,7 +49485,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(306);
+__webpack_require__(307);
 exports.setImmediate = setImmediate;
 exports.clearImmediate = clearImmediate;
 
@@ -50601,7 +50601,7 @@ var xhrClient = function (request) {
 
 var nodeClient = function (request) {
 
-    var client = __webpack_require__(386);
+    var client = __webpack_require__(387);
 
     return new PromiseObj(function (resolve) {
 
@@ -52098,7 +52098,7 @@ Y(yh.prototype,{toJSON:{name:"toJSON",j:[V(null,!0)]}});Y(hm.prototype,{clear:{n
 c){a=new ul(a);c({INTERNAL:{getUid:r(a.getUid,a),getToken:r(a.Rb,a),addAuthTokenListener:r(a.Ib,a),removeAuthTokenListener:r(a.mc,a)}});return a},a,function(a,c){if("create"===a)try{c.auth()}catch(d){}});firebase.INTERNAL.extendNamespace({User:Bk})}else throw Error("Cannot find the firebase namespace; be sure to include firebase-app.js before this library.");})();
 }).call(typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : typeof window !== 'undefined' ? window : {});
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(29)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(30)))
 
 /***/ }),
 /* 120 */
@@ -52123,15 +52123,15 @@ c){a=new ul(a);c({INTERNAL:{getUid:r(a.getUid,a),getToken:r(a.Rb,a),addAuthToken
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var app_1 = __webpack_require__(13);
-var Database_1 = __webpack_require__(62);
+var Database_1 = __webpack_require__(63);
 exports.Database = Database_1.Database;
-var Query_1 = __webpack_require__(63);
+var Query_1 = __webpack_require__(64);
 exports.Query = Query_1.Query;
-var Reference_1 = __webpack_require__(45);
+var Reference_1 = __webpack_require__(46);
 exports.Reference = Reference_1.Reference;
 var util_1 = __webpack_require__(2);
 exports.enableLogging = util_1.enableLogging;
-var RepoManager_1 = __webpack_require__(46);
+var RepoManager_1 = __webpack_require__(47);
 var INTERNAL = __webpack_require__(122);
 var TEST_ACCESS = __webpack_require__(123);
 var util_2 = __webpack_require__(0);
@@ -52156,9 +52156,9 @@ function registerDatabase(instance) {
 }
 exports.registerDatabase = registerDatabase;
 registerDatabase(app_1.default);
-var DataSnapshot_1 = __webpack_require__(44);
+var DataSnapshot_1 = __webpack_require__(45);
 exports.DataSnapshot = DataSnapshot_1.DataSnapshot;
-var onDisconnect_1 = __webpack_require__(64);
+var onDisconnect_1 = __webpack_require__(65);
 exports.OnDisconnect = onDisconnect_1.OnDisconnect;
 
 //# sourceMappingURL=index.js.map
@@ -52234,8 +52234,8 @@ exports.TransactionResult = TransactionResult;
  * limitations under the License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var WebSocketConnection_1 = __webpack_require__(86);
-var BrowserPollConnection_1 = __webpack_require__(84);
+var WebSocketConnection_1 = __webpack_require__(87);
+var BrowserPollConnection_1 = __webpack_require__(85);
 /**
  * INTERNAL methods for internal-use only (tests, etc.).
  *
@@ -52295,10 +52295,10 @@ exports.interceptServerData = function (ref, callback) {
  * limitations under the License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var RepoInfo_1 = __webpack_require__(66);
-var PersistentConnection_1 = __webpack_require__(65);
-var RepoManager_1 = __webpack_require__(46);
-var Connection_1 = __webpack_require__(85);
+var RepoInfo_1 = __webpack_require__(67);
+var PersistentConnection_1 = __webpack_require__(66);
+var RepoManager_1 = __webpack_require__(47);
+var Connection_1 = __webpack_require__(86);
 exports.DataConnection = PersistentConnection_1.PersistentConnection;
 /**
  * @param {!string} pathString
@@ -52476,7 +52476,7 @@ exports.AuthTokenProvider = AuthTokenProvider;
  * limitations under the License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var ImmutableTree_1 = __webpack_require__(48);
+var ImmutableTree_1 = __webpack_require__(49);
 var Path_1 = __webpack_require__(3);
 var util_1 = __webpack_require__(0);
 var Node_1 = __webpack_require__(7);
@@ -52715,7 +52715,7 @@ var util_2 = __webpack_require__(2);
 var util_3 = __webpack_require__(0);
 var util_4 = __webpack_require__(0);
 var util_5 = __webpack_require__(0);
-var ServerActions_1 = __webpack_require__(67);
+var ServerActions_1 = __webpack_require__(68);
 /**
  * An implementation of ServerActions that communicates with the server via REST requests.
  * This is mostly useful for compatibility with crawlers, where we don't want to spin up a full
@@ -52898,16 +52898,16 @@ exports.ReadonlyRestClient = ReadonlyRestClient;
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var util_1 = __webpack_require__(0);
-var Reference_1 = __webpack_require__(45);
-var DataSnapshot_1 = __webpack_require__(44);
+var Reference_1 = __webpack_require__(46);
+var DataSnapshot_1 = __webpack_require__(45);
 var Path_1 = __webpack_require__(3);
 var Tree_1 = __webpack_require__(140);
 var PriorityIndex_1 = __webpack_require__(5);
 var util_2 = __webpack_require__(2);
-var ServerValues_1 = __webpack_require__(80);
+var ServerValues_1 = __webpack_require__(81);
 var validation_1 = __webpack_require__(15);
 var util_3 = __webpack_require__(0);
-var nodeFromJSON_1 = __webpack_require__(24);
+var nodeFromJSON_1 = __webpack_require__(25);
 var ChildrenNode_1 = __webpack_require__(6);
 var Repo_1 = __webpack_require__(31);
 // TODO: This is pretty messy.  Ideally, a lot of this would move into FirebaseData, or a transaction-specific
@@ -53519,13 +53519,13 @@ var util_2 = __webpack_require__(2);
 var AckUserWrite_1 = __webpack_require__(131);
 var ChildrenNode_1 = __webpack_require__(6);
 var util_3 = __webpack_require__(0);
-var ImmutableTree_1 = __webpack_require__(48);
+var ImmutableTree_1 = __webpack_require__(49);
 var ListenComplete_1 = __webpack_require__(132);
 var Merge_1 = __webpack_require__(133);
 var Operation_1 = __webpack_require__(14);
-var Overwrite_1 = __webpack_require__(70);
+var Overwrite_1 = __webpack_require__(71);
 var Path_1 = __webpack_require__(3);
-var SyncPoint_1 = __webpack_require__(69);
+var SyncPoint_1 = __webpack_require__(70);
 var WriteTree_1 = __webpack_require__(130);
 /**
  * SyncTree is the central class for managing event callback registration, data caching, views
@@ -54994,7 +54994,7 @@ exports.ListenComplete = ListenComplete;
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var Operation_1 = __webpack_require__(14);
-var Overwrite_1 = __webpack_require__(70);
+var Overwrite_1 = __webpack_require__(71);
 var Path_1 = __webpack_require__(3);
 var util_1 = __webpack_require__(0);
 /**
@@ -55131,7 +55131,7 @@ exports.StatsCollection = StatsCollection;
 Object.defineProperty(exports, "__esModule", { value: true });
 var util_1 = __webpack_require__(0);
 var util_2 = __webpack_require__(2);
-var StatsListener_1 = __webpack_require__(77);
+var StatsListener_1 = __webpack_require__(78);
 // Assuming some apps may have a short amount of time on page, and a bulk of firebase operations probably
 // happen on page load, we try to report our first set of stats pretty quickly, but we wait at least 10
 // seconds to try to ensure the Firebase connection is established / settled.
@@ -55448,7 +55448,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var util_1 = __webpack_require__(0);
-var EventEmitter_1 = __webpack_require__(79);
+var EventEmitter_1 = __webpack_require__(80);
 var util_2 = __webpack_require__(0);
 /**
  * Monitors online state (as reported by window.online/offline events).
@@ -55776,7 +55776,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var EventEmitter_1 = __webpack_require__(79);
+var EventEmitter_1 = __webpack_require__(80);
 var util_1 = __webpack_require__(0);
 /**
  * @extends {EventEmitter}
@@ -56496,7 +56496,7 @@ exports.EventList = EventList;
  * limitations under the License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var DataSnapshot_1 = __webpack_require__(44);
+var DataSnapshot_1 = __webpack_require__(45);
 var Event_1 = __webpack_require__(144);
 var util_1 = __webpack_require__(0);
 var util_2 = __webpack_require__(0);
@@ -56720,13 +56720,13 @@ exports.ChildEventRegistration = ChildEventRegistration;
 Object.defineProperty(exports, "__esModule", { value: true });
 var util_1 = __webpack_require__(0);
 var util_2 = __webpack_require__(2);
-var KeyIndex_1 = __webpack_require__(23);
+var KeyIndex_1 = __webpack_require__(24);
 var PriorityIndex_1 = __webpack_require__(5);
-var ValueIndex_1 = __webpack_require__(75);
-var PathIndex_1 = __webpack_require__(74);
-var IndexedFilter_1 = __webpack_require__(49);
+var ValueIndex_1 = __webpack_require__(76);
+var PathIndex_1 = __webpack_require__(75);
+var IndexedFilter_1 = __webpack_require__(50);
 var LimitedFilter_1 = __webpack_require__(151);
-var RangedFilter_1 = __webpack_require__(83);
+var RangedFilter_1 = __webpack_require__(84);
 var util_3 = __webpack_require__(0);
 /**
  * This class is an immutable-from-the-public-api struct containing a set of query parameters defining a
@@ -57131,11 +57131,11 @@ exports.QueryParams = QueryParams;
  * limitations under the License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var IndexedFilter_1 = __webpack_require__(49);
+var IndexedFilter_1 = __webpack_require__(50);
 var ViewProcessor_1 = __webpack_require__(150);
 var ChildrenNode_1 = __webpack_require__(6);
 var CacheNode_1 = __webpack_require__(36);
-var ViewCache_1 = __webpack_require__(82);
+var ViewCache_1 = __webpack_require__(83);
 var EventGenerator_1 = __webpack_require__(145);
 var util_1 = __webpack_require__(0);
 var Operation_1 = __webpack_require__(14);
@@ -57351,8 +57351,8 @@ var util_1 = __webpack_require__(0);
 var ChildChangeAccumulator_1 = __webpack_require__(142);
 var Change_1 = __webpack_require__(19);
 var ChildrenNode_1 = __webpack_require__(6);
-var KeyIndex_1 = __webpack_require__(23);
-var ImmutableTree_1 = __webpack_require__(48);
+var KeyIndex_1 = __webpack_require__(24);
+var ImmutableTree_1 = __webpack_require__(49);
 var Path_1 = __webpack_require__(3);
 var CompleteChildSource_1 = __webpack_require__(143);
 /**
@@ -57948,7 +57948,7 @@ exports.ViewProcessor = ViewProcessor;
  * limitations under the License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var RangedFilter_1 = __webpack_require__(83);
+var RangedFilter_1 = __webpack_require__(84);
 var ChildrenNode_1 = __webpack_require__(6);
 var Node_1 = __webpack_require__(7);
 var util_1 = __webpack_require__(0);
@@ -58214,8 +58214,8 @@ exports.LimitedFilter = LimitedFilter;
  * limitations under the License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var BrowserPollConnection_1 = __webpack_require__(84);
-var WebSocketConnection_1 = __webpack_require__(86);
+var BrowserPollConnection_1 = __webpack_require__(85);
+var WebSocketConnection_1 = __webpack_require__(87);
 var util_1 = __webpack_require__(2);
 /**
  * Currently simplistic, this class manages what transport a Connection should use at various stages of its
@@ -58445,10 +58445,10 @@ registerMessaging(__WEBPACK_IMPORTED_MODULE_2__firebase_app__["default"]);
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__controller_interface__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__controller_interface__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_errors__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_worker_page_message__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_fcm_details__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_worker_page_message__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_fcm_details__ = __webpack_require__(89);
 /**
  * Copyright 2017 Google Inc.
  *
@@ -58768,11 +58768,11 @@ var SWController = /** @class */ (function (_super) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__controller_interface__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__controller_interface__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_errors__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_worker_page_message__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_worker_page_message__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_default_sw__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_notification_permission__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_notification_permission__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__firebase_util__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__firebase_util___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__firebase_util__);
 /**
@@ -59189,7 +59189,7 @@ function toBase64(arrayBuffer) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__firebase_util___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__firebase_util__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__errors__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_array_buffer_to_base64__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fcm_details__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fcm_details__ = __webpack_require__(89);
 /**
  * Copyright 2017 Google Inc.
  *
@@ -59626,12 +59626,12 @@ var __global = (function () {
 // Polyfill Promise
 if (typeof Promise === 'undefined') {
     // HACK: TS throws an error if I attempt to use 'dot-notation'
-    __global['Promise'] = Promise = __webpack_require__(305);
+    __global['Promise'] = Promise = __webpack_require__(306);
 }
 
 //# sourceMappingURL=promise.js.map
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(29)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(30)))
 
 /***/ }),
 /* 162 */
@@ -59769,10 +59769,10 @@ if (!Array.prototype.findIndex) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (immutable) */ __webpack_exports__["registerStorage"] = registerStorage;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__firebase_app__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_implementation_string__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__src_implementation_taskenums__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_implementation_string__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__src_implementation_taskenums__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_implementation_xhriopool__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__src_reference__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__src_reference__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__src_service__ = __webpack_require__(177);
 /**
  * Copyright 2017 Google Inc.
@@ -60340,14 +60340,14 @@ var Observer = /** @class */ (function () {
 /* unused harmony export addVersionHeader_ */
 /* harmony export (immutable) */ __webpack_exports__["a"] = makeRequest;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__firebase_app__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__array__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__array__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__backoff__ = __webpack_require__(167);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__error__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__object__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__promise_external__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__type__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__url__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__xhrio__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__url__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__xhrio__ = __webpack_require__(95);
 /**
  * Copyright 2017 Google Inc.
  *
@@ -60685,7 +60685,7 @@ var RequestMap = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__object__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__promise_external__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__type__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__xhrio__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__xhrio__ = __webpack_require__(95);
 /**
  * Copyright 2017 Google Inc.
  *
@@ -60868,12 +60868,12 @@ var XhrIoPool = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Service; });
 /* unused harmony export ServiceInternals */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__implementation_args__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__implementation_args__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__implementation_authwrapper__ = __webpack_require__(166);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__implementation_location__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__implementation_promise_external__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__implementation_request__ = __webpack_require__(172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reference__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reference__ = __webpack_require__(96);
 /**
  * Copyright 2017 Google Inc.
  *
@@ -61028,15 +61028,15 @@ var ServiceInternals = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UploadTask; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__implementation_taskenums__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__implementation_taskenums__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__implementation_observer__ = __webpack_require__(171);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tasksnapshot__ = __webpack_require__(179);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__implementation_args__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__implementation_array__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__implementation_args__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__implementation_array__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__implementation_async__ = __webpack_require__(165);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__implementation_error__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__implementation_promise_external__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__implementation_requests__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__implementation_requests__ = __webpack_require__(94);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__implementation_type__ = __webpack_require__(8);
 /**
  * Copyright 2017 Google Inc.
@@ -61814,7 +61814,7 @@ exports.Deferred = Deferred;
  * limitations under the License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var constants_1 = __webpack_require__(54);
+var constants_1 = __webpack_require__(55);
 /**
  * Returns navigator.userAgent string or '' if it's not defined.
  * @return {string} user agent string
@@ -62035,8 +62035,8 @@ exports.Hash = Hash;
  * limitations under the License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var crypt_1 = __webpack_require__(97);
-var json_1 = __webpack_require__(98);
+var crypt_1 = __webpack_require__(98);
+var json_1 = __webpack_require__(99);
 /**
  * Decodes a Firebase auth. token into constituent parts.
  *
@@ -62170,7 +62170,7 @@ exports.isAdmin = function (token) {
  * limitations under the License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var obj_1 = __webpack_require__(99);
+var obj_1 = __webpack_require__(100);
 /**
  * Returns a querystring-formatted string (e.g. &arg=val&arg2=val2) from a params
  * object (e.g. {arg: 'val', arg2: 'val2'})
@@ -62749,7 +62749,7 @@ function noop() {
  * limitations under the License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var assert_1 = __webpack_require__(96);
+var assert_1 = __webpack_require__(97);
 // Code originally came from goog.crypt.stringToUtf8ByteArray, but for some reason they
 // automatically replaced '\r\n' with '\n', and they didn't handle surrogate pairs,
 // so it's been modified.
@@ -62951,9 +62951,9 @@ exports.validateContextObject = validateContextObject;
 
 
 var utils = __webpack_require__(9);
-var bind = __webpack_require__(104);
+var bind = __webpack_require__(105);
 var Axios = __webpack_require__(193);
-var defaults = __webpack_require__(55);
+var defaults = __webpack_require__(56);
 
 /**
  * Create an instance of Axios
@@ -62986,9 +62986,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(101);
+axios.Cancel = __webpack_require__(102);
 axios.CancelToken = __webpack_require__(192);
-axios.isCancel = __webpack_require__(102);
+axios.isCancel = __webpack_require__(103);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -63009,7 +63009,7 @@ module.exports.default = axios;
 "use strict";
 
 
-var Cancel = __webpack_require__(101);
+var Cancel = __webpack_require__(102);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -63073,7 +63073,7 @@ module.exports = CancelToken;
 "use strict";
 
 
-var defaults = __webpack_require__(55);
+var defaults = __webpack_require__(56);
 var utils = __webpack_require__(9);
 var InterceptorManager = __webpack_require__(194);
 var dispatchRequest = __webpack_require__(195);
@@ -63220,8 +63220,8 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(9);
 var transformData = __webpack_require__(198);
-var isCancel = __webpack_require__(102);
-var defaults = __webpack_require__(55);
+var isCancel = __webpack_require__(103);
+var defaults = __webpack_require__(56);
 var isAbsoluteURL = __webpack_require__(203);
 var combineURLs = __webpack_require__(201);
 
@@ -63339,7 +63339,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 "use strict";
 
 
-var createError = __webpack_require__(103);
+var createError = __webpack_require__(104);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -63846,7 +63846,8 @@ module.exports = function spread(callback) {
 /* 250 */,
 /* 251 */,
 /* 252 */,
-/* 253 */
+/* 253 */,
+/* 254 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65268,7 +65269,6 @@ function scroll(...args) {
 
 
 /***/ }),
-/* 254 */,
 /* 255 */,
 /* 256 */,
 /* 257 */,
@@ -65311,7 +65311,8 @@ function scroll(...args) {
 /* 294 */,
 /* 295 */,
 /* 296 */,
-/* 297 */
+/* 297 */,
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -65335,7 +65336,7 @@ module.exports = __webpack_require__(13).default;
 
 
 /***/ }),
-/* 298 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -65358,7 +65359,7 @@ __webpack_require__(119);
 
 
 /***/ }),
-/* 299 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -65381,35 +65382,6 @@ module.exports = __webpack_require__(120);
 
 
 /***/ }),
-/* 300 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Copyright 2017 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-var firebase = __webpack_require__(297);
-__webpack_require__(298);
-__webpack_require__(299);
-__webpack_require__(301);
-__webpack_require__(302);
-
-module.exports = firebase;
-
-
-/***/ }),
 /* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -65429,7 +65401,13 @@ module.exports = firebase;
  * limitations under the License.
  */
 
-__webpack_require__(154);
+var firebase = __webpack_require__(298);
+__webpack_require__(299);
+__webpack_require__(300);
+__webpack_require__(302);
+__webpack_require__(303);
+
+module.exports = firebase;
 
 
 /***/ }),
@@ -65452,11 +65430,34 @@ __webpack_require__(154);
  * limitations under the License.
  */
 
-__webpack_require__(164);
+__webpack_require__(154);
 
 
 /***/ }),
 /* 303 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+__webpack_require__(164);
+
+
+/***/ }),
+/* 304 */
 /***/ (function(module, exports) {
 
 /*!
@@ -65483,7 +65484,7 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 304 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65580,7 +65581,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 305 */
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(setImmediate) {(function (root) {
@@ -65820,7 +65821,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(111).setImmediate))
 
 /***/ }),
-/* 306 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -66010,15 +66011,15 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(29), __webpack_require__(57)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(30), __webpack_require__(59)))
 
 /***/ }),
-/* 307 */
+/* 308 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_dom7_dist_dom7_modular__ = __webpack_require__(253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_dom7_dist_dom7_modular__ = __webpack_require__(254);
 /**
  * Swiper 4.0.7
  * Most modern mobile touch slider and framework with hardware accelerated transitions
@@ -72340,7 +72341,6 @@ Swiper$1.use([
 
 
 /***/ }),
-/* 308 */,
 /* 309 */,
 /* 310 */,
 /* 311 */,
@@ -72414,7 +72414,8 @@ Swiper$1.use([
 /* 379 */,
 /* 380 */,
 /* 381 */,
-/* 382 */
+/* 382 */,
+/* 383 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -75044,7 +75045,7 @@ if (inBrowser && window.Vue) {
 
 
 /***/ }),
-/* 383 */
+/* 384 */
 /***/ (function(module, exports) {
 
 /**
@@ -75077,7 +75078,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 384 */
+/* 385 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -76021,7 +76022,7 @@ var index_esm = {
 
 
 /***/ }),
-/* 385 */
+/* 386 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -76049,8 +76050,8 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 386 */,
-/* 387 */
+/* 387 */,
+/* 388 */
 /***/ (function(module, exports) {
 
 /*
@@ -76132,7 +76133,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 388 */
+/* 389 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -76151,7 +76152,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(383)
+var listToStyles = __webpack_require__(384)
 
 /*
 type StyleObject = {
@@ -76354,4 +76355,4 @@ function applyToTag (styleElement, obj) {
 
 /***/ })
 ]);
-//# sourceMappingURL=vendor.4e7a901d9578d16a0848.js.map
+//# sourceMappingURL=vendor.6b4ce11de1f26d5456b4.js.map

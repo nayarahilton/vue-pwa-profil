@@ -2,7 +2,7 @@
 	<div v-if="!preloading">
 		<div v-for="picture in this.getCards()" class="card">
 			<ul class="hashtags-list">
-				<li v-for="hash in hashtags" class="hash">{{hash.hash}}</li>
+				<li class="hash"> <router-link to="/profissao"> {{picture.profession}} </router-link></li>
 			</ul>
 			<div
 				class="card-picture"
@@ -44,12 +44,6 @@ export default {
 		return {
 			autor: 'Nayara Hilton',
 			preloading: true,
-			hashtags: [
-				{ hash: '#Desigin' },
-				{ hash: '#Motion' },
-				{ hash: '#UX' },
-				{ hash: '#Front' },
-			],
 		};
 	},
 	mounted() {
@@ -163,9 +157,11 @@ export default {
 		list-style none
 
 	.hash
-		display inline-block
-		color $blue
-		font-size 15px
+		a
+			display inline-block
+			color $blue
+			font-size 15px
+
 		+ .hash
 			margin-left 10px
 
