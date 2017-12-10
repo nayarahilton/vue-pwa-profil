@@ -5,10 +5,22 @@
 				v-for="(slide, index) in slides"
 				:key="slide.text"
 			>
+
+			<checkbox v-if="check == 'true'"
+				name="comportamental"
+				value="ajudo_pessoas"
+				id="ajudo_pessoas"
+				:text="slide.text"
+				:src="slide.src"
+			/>
+
+			<div v-else class="holder-icon">
 				<div class="slider_img-holder">
 					<img class="slider_img" :src="slide.src" />
 				</div>
 				<p class="slider_text">{{slide.text}}</p>
+			</div>
+
 			</swiper-slide>
 		</swiper>
 	</div>
@@ -17,15 +29,20 @@
 <script>
 import Vue from 'vue';
 import VueAwesomeSwiper from 'vue-awesome-swiper';
+import CharacteristicCheckbox from '@/components/CharacteristicCheckbox';
 
 Vue.use(VueAwesomeSwiper, this.swiperOption);
 
 
 export default {
 	props: {
+		check: String,
 		slides: {
 			type: Array,
 		},
+	},
+	components: {
+		checkbox: CharacteristicCheckbox,
 	},
 	data() {
 		return {

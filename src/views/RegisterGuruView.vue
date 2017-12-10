@@ -100,34 +100,8 @@
 					title="Características"
 				>
 					Características
-					<checkbox
-						name="comportamental"
-						value="ajudo_pessoas"
-						id="ajudo_pessoas"
-						text="Ajudo pessoas"
-						src="/static/img/icn_cadastro_caracteristica_ajudo-pessoas.svg"
-					/>
-					<checkbox
-						name="comportamental"
-						value="salvo_vidas"
-						id="salvo_vidas"
-						text="Salvo vidas"
-						src="/static/img/icn_cadastro_caracteristica_salvo-vidas.svg"
-					/>
-					<checkbox
-						name="comportamental"
-						value="ajudo_animais"
-						id="ajudo_animais"
-						text="Ajudo animais"
-						src="/static/img/icn_cadastro_caracteristica_ajudo-animais.svg"
-					/>
-					<checkbox
-						name="comportamental"
-						value="contato_natureza"
-						id="contato_natureza"
-						text="Contato com a natureza"
-						src="/static/img/icn_cadastro_caracteristica_contato-natureza.svg"
-					/>
+
+					<slider-items check="true" :slides="features"/>
 
 				</tab-content>
 				<button slot="prev" class="hide">Back</button>
@@ -140,14 +114,15 @@
 
 <script>
 import { Validator } from 'vee-validate';
-import StatusBar from '../components/StatusBar';
-import MainTitles from '../components/MainTitles';
-import MainInput from '../components/MainInput';
-import PhotoUpload from '../components/PhotoUpload';
-import MainTextarea from '../components/MainTextarea';
-import MainSelect from '../components/MainSelect';
-import FeedbackMessage from '../components/FeedbackMessage';
-import CharacteristicCheckbox from '../components/CharacteristicCheckbox';
+import StatusBar from '@/components/StatusBar';
+import MainTitles from '@/components/MainTitles';
+import MainInput from '@/components/MainInput';
+import PhotoUpload from '@/components/PhotoUpload';
+import MainTextarea from '@/components/MainTextarea';
+import MainSelect from '@/components/MainSelect';
+import FeedbackMessage from '@/components/FeedbackMessage';
+import CharacteristicCheckbox from '@/components/CharacteristicCheckbox';
+import SliderItems from '@/components/SliderItems';
 
 const dict = {
 	pt: {
@@ -178,6 +153,29 @@ Validator.setLocale('pt');
 export default {
 	data() {
 		return {
+			features: [
+				{
+					src: '/static/img/icn_cadastro_caracteristica_ajudo-pessoas.svg',
+					text: 'Ajudo pessoas',
+				},
+				{
+					src: '/static/img/icn_cadastro_caracteristica_salvo-vidas.svg',
+					text: 'Salvo vidas',
+				},
+				{
+					src: '/static/img/icn_cadastro_caracteristica_ajudo-animais.svg',
+					text: 'Ajudo animais',
+				},
+				{
+					src: '/static/img/icn_cadastro_caracteristica_ajudo-pessoas.svg',
+					text: 'Salvo vidas',
+				},
+				{
+					src: '/static/img/icn_cadastro_caracteristica_ajudo-pessoas.svg',
+					text: 'Ajudo animais',
+				},
+
+			],
 			type: 1,
 			username: '',
 			name: '',
@@ -195,6 +193,7 @@ export default {
 		MainTextarea,
 		PhotoUpload,
 		MainSelect,
+		SliderItems,
 		feedback: FeedbackMessage,
 		checkbox: CharacteristicCheckbox,
 	},
