@@ -12,7 +12,7 @@
     "lint": "eslint --ext .js,.vue src",
     "serve": "serve docs/",
     "deploy": "node ./node_modules/vue-gh-pages/index.js",
-    "homepage": "https://github.com/nayarahilton/vue-pwa-profil/"
+    "homepage": "https://profil.work/"
   },
   "dependencies": {
     "axios": "^0.17.1",
