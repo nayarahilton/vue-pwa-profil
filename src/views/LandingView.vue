@@ -147,8 +147,9 @@ export default {
 		width 240px
 
 	.text
-		font-size 18px
+		font-size 17px
 		margin-top 15px
+		line-height 1.5em
 
 	.icon
 		display inline-block
@@ -255,9 +256,10 @@ export default {
 			position relative
 			z-index 2
 
-
 		.text
 			text-align center
+			line-height 1.3em
+			margin 0
 
 	.full
 		background-image url('../assets/img/intro-bg.jpg')
@@ -335,11 +337,16 @@ export default {
 		text-align center
 		margin-top 20px
 
-		@media screen and (max-width 768px)
+		@media screen and (min-width 768px)
+			width 60%
+
+		@media screen and (max-width 767px)
 			order 3
 
 		img
 			max-height 70vh
+			display block
+			margin 0 auto
 			max-width 100%
 
 
@@ -360,6 +367,8 @@ export default {
 
 	.title
 		font-size 50px
+		margin 20px 0 30px 0
+		line-height 0
 		line-height 100%
 		text-align center
 
