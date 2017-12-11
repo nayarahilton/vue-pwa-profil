@@ -141,9 +141,12 @@ export default new Vuex.Store({
 						const user = data[key];
 						user.id = key;
 						users.push(user);
+						console.warn(user.id);
+
 					}
-					console.log(users);
+
 					commit('storeUser', users[0]);
+					console.warn(users['-Kzq0oMEDvRGXHiyb8DS']);
 
 				})
 				.catch(error => console.log(error));

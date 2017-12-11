@@ -17,7 +17,7 @@
 			</div>
 		</div>
 		<div class="profession_features">
-			<slider-items class="features" :slides="features"/>
+			<slider-items check="true" class="features" :slides="features"/>
 		</div>
 		<!-- <div class="profession_info-slider">
 			<h2 class="profession_info-slider_title">O que é Design Digital?</h2>
@@ -57,26 +57,40 @@ export default {
 			card: null,
 			features: [
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
-					text: 'Ajudo pessoas',
+					name: 'ferramentas',
+					value: 'uso_computador',
+					id: 'uso_computador',
+					src: '/static/img/icn_cadastro_caracteristica_uso-computador.svg',
+					text: 'Uso muito computador',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
-					text: 'Salvo vidas',
+					name: 'ferramentas',
+					value: 'logica_inteligencia',
+					id: 'logica_inteligencia',
+					src: '/static/img/icn_cadastro_caracteristica_logica-inteligencia.svg',
+					text: 'Lógica e inteligência',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
-					text: 'Ajudo animais',
+					name: 'ambiente',
+					value: 'sentado',
+					id: 'sentado',
+					src: '/static/img/icn_cadastro_caracteristica_sentado.svg',
+					text: 'Trabalho sentado',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
-					text: 'Salvo vidas',
+					name: 'ferramentas',
+					value: 'coordenacao_motora',
+					id: 'coordenacao_motora',
+					src: '/static/img/icn_cadastro_caracteristica_coordenacao-motora.svg',
+					text: 'Coordenação motora impecável',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
-					text: 'Ajudo animais',
+					name: 'ambiente',
+					value: 'agitado',
+					id: 'agitado',
+					src: '/static/img/icn_cadastro_caracteristica_agitado.svg',
+					text: 'Super agitado',
 				},
-
 			],
 			stories: [
 				{
@@ -245,5 +259,7 @@ export default {
 			line-height 30px
 			color $pink
 
+	.characteristic-checkbox
+		pointer-events none
 
 </style>

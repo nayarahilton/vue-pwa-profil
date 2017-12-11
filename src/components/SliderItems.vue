@@ -80,6 +80,7 @@ export default {
 		text-align center
 		cursor pointer
 		width auto
+		align-self flex-start
 
 	img
 		max-width 100%
