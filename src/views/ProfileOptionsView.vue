@@ -33,12 +33,12 @@ export default {
 				{
 					id: 1,
 					text: 'Fale conosco',
-					url: '#',
+					url: '/contato',
 				},
 				{
 					id: 2,
 					text: 'Termo de política e privacidade',
-					url: '#',
+					url: 'termos',
 				},
 				{
 					id: 3,

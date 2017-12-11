@@ -48,8 +48,20 @@ export default {
 					text: 'Design Digital',
 				},
 				{
-					value: 'medicina',
-					text: 'Medicina',
+					value: 'designGrafico',
+					text: 'Design Gráfico',
+				},
+				{
+					value: 'designGames',
+					text: 'Design de Games',
+				},
+				{
+					value: 'programacao',
+					text: 'Programação Front-end',
+				},
+				{
+					value: 'designDeModa',
+					text: 'Design de Moda',
 				},
 			],
 		};

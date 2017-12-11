@@ -19,9 +19,9 @@
 			</div>
 			<div class="profession-holder">
 				<div class="profession" v-for="profissao in filteredList">
-					<a v-bind:href="profissao.link" target="_blank">
+					<router-link v-bind:to="profissao.link">
 						Profissão: {{ profissao.name }}
-					</a>
+					</router-link>
 				</div>
 			</div>
 		</main>
@@ -40,499 +40,511 @@ export default {
 			profissaoList: [
 				{
 					name: 'Administração Comercial/Vendas',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Administração de Empresas',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Administração Pública',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Advocacia/Jurídica',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Agronomia',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Arquitetura/Urbanismo',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Arquivologia',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Artes Cênicas',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Artes Gráficas',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Artes Plásticas',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Atend. a cliente - Bares e Restaurantes',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Atend. a cliente - Telefonistas/Recepcionistas',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Atend. a cliente - Telemarketing/Call Center',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Atend. a cliente',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Auditoria',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Bancos',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Biblioteconomia',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Biologia/Ciências Biológicas',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Biomedicina',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Ciências Sociais',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Cinema',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Comércio Exterior',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Compras',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Comunicação',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Construção Civil',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Contabilidade',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Controladoria',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Culinária/Gastronomia',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Desenho Industrial',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Design de Interiores',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Design Gráfico',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Ecologia/Meio Ambiente',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Economia',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Enfermagem',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Engenharia de Alimentos',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Engenharia Civil',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Engenharia Eletrônica',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Engenharia Eletrotécnica',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Engenharia Mecânica',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Engenharia Metalúrgica e de Materiais',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Engenharia de Minas',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Engenharia de Produção',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Engenharia Química',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Engenharia - Outras',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Ensino Superior e Pesquisa',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Ensino - Outros',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Entretenimento',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Esportes',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Estética',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Farmácia',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Filosofia',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Finanças',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Fiscal',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Física',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Fisioterapia',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Fonoaudiologia',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Geografia',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Geologia',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Gestão Empresarial',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'História',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Hotelaria',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: '" selected="selectedInformática/T.I.',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Internet',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Jornalismo',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Letras',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Logística',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Manutenção Industrial',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Manutenção Predial',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Marketing',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Matemática/Estatística',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Medicina/Hospitalar',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Meteorologia',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Mineração',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Moda',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Museologia',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Música',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Nutrição',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Oceanografia',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Odontologia',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Organização de Eventos/Produção Cultural',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Organização e Métodos',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Pesquisa de Mercado',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Petrolífera',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Produção/Fabricação',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Propaganda',
-					link: '/',
+					link: '/profissao',
+				},
+				{
+					name: 'Programação Front-end',
+					link: '/profissao',
+				},
+				{
+					name: 'Programação Back-end',
+					link: '/profissao',
 				},
 				{
 					name: 'Psicologia',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Qualidade',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Química',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Radialismo e Televisão',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Recursos Humanos',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Relações Internacionais',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Relações Públicas',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Secretariado',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Segurança e Saúde no Trabalho',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Segurança Patrimonial',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Seguros',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Serviço Social',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Serviços Administrativos',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Serviços Domésticos',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Serviços Especializados - Açougue',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Serviços Especializados - Padaria/Confeitaria',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Serviços Especializados - Peixaria',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Serviços Gerais',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Serviços Técnicos - Elétricos',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Serviços Técnicos - Eletrônicos',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Serviços Técnicos - Mecânicos',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Serviços Técnicos - Outros',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Suprimentos',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Telecomunicações',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Terapia Ocupacional',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Terceiro Setor/Responsabilidade Social',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Tradução/Interpretação',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Transporte Aéreo',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Transporte Marítimo',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Transporte Terrestre',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Tributária',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Turismo',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Vendas',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Vendas - Varejo',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Vendas Técnicas',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Veterinária',
-					link: '/',
+					link: '/profissao',
 				},
 				{
-					name: 'Web Design',
-					link: '/',
+					name: 'Design Digital',
+					link: '/profissao',
+				},
+				{
+					name: 'Design de Moda',
+					link: '/profissao',
 				},
 				{
 					name: 'Zoologia',
-					link: '/',
+					link: '/profissao',
 				},
 				{
 					name: 'Zootecnia',
-					link: '/',
+					link: '/profissao',
 				},
 			],
 		};

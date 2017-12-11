@@ -15,7 +15,7 @@
 			</div>
 			<div class="card-info">
 				<profile-resume
-					:image="picture.url"
+					image="http://nosrc.fbiz.com.br/640x480/ddd/777"
 					nickname="Nayara Hilton"
 					username="@nayarahilton"
 					profession="#Profissão"
