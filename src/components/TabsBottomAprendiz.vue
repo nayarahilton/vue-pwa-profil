@@ -40,7 +40,7 @@ export default {
 				},
 				{
 					class: 'perfil',
-					url: '/perfil',
+					url: '/meu-perfil',
 					name: 'perfil',
 				},
 			],

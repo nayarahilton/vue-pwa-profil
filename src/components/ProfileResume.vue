@@ -60,6 +60,7 @@ export default {
 		line-height 100%
 		font-weight 600
 		color $blue
+		text-transform capitalize
 
 	.username
 		font-size 12px
