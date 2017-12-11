@@ -6,7 +6,6 @@
 	>
 		<span>{{ textInner }}</span>
 		<div class="icon">
-			<svg></svg>
 		</div>
 	</a>
 </template>
@@ -60,14 +59,16 @@ export default {
 		bottom 0
 		right -2px
 
-	svg
-		background #fff
-		position absolute
-		top 50%
-		left 50%
-		transform translate(-50%, -50%)
-		width 20px
-		height 20px
+		&:after
+			content ''
+			background url('../assets/icons/linkedin-icon.svg')
+			background-size 100%
+			position absolute
+			top 50%
+			left 50%
+			transform translate(-50%, -50%)
+			width 20px
+			height 20px
 
 	span
 		padding 0 15px
