@@ -172,6 +172,9 @@ export default {
 	.profile-resume
 		margin-bottom 10px
 
+	.stories
+		padding-top 10px
+
 	.profession
 		&_resume
 			max-width 500px
