@@ -6,15 +6,15 @@
 				<img class="logo-symbol" src="../assets/logo.svg" alt="Profil Logo">
 			</div>
 			<div class="social">
-				<a href="" target="_blank" class="social-link">
+				<a href="https://www.instagram.com/profilapp/" target="_blank" class="social-link">
 					<i class="insta-icon"></i>
 				</a>
-				<a href="" target="_blank" class="social-link">
+				<a href="https://m.facebook.com/profilapp/" target="_blank" class="social-link">
 					<i class="face-icon"></i>
 				</a>
-				<a href="" target="_blank" class="social-link">
+				<router-link to="/bemvindo" class="social-link">
 					<i class="app-icon"></i>
-				</a>
+				</router-link>
 			</div>
 			</div>
 		</header>

@@ -9,8 +9,8 @@
 		</header>
 		<section class="terms-section">
 			<main-titles
-				title-text="Termos de Compromisso"
-				subtitle-text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus veniam omnis, distinctio amet alias, quam hic dolorem aut quos recusandae molestiae tempore. Dolor, delectus. Error sint commodi eligendi eos vero!"
+				title-text="Informações importantes"
+				subtitle-text="Este site trata-se de uma publicação temporária para propósitos estritamente acadêmicos e sem fins lucrativos. Em atendimento às exigências da Lei 9.610/98, do parágrafo 4°, do Artigo 184, do Código Penal, os discentes responsáveis por esta publicação colocam-se à disposição, por intermédio do e-mail naylop@gmail.com, para dirimir quaisquer dúvidas referentes à eventual violação de direitos autorais, comprometendo-se desde já, a retirar do ar, qualquer texto, som ou imagem pertencente a autor ou titular que se sinta direta ou indiretamente prejudicado."
 			/>
 		</section>
 	</div>
