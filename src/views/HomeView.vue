@@ -1,9 +1,16 @@
 <template>
 	<div class="home">
 		<header class="home-header">
-			<slider-items class="stories" :slides="stories"/>
-			<tabs-top :links="linksTop"	/>
-			<tabs-bottom-guru />
+			<slider-items
+				class="stories"
+				:slides="stories"
+			/>
+			<tabs-top
+				:links="linksTop"
+				v-if="type == 1"
+			/>
+			<tabs-bottom-guru v-if="type == 1"/>
+			<tabs-bottom-aprendiz v-if="type == 2"/>
 		</header>
 		<main class="home-main">
 			<post-card resume="true" />
@@ -16,6 +23,7 @@ import SliderItems from '@/components/SliderItems';
 import PostCard from '@/components/PostCard';
 import TabsTop from '../components/TabsTop';
 import TabsBottomGuru from '../components/TabsBottomGuru';
+import TabsBottomAprendiz from '../components/TabsBottomAprendiz';
 
 export default {
 	data() {
@@ -81,10 +89,19 @@ export default {
 		};
 	},
 	components: {
-		'slider-items': SliderItems,
-		'tabs-top': TabsTop,
-		'tabs-bottom-guru': TabsBottomGuru,
-		'post-card': PostCard,
+		SliderItems,
+		TabsTop,
+		TabsBottomGuru,
+		TabsBottomAprendiz,
+		PostCard,
+	},
+	computed: {
+		type() {
+			return !this.$store.getters.user ? false : this.$store.getters.user.type;
+		},
+	},
+	created() {
+		this.$store.dispatch('fetchUser');
 	},
 };
 </script>
@@ -99,4 +116,6 @@ export default {
 		&-main
 			padding-bottom 50px
 
+	.stories
+		margin-top 20px
 </style>

@@ -5,7 +5,8 @@
 				link="/home"
 				title="Perguntas"
 			/>
-			<tabs-bottom-guru />
+			<tabs-bottom-guru v-if="type == 1"/>
+			<tabs-bottom-aprendiz v-if="type == 2"/>
 		</header>
 		<main class="questions-main">
 			<main-titles
@@ -22,6 +23,7 @@ import StatusBar from '@/components/StatusBar';
 import MainTitles from '@/components/MainTitles';
 import QuestionBox from '@/components/QuestionBox';
 import TabsBottomGuru from '../components/TabsBottomGuru';
+import TabsBottomAprendiz from '../components/TabsBottomAprendiz';
 
 export default {
 	data() {
@@ -47,10 +49,19 @@ export default {
 		};
 	},
 	components: {
-		'status-bar': StatusBar,
-		'question-box': QuestionBox,
-		'main-titles': MainTitles,
-		'tabs-bottom-guru': TabsBottomGuru,
+		StatusBar,
+		QuestionBox,
+		MainTitles,
+		TabsBottomGuru,
+		TabsBottomAprendiz,
+	},
+	computed: {
+		type() {
+			return !this.$store.getters.user ? false : this.$store.getters.user.type;
+		},
+	},
+	created() {
+		this.$store.dispatch('fetchUser');
 	},
 };
 </script>

@@ -1,9 +1,13 @@
 <template>
 	<div class="search-view">
-		<status-bar
-			link="/home"
-			title="Buscar"
-		/>
+		<header class="questions-header">
+			<status-bar
+				link="/home"
+				title="Buscar"
+			/>
+			<tabs-bottom-guru v-if="type == 1"/>
+			<tabs-bottom-aprendiz v-if="type == 2"/>
+		</header>
 		<main class="search-view">
 			<div class="search-holder">
 				<input
@@ -26,6 +30,8 @@
 
 <script>
 import StatusBar from '../components/StatusBar';
+import TabsBottomGuru from '../components/TabsBottomGuru';
+import TabsBottomAprendiz from '../components/TabsBottomAprendiz';
 
 export default {
 	data() {
@@ -51,6 +57,11 @@ export default {
 			],
 		};
 	},
+	components: {
+		StatusBar,
+		TabsBottomGuru,
+		TabsBottomAprendiz,
+	},
 	computed: {
 		/* eslint-disable */
 		filteredList() {
@@ -58,13 +69,16 @@ export default {
 				return profissao.name.toLowerCase().includes(this.search.toLowerCase());
 			});
 		},
+		type() {
+			return !this.$store.getters.user ? false : this.$store.getters.user.type;
+		},
 	},
-	components: {
-		'status-bar': StatusBar,
+	created() {
+		this.$store.dispatch('fetchUser');
 	},
 };
 </script>
-<style lang="stylus">
+<style lang="stylus" scoped>
 	@import '../assets/styles/*'
 
 	.search-view
