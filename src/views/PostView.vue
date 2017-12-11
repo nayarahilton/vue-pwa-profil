@@ -83,7 +83,6 @@ export default {
 		.input-file + label,
 		.image-preview,
 		.image-preview__img
-			margin-top 10px
 			margin-bottom 10px
 			border-radius 10px 10px 10px 0
 			width 100%
