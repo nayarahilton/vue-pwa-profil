@@ -10,6 +10,7 @@ import RegisterGuruView from '@/views/RegisterGuruView';
 import RegisterAprendizView from '@/views/RegisterAprendizView';
 import ProfileView from '@/views/ProfileView';
 import MyProfileView from '@/views/MyProfileView';
+import ProfileOptionsView from '@/views/ProfileOptionsView';
 import FeedbackGuruView from '@/views/FeedbackGuruView';
 import FeedbackAprendizView from '@/views/FeedbackAprendizView';
 import PostView from '@/views/PostView';
@@ -118,6 +119,18 @@ export default new Router({
 			path: '/meu-perfil',
 			name: 'my-profile',
 			component: MyProfileView,
+			beforeEnter(to, from, next) {
+				if (store.state.idToken) {
+					next();
+				} else {
+					next('/bemvindo');
+				}
+			},
+		},
+		{
+			path: '/opcoes',
+			name: 'opcoes',
+			component: ProfileOptionsView,
 			beforeEnter(to, from, next) {
 				if (store.state.idToken) {
 					next();
