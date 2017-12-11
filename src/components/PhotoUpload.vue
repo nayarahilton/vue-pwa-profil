@@ -94,9 +94,20 @@ export default {
 			font-size 12pt
 			font-weight 500
 			height 150px
-			line-height 150px
+			line-height 20px
+			position relative
 			text-align center
 			width 150px
+
+			&:before
+				content ''
+				background url('../assets/icons/photo-icon.svg') no-repeat center center
+				background-size 100%
+				display block
+				height 50px
+				margin 20px auto
+				vertical-align middle
+				width: 50px
 
 			&:hover,
 			&:focus

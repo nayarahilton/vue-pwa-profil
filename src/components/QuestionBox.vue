@@ -9,7 +9,9 @@
 				<p class="profession"  v-if="profession == 'true'">{{question.profession}}</p>
 				<p class="questions-holder" v-if="questions == 'true'">{{question.question}}</p>
 				<div class="answer-holder" v-if="answers == 'true'">
-					<main-titles v-for="item in question"
+					<main-titles
+						v-for="item in question"
+						:key="item.answer"
 						:title-text="item.answer"
 					/>
 					<profile-resume
@@ -33,7 +35,9 @@
 				<p class="profession"  v-if="profession == 'true'">{{question.profession}}</p>
 				<p class="questions-holder" v-if="questions == 'true'">{{question.question}}</p>
 				<div class="answer-holder" v-if="answers == 'true'">
-					<main-titles v-for="item in question"
+					<main-titles
+						v-for="item in question"
+						:key="item.answer"
 						:title-text="item.answer"
 					/>
 					<profile-resume
