@@ -28,8 +28,8 @@ Vue.config.productionTip = false;
 new Vue({
 	el: '#app',
 	firebase: {
-		card: database.ref('card').orderByChild('created_at'),
-		faq: database.ref('faq').orderByChild('created_at'),
+		card: database.ref('card').orderByChild('info'),
+		faq: database.ref('faq').orderByChild('info'),
 	},
 	router,
 	store,

@@ -18,7 +18,7 @@
 						:image="'http://nosrc.fbiz.com.br/640x480/ddd/777'"
 						nickname="Nayara Hilton"
 						username="@nayarahilton"
-						profession="#Profissão"
+						profession="#designdigital"
 						@click.native="goToProfile(picture['.key'])"
 						resume="true"
 					></profile-resume>
@@ -87,8 +87,6 @@ export default {
 			return JSON.parse(localStorage.getItem('questions'));
 		},
 		goToAnswer(id) {
-
-			console.log('helo', id)
 			this.$router.push({ name: 'responder', params: { id } });
 		},
 	},

@@ -35,7 +35,7 @@ export default {
 				},
 				{
 					class: 'perguntar',
-					url: '/perguntas',
+					url: '/perguntar',
 					name: 'perguntar',
 				},
 				{

@@ -6,15 +6,15 @@
 				<img class="logo-symbol" src="../assets/logo.svg" alt="Profil Logo">
 			</div>
 			<div class="social">
-				<a href="" target="_blank" class="social-link">
+				<a href="https://www.instagram.com/profilapp/" target="_blank" class="social-link">
 					<i class="insta-icon"></i>
 				</a>
-				<a href="" target="_blank" class="social-link">
+				<a href="https://m.facebook.com/profilapp/" target="_blank" class="social-link">
 					<i class="face-icon"></i>
 				</a>
-				<a href="" target="_blank" class="social-link">
+				<router-link to="/bemvindo" class="social-link">
 					<i class="app-icon"></i>
-				</a>
+				</router-link>
 			</div>
 			</div>
 		</header>
@@ -42,6 +42,9 @@
 					<p class="text">No Profil, você, jovem do ensino médio, acompanha a rotina de profissionais de diversas áreas, que compartilham seu dia a dia e diversas informações sobre a profissão e a carreira que a pessoa seguiu. Além disto, você ainda recebe moedas de acordo com a sua interação no Profil, que podem ser trocadas por prêmios.</p>
 				</div>
 			</div>
+		</section>
+		<section class="video-section">
+			<video class="video" controls src="../assets/video-profil.mp4"></video>
 		</section>
 		<section class="app">
 			<div class="content">
@@ -144,8 +147,9 @@ export default {
 		width 240px
 
 	.text
-		font-size 18px
+		font-size 17px
 		margin-top 15px
+		line-height 1.5em
 
 	.icon
 		display inline-block
@@ -252,9 +256,10 @@ export default {
 			position relative
 			z-index 2
 
-
 		.text
 			text-align center
+			line-height 1.3em
+			margin 0
 
 	.full
 		background-image url('../assets/img/intro-bg.jpg')
@@ -288,6 +293,12 @@ export default {
 
 			@media screen and (min-width 768px)
 				display none
+
+	.video-section
+		min-height auto
+		margin-bottom -10px
+		.video
+			max-width 100%
 
 	.app
 		color white
@@ -326,11 +337,16 @@ export default {
 		text-align center
 		margin-top 20px
 
-		@media screen and (max-width 768px)
+		@media screen and (min-width 768px)
+			width 60%
+
+		@media screen and (max-width 767px)
 			order 3
 
 		img
 			max-height 70vh
+			display block
+			margin 0 auto
 			max-width 100%
 
 
@@ -351,6 +367,8 @@ export default {
 
 	.title
 		font-size 50px
+		margin 20px 0 30px 0
+		line-height 0
 		line-height 100%
 		text-align center
 
