@@ -7,7 +7,7 @@
 		<slider-items class="stories" :slides="stories"/>
 		<div class="profession_resume">
 			<div class="profession_img-holder">
-				<img class="profession_img" src="http://nosrc.fbiz.com.br/640x480/ddd/777" alt="">
+				<img class="profession_img" src="/static/img/img-nayara.jpg" alt="Foto Nayara">
 				<p class="profession_img-strip">#funcionáriodomês</p>
 			</div>
 			<h1 class="profession_name">Design Digital</h1>
@@ -94,48 +94,68 @@ export default {
 			],
 			stories: [
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					src: '/static/img/img-nayara.jpg',
 					text: '@nayarahilton',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					src: '/static/img/img-lucas.jpg',
 					text: '@lucassilva',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					src: '/static/img/img-pri.jpg',
 					text: '@prisanttos',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
-					text: '@nayarahilton',
-				},
-				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
-					text: '@lucassilva',
-				},
-				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
-					text: '@prisanttos',
-				},
-				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					src: '/static/img/img-vinicius.jpg',
 					text: '@vinibueno',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					src: '/static/img/img-liege.jpg',
 					text: '@lilisantos',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					src: '/static/img/img-eduardo.jpg',
+					text: '@eduguimares',
+				},
+				{
+					src: '/static/img/img-rashel.jpg',
+					text: '@rashel',
+				},
+				{
+					src: '/static/img/img-gabriel.jpg',
+					text: '@gabriellopes',
+				},
+				{
+					src: '/static/img/img-nayara.jpg',
 					text: '@nayarahilton',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					src: '/static/img/img-lucas.jpg',
 					text: '@lucassilva',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					src: '/static/img/img-pri.jpg',
 					text: '@prisanttos',
+				},
+				{
+					src: '/static/img/img-vinicius.jpg',
+					text: '@vinibueno',
+				},
+				{
+					src: '/static/img/img-liege.jpg',
+					text: '@lilisantos',
+				},
+				{
+					src: '/static/img/img-eduardo.jpg',
+					text: '@eduguimares',
+				},
+				{
+					src: '/static/img/img-rashel.jpg',
+					text: '@rashel',
+				},
+				{
+					src: '/static/img/img-gabriel.jpg',
+					text: '@gabriellopes',
 				},
 			],
 			salaries: [

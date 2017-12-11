@@ -12,6 +12,7 @@
 				:nickname="name"
 				:username="'@' + username"
 				:profession="profession"
+				:image="'/static/img/img-nayara.jpg'"
 			/>
 			<div class="status">
 				<span class="point"> 1000 moedas </span> <span class="level"> Nível 2 </span>
@@ -32,6 +33,7 @@
 			<tabs-bottom-guru v-if="type == 1"/>
 			<tabs-bottom-aprendiz v-if="type == 2"/>
 		</header>
+		<post-card resume="true" />
 	</div>
 </template>
 
@@ -41,6 +43,7 @@ import ProfileResume from '@/components/ProfileResume';
 import TabsTop from '../components/TabsTop';
 import TabsBottomGuru from '../components/TabsBottomGuru';
 import TabsBottomAprendiz from '../components/TabsBottomAprendiz';
+import PostCard from '../components/PostCard';
 
 export default {
 	data() {
@@ -92,6 +95,7 @@ export default {
 		TabsTop,
 		TabsBottomGuru,
 		TabsBottomAprendiz,
+		PostCard,
 	},
 	computed: {
 		type() {

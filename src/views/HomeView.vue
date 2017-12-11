@@ -30,49 +30,70 @@ export default {
 		return {
 			stories: [
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					src: '/static/img/img-nayara.jpg',
 					text: '@nayarahilton',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					src: '/static/img/img-lucas.jpg',
 					text: '@lucassilva',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					src: '/static/img/img-pri.jpg',
 					text: '@prisanttos',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					src: '/static/img/img-vinicius.jpg',
 					text: '@vinibueno',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					src: '/static/img/img-liege.jpg',
 					text: '@lilisantos',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					src: '/static/img/img-eduardo.jpg',
+					text: '@eduguimares',
+				},
+				{
+					src: '/static/img/img-rashel.jpg',
+					text: '@rashel',
+				},
+				{
+					src: '/static/img/img-gabriel.jpg',
+					text: '@gabriellopes',
+				},
+				{
+					src: '/static/img/img-nayara.jpg',
 					text: '@nayarahilton',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
+					src: '/static/img/img-lucas.jpg',
 					text: '@lucassilva',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
-					text: '@nayarahilton',
+					src: '/static/img/img-pri.jpg',
+					text: '@prisanttos',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
-					text: '@lucassilva',
+					src: '/static/img/img-vinicius.jpg',
+					text: '@vinibueno',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
-					text: '@nayarahilton',
+					src: '/static/img/img-liege.jpg',
+					text: '@lilisantos',
 				},
 				{
-					src: 'http://nosrc.fbiz.com.br/640x480/ddd/777',
-					text: '@lucassilva',
+					src: '/static/img/img-eduardo.jpg',
+					text: '@eduguimares',
 				},
+				{
+					src: '/static/img/img-rashel.jpg',
+					text: '@rashel',
+				},
+				{
+					src: '/static/img/img-gabriel.jpg',
+					text: '@gabriellopes',
+				},
+
 			],
 			linksTop: [
 				{
