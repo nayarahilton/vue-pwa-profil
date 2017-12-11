@@ -1,6 +1,13 @@
 <template>
 	<div class="profile">
+			<router-link
+				class="dots-menu"
+				to="/opcoes"
+			>
+				Opções
+			</router-link>
 		<div class="profile-info">
+
 			<profile-resume
 				:nickname="name"
 				:username="'@' + username"
@@ -111,6 +118,18 @@ export default {
 	@import '../assets/styles/_colors'
 
 	.profile
+		position relative
+
+		.dots-menu
+			font-size 0
+			position absolute
+			right 10px
+			top 0
+
+			&:after
+				color $dark-gray
+				content: '\2807';
+				font-size: 20pt;
 
 		.status
 			margin-left 70px
@@ -120,6 +139,15 @@ export default {
 		.point
 			color $pink
 			font-weight bold
+
+			&:before
+				content ''
+				background url('../assets/icons/profiles-coins-icon.svg') no-repeat center center
+				background-size 100%
+				display inline-block
+				height 25px
+				vertical-align middle
+				width: 25px
 
 		.level
 			margin-left 5px

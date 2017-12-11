@@ -5,7 +5,6 @@
 				link="/home"
 				title="Fale Conosco"
 			/>
-			<tabs-bottom-guru />
 		</header>
 		<section class="contact-section">
 			<main-textarea
@@ -26,7 +25,6 @@
 import postContent from '@/mixins/postContent';
 import StatusBar from '@/components/StatusBar';
 import MainButton from '@/components/MainButton';
-import TabsBottomGuru from '@/components/TabsBottomGuru';
 import PhotoUpload from '@/components/PhotoUpload';
 import MainTextarea from '@/components/MainTextarea';
 
@@ -41,7 +39,6 @@ export default {
 	components: {
 		'main-button': MainButton,
 		'status-bar': StatusBar,
-		'tabs-bottom-guru': TabsBottomGuru,
 		'photo-upload': PhotoUpload,
 		'main-textarea': MainTextarea,
 	},

@@ -76,6 +76,7 @@ export default {
 		padding 10px 20px
 		box-sizing border-box
 		margin-bottom 50px
+		margin-top 20px
 
 		.main-btn
 			margin-top 10px
@@ -83,7 +84,6 @@ export default {
 		.input-file + label,
 		.image-preview,
 		.image-preview__img
-			margin-top 10px
 			margin-bottom 10px
 			border-radius 10px 10px 10px 0
 			width 100%

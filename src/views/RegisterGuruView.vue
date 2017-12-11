@@ -89,11 +89,6 @@
 						placeholder="Em apenas 320 caracteres fale um pouco sobre sua profissão."
 						v-model="aboutprofession"
 					/>
-					<main-titles
-						title-text="Qual cidade que você trabalha?"
-						design="center"
-					/>
-					<main-select />
 				</tab-content>
 				<tab-content
 					title="Minha profissão"
@@ -103,13 +98,19 @@
 						subtitle-text="Sua resposta é anônima e não aparecerá no seu perfil"
 						design="center"
 					/>
-					<main-select />
+					<main-select
+						disabled-text="Selecione uma opção"
+						:options="experiencias"
+					/>
 					<main-titles
 						title-text="Qual a média do seu salário atual"
 						subtitle-text="Sua resposta é anônima e não aparecerá no seu perfil"
 						design="center"
 					/>
-					<main-select />
+					<main-select
+						disabled-text="Selecione uma opção"
+						:options="salarios"
+					/>
 				</tab-content>
 				<tab-content
 					title="Características"
@@ -128,7 +129,7 @@
 					<slider-items check="true" :slides="ambiente"/>
 
 				</tab-content>
-				<button slot="prev" class="hide">Back</button>
+				<button slot="prev" class="hide">Voltar</button>
 				<button slot="next" class="submit-button">Próximo</button>
 				<button slot="finish" class="submit-button">Próximo</button>
 			</form-wizard>
@@ -177,6 +178,50 @@ Validator.setLocale('pt');
 export default {
 	data() {
 		return {
+			experiencias: [
+				{
+					value: 'ate_1',
+					text: 'Até 1 ano',
+				},
+				{
+					value: '1_3',
+					text: '1 - 3 anos',
+				},
+				{
+					value: '3_5',
+					text: '3 - 5 anos',
+				},
+				{
+					value: '5_8',
+					text: '5 - 8 anos',
+				},
+				{
+					value: 'acima_8',
+					text: 'Acima de 8',
+				},
+			],
+			salarios: [
+				{
+					value: 'ate_1',
+					text: 'Até R$1.000,00',
+				},
+				{
+					value: '1_3',
+					text: 'R$1.000,00 - R$3.000,00',
+				},
+				{
+					value: '3_5',
+					text: 'R$3.000,00 - R$5.000,00',
+				},
+				{
+					value: '5_8',
+					text: 'R$5.000,00 - R$8.000,00',
+				},
+				{
+					value: 'acima_8',
+					text: 'Acima de R$8.000,00',
+				},
+			],
 			comportamental: [
 				{
 					name: 'comportamental',

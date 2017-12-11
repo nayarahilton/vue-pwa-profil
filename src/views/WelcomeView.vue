@@ -49,7 +49,14 @@
 				>
 					{{ errors.first('password') }}
 				</feedback>
-
+				<div class="password-recover">
+					<router-link
+						class="link"
+						to="/esqueci-senha"
+					>
+						Esqueci minha senha
+					</router-link>
+				</div>
 				<div class="login-holder">
 					<router-link
 						class="link"

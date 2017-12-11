@@ -5,7 +5,6 @@
 				link="/home"
 				title="Termos de Compromisso"
 			/>
-			<tabs-bottom-guru />
 		</header>
 		<section class="terms-section">
 			<main-titles
@@ -19,7 +18,6 @@
 import postContent from '@/mixins/postContent';
 import StatusBar from '@/components/StatusBar';
 import MainButton from '@/components/MainButton';
-import TabsBottomGuru from '@/components/TabsBottomGuru';
 import PhotoUpload from '@/components/PhotoUpload';
 import MainTextarea from '@/components/MainTextarea';
 import MainTitles from '@/components/MainTitles';
@@ -35,7 +33,6 @@ export default {
 	components: {
 		'main-button': MainButton,
 		'status-bar': StatusBar,
-		'tabs-bottom-guru': TabsBottomGuru,
 		'photo-upload': PhotoUpload,
 		'main-textarea': MainTextarea,
 		'main-titles': MainTitles,
