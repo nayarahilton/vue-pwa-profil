@@ -122,7 +122,12 @@ var webpackConfig = merge(baseWebpackConfig, {
 		  maxCacheEntries: 10,
 		},
 		{
-			urlPattern: /^data:image\/[a-z]+;base64,/,
+			urlPattern: '/static/img/:name.jpg',
+			handler: 'cacheFirst',
+			maxCacheEntries: 10,
+		},
+		{
+			urlPattern: '/static/img/:name.png',
 			handler: 'cacheFirst',
 			maxCacheEntries: 10,
 		}]
