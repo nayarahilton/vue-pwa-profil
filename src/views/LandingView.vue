@@ -43,6 +43,9 @@
 				</div>
 			</div>
 		</section>
+		<section class="video-section">
+			<video class="video" controls src="../assets/video-profil.mp4"></video>
+		</section>
 		<section class="app">
 			<div class="content">
 				<div class="features">
@@ -288,6 +291,12 @@ export default {
 
 			@media screen and (min-width 768px)
 				display none
+
+	.video-section
+		min-height auto
+		margin-bottom -10px
+		.video
+			max-width 100%
 
 	.app
 		color white
