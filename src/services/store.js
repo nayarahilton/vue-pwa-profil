@@ -144,6 +144,7 @@ export default new Vuex.Store({
 					}
 					console.log(users);
 					commit('storeUser', users[0]);
+
 				})
 				.catch(error => console.log(error));
 		},
