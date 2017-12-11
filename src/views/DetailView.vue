@@ -4,14 +4,13 @@
 			link="/home"
 			title="Home"
 		/>
-		<div class="picture">
-			<img :src="card.url" />
-		</div>
-		<div class="info">
-			<span>{{ card.info }}</span>
-		</div>
-		<div class="comment">
-			<span>{{ card.comment }}</span>
+		<div class="holder">
+			<div class="picture">
+				<img :src="card.url" />
+			</div>
+			<div class="comment">
+				<span>{{ card.comment }}</span>
+			</div>
 		</div>
 	</div>
 </template>
@@ -36,6 +35,15 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+	@import '../assets/styles/*'
+
+	.holder
+		holder()
+		margin-top 20px
+
+	.comment
+		padding 20px
+
 	img
 		max-width 100%
 </style>
